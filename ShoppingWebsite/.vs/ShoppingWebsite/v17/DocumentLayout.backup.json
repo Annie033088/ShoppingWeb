@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\addnewacct.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\addnewacct.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\manpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\manpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\datatableclass\\dataclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\datatableclass\\dataclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DataClass.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\DataTableClass\\DataClass.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\DataTableClass\\DataClass.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\DataTableClass\\DataClass.cs",
+              "RelativeToolTip": "WebApplication1\\DataTableClass\\DataClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T08:23:37.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ManPage.aspx",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\ManPage.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\ManPage.aspx",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\ManPage.aspx",
+              "RelativeToolTip": "WebApplication1\\ManPage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-05T05:11:45.707Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AddNewAcct.aspx",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\AddNewAcct.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\AddNewAcct.aspx",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\AddNewAcct.aspx",
+              "RelativeToolTip": "WebApplication1\\AddNewAcct.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-05T01:28:53.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.aspx.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Index.aspx.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx.cs",
+              "RelativeToolTip": "WebApplication1\\Index.aspx.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T01:49:55.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.aspx",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx",
+              "RelativeDocumentMoniker": "WebApplication1\\Index.aspx",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx",
+              "RelativeToolTip": "WebApplication1\\Index.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-05T01:29:40.001Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
