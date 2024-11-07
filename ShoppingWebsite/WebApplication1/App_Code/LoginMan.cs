@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication1.DataTableClass
+namespace LoginAuth
 {
-    public class DataClass
+    public class LoginMan : System.Web.UI.Page
     {
-        
+
     }
 }

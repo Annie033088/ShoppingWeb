@@ -6,12 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplication1
+namespace LoginAuth
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        //軟體生命週期
-     
+        //軟體生命週期 //命名空間組織類別!!
+
 
         /// <summary>
         /// 登入進行中驗證
@@ -37,17 +37,24 @@ namespace WebApplication1
         }
 
         /// <summary>
-        /// 登入完成紀錄時間
+        /// 登入完成
         /// </summary>
         private void SiteSpecificUserLoggingMethod(string UserName)
         {
             // Insert code to record the current date and time
             // when this user was authenticated at the site.
-            Server.Transfer("ManPage.aspx");
+            // 假設登錄成功
+            string username = UserLogin.UserName;
+
+            // 設置 Session 資料
+            Session["username"] = username;  // 存儲用戶名
+            Session["loginTime"] = DateTime.Now;  // 存儲登錄時間
+
+            Response.Redirect("ManPage.aspx");
         }
 
         /// <summary>
-        /// 登入完成紀錄時間
+        /// 登入完成
         /// </summary>
         protected void OnLoggedIn(object sender, EventArgs e)
         {
@@ -57,7 +64,10 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            UserLogin.InstructionText = "你好";
+            if ( Session["username"] != null )
+            {
+                Response.Redirect("ManPage.aspx");
+            }
         }
     }
 }
