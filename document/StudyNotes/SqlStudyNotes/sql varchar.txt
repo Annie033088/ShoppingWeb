@@ -1,0 +1,11 @@
+Varchar：
+
+因為varchar可以變更長度，所以當不清楚長度時，建議選擇varchar，可以節省空間
+不過由於行是變長的，在update時可能會比原來更常，這就導致需要額外的工作
+
+Char：
+
+char適合用來儲存很短或長度近似的字串
+對於經常變更的數據char也比varchar好，因為定長的char不容易產生碎片
+對於極短的資料列char也比varchar更好，因為varchar會需要額外一個位元組紀錄長度，EX:varchar(1)要2個位元組
+(char 會預設切掉字串末尾的空格)

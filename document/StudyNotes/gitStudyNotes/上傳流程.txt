@@ -1,0 +1,22 @@
+
+１. workspace　＝＞從零開始對 當前工作環境進行版控 
+ $ git init　
+
+＝＞新增資料夾（可不用）
+
+２. 存到暫存 staging area ＝＞決定哪些檔案是否加入版本控制，把檔案交給 git 追蹤：
+ $ git add <file> 
+[補充說明] 暫存區 Staging Area 在 sourcetree 內被稱作 index。
+
+３. 檔案正式地存入local repository之中 ＝＞取消追蹤　ＯＲ　加入本地資料庫
+$ git commit
+
+４. GitHub 遠端與本地端進行串接＝＞加入遠端節點：
+$ git remote add origin <網址>
+
+＝＞將本地端檔案庫推上一個叫做 origin 的遠端檔案庫master 分支：
+$ git push -u origin master
+
+
+tortoise git： 加入=>提交=>推送
+

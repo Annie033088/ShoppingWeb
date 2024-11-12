@@ -1,0 +1,3 @@
+id (主鍵, INT)
+member_id (外鍵, 參照 members.id)
+role_id (外鍵, 參照 roles.id)

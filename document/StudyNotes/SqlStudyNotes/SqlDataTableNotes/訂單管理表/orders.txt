@@ -1,0 +1,6 @@
+id (主鍵, INT)
+member_id (外鍵, 參照 member.id)
+total_price (DECIMAL, 訂單總金額)
+status (TINYINT, 訂單狀態，1: 處理中，2: 已完成，3: 已取消)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)

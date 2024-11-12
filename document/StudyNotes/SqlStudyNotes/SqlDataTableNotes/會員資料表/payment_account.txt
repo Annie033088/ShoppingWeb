@@ -1,0 +1,37 @@
+帳號表（accounts）：
+id (帳號ID)
+user_id (用戶ID)
+account_type (帳號類型，如銀行、支付寶等)
+account_name (帳號名稱)
+account_number (帳號號碼，部分加密)
+created_at (創建時間)
+updated_at (更新時間)
+
+
+欄位名稱	類型	說明
+id	INT	唯一的帳號ID（主鍵）
+user_id	INT	用戶ID，關聯用戶表（如果是管理員，則是管理員ID）
+account_type	VARCHAR(50)	帳號類型（如銀行卡、支付寶、微信支付）
+account_name	VARCHAR(100)	帳號名稱
+account_number	VARCHAR(50)	帳號號碼（存儲部分加密）
+status	VARCHAR(20)	帳號狀態（如啟用、禁用）
+created_at	TIMESTAMP	創建時間
+updated_at	TIMESTAMP	最後更新時間
+
+
+下面是 後端使用者的表範例
+CREATE TABLE Users (
+    UserId INT IDENTITY(1,1) PRIMARY KEY,   -- 使用者唯一識別碼，主鍵，自動遞增
+    FirstName NVARCHAR(50) NOT NULL,          -- 使用者的名字，非空
+    LastName NVARCHAR(50) NOT NULL,           -- 使用者的姓氏，非空
+    Email NVARCHAR(100) NOT NULL UNIQUE,      -- 使用者的電子郵件，非空且唯一
+    PasswordHash NVARCHAR(255) NOT NULL,      -- 存儲加密後的密碼，非空
+    Phone NVARCHAR(15) NULL,                  -- 使用者的電話號碼，可空
+    DateOfBirth DATE NULL,                    -- 使用者的出生日期，可空
+    DateJoined DATETIME NOT NULL DEFAULT GETDATE(), -- 註冊日期，默認為當前時間
+    LastLogin DATETIME NULL,                  -- 最後登入時間，可空
+    Status INT NOT NULL DEFAULT 1,             -- 使用者狀態（1=啟用，0=禁用），默認為啟用
+    Role NVARCHAR(50) NULL,                   -- 使用者角色，可空（如管理員、一般使用者等）
+    Address NVARCHAR(255) NULL,               -- 使用者地址，可空
+    CONSTRAINT CK_EmailFormat CHECK (Email LIKE '%_@__%.__%') -- 驗證電子郵件格式
+);

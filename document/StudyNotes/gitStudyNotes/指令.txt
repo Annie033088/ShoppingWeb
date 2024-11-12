@@ -1,0 +1,43 @@
+$ ls -a : 找到目前在哪個目錄下
+
+$ git status： 檢查
+
+$ echo ‘hello, git’ > welcome.html： 建檔
+
+$ git add . ： 將當前目錄下的檔案都加入版控
+
+$ git add --all： 將全部加入
+
+$ git rm --cached <file> ： 取消追蹤
+
+$ git commit： 加入本地端儲存庫
+
+$ git commit -m '版本訊息'： 超簡單 VIM 操作，直接上傳版本訊息
+
+$ git commit -amend -m “edit commit message”： 修改最後一次 commit 的訊息
+
+$ git log / $ git log <版本號>： 檢視 commit 紀錄
+
+$ git rm （remove） <filename>： 請 git 刪除檔案
+
+$ git checkout <版本號/分支名>： 切換版本/分支 ( 借由輸入版本號切換到任何 commit 過的版本。)
+
+$ git checkout --： 取消暫存檔上的變更
+
+$ git diff ： 比對 工作目錄 與 暫存區 全部檔案的差異
+
+$ git reset： 將 暫存區 恢復到 工作目錄
+
+$ git reset HEAD^： 將上一次到 本地端檔案庫 的 commit 恢復到 暫存區
+
+$ git log --oneline： 尋找 HEAD (辨識號)
+
+$ touch .gitignore： 建立忽略資料夾 (記得commit)
+
+加入遠端節點：
+$ git remote add origin <網址>
+
+$ git push -u origin master： 上傳到遠端檔案庫
+
+要如何停止版本控制？
+$ rm -r .git： 刪除 .git

@@ -1,0 +1,26 @@
+<connectionStrings>
+  <add name="ConnStr" 
+	：這是連接字串的名稱，你可以在應用中使用這個名稱來引用它。
+	在程式碼中，你可以使用 ConfigurationManager.ConnectionStrings 來讀取 web.config 中的連接字串
+
+	connectionString="Data Source=XXX.XXX.XXX.XXX,XXXX;Initial Catalog = XXXXXX;Persist Security Info=True;UserID=XXX;Password=XXXXXXXXX;MultipleActiveResultSets=True" 
+
+	：這是實際的資料庫連接字串，它包括了連接資料庫所需的所有信息：
+Data Source=server_name：指定 SQL Server 的伺服器名稱或 IP 地址。
+
+Initial Catalog=my_db：指定要連接的資料庫名稱。
+
+Integrated Security=True：表示使用 Windows 驗證來連接資料庫（也可以使用 SQL Server 驗證，通過指定 User ID 和 Password）。
+
+persist Security Info=True：當設置為 True 時，連接字串中的安全資訊（如用戶名和密碼）會在連接對象建立後保持在連接對象中，即使連接被關閉。這意味著，即使關閉資料庫連接，安全資訊仍然可以被程序訪問。
+當設置為 False 時，連接的安全資訊（用戶名和密碼）將在建立連接後被刪除。這樣，對應的連接物件就不再包含敏感信息，這樣做有助於提高安全性，防止未經授權的人訪問這些敏感資料。
+
+MultipleActiveResultSets=True (MARS)：當設置為 True 時，你可以在一個資料庫連接中同時開啟多個 SqlDataReader，並且每個 SqlDataReader 可以同時處理來自 SQL Server 的結果集，而不需要等待其他查詢完成
+當設置為 False 時，在使用資料庫連接時，只能在同一個連接上處理一個結果集，當前的結果集未完成時，不能開始處理新的結果集。這可能導致應用程序需要多次建立新的資料庫連接，從而增加了性能開銷。
+
+
+
+	providerName="SQLNCLI11" />
+providerName="System.Data.SqlClient"：指定連接所使用的資料提供程序（例如 System.Data.SqlClient 或 System.Data.OleDb），它告訴應用程序使用哪一個資料庫驅動。
+
+</connectionStrings>

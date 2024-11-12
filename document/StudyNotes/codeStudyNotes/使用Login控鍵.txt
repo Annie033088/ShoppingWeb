@@ -1,0 +1,19 @@
+取得login
+let userLoginControl = document.getElementById("UserLogin");
+
+取得login 中的 form
+let userForm = userLoginControl.closest("form");//向上搜尋找到最近的 form元素
+
+取得username passward的資料
+方法一：
+let username = document.getElementById("ctl00_ContentPlaceHolder1_UserLogin_UserName").value;
+let pwd = document.getElementById("ctl00_ContentPlaceHolder1_UserLogin_Password").value;
+
+login中username的id會自動生成, ctl00：頁面的頂級容器的 id（通常是頁面的 <form>）
+ContentPlaceHolder1：這是頁面中的容器或佈局控件（通常是 MasterPage 中的 ContentPlaceHolder）
+
+方法二：
+let username = querySelector('input[name$="UserName"]');
+input: 這意味著選擇所有的 input 元素。
+[name$="UserName"]: 這是屬性選擇器，它會選擇 name 屬性 以 "UserName" 結尾的所有元素。$= 是 CSS 屬性選擇器的一個運算符，表示 "結尾匹配"。
+

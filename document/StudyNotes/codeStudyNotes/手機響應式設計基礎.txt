@@ -1,0 +1,13 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 是一個常見的 HTML <meta> 標籤，用來控制網頁在不同設備上（尤其是行動設備）的顯示方式。
+
+name="viewport"：
+這告訴瀏覽器這個 <meta> 標籤是用來配置頁面的 viewport（視口），即頁面顯示區域的大小和縮放方式。
+
+content="width=device-width"：
+這部分指定了頁面的寬度應該與設備的屏幕寬度相匹配。
+
+initial-scale=1.0：
+這部分指定了頁面在加載時的初始縮放比例。
+
+initial-scale=1.0：表示頁面加載時，初始的縮放比例應該是 1，也就是 100%。
+這意味著頁面會以原始大小呈現，如果沒有這個設置，頁面可能會顯得過小或過大。

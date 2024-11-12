@@ -1,0 +1,3 @@
+id (主鍵, INT)
+role_id (外鍵, 參照 roles.id)
+permission_id (外鍵, 參照 permissions.id)

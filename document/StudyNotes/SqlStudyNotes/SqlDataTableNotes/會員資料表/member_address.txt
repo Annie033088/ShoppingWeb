@@ -1,0 +1,11 @@
+
+id (主鍵, INT)
+member_id (外鍵, 參照 members.id)
+address (TEXT, 會員地址)
+city (VARCHAR, 城市)
+state (VARCHAR, 州/省)
+zip_code (VARCHAR, 郵政編碼)
+country (VARCHAR, 國家)
+is_default (TINYINT, 是否是默認地址，1: 是，0: 否)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)

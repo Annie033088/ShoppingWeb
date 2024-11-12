@@ -1,0 +1,12 @@
+將遠端分支資料拉回並合併本地分支
+
+$ git pull original <branch-name>
+
+step1. 切換到新分支： $ git checkout <new_branch>
+step2. 從遠端更新程式碼：$ git pull
+
+or
+
+step1. 取得遠端資料分支資料拷貝回本地：$ git fetch
+step2. 切換到本地端 master 分支：$ git checkout master
+step3. 將本地分支與本地端 master 分支進行合併：$ git merge origin/master

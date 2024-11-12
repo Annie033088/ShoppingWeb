@@ -1,0 +1,80 @@
+1. 查詢 (SELECT)
+當你需要從資料庫中查詢資料時，CommandText 通常會是一個 SELECT 語句：
+
+command.CommandText = "SELECT * FROM Users WHERE Age > 18";
+command.CommandText = @"
+            SELECT * FROM Customers;
+            SELECT * FROM Orders;
+        ";
+
+
+2. 插入
+若要將新資料插入資料庫中，CommandText 會是一個 INSERT INTO 語句：
+
+command.CommandText = "INSERT INTO Users (Username, Password, Age) VALUES ('john_doe', 'password123
+
+
+3. 更新 (UPDATE)
+如果你需要更新資料庫中的某些資料，CommandText 可以是 UPDATE 語句：
+
+command.CommandText = "UPDATE Users SET Age = 31 WHERE Username = 'john_doe'";
+
+
+4. 刪除 (DELETE)
+如果你需要從資料庫中刪除某些資料，CommandText 會是一個 DELETE 語句：
+
+command.CommandText = "DELETE FROM Users WHERE Username = 'john_doe'";
+
+
+5. 存儲過程 (Stored Procedure)
+
+command.CommandText = "GetUserDetails";  // 存儲過程名稱
+command.CommandType = CommandType.StoredProcedure;
+
+6. SQL 參數 (Parameterized Query)
+當你需要插入用戶輸入或變數值時，最好使用參數化查詢來防止 SQL 注入攻擊。這樣的查詢會使用參數來傳遞數據，而不是直接將數據嵌入 SQL 語句中
+
+command.CommandText = "SELECT * FROM Users WHERE Username = @Username AND Age = @Age";
+command.Parameters.AddWithValue("@Username", username);
+command.Parameters.AddWithValue("@Age", age);
+cmd.Parameters.Add("@xxx", SqlDbType.Int).Value = Request["xxx"];
+
+command.Parameters.Add() VS command.Parameters.AddWithValue()
+add比較靈活 可以額外指定型態(SqlDbType)等(size,direction)
+addwithvalue基本上指定名稱及參數,由系統自動判定型態 (可能不是想要的型態)
+
+
+7. 條件語句與聯接 (JOIN, WHERE, AND, OR)
+以在 CommandText 中組合複雜的 SQL 語句，這些語句可能會包括多表聯接、條件過濾等。
+
+command.CommandText = @"
+SELECT u.Username, u.Age, o.OrderDate
+FROM Users u
+INNER JOIN Orders o ON u.UserId = o.UserId
+WHERE u.Age > 18 AND o.OrderDate > '2024-01-01'";
+
+
+8. 事務 (Transaction)
+若操作需要使用事務來保證一致性，你會在 CommandText 中執行多條 SQL 語句作為一個事務的一部分：
+
+
+command.CommandText = "BEGIN TRANSACTION; " +
+                      "UPDATE Users SET Age = 32 WHERE Username = 'john_doe'; " +
+                      "UPDATE Orders SET Status = 'Processed' WHERE OrderId = 12345; " +
+                      "COMMIT;"; //這樣可以確保所有的操作要麼都成功，要麼都回滾
+
+
+9. 複雜查詢 (Subquery)
+有時候你需要在查詢中使用子查詢，這樣可以嵌套多層查詢來獲得更複雜的結果：
+
+command.CommandText = @"
+SELECT Username
+FROM Users
+WHERE Age = (SELECT MAX(Age) FROM Users)"; //這將返回年齡最大的使用者。
+
+
+10. SQL 內建函數
+你可以在 CommandText 中使用 SQL 內建函數來處理日期、字串或數字：
+
+command.CommandText = "SELECT UPPER(Username) FROM Users WHERE Age > 18";
+這將返回所有年齡大於 18 的使用者的 Username，並將其轉換為大寫。

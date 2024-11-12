@@ -1,0 +1,8 @@
+﻿body {
+}
+.AddBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -112px 0 0 -135px;
+}

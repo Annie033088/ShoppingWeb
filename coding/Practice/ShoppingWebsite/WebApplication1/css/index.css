@@ -1,0 +1,8 @@
+﻿body {
+}
+.LoginBlock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -126px 0 0 -110px;
+}

@@ -1,0 +1,4 @@
+id (主鍵, INT)
+name (VARCHAR, 角色名稱，如「普通會員」或「VIP 會員」)
+description (TEXT, 角色描述)
+created_at (TIMESTAMP)
