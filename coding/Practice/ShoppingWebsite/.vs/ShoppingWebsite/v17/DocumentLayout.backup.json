@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\app_code\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\app_code\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\app_code\\authman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\app_code\\authman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\webapplication1\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\webapplication1\\app_code\\authman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\app_code\\authman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|d:\\secretplace\\coding\\practice\\shoppingwebsite\\webapplication1\\app_code\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\app_code\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E842B9A4-A00D-45C3-AA92-4AEB6F87F42F}|WebApplication1\\WebApplication1.csproj|D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\webapplication1\\app_code\\userinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,28 +42,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Web.config",
+              "RelativeDocumentMoniker": "WebApplication1\\Web.config",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Web.config",
+              "RelativeToolTip": "WebApplication1\\Web.config",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-11-11T08:23:44.592Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "index.js",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\js\\index.js",
+              "RelativeDocumentMoniker": "WebApplication1\\js\\index.js",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\js\\index.js",
+              "RelativeToolTip": "WebApplication1\\js\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-11-11T07:17:27.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PasswordHasher.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\App_Code\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "WebApplication1\\App_Code\\PasswordHasher.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\App_Code\\PasswordHasher.cs",
               "RelativeToolTip": "WebApplication1\\App_Code\\PasswordHasher.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-11T05:58:22.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "BasePage.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\App_Code\\BasePage.cs",
               "RelativeDocumentMoniker": "WebApplication1\\App_Code\\BasePage.cs",
@@ -67,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "UserInfo.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\App_Code\\UserInfo.cs",
               "RelativeDocumentMoniker": "WebApplication1\\App_Code\\UserInfo.cs",
@@ -79,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Index.aspx",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx",
               "RelativeDocumentMoniker": "WebApplication1\\Index.aspx",
@@ -87,12 +121,11 @@
               "RelativeToolTip": "WebApplication1\\Index.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-11-07T07:47:08Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-07T07:47:08Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "AuthMan.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\App_Code\\AuthMan.cs",
               "RelativeDocumentMoniker": "WebApplication1\\App_Code\\AuthMan.cs",
@@ -105,13 +138,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Index.aspx.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Index.aspx.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\ShoppingWebsite\\WebApplication1\\Index.aspx.cs",
               "RelativeToolTip": "WebApplication1\\Index.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAowA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T05:13:38.882Z",
               "EditorCaption": ""
