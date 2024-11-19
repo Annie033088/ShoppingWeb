@@ -11,7 +11,7 @@ namespace Pashamao
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger ();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
         protected void Application_Start()
         {

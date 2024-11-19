@@ -1,0 +1,9 @@
+﻿.LoginBg{
+    height:95%;
+    width:90%;
+    position: absolute;
+    background-position: center, center;
+    background-size: cover;
+    opacity:0.2;
+    background-image:url("../img/LoginBg1.jpg");
+}
