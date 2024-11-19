@@ -16,7 +16,7 @@ namespace Pashamao
         protected void Application_Start()
         {
             //可以註冊區域 方便管理不同分區
-            //AreaRegistration.RegisterAllAreas ();
+            //AreaRegistration.RegisterAllAreas (); 
 
             //全局過濾器 在每次請求都會被調用
             FilterConfig.RegisterGlobalFilters ( GlobalFilters.Filters );
@@ -27,6 +27,7 @@ namespace Pashamao
             //註冊bundle
             BundleConfig.RegisterBundles ( BundleTable.Bundles );
             logger.Info ( "Application Start" );
+
         }
 
         protected void Application_Error( Exception error )

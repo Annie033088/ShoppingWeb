@@ -8,10 +8,10 @@ namespace Pashamao.Models
     public class User
     {
         public int UID { get; set; }
-        public int Account { get; set; }
-        public int Hash { get; set; }
-        public int Name { get; set; }
-        public int Status { get; set; }
+        public string Account { get; set; }
+        public string Hash { get; set; }
+        public string Name { get; set; }
+        public bool Status { get; set; }
         public int RoleId { get; set; }
 
     }

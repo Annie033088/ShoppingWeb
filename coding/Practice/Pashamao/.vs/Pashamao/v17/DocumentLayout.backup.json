@@ -3,36 +3,48 @@
   "WorkspaceRootPath": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\repositories\\sqlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\repositories\\sqlrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\nlog.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\nlog.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\servercs\\pwdhash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\servercs\\pwdhash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\servercs\\pwdhash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\servercs\\pwdhash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\models\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\manbackend\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\manbackend\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\controllers\\manbackendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\manbackendcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,93 +62,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NLog.config",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\NLog.config",
-              "RelativeDocumentMoniker": "Pashamao\\NLog.config",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\NLog.config",
-              "RelativeToolTip": "Pashamao\\NLog.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-11-18T09:55:24.83Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Repositories\\UserRepository.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Pashamao\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA4wBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T09:13:22.007Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SqlRepository.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\SqlRepository.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Repositories\\SqlRepository.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\SqlRepository.cs",
-              "RelativeToolTip": "Pashamao\\Repositories\\SqlRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T08:50:38.131Z",
+              "DocumentIndex": 4,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "Pashamao\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "Pashamao\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T08:39:51.775Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\User.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Models\\User.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\User.cs",
-              "RelativeToolTip": "Pashamao\\Models\\User.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "Pashamao\\App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "Pashamao\\App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T08:25:18.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PwdHash.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\ServerCs\\PwdHash.cs",
-              "RelativeDocumentMoniker": "Pashamao\\ServerCs\\PwdHash.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\ServerCs\\PwdHash.cs",
-              "RelativeToolTip": "Pashamao\\ServerCs\\PwdHash.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAuwAwAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T06:50:54.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserViewModel.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\UserViewModel.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Models\\UserViewModel.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\UserViewModel.cs",
-              "RelativeToolTip": "Pashamao\\Models\\UserViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-18T05:34:35.82Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Controllers\\LoginController.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "Pashamao\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T09:38:51.75Z",
+              "WhenOpened": "2024-11-19T08:15:26.473Z",
               "EditorCaption": ""
             },
             {
@@ -145,11 +92,115 @@
               "Title": "Global.asax.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Global.asax.cs",
               "RelativeDocumentMoniker": "Pashamao\\Global.asax.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Global.asax.cs",
-              "RelativeToolTip": "Pashamao\\Global.asax.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Global.asax.cs*",
+              "RelativeToolTip": "Pashamao\\Global.asax.cs*",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAowBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T06:59:38.89Z",
+              "WhenOpened": "2024-11-19T08:14:12.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pashamao\\Views\\Login\\Index.cshtml",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Pashamao\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T07:49:30.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PwdHash.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\ServerCs\\PwdHash.cs",
+              "RelativeDocumentMoniker": "Pashamao\\ServerCs\\PwdHash.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\ServerCs\\PwdHash.cs",
+              "RelativeToolTip": "Pashamao\\ServerCs\\PwdHash.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T06:50:54.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Pashamao\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAA4wCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T09:13:22.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Models\\User.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\User.cs",
+              "RelativeToolTip": "Pashamao\\Models\\User.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T08:25:18.921Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Controllers\\LoginController.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Pashamao\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T09:38:51.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\ManBackend\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pashamao\\Views\\ManBackend\\Index.cshtml",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\ManBackend\\Index.cshtml",
+              "RelativeToolTip": "Pashamao\\Views\\ManBackend\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T07:46:13.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ManBackendController.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\ManBackendController.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Controllers\\ManBackendController.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\ManBackendController.cs",
+              "RelativeToolTip": "Pashamao\\Controllers\\ManBackendController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T07:50:48.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserViewModel.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\UserViewModel.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Models\\UserViewModel.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\UserViewModel.cs",
+              "RelativeToolTip": "Pashamao\\Models\\UserViewModel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T05:34:35.82Z",
               "EditorCaption": ""
             }
           ]

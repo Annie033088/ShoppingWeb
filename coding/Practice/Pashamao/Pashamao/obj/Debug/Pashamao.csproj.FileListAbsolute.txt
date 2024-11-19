@@ -1,3 +1,4 @@
+D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.config
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Pashamao.dll.config
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Pashamao.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Pashamao.pdb
@@ -54,6 +55,8 @@ D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Antlr3.Runtime.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Microsoft.Web.Infrastructure.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\Newtonsoft.Json.dll
+D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.dll
+D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.Web.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Helpers.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Mvc.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Optimization.dll
@@ -62,6 +65,8 @@ D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.WebPages.Deploym
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.WebPages.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.WebPages.Razor.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\WebGrease.dll
+D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.xml
+D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.Web.xml
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Helpers.xml
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Mvc.xml
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\System.Web.Optimization.xml
@@ -84,8 +89,3 @@ D:\SecretPlace\coding\Practice\Pashamao\Pashamao\obj\Debug\Pashamao.csproj.CoreC
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\obj\Debug\Pashamao.csproj.Up2Date
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\obj\Debug\Pashamao.dll
 D:\SecretPlace\coding\Practice\Pashamao\Pashamao\obj\Debug\Pashamao.pdb
-D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.dll
-D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.xml
-D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.config
-D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.Web.dll
-D:\SecretPlace\coding\Practice\Pashamao\Pashamao\bin\NLog.Web.xml

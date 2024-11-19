@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Pashamao.Models;
+using Pashamao.ServerCs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,14 +15,27 @@ namespace Pashamao.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            return View();
+            return View ();
         }
 
         [HttpPost]
-        public ActionResult Submit()
+        public ActionResult Submit( UserViewModel userViewModel )
         {
-            
-            return View();
+            try
+            {
+                PwdHash pwdHash = new PwdHash ();
+
+                if (pwdHash.VarifyPwd ( userViewModel.UserAccount, userViewModel.UserPwd ))
+                {
+                    return RedirectToAction ( "index", "ManBackend" );
+                } else
+                {
+                    return RedirectToAction ( "Index" );
+                }
+            } catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

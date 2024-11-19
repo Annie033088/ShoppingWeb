@@ -1,0 +1,15 @@
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\bin\Debug\net8.0\TestApp.exe
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\bin\Debug\net8.0\TestApp.deps.json
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\bin\Debug\net8.0\TestApp.runtimeconfig.json
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\bin\Debug\net8.0\TestApp.dll
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\bin\Debug\net8.0\TestApp.pdb
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.AssemblyInfoInputs.cache
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.AssemblyInfo.cs
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.csproj.CoreCompileInputs.cache
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.sourcelink.json
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.dll
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\refint\TestApp.dll
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.pdb
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\TestApp.genruntimeconfig.cache
+D:\SecretPlace\coding\Practice\Pashamao\TestApp\obj\Debug\net8.0\ref\TestApp.dll
