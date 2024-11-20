@@ -1,5 +1,5 @@
 ﻿using Pashamao.Models;
-using Pashamao.ServerCs;
+using Pashamao.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,10 +23,12 @@ namespace Pashamao.Controllers
         {
             try
             {
-                PwdHash pwdHash = new PwdHash ();
+                UserLogin userLogin = new UserLogin ();
 
-                if (pwdHash.VarifyPwd ( userViewModel.LoginAcct, userViewModel.LoginPwd ))
+                if (userLogin.VarifyUser ( userViewModel.LoginAcct, userViewModel.LoginPwd ))
                 {
+                    
+                    Session["Username"] = userViewModel.LoginAcct;
                     return RedirectToAction ( "index", "ManBackend" );
                 } else
                 {
@@ -35,6 +37,7 @@ namespace Pashamao.Controllers
                 }
             } catch (Exception e)
             {
+                return View ( "Index" );
                 throw e;
             }
         }

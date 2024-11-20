@@ -32,12 +32,23 @@ namespace Pashamao
 
         protected void Application_Error( Exception error )
         {
-            logger.Error( error );
+            Exception exception = Server.GetLastError ();
+            if (exception != null)
+            {
+                logger.Error ( error );
+                Response.Redirect ( "/Views/Login/Index.cshtml" );
+                Server.ClearError ();
+            }
         }
 
        protected void Application_End()
         {
             logger.Info ( "Application End");
+        }
+
+        protected void Session_Start( object sender, EventArgs e )
+        {
+            Session["UserName"] = "Guest";
         }
 
     }

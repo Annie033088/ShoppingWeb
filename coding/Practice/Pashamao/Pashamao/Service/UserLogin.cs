@@ -9,9 +9,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Pashamao.ServerCs
+namespace Pashamao.Service
 {
-    public class PwdHash
+    public class UserLogin
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
@@ -20,7 +20,7 @@ namespace Pashamao.ServerCs
         /// </summary>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public bool VarifyPwd( string acct, string pwd )
+        public bool VarifyUser( string acct, string pwd )
         {
             //找到資料庫pwd_hash
             UserRepository userRepository = new UserRepository ();
@@ -36,13 +36,16 @@ namespace Pashamao.ServerCs
             string salt = user.Hash.Substring ( 0, 24 );
 
             //用鹽值 hashPwd 之後, 比對
-            HashPwd ( pwd, salt );
-
-            Console.WriteLine ( HashPwd ( pwd, salt ), user.Hash );
-            Console.WriteLine ( HashPwd ( pwd, salt ) == user.Hash );
-
 
             return (HashPwd ( pwd, salt ) == user.Hash);
+        }
+
+        /// <summary>
+        /// 後踢前
+        /// </summary>
+        public void KickOutPrevious()
+        {
+
         }
 
         /// <summary>
@@ -83,7 +86,7 @@ namespace Pashamao.ServerCs
         }
 
         /// <summary>
-        /// 雖機生成salt
+        /// 雖機生成salt(可以放在新增用戶)
         /// </summary>
         /// <returns></returns>
         public string GenerateSalt()
