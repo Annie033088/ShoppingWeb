@@ -6,3 +6,35 @@
 2024-11-19 16:45:18.4986 Info Application End
 2024-11-19 16:45:27.0352 Info Application Start
 2024-11-19 17:03:43.5257 Info Application End
+2024-11-19 17:18:26.8775 Info Application Start
+2024-11-19 17:19:10.5664 Info Application Start
+2024-11-19 17:26:13.6155 Info Application Start
+2024-11-19 17:26:51.9882 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@Acct varchar(8000))EXEC pro_pashamao_getAcctPwd @Acct' 必須有參數 '@Acct'，但未提供。
+2024-11-19 17:28:20.9372 Info Application Start
+2024-11-19 17:35:00.1742 Info Application Start
+2024-11-19 17:36:03.1965 Info Application Start
+2024-11-19 17:36:15.9004 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:38:40.3194 Info Application Start
+2024-11-19 17:38:48.9263 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:39:19.3410 Info Application Start
+2024-11-19 17:39:26.2805 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:42:14.9637 Info Application Start
+2024-11-19 17:42:26.2426 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:42:46.4373 Info Application Start
+2024-11-19 17:43:02.7794 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:43:58.4732 Info Application Start
+2024-11-19 17:44:08.0693 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:44:52.4708 Info Application Start
+2024-11-19 17:45:09.8647 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:50:02.5185 Info Application Start
+2024-11-19 17:51:00.4145 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:52:41.7319 Info Application Start
+2024-11-19 17:53:26.2917 Error System.IndexOutOfRangeException: 位置 0 沒有資料列。
+2024-11-19 17:55:49.4938 Info Application Start
+2024-11-19 17:59:41.9067 Info Application Start
+2024-11-19 18:00:40.3800 Info Application Start
+2024-11-19 18:08:16.3000 Info Application Start
+2024-11-19 18:09:04.7241 Info Application Start
+2024-11-19 18:09:42.7283 Info Application Start
+2024-11-19 18:21:58.1023 Info Application Start
+2024-11-19 18:25:40.2629 Info Application Start

@@ -12,7 +12,7 @@ namespace Pashamao.Repositories
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
-        public User sqlUserPwd( string acct )
+        internal User sqlUserPwd( string acct )
         {
             SqlCommand cmd = new SqlCommand ();
             cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
@@ -34,11 +34,19 @@ namespace Pashamao.Repositories
 
                 cmd.Connection.Close ();
 
-                DataRow dr = dt.Rows[0];
-                user.Account = dr["f_account"].ToString ();
-                user.Hash = dr["f_hash"].ToString ();
+                Console.WriteLine ( dt);
+                if ( dt.Rows.Count > 0)
+                {
+                    DataRow dr = dt.Rows[0];
+                    user.Account = dr["f_account"].ToString ();
+                    user.Hash = dr["f_hash"].ToString ();
+                    Console.WriteLine ( user.Hash );
 
-                return user;
+                    return user;
+                } else
+                {
+                    return null;
+                }
 
             } catch (Exception e)
             {

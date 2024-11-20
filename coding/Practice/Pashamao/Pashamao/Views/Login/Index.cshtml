@@ -7,19 +7,21 @@
     <title>Login</title>
 </head>
 <body>
-    <form method="post" action="Submit">
+    <form method="post" action="/Login/Submit">
         <div asp-controller ="Login" class="container col-3 mx-auto">
             <div class="mb-3  ">
                 <label class="fs-6 control-form-label ">帳號</label>
-                <input type="text" id="loginAcc" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                <input type="text" name="LoginAcct" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
             <div class="mb-3 ">
                 <label class="fs-6 ">密碼</label>
-                <input type="password" id="loginPwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                <input type="password" name="LoginPwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
             <button type="submit" class="btn btn-dark d-grid">確認</button>
         </div>
     </form>
+
+    <p> @Html.Raw( ViewData["Message"])</p>
 
 </body>
 </html>

@@ -27,11 +27,20 @@ namespace Pashamao.ServerCs
 
             User user = userRepository.sqlUserPwd ( acct );
 
+            if (user == null)
+            {
+                return (false);
+            }
+
             //取得鹽值
             string salt = user.Hash.Substring ( 0, 24 );
 
             //用鹽值 hashPwd 之後, 比對
             HashPwd ( pwd, salt );
+
+            Console.WriteLine ( HashPwd ( pwd, salt ), user.Hash );
+            Console.WriteLine ( HashPwd ( pwd, salt ) == user.Hash );
+
 
             return (HashPwd ( pwd, salt ) == user.Hash);
         }

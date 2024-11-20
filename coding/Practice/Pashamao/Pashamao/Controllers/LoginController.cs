@@ -25,12 +25,13 @@ namespace Pashamao.Controllers
             {
                 PwdHash pwdHash = new PwdHash ();
 
-                if (pwdHash.VarifyPwd ( userViewModel.UserAccount, userViewModel.UserPwd ))
+                if (pwdHash.VarifyPwd ( userViewModel.LoginAcct, userViewModel.LoginPwd ))
                 {
                     return RedirectToAction ( "index", "ManBackend" );
                 } else
                 {
-                    return RedirectToAction ( "Index" );
+                    ViewData["Message"] = $"登入失敗";
+                    return View ("Index");
                 }
             } catch (Exception e)
             {
