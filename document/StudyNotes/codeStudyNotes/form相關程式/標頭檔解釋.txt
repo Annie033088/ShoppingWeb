@@ -1,0 +1,27 @@
+MasterPageFile屬性介紹
+
+當你在一個 .aspx 頁面中使用母版頁面時，MasterPageFile 屬性會指定該頁面所繼承的母版頁面。這樣，這個 .aspx 頁面就可以重用母版頁面中的共同佈局和元素，從而避免在每個頁面中重複相同的HTML結構。
+
+EX:<%@ Page Language="C#" MasterPageFile="~/MasterPages/SiteMaster.master" %>
+
+
+母版頁面內容
+
+文件通常包含了一些共用的頁面佈局元素，比如：
+網站標頭
+導航菜單
+頁腳
+
+
+子頁面內容
+
+子頁面中，使用 Content 控制項來填充母版頁面中的 ContentPlaceHolder 位置
+子：
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <h2>這是子頁面的內容</h2>
+    <p>這段文本會插入到母版頁面的 MainContent 佔位符中。</p>
+</asp:Content>
+母：
+<asp:ContentPlaceHolder ID="MainContent" runat="server">
+</asp:ContentPlaceHolder>
+ContentPlaceHolderID：用來指定放在母版面當中的哪裡

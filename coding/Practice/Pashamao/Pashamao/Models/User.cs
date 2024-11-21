@@ -13,6 +13,7 @@ namespace Pashamao.Models
         public string Name { get; set; }
         public bool Status { get; set; }
         public int RoleId { get; set; }
+        public string SessionId { get; set; }
 
     }
 }

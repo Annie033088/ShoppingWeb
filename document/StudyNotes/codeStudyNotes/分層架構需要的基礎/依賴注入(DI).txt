@@ -1,0 +1,24 @@
+依賴注入(Dependency Injection, DI)
+
+controller可能的程式碼
+public class ProductController : Controller
+{
+    private readonly IProductService _productService;
+
+    public ProductController(IProductService productService)
+    {
+        _productService = productService;
+    }
+
+    public ActionResult Index()
+    {
+        var products = _productService.GetAllProducts();
+        return View(products);
+    }
+}
+
+在asp.net mvc當中，依賴注入需要額外的步驟來設置
+1. 安裝DI容器(Unity)
+2. 在應用程式啟動時配置容器
+	首先需要在UnityConfig.cs配置, 註冊以及設置MVC使用Unity來解析控制器
+	=>在Global.asax當中調用UnityConfi(進行註冊)

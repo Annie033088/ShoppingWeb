@@ -1,0 +1,25 @@
+1. 委托类型声明
+委托（delegate）定义了一个方法的签名，它表示某些方法应该具有什么样的参数和返回类型。你可以把委托看作是指向方法的类型。
+
+2. 事件声明
+事件（event）是基于委托类型声明的。你定义了一个委托类型后，才能创建一个基于这个委托类型的事件。
+
+
+例子：
+// 步骤 1: 声明委托类型
+public delegate void MyDelegate(string message);
+
+// 步骤 2: 声明事件
+public class Button
+{
+    public event MyDelegate Clicked;  // 事件类型是委托类型 MyDelegate
+
+    public void OnClick()
+    {
+        // 触发事件，调用所有已订阅的委托
+        Clicked?.Invoke("Button was clicked!");
+    }
+}
+
+MyDelegate 是一个委托类型，它定义了方法的签名，方法需要接受一个 string 参数，并且没有返回值（void）。
+Clicked 是一个事件，它的类型是 MyDelegate，这意味着 Clicked 事件可以关联所有符合 MyDelegate 签名的方法。

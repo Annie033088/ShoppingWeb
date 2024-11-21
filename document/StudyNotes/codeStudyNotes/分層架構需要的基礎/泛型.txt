@@ -1,0 +1,23 @@
+ 泛型將型別參數的概念引進 .NET Framework 中，使得類別和方法在設計時，可以先行擱置一個或多個型別規格，直到用戶端程式碼對類別或方法進行宣告或執行個體化時再行處理。
+
+ 例如，可以使用泛型型別參數 T，撰寫一個單一類別供其他用戶端程式碼使用
+// Declare the generic class.
+public class GenericList<T>
+{
+    void Add(T input) { }
+}
+class TestGenericList
+{
+    private class ExampleClass { }
+    static void Main()
+    {
+        // Declare a list of type int.
+        GenericList<int> list1 = new GenericList<int>();
+
+        // Declare a list of type string.
+        GenericList<string> list2 = new GenericList<string>();
+
+        // Declare a list of type ExampleClass.
+        GenericList<ExampleClass> list3 = new GenericList<ExampleClass>();
+    }
+}

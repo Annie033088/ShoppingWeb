@@ -13,5 +13,12 @@ namespace Pashamao.Controllers
         {
             return View();
         }
+
+        public ActionResult loginSeccess() { 
+
+            return RedirectToAction("index");
+        }
+
+
     }
 }

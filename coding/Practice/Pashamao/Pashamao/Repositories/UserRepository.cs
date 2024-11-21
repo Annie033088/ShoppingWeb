@@ -1,10 +1,8 @@
 ﻿using NLog;
 using Pashamao.Models;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace Pashamao.Repositories
 {
@@ -23,7 +21,7 @@ namespace Pashamao.Repositories
             try
             {
 
-                cmd.CommandText = "EXEC pro_pashamao_getAcctPwd @Acct";
+                cmd.CommandText = "EXEC pro_pashamao_getUidPwd @Acct";
 
                 cmd.Parameters.Add ( "@Acct", SqlDbType.VarChar ).Value = acct;
 
@@ -34,13 +32,11 @@ namespace Pashamao.Repositories
 
                 cmd.Connection.Close ();
 
-                Console.WriteLine ( dt);
                 if ( dt.Rows.Count > 0)
                 {
                     DataRow dr = dt.Rows[0];
-                    user.Account = dr["f_account"].ToString ();
+                    user.UID = int.Parse ( dr["f_uid"].ToString () );
                     user.Hash = dr["f_hash"].ToString ();
-                    Console.WriteLine ( user.Hash );
 
                     return user;
                 } else
@@ -62,6 +58,41 @@ namespace Pashamao.Repositories
 
         }
 
+        internal void sqlEditSession( User user )
+        {
+            SqlCommand cmd = new SqlCommand ();
+            cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
 
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getAcctPwd @Uid, @SessionId";
+
+                cmd.Parameters.Add ( "@Uid", SqlDbType.Int ).Value = user.UID;
+                cmd.Parameters.Add ( "@Acct", SqlDbType.VarChar ).Value = user.SessionId;
+
+                cmd.Connection.Open ();
+
+                int iExecuteCount = cmd.ExecuteNonQuery ();
+
+                cmd.Connection.Close ();
+
+            } catch (Exception e)
+            {
+                logger.Error ( e );
+                throw e;
+            } finally
+            {
+                cmd.Parameters.Clear ();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close ();
+            }
+
+        }
+
+        internal void sqlGetSession(SessionModel sessionModel)
+        {
+
+        }
     }
 }
