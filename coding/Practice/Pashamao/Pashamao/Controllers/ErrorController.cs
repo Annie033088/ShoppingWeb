@@ -6,19 +6,17 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
-    public class ManBackendController : Controller
+    public class ErrorController : Controller
     {
-        // GET: ManBackend
+        // GET: Error
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult loginSeccess() { 
-
-            return RedirectToAction("index");
+        public ActionResult SuspendedInfo() { 
+            return View();
         }
-
 
     }
 }

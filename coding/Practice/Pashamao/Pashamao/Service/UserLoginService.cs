@@ -1,10 +1,8 @@
-﻿using Microsoft.Ajax.Utilities;
-using NLog;
+﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using Pashamao.Utility;
 using System;
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Web;
 
@@ -14,18 +12,25 @@ namespace Pashamao.Service
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
+
+        private UserRepository userRepository;
+        private User user;
+
+        public UserLoginService( string loginAcct )
+        {
+            //取得使用者資料
+            userRepository = new UserRepository ();
+            user = userRepository.SqlGetUser ( loginAcct );
+        }
+
         /// <summary>
         /// 驗證密碼是否正確
         /// </summary>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public bool VarifyUser( string acct, string pwd )
+        internal bool VarifyUserPwd( string loginPwd )
         {
-            //找到資料庫pwd_hash
-            UserRepository userRepository = new UserRepository ();
 
-            User user = userRepository.sqlUserPwd ( acct );
-            
             //宣告加密工具的變數
             HashUtility hashUtility = new HashUtility ();
 
@@ -40,17 +45,37 @@ namespace Pashamao.Service
             //取得鹽值
             string salt = user.Hash.Substring ( 0, 24 );
 
-            //如果有帳號密碼存在且匹配 把資料庫舊session id統一清理掉, 放入新的
-
-            correctUser = (hashUtility.HashPwd(pwd, salt) == user.Hash);
-            if (correctUser)
-            {
-                user.SessionId = HttpContext.Current.Session.SessionID;
-                userRepository.sqlEditSession (user);
-            }
-
             //用鹽值 hashPwd 之後, 比對
+            correctUser = (hashUtility.HashPwd ( loginPwd, salt ) == user.Hash);
             return correctUser;
+        }
+
+        /// <summary>
+        /// 是不是禁用帳號
+        /// </summary>
+        /// <returns></returns>
+        internal bool AcctSuspended()
+        {
+            return !(user.Status);
+        }
+
+        /// <summary>
+        /// 設定session資料
+        /// </summary>
+        internal void SetUserSession()
+        {
+            //把資料庫舊session id統一清理掉, 放入新的
+            user.SessionId = HttpContext.Current.Session.SessionID;
+            userRepository.SqlEditSessionId ( user );
+
+            //把需要的使用者資料放入session
+            SessionModel userSession = new SessionModel ();
+            userSession.UID = user.UID;
+            userSession.Account = user.Account;
+            userSession.Name = user.Name;
+            userSession.RoleId = user.RoleId;
+            HttpContext.Current.Session["UserSession"] = userSession;
+
         }
 
 

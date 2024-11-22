@@ -3,6 +3,7 @@ using Pashamao.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 
 namespace Pashamao.Repositories
 {
@@ -10,7 +11,12 @@ namespace Pashamao.Repositories
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
-        internal User sqlUserPwd( string acct )
+        /// <summary>
+        /// 取得使用者資料
+        /// </summary>
+        /// <param name="acct"></param>
+        /// <returns></returns>
+        internal User SqlGetUser( string acct )
         {
             SqlCommand cmd = new SqlCommand ();
             cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
@@ -20,9 +26,7 @@ namespace Pashamao.Repositories
 
             try
             {
-
-                cmd.CommandText = "EXEC pro_pashamao_getUidPwd @Acct";
-
+                cmd.CommandText = "EXEC pro_pashamao_getUser @Acct";
                 cmd.Parameters.Add ( "@Acct", SqlDbType.VarChar ).Value = acct;
 
                 cmd.Connection.Open ();
@@ -32,11 +36,15 @@ namespace Pashamao.Repositories
 
                 cmd.Connection.Close ();
 
-                if ( dt.Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     DataRow dr = dt.Rows[0];
-                    user.UID = int.Parse ( dr["f_uid"].ToString () );
-                    user.Hash = dr["f_hash"].ToString ();
+                    user.UID = dr.IsNull ( "f_uid" ) ? 0 : dr.Field<int> ( "f_uid" );
+                    user.Account = dr.IsNull ( "f_account" ) ? string.Empty : dr.Field<string> ( "f_account" );
+                    user.Hash = dr.IsNull ( "f_hash" ) ? string.Empty : dr.Field<string> ( "f_hash" );
+                    user.Name = dr.IsNull ( "f_name" ) ? string.Empty : dr.Field<string> ( "f_name" );
+                    user.Status = dr.IsNull ( "f_status" ) ? false : dr.Field<bool> ( "f_status" );
+                    user.RoleId = dr.IsNull ( "f_roleId" ) ? 0 : dr.Field<byte> ( "f_roleId" );
 
                     return user;
                 } else
@@ -58,24 +66,25 @@ namespace Pashamao.Repositories
 
         }
 
-        internal void sqlEditSession( User user )
+        /// <summary>
+        /// update sessionId
+        /// </summary>
+        /// <param name="user"></param>
+        internal void SqlEditSessionId( User user )
         {
             SqlCommand cmd = new SqlCommand ();
-            cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
+            cmd.Connection = new SqlConnection ( this.ConnStr );
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAcctPwd @Uid, @SessionId";
+                cmd.CommandText = "EXEC pro_pashamao_editSessionId @Uid, @SessionId";
 
                 cmd.Parameters.Add ( "@Uid", SqlDbType.Int ).Value = user.UID;
-                cmd.Parameters.Add ( "@Acct", SqlDbType.VarChar ).Value = user.SessionId;
+                cmd.Parameters.Add ( "@SessionId", SqlDbType.VarChar ).Value = HttpContext.Current.Session.SessionID;
 
                 cmd.Connection.Open ();
 
-                int iExecuteCount = cmd.ExecuteNonQuery ();
-
-                cmd.Connection.Close ();
-
+                int ExeCnt = cmd.ExecuteNonQuery ();
             } catch (Exception e)
             {
                 logger.Error ( e );
@@ -83,16 +92,41 @@ namespace Pashamao.Repositories
             } finally
             {
                 cmd.Parameters.Clear ();
-                //判斷是否已關閉
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close ();
+                cmd.Connection.Close ();
             }
 
         }
 
-        internal void sqlGetSession(SessionModel sessionModel)
+        /// <summary>
+        /// 取得 sessionId
+        /// </summary>
+        /// <param name="userSession"></param>
+        /// <returns></returns>
+        internal string SqlGetSessionId( SessionModel userSession )
         {
 
+            SqlCommand cmd = new SqlCommand ();
+            cmd.Connection = new SqlConnection ( this.ConnStr );
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getSessionId @Uid";
+                cmd.Parameters.Add ( "@Uid", SqlDbType.Int ).Value = userSession.UID;
+
+                cmd.Connection.Open ();
+
+
+                string sessionId = cmd.ExecuteScalar ().ToString ();
+                return sessionId;
+            } catch (Exception e)
+            {
+                throw e;
+            } finally
+            {
+                cmd.Parameters.Clear ();
+                cmd.Connection.Close ();
+            }
         }
+
     }
 }

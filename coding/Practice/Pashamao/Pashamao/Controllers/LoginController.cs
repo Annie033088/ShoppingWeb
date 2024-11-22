@@ -2,13 +2,7 @@
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 
 namespace Pashamao.Controllers
 {
@@ -24,24 +18,33 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult Submit( UserViewModel userViewModel )
         {
+
             try
             {
-                UserLoginService userLogin = new UserLoginService ();
+                UserLoginService userLogin = new UserLoginService ( userViewModel.LoginAcct );
 
-                if (userLogin.VarifyUser ( userViewModel.LoginAcct, userViewModel.LoginPwd ))
+                if (userLogin.VarifyUserPwd ( userViewModel.LoginPwd ))
                 {
+                    //禁用的帳號?
+                    if (userLogin.AcctSuspended()) return RedirectToAction ( "SuspendedInfo", "Error" );
+
+                    //設定userSession
+                    userLogin.SetUserSession ();
+
                     logger.Info ( $"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}." );
-                    return RedirectToAction ( "loginSeccess", "ManBackend" );
+                    return RedirectToAction ( "Index", "ManHome" );
                 } else
                 {
                     ViewData["Message"] = $"登入失敗";
-                    return View ("Index");
+                    return View ( "Index" );
                 }
             } catch (Exception e)
             {
+                ViewData["Message"] = $"登入失敗, 再試一次";
                 return View ( "Index" );
                 throw e;
             }
+
         }
     }
 }

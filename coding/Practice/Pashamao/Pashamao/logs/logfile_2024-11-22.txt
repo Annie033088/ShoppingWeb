@@ -1,0 +1,22 @@
+2024-11-22 14:51:56.3269 Info Application Start
+2024-11-22 14:57:46.2498 Info Application Start
+2024-11-22 14:58:33.0079 Info Application Start
+2024-11-22 15:00:11.1124 Info Application Start
+2024-11-22 15:06:36.6370 Info Application Start
+2024-11-22 15:13:23.2320 Info Application Start
+2024-11-22 15:22:34.2778 Info Application Start
+2024-11-22 15:23:14.4642 Error System.InvalidCastException: 指定的轉換無效。
+2024-11-22 15:31:49.0136 Info Application Start
+2024-11-22 15:35:43.2938 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:35:43.
+2024-11-22 15:38:04.4952 Info Application Start
+2024-11-22 15:38:28.6443 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:38:28.
+2024-11-22 15:51:15.1498 Info Application Start
+2024-11-22 15:51:35.2840 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:51:35.
+2024-11-22 15:53:24.2304 Info Application Start
+2024-11-22 15:53:36.4767 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:53:36.
+2024-11-22 15:56:14.3938 Info Application Start
+2024-11-22 15:56:31.5399 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:56:31.
+2024-11-22 15:58:45.6353 Info Application Start
+2024-11-22 15:59:04.2536 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 03:59:04.
+2024-11-22 16:01:38.2450 Info Application Start
+2024-11-22 16:01:48.5958 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/22 下午 04:01:48.
