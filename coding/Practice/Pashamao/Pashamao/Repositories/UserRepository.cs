@@ -1,13 +1,15 @@
 ﻿using NLog;
 using Pashamao.Models;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
 
 namespace Pashamao.Repositories
 {
-    public class UserRepository : SqlRepository
+    public class UserRepository : BaseRepository<User>
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
 
@@ -16,7 +18,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="acct"></param>
         /// <returns></returns>
-        internal User SqlGetUser( string acct )
+        internal User LoginGetUser( string acct )
         {
             SqlCommand cmd = new SqlCommand ();
             cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
@@ -26,7 +28,7 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getUser @Acct";
+                cmd.CommandText = "EXEC pro_pashamao_getLoginUser @Acct";
                 cmd.Parameters.Add ( "@Acct", SqlDbType.VarChar ).Value = acct;
 
                 cmd.Connection.Open ();
@@ -70,7 +72,7 @@ namespace Pashamao.Repositories
         /// update sessionId
         /// </summary>
         /// <param name="user"></param>
-        internal void SqlEditSessionId( User user )
+        internal void EditSessionId( User user )
         {
             SqlCommand cmd = new SqlCommand ();
             cmd.Connection = new SqlConnection ( this.ConnStr );
@@ -102,7 +104,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="userSession"></param>
         /// <returns></returns>
-        internal string SqlGetSessionId( SessionModel userSession )
+        internal string GetSessionId( SessionModel userSession )
         {
 
             SqlCommand cmd = new SqlCommand ();
@@ -126,6 +128,57 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Clear ();
                 cmd.Connection.Close ();
             }
+        }
+
+        internal override IEnumerable<User> GetAll()
+        {
+            SqlCommand cmd = new SqlCommand ();
+            cmd.Connection = new SqlConnection ( this.ConnStr ); //設定連線字串
+            SqlDataAdapter da = new SqlDataAdapter (); //宣告一個配接器(DataTable與DataSet必須)
+            DataTable dt = new DataTable (); //宣告DataTable物件
+            List<User> users = new List<User>();
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getAllUser";
+
+                cmd.Connection.Open ();
+
+                da.SelectCommand = cmd;
+                da.Fill ( dt );
+
+                cmd.Connection.Close ();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        User user = new User ();
+                        user.UID = dt.Rows[i].IsNull ( "f_uid" ) ? 0 : dt.Rows[i].Field<int> ( "f_uid" );
+                        user.Account = dt.Rows[i].IsNull ( "f_account" ) ? string.Empty : dt.Rows[i].Field<string> ( "f_account" );
+                        user.Name = dt.Rows[i].IsNull ( "f_name" ) ? string.Empty : dt.Rows[i].Field<string> ( "f_name" );
+                        user.Status = dt.Rows[i].IsNull ( "f_status" ) ? false : dt.Rows[i].Field<bool> ( "f_status" );
+                        user.RoleId = dt.Rows[i].IsNull ( "f_roleId" ) ? 0 : dt.Rows[i].Field<byte> ( "f_roleId" );
+                        users.Add ( user );
+                    }
+                    return users;
+                } else
+                {
+                    return null;
+                }
+
+            } catch (Exception e)
+            {
+                logger.Error ( e );
+                throw e;
+            } finally
+            {
+                cmd.Parameters.Clear ();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close ();
+            }
+
+
         }
 
     }

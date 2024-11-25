@@ -20,7 +20,7 @@ namespace Pashamao.Service
         {
             //取得使用者資料
             userRepository = new UserRepository ();
-            user = userRepository.SqlGetUser ( loginAcct );
+            user = userRepository.LoginGetUser ( loginAcct );
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Pashamao.Service
         {
             //把資料庫舊session id統一清理掉, 放入新的
             user.SessionId = HttpContext.Current.Session.SessionID;
-            userRepository.SqlEditSessionId ( user );
+            userRepository.EditSessionId ( user );
 
             //把需要的使用者資料放入session
             SessionModel userSession = new SessionModel ();

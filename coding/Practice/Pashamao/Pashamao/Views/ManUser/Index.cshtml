@@ -1,0 +1,108 @@
+﻿
+@{ Layout = "~/Views/Shared/ManHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "後台設定";
+}
+<body>
+
+    <link href="~/css/ManUser.css" rel="stylesheet" />
+    <main>
+        <h1>使用者資料</h1>
+        <table id="userTable" class="table " border="1">
+            <thead>
+                <tr>
+                    <th>
+                        <button type="button" id="btnAdd" onclick='location.href="~/ManUser/CreateUser"'>新增</button>
+                    </th>
+                </tr>
+                <tr class="bg-gradient text-bg-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Uid</th>
+                    <th scope="col">帳號</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">角色</th>
+                    <th scope="col">操作選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 用來插入用戶資料的行將在這裡 -->
+            </tbody>
+        </table>
+
+        <script>
+
+            document.addEventListener("DOMContentLoaded", fetchUserData);
+            function fetchUserData() {
+                // 使用 fetch API 來獲取數據
+                fetch("/ManUser/GetAllUser")  // 這是 API 路徑
+                    .then(response => response.json())  // 回傳一個響應 並解析 JSON 數據
+                    .then(users => {
+                        populateTable(users);  // 把數據填充進表格
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);  // 錯誤處理
+                    });
+            }
+
+            function populateTable(users) {
+                const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
+
+                // 清空表格（如果之前有數據）
+                tableBody.innerHTML = '';
+
+                // 遍歷所有用戶，並創建相應的表格行
+                users.forEach((user, index) => {
+                    const row = document.createElement('tr');  // 創建一行
+                    //不想顯示可以用
+
+                    // 創建並填充表格單元格
+                    const rowSort = document.createElement('td');
+                    rowSort.textContent = index + 1;
+                    row.appendChild(rowSort);
+
+                    const cellId = document.createElement('td');
+                    cellId.textContent = user.UID;
+                    row.appendChild(cellId);
+
+                    const cellAcct = document.createElement('td');
+                    cellAcct.textContent = user.Account;
+                    row.appendChild(cellAcct);
+
+                    const cellName = document.createElement('td');
+                    cellName.textContent = user.Name;
+                    row.appendChild(cellName);
+
+                    const cellStatus = document.createElement('td');
+                    cellStatus.textContent = user.Status ? "啟用" : "禁用";
+                    row.appendChild(cellStatus);
+
+                    const cellRoleId = document.createElement('td');
+                    cellRoleId.textContent = user.RoleId;
+                    row.appendChild(cellRoleId);
+
+                    const cellEditBtn = document.createElement("button");
+                    cellEditBtn.setAttribute("data-UID", user.UID);
+                    cellEditBtn.className = "btnEditUser";
+                    row.appendChild(cellEditBtn);
+
+                    const cellDeleteBtn = document.createElement("button");
+                    cellDeleteBtn.setAttribute("data-UID", user.UID);
+                    cellDeleteBtn.className = "btnDeleteUser";
+                    row.appendChild(cellDeleteBtn);
+
+
+                    // 把這一行加到表格中
+                    tableBody.appendChild(row);
+                });
+            }
+
+
+        </script>
+
+        
+
+
+    </main>
+</body>
+

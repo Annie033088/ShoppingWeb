@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Pashamao.Filters
 {
-    public class UserAuthFilter: AuthorizeAttribute
+    public class UserAuthFilter: ActionFilterAttribute
     {
-        public override void OnAuthorization( AuthorizationContext filterContext )
+        public override void OnActionExecuting( ActionExecutingContext filterContext )
         {
             SessionModel userModel = HttpContext.Current.Session["UserSession"] as SessionModel;
 
@@ -18,7 +18,7 @@ namespace Pashamao.Filters
             } else {
                 //取得DB的sessionId
                 UserRepository userRepository = new UserRepository ();
-                string DBSessionId = userRepository.SqlGetSessionId ( userModel );
+                string DBSessionId = userRepository.GetSessionId ( userModel );
 
                 //判斷現sessionId與資料庫的sessionId是否相同, 不同的話清除session並且重定向到Login
                 if (DBSessionId != HttpContext.Current.Session.SessionID)
@@ -30,7 +30,7 @@ namespace Pashamao.Filters
                 }
             }
 
-            base.OnAuthorization ( filterContext );
+            base.OnActionExecuting ( filterContext );
         }
     }
 }

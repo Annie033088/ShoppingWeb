@@ -1,3 +1,14 @@
-﻿@{
-    Layout = "Shared/Layout.cshtml";
+﻿
+@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString ();
+    var actionName = ViewContext.RouteData.Values["action"].ToString ();
+
+    if (controllerName == "Login")
+    {
+        Layout = "Shared/Layout.cshtml";  // 默認布局
+    } 
+    else
+    {
+        Layout = "Shared/ManHomeLayout.cshtml";
+    }
 }

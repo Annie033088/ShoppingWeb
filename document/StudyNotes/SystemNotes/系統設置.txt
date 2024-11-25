@@ -1,5 +1,0 @@
-cookie 設定允許在https中傳輸 比較安全
-cookie 的會話只允許短期會話 並且 需要設置超時時間為 5小時
-
-緩存配置：
-Login page, Manage page

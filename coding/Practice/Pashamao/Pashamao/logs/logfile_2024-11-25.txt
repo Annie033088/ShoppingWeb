@@ -1,0 +1,52 @@
+2024-11-25 11:29:06.7968 Info Application Start
+2024-11-25 11:29:38.8858 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 上午 11:29:38.
+2024-11-25 11:30:41.8292 Info Application Start
+2024-11-25 11:30:55.6693 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 上午 11:30:55.
+2024-11-25 11:31:11.6325 Info Application Start
+2024-11-25 11:31:31.6247 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 上午 11:31:31.
+2024-11-25 11:42:27.0041 Info Application Start
+2024-11-25 11:42:40.1293 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 上午 11:42:40.
+2024-11-25 11:53:37.5315 Info Application Start
+2024-11-25 11:53:53.8661 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 上午 11:53:53.
+2024-11-25 12:44:53.3858 Info Application Start
+2024-11-25 13:17:11.5867 Info Application End
+2024-11-25 13:17:13.7260 Info Application Start
+2024-11-25 14:44:26.8233 Info Application End
+2024-11-25 14:44:55.9673 Info Application Start
+2024-11-25 14:51:12.9722 Info Application Start
+2024-11-25 14:51:30.6131 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_loginGetUser'。
+2024-11-25 14:51:41.4268 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_loginGetUser'。
+2024-11-25 14:51:53.7366 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_loginGetUser'。
+2024-11-25 14:52:16.1052 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_loginGetUser'。
+2024-11-25 14:53:29.3613 Info Application Start
+2024-11-25 14:54:33.7395 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_loginGetUser'。
+2024-11-25 14:55:44.0639 Info Application Start
+2024-11-25 14:56:31.5156 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 02:56:31.
+2024-11-25 14:57:47.1726 Info Application Start
+2024-11-25 14:58:49.8114 Info Application End
+2024-11-25 14:58:51.9586 Info Application Start
+2024-11-25 14:58:58.7846 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 02:58:58.
+2024-11-25 15:04:10.6753 Info Application End
+2024-11-25 15:04:15.6347 Info Application Start
+2024-11-25 15:05:27.5101 Info Application Start
+2024-11-25 15:05:43.4149 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 03:05:43.
+2024-11-25 15:12:29.2603 Info Application Start
+2024-11-25 15:12:46.1063 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 03:12:46.
+2024-11-25 15:13:56.8553 Info Application Start
+2024-11-25 15:20:57.3859 Info Application Start
+2024-11-25 15:21:06.0737 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 03:21:06.
+2024-11-25 15:29:46.1890 Info Application Start
+2024-11-25 16:49:43.8427 Info Application End
+2024-11-25 16:49:47.0148 Info Application Start
+2024-11-25 17:30:19.8699 Info Application End
+2024-11-25 17:30:35.0725 Info Application Start
+2024-11-25 17:43:09.6984 Info Application Start
+2024-11-25 17:43:41.6460 Info Application Start
+2024-11-25 17:44:06.9628 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 05:44:06.
+2024-11-25 17:45:16.2873 Info Application Start
+2024-11-25 17:45:22.4516 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 05:45:22.
+2024-11-25 17:56:44.2836 Info Application Start
+2024-11-25 18:05:38.4410 Info Application Start
+2024-11-25 18:09:32.5773 Info Application Start
+2024-11-25 18:10:06.0464 Info User 'BG6nNMVFp34q' logged in successfully at 2024/11/25 下午 06:10:06.
+2024-11-25 18:11:16.0656 Info Application Start

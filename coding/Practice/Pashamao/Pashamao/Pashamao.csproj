@@ -132,6 +132,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManHomeController.cs" />
+    <Compile Include="Controllers\ManUserController.cs" />
     <Compile Include="Filters\UserAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -140,8 +141,10 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\SqlRepository.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Service\ManUserService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Utility\HashUtility.cs" />
   </ItemGroup>
@@ -167,9 +170,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="css\Login.css" />
+    <Content Include="css\ManHomeLayout.css" />
+    <Content Include="css\ManUser.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\Garbage.jpg" />
+    <Content Include="img\Pencel.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -205,10 +212,13 @@
     <Content Include="Views\ManHome\Index.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\SuspendedInfo.cshtml" />
+    <Content Include="Views\ManUser\Index.cshtml" />
+    <Content Include="Views\Shared\ManHomeLayout.cshtml" />
+    <Content Include="Views\ManUser\CreateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="img\" />
     <Folder Include="logs\" />
+    <Folder Include="Views\ManUserService\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

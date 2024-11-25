@@ -1,12 +1,24 @@
 依賴注入(Dependency Injection, DI)
 
+DI是一種設計模式，旨在解耦程式中的物件，從而使其更加靈活、可測試和易於維護。
+
+
+asp.net framework mvc依賴注入容器
+依賴注入容器（通常稱為 DI 容器或 IoC 容器）是負責管理物件依賴注入的核心組件。它的主要功能是：
+
+1.註冊依賴：將應用程式中需要依賴注入的物件註冊到容器中。這樣，當某個物件需要某個依賴時，容器會自動提供相應的實例。
+
+2.解析依賴：當需要某個服務或物件的實例時，容器會負責提供這個物件，並處理其所有依賴關係。
+
+3.管理生命週期：容器還負責管理物件的生命週期，這包括單例（singleton）、瞬時（transient）或作用域（scoped）等方式來控制物件的創建和銷毀。
+
 controller可能的程式碼
 public class ProductController : Controller
 {
     private readonly IProductService _productService;
 
-    public ProductController(IProductService productService)
-    {
+    public ProductController(IProductService productService) 透過構造函數注入依賴
+    { 
         _productService = productService;
     }
 
@@ -22,3 +34,6 @@ public class ProductController : Controller
 2. 在應用程式啟動時配置容器
 	首先需要在UnityConfig.cs配置, 註冊以及設置MVC使用Unity來解析控制器
 	=>在Global.asax當中調用UnityConfi(進行註冊)
+
+
+

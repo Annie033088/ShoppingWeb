@@ -1,3 +1,0 @@
-當用戶首次登入時，身份驗證系統會生成一個 Authentication Ticket（通常是經過加密的票據），並將它存儲在用戶的瀏覽器中，通常是用 Forms Authentication 或 Cookies 來管理。
-=> 每次用戶發送請求時，ASP.NET 會檢查請求中是否攜帶了這個身份驗證票據。
-=> 如果票據有效（即用戶仍然登入），ASP.NET 會建立一個身份驗證上下文（HttpContext.User）來表明當前用戶是誰，並將其傳遞給整個請求的生命週期。
