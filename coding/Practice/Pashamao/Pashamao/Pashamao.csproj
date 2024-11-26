@@ -134,11 +134,14 @@
     <Compile Include="Controllers\ManHomeController.cs" />
     <Compile Include="Controllers\ManUserController.cs" />
     <Compile Include="Filters\UserAuthFilter.cs" />
+    <Compile Include="Filters\UserRoleAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
@@ -215,6 +218,7 @@
     <Content Include="Views\ManUser\Index.cshtml" />
     <Content Include="Views\Shared\ManHomeLayout.cshtml" />
     <Content Include="Views\ManUser\CreateUser.cshtml" />
+    <Content Include="Views\ManUser\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

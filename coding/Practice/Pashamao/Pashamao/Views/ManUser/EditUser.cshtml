@@ -1,0 +1,33 @@
+﻿
+@{ Layout = "~/Views/Shared/ManHomeLayout.cshtml"; }
+
+<body>
+    <main>
+        <div asp-controller="action" class="container col-3 mx-auto">
+            <div class="mb-3  ">
+                <label class="fs-6 ">角色權限</label>
+                <select id="dropDownRole" name="dropDownRole">
+                    <option value="SuperAdmin">SuperAdmin</option>
+                    <option value="GeneralAdmin" selected>GeneralAdmin</option>
+                    <option value="Waiter">Waiter</option>
+                </select>
+            </div>
+            <div class="mb-3 ">
+                <label class="fs-6 ">啟用/禁用狀態</label>
+                <input type="checkbox" id="statusCheckbox" name="statusCheckbox" checked>
+            </div>
+            <button type="button" id="btnSubmitEditUserState" class="btn btn-dark d-grid" >確認</button>
+        </div>
+        <script>
+            //設定按鈕事件
+            document.getElementById("btnSubmitEditUserState").addEventListener('click', function () {
+                const selectRoleElement = document.getElementById("dropDownRole");
+                const status = document.getElementById("statusCheckbox").checked;
+                const selectRoleValue = selectRoleElement.value;
+                const url = `/ManUser/SubmitEditUser?UID=${@ViewBag.UID}&Role=${selectRoleValue}&Status=${status}`;
+                window.location.href = url
+            })
+        </script>
+
+    </main>
+</body>

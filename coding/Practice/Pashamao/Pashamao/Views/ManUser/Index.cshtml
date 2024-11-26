@@ -12,7 +12,12 @@
             <thead>
                 <tr>
                     <th>
-                        <button type="button" id="btnAdd" onclick='location.href="~/ManUser/CreateUser"'>新增</button>
+                        <button type="button" id="btnAdd" onclick='location.href="/ManUser/CreateUser"'>新增</button>
+                    </th>
+                    <th>
+                        <label>輸入搜尋ID</label>
+                        <input type="text" id="inputSelectUid" />
+                        <button type="button" id="btnSelectByUid" onclick='selectUser()'>搜尋</button>
                     </th>
                 </tr>
                 <tr class="bg-gradient text-bg-dark">
@@ -32,18 +37,18 @@
 
         <script>
 
-            document.addEventListener("DOMContentLoaded", fetchUserData);
-            function fetchUserData() {
-                // 使用 fetch API 來獲取數據
-                fetch("/ManUser/GetAllUser")  // 這是 API 路徑
-                    .then(response => response.json())  // 回傳一個響應 並解析 JSON 數據
-                    .then(users => {
-                        populateTable(users);  // 把數據填充進表格
-                    })
-                    .catch(error => {
-                        console.error("Error fetching data:", error);  // 錯誤處理
-                    });
-            }
+
+            // 使用 fetch API 來獲取數據
+            fetch("/ManUser/GetAllUser")  // 這是 API 路徑
+                .then(response => response.json())  // 回傳一個響應 並解析 JSON 數據
+                .then(users => {
+                    populateTable(users);  // 把數據填充進表格
+
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);  // 錯誤處理
+                });
+
 
             function populateTable(users) {
                 const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
@@ -82,13 +87,21 @@
                     row.appendChild(cellRoleId);
 
                     const cellEditBtn = document.createElement("button");
-                    cellEditBtn.setAttribute("data-UID", user.UID);
                     cellEditBtn.className = "btnEditUser";
+                    cellEditBtn.addEventListener("click", function () {
+                        const url = `/ManUser/EditUser?UID=${user.UID}&Status=${user.Status}`;
+                        // 根據事件進行跳轉
+                        window.location.href = url;  // 跳轉到新頁面
+                    });
                     row.appendChild(cellEditBtn);
 
                     const cellDeleteBtn = document.createElement("button");
-                    cellDeleteBtn.setAttribute("data-UID", user.UID);
                     cellDeleteBtn.className = "btnDeleteUser";
+                    cellDeleteBtn.addEventListener("click", function () {
+                        const url = `/ManUser/DeleteUser?UID=${user.UID}`;
+                        // 根據事件進行跳轉
+                        window.location.href = url;  // 跳轉到新頁面
+                    });
                     row.appendChild(cellDeleteBtn);
 
 
@@ -96,11 +109,28 @@
                     tableBody.appendChild(row);
                 });
             }
+            function selectUser() {
+                const selectUid = document.getElementById("inputSelectUid").value;
+                fetch(`/ManUser/SelectUser?UID=${selectUid}`)
+                    .then(response => response.json())
+                    .then(users => {
+                        if (!(users == "noUser")) {
 
+                            if (!Array.isArray(users)) {
+                                users = [users];  // 如果是單一物件，將其包裝成陣列
+                            }
+                            populateTable(users);
+                        } else {
+                            document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                        }
 
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                    });
+            }
         </script>
 
-        
 
 
     </main>

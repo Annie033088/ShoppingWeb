@@ -43,5 +43,31 @@ namespace Pashamao.Utility
             }
 
         }
+
+
+        /// <summary>
+        /// 雖機生成salt
+        /// </summary>
+        /// <returns></returns>
+        public string GenerateSalt()
+        {
+            try
+            {
+                int len = 16;
+
+                using (RandomNumberGenerator rng = RandomNumberGenerator.Create ())
+                {
+                    byte[] saltBytes = new byte[len];
+                    rng.GetBytes ( saltBytes ); // 填充隨機數據
+
+                    // 將字節數組轉換為可讀的字符串 回傳
+                    return Convert.ToBase64String ( saltBytes );
+                }
+            } catch (Exception e)
+            {
+                logger.Error ( e );
+                throw e;
+            }
+        }
     }
 }

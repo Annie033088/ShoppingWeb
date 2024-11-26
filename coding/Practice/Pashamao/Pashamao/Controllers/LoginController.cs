@@ -8,40 +8,39 @@ namespace Pashamao.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger ();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         // GET: Login
         public ActionResult Index()
         {
-            return View ();
+            return View();
         }
 
         [HttpPost]
-        public ActionResult Submit( UserViewModel userViewModel )
+        public ActionResult Submit(UserViewModel userViewModel)
         {
-
             try
             {
-                UserLoginService userLogin = new UserLoginService ( userViewModel.LoginAcct );
+                UserLoginService userLogin = new UserLoginService();
 
-                if (userLogin.VarifyUserPwd ( userViewModel.LoginPwd ))
+                if (userLogin.VarifyUser(userViewModel.LoginAcct, userViewModel.LoginPwd))
                 {
                     //禁用的帳號?
-                    if (userLogin.AcctSuspended()) return RedirectToAction ( "SuspendedInfo", "Error" );
+                    if (userLogin.AcctSuspended()) return RedirectToAction("SuspendedInfo", "Error");
 
-                    //設定userSession
-                    userLogin.SetUserSession ();
 
-                    logger.Info ( $"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}." );
-                    return RedirectToAction ( "Index", "ManHome" );
-                } else
+                    logger.Info($"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}.");
+                    return RedirectToAction("Index", "ManHome");
+                }
+                else
                 {
                     ViewData["Message"] = $"登入失敗";
-                    return View ( "Index" );
+                    return View("Index");
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 ViewData["Message"] = $"登入失敗, 再試一次";
-                return View ( "Index" );
+                return View("Index");
                 throw e;
             }
 
