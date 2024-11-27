@@ -1,15 +1,12 @@
 ﻿using NLog;
-using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Repositories;
-using Pashamao.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Pashamao.Service
 {
-    [UserAuthFilter]
     public class ManUserService
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
@@ -22,33 +19,32 @@ namespace Pashamao.Service
         /// 取得所有用戶
         /// </summary>
         /// <returns></returns>
-        internal List<Models.User> GetAllUsers() {
+        internal List<User> GetAllUsers() {
             return userRepository.GetAll().ToList();
         }
-
 
         /// <summary>
         /// 新增用戶
         /// </summary>
         /// <param name="createUserViewModel"></param>
-        internal void CreateUser( CreateUserViewModel createUserViewModel ) {
-            HashUtility hashUtility = new HashUtility();
+        internal bool CreateUser( CreateUserViewModel createUserViewModel ) {
             User user = new User();
             try
             {
                 UserRole roleId = (UserRole)Enum.Parse ( typeof ( UserRole ), createUserViewModel.DropDownRole );
                 user.Account = createUserViewModel.CreateAcct;
-                user.Hash = hashUtility.HashPwd ( createUserViewModel.CreatePwd, hashUtility.GenerateSalt () );
+                user.Pwd = createUserViewModel.CreatePwd;
                 user.Name = createUserViewModel.CreateName == null ? string.Empty : createUserViewModel.CreateName;
                 user.RoleId = (int)roleId;
 
-                userRepository.Create ( user );
-                logger.Trace ( "CreateUser" );
+                logger.Trace("CreateUser");
+                return userRepository.Create ( user );
             } catch (Exception e)
             {
                 throw e;
             }
         }
+
         /// <summary>
         /// 刪除用戶
         /// </summary>
@@ -77,6 +73,11 @@ namespace Pashamao.Service
             userRepository.Update ( user );
         }
 
+        /// <summary>
+        /// 取得指定用戶資料
+        /// </summary>
+        /// <param name="UID"></param>
+        /// <returns></returns>
         internal User GetUser( string UID ) { 
             int Uid = int.Parse ( UID );
             return userRepository.Get ( Uid );

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Filters
 {
-    public class UserAuthFilter : ActionFilterAttribute
+    public class UserKickOutFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -30,6 +30,7 @@ namespace Pashamao.Filters
                     HttpContext.Current.Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
                     filterContext.Result = new RedirectResult("/Login/Index");
                 }
+
             }
 
             base.OnActionExecuting(filterContext);

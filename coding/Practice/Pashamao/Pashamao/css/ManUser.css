@@ -8,11 +8,11 @@ tbody button {
     margin-right: 5px;
 }
 .btnEditUser {
-    background-image: url(../img/Pencel.jpg); 
+    background-image: url(../images/Pencel.jpg);
 }
 
 .btnDeleteUser {
-    background-image: url(../img/Garbage.jpg); 
+    background-image: url(../images/Garbage.jpg);
 }
 
 #btnAdd {

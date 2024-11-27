@@ -39,10 +39,10 @@
 
 
             // 使用 fetch API 來獲取數據
-            fetch("/ManUser/GetAllUser")  // 這是 API 路徑
-                .then(response => response.json())  // 回傳一個響應 並解析 JSON 數據
+            fetch("/ManUser/GetAllUser")  
+                .then(response => response.json())  
                 .then(users => {
-                    populateTable(users);  // 把數據填充進表格
+                    populateTable(users);  
 
                 })
                 .catch(error => {

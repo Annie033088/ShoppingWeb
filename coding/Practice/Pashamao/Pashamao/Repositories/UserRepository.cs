@@ -2,15 +2,17 @@
 using Pashamao.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
 
 namespace Pashamao.Repositories
 {
-    public class UserRepository : BaseRepository<User>
+    public class UserRepository
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly string ConnStr = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
 
         /// <summary>
         /// 取得使用者登入資料
@@ -44,6 +46,7 @@ namespace Pashamao.Repositories
                     DataRow dr = dt.Rows[0];
                     user.UID = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
                     user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
+                    user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
                     user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
                     user.RoleId = dr.IsNull("f_roleId") ? 0 : dr.Field<byte>("f_roleId");
 
@@ -66,39 +69,6 @@ namespace Pashamao.Repositories
                 //判斷是否已關閉
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
-            }
-
-        }
-
-        /// <summary>
-        /// update sessionId
-        /// </summary>
-        /// <param name="user"></param>
-        internal void EditSessionId(User user)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr);
-
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_editSessionId @uid, @sessionId";
-
-                cmd.Parameters.Add("@uid", SqlDbType.Int).Value = user.UID;
-                cmd.Parameters.Add("@sessionId", SqlDbType.VarChar).Value = HttpContext.Current.Session.SessionID;
-
-                cmd.Connection.Open();
-
-                int ExeCnt = cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                cmd.Connection.Close();
             }
 
         }
@@ -139,7 +109,7 @@ namespace Pashamao.Repositories
         /// 取得所有User 
         /// </summary>
         /// <returns></returns>
-        internal override IEnumerable<User> GetAll()
+        internal IEnumerable<User> GetAll()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
@@ -197,23 +167,34 @@ namespace Pashamao.Repositories
         /// 新增User
         /// </summary>
         /// <param name="user"></param>
-        internal override void Create(User user)
+        internal bool Create(User user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addUser @acct, @hash, @name, @role";
+                cmd.CommandText = "EXEC pro_pashamao_addUser @acct, @pwd, @name, @role";
 
                 cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = user.Account;
-                cmd.Parameters.Add("@hash", SqlDbType.VarChar).Value = user.Hash;
+                cmd.Parameters.Add("@hash", SqlDbType.VarChar).Value = user.Pwd;
                 cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = user.Name;
                 cmd.Parameters.Add("@role", SqlDbType.TinyInt).Value = user.RoleId;
 
                 cmd.Connection.Open();
 
                 int ExeCnt = cmd.ExecuteNonQuery();
+
+                //受影響筆數為0代表失敗
+                if (ExeCnt == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
             }
             catch (Exception e)
             {
@@ -231,7 +212,7 @@ namespace Pashamao.Repositories
         /// 刪除User
         /// </summary>
         /// <param name="user"></param>
-        internal override void Delete(User user)
+        internal void Delete(User user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -262,7 +243,7 @@ namespace Pashamao.Repositories
         /// 更改User
         /// </summary>
         /// <param name="user"></param>
-        internal override void Update(User user)
+        internal void Update(User user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -296,7 +277,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="primaryId"></param>
         /// <returns></returns>
-        internal override User Get(int primaryId)
+        internal User Get(int primaryId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串

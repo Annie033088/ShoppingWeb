@@ -11,6 +11,7 @@ namespace Pashamao.Utility
     public class HashUtility
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
+
         /// <summary>
         /// 加密pwd
         /// </summary>

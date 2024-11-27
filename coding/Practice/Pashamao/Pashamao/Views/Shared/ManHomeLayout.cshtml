@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Pashamao</title>
@@ -19,6 +19,7 @@
             </ul>
         </div>
     </nav>
+    <p id="cookieName" class="position-absolute top-0 end-0"></p>
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -26,7 +27,24 @@
             <p>&copy; @DateTime.Now.Year - Pashamao</p>
         </footer>
     </div>
+    <script>
+        function getCookie(name) {
+            const nameEq = name + "=";
+            const cookies = document.cookie.split(';');
 
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim(); // 去除空白字符
+                if (cookie.indexOf(nameEq) === 0) {
+                    return cookie.substring(nameEq.length, cookie.length);
+                }
+            }
+            return null; // 如果找不到該 cookie，則返回 null
+        }
+        const cookieName = getCookie("cookieName");
+
+        document.getElementById("cookieName").innerText = cookieName == null ? '' : cookieName;
+
+    </script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

@@ -7,7 +7,7 @@ using Pashamao.Filters;
 
 namespace Pashamao.Controllers
 {
-    [UserAuthFilter]
+    [UserKickOutFilter]
     public class ManHomeController : Controller
     {
         // GET: ManHome
