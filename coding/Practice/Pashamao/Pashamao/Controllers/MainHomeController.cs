@@ -8,7 +8,7 @@ using Pashamao.Filters;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    public class ManHomeController : Controller
+    public class MainHomeController : Controller
     {
         // GET: ManHome
         public ActionResult Index()

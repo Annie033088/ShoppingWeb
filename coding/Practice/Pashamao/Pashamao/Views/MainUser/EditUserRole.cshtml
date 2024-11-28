@@ -1,5 +1,5 @@
 ﻿
-@{ Layout = "~/Views/Shared/ManHomeLayout.cshtml"; }
+@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 
 <body>
     <main>
@@ -14,7 +14,7 @@
             </div>
             <div class="mb-3 ">
                 <label class="fs-6 ">啟用/禁用狀態</label>
-                <input type="checkbox" id="statusCheckbox" name="statusCheckbox" checked>
+                <input type="checkbox" id="ckbStatus" name="ckbStatus" checked>
             </div>
             <button type="button" id="btnSubmitEditUserState" class="btn btn-dark d-grid" >確認</button>
         </div>
@@ -22,9 +22,9 @@
             //設定按鈕事件
             document.getElementById("btnSubmitEditUserState").addEventListener('click', function () {
                 const selectRoleElement = document.getElementById("dropDownRole");
-                const status = document.getElementById("statusCheckbox").checked;
+                const status = document.getElementById("ckbStatus").checked;
                 const selectRoleValue = selectRoleElement.value;
-                const url = `/ManUser/SubmitEditUser?UID=${@ViewBag.UID}&Role=${selectRoleValue}&Status=${status}`;
+                const url = `/MainUser/SubmitEditUserRole?UID=${@ViewBag.UID}&Role=${selectRoleValue}&Status=${status}`;
                 window.location.href = url
             })
         </script>

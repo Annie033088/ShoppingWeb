@@ -1,15 +1,9 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--viewport：設定頁面view的參數(大小及縮放)-->
-    <title>Login</title>
-</head>
+﻿@{ Layout = "~/Views/Shared/LoginLayout.cshtml"; }
+
 <body>
     <form method="post" action="/Login/Submit">
-        <div asp-controller ="Login" class="container col-3 mx-auto">
-            <div class="mb-3  ">
+        <div asp-controller="Login" class="container col-3">
+            <div class="mb-3 ">
                 <label class="fs-6 control-form-label ">帳號</label>
                 <input type="text" name="LoginAcct" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
@@ -17,11 +11,10 @@
                 <label class="fs-6 ">密碼</label>
                 <input type="password" name="LoginPwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
-            <button type="submit" class="btn btn-dark d-grid">確認</button>
+            <button type="submit" class="btn btn-dark">確認</button>
         </div>
     </form>
 
-    <p class="text-center text-warning bg-dark"> @Html.Raw( ViewData["Message"])</p>
+    <p class="text-center text-warning bg-dark"> @Html.Raw(ViewBag.Message)</p>
 
 </body>
-</html>

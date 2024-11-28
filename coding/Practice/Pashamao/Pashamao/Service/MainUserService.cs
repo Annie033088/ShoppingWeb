@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Pashamao.Service
 {
-    public class ManUserService
+    public class MainUserService
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger ();
         private UserRepository userRepository;
-        internal ManUserService() { 
+        internal MainUserService() { 
             userRepository = new UserRepository();
         }
 
@@ -62,7 +62,7 @@ namespace Pashamao.Service
         /// <param name="UID"></param>
         /// <param name="Name"></param>
         /// <param name="Status"></param>
-        internal void EditUser( string UID,string Role, string Status)
+        internal void EditUserRole( string UID,string Role, string Status)
         {
             User user = new User();
             UserRole roleId = (UserRole)Enum.Parse ( typeof ( UserRole ), Role );
@@ -70,7 +70,7 @@ namespace Pashamao.Service
             user.UID = int.Parse ( UID );
             user.RoleId =(int)roleId;
             user.Status = bool.Parse ( Status );
-            userRepository.Update ( user );
+            userRepository.UpdateRole ( user );
         }
 
         /// <summary>

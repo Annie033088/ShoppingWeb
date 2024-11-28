@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Pashamao</title>
+    <link href="~/css/MainHomeLayout.css" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm sidebar">
+        <div class="container">
+            <ul class="navbar-nav navbar-dark flex-column">
+                <li>@Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("後台管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("會員", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="position-absolute top-0 end-0 pe-3 d-print-inline ">
+        <span class="me-1 mt-2 userName"></span>
+        <button type="button" id="btnPersonalData" class="btn btn-outline-primary rounded-pill">Edit</button>
+        <div id="boxPersonalData" class="container border border-4">
+            <button id="btnClose" class="btn btn-light mt-1 ">&times;</button>
+            <div class=" mt-1 d-md-flex justify-content-md-end">
+                <span class="col-3">名稱：</span>
+                <span id="boxPersonalName" class="userName col-5 " contenteditable="false" pattern="^{,10}$"></span>
+                <button id="btnEditName" class="btn btn-dark col-4 " onclick='editName()'>改名</button>
+            </div>
+            <div class="mt-2 d-md-flex justify-content-md-end">
+                <span class="col-8">密碼：******</span>
+                <button class="btn btn-dark col-4 " onclick='location.href="/MainUser/CreateUser"'>改密碼</button>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Pashamao</p>
+        </footer>
+    </div>
+    <script>
+        //設定使用者名稱
+        const cookieName = getCookie("cookieName");
+        const userName = document.getElementsByClassName("userName");
+        for (var i = 0; i < userName.length; i++) {
+            userName[i].innerHTML = cookieName;
+        }
+
+        function getCookie(name) {
+            const nameEq = name + "=";
+            []
+            //const cookies = document.cookie.split(';');
+            const cookies = document.cookie.split(';');
+
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim(); // 去除空白字符
+                if (cookie.indexOf(nameEq) === 0) {
+                    return cookie.substring(nameEq.length, cookie.length);
+                }
+            }
+            return null;
+        }
+    </script>
+
+    <script>
+        //設定彈出視窗
+        var boxPersonalData = document.getElementById("boxPersonalData");
+        var btnPersonalData = document.getElementById("btnPersonalData");
+        var btnClose = document.getElementById("btnClose");
+
+        btnPersonalData.onclick = function () {
+            boxPersonalData.style.display = "block";
+        }
+        btnClose.onclick = function () { boxPersonalData.style.display = "none"; }
+
+        //設定編輯改名按鈕的事件
+        function editName() {
+            var boxName = document.getElementById('boxPersonalName');
+
+            if (boxName.contentEditable === "false") {
+                boxName.contentEditable = "true";  // 使 span 可編輯
+                boxName.style.borderStyle = "solid";
+                document.getElementById("btnEditName").textContent = "儲存";            // 變更按鈕文字為 "Save"
+            } else {
+                boxName.contentEditable = "false"; // 使 span 恢復為不可編輯
+                boxName.style.borderStyle = "none";
+                document.getElementById("btnEditName").textContent = "改名";              // 變更按鈕文字為 "Edit"
+            }
+
+        }
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

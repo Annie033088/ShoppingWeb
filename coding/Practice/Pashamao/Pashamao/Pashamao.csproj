@@ -131,8 +131,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ManHomeController.cs" />
-    <Compile Include="Controllers\ManUserController.cs" />
+    <Compile Include="Controllers\MainHomeController.cs" />
+    <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Filters\UserKickOutFilter.cs" />
     <Compile Include="Filters\UserRoleAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -142,10 +142,10 @@
     <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Service\ManUserService.cs" />
+    <Compile Include="Service\MainUserService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Utility\HashUtility.cs" />
   </ItemGroup>
@@ -170,9 +170,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="css\Login.css" />
-    <Content Include="css\ManHomeLayout.css" />
-    <Content Include="css\ManUser.css" />
+    <Content Include="css\MainHomeLayout.css" />
+    <Content Include="css\MainUser.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -209,14 +208,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Shared\Layout.cshtml" />
-    <Content Include="Views\ManHome\Index.cshtml" />
+    <Content Include="Views\Shared\LoginLayout.cshtml" />
+    <Content Include="Views\MainHome\Index.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\SuspendedInfo.cshtml" />
-    <Content Include="Views\ManUser\Index.cshtml" />
-    <Content Include="Views\Shared\ManHomeLayout.cshtml" />
-    <Content Include="Views\ManUser\CreateUser.cshtml" />
-    <Content Include="Views\ManUser\EditUser.cshtml" />
+    <Content Include="Views\MainUser\Index.cshtml" />
+    <Content Include="Views\Shared\MainHomeLayout.cshtml" />
+    <Content Include="Views\MainUser\CreateUser.cshtml" />
+    <Content Include="Views\MainUser\EditUserRole.cshtml" />
+    <Content Include="Views\MainUser\EditUserPwd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

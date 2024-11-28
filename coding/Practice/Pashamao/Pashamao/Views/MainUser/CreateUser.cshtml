@@ -1,9 +1,9 @@
-﻿@{ Layout = "~/Views/Shared/ManHomeLayout.cshtml"; }
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 
 <body>
     <main>
 
-        <form method="post" action="/ManUser/SubmitCreateUser">
+        <form method="post" action="/MainUser/SubmitCreateUser">
             <div asp-controller="action" class="container col-3 mx-auto">
                 <div class="mb-3  ">
                     <label class="fs-6 control-form-label ">帳號</label>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="mb-3 ">
                     <label class="fs-6 ">名稱</label>
-                    <input type="text" name="CreateName" class="form-control" placeholder="Enter your name" pattern="^{,10}$" required />
+                    <input type="text" name="CreateName" class="form-control" placeholder="Enter your name" pattern="^{,10}$"  />
                 </div>
                 <div class="mb-3 ">
                     <label class="fs-6 ">角色</label>

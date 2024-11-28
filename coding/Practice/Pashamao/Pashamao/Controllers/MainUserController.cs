@@ -7,12 +7,12 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    public class ManUserController : Controller
+    public class MainUserController : Controller
     {
-        private ManUserService manUserService;
-        public ManUserController()
+        private MainUserService mainUserService;
+        public MainUserController()
         {
-            manUserService = new ManUserService();
+            mainUserService = new MainUserService();
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult GetAllUser()
         {
-            return Json(manUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
+            return Json(mainUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
@@ -52,9 +52,14 @@ namespace Pashamao.Controllers
         public ActionResult SubmitCreateUser(CreateUserViewModel createUserViewModel)
         {
 
+            if (!ModelState.IsValid)
+            {
+                return View("CreateUser");
+            }
+
             try
             {
-                bool success = manUserService.CreateUser(createUserViewModel);
+                bool success = mainUserService.CreateUser(createUserViewModel);
 
                 if (success)
                 {
@@ -77,13 +82,13 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
-        /// 修改使用者
+        /// 修改角色權限
         /// </summary>
         /// <param name="UID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
         [UserRoleAuthFilter(UserRole.SuperAdmin)]
-        public ActionResult EditUser(string UID, string Status)
+        public ActionResult EditUserRole(string UID, string Status)
         {
             ViewBag.UID = UID;
             ViewBag.Status = Status;
@@ -91,15 +96,15 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
-        /// 提交修改使用者表單
+        /// 提交修改角色權限表單
         /// </summary>
         /// <param name="UID"></param>
         /// <param name="Role"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public ActionResult SubmitEditUser(string UID, string Role, string Status)
+        public ActionResult SubmitEditUserRole(string UID, string Role, string Status)
         {
-            manUserService.EditUser(UID, Role, Status);
+            mainUserService.EditUserRole(UID, Role, Status);
             return View("Index");
         }
 
@@ -111,7 +116,7 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserRole.SuperAdmin)]
         public ActionResult DeleteUser(string UID)
         {
-            manUserService.DeleteUser(UID);
+            mainUserService.DeleteUser(UID);
             return View("Index");
         }
 
@@ -123,7 +128,7 @@ namespace Pashamao.Controllers
         public ActionResult SelectUser(string UID)
         {
 
-            if (manUserService.GetUser(UID) == null)
+            if (mainUserService.GetUser(UID) == null)
             {
                 //沒找到對應使用者
                 string noUser = "noUser";
@@ -131,11 +136,25 @@ namespace Pashamao.Controllers
             }
             else
             {
-                return Json(manUserService.GetUser(UID), JsonRequestBehavior.AllowGet);
+                return Json(mainUserService.GetUser(UID), JsonRequestBehavior.AllowGet);
 
             }
 
         }
 
+        /// <summary>
+        /// 到改密碼頁面
+        /// </summary>
+        /// <param name="UID"></param>
+        /// <returns></returns>
+        public ActionResult EditUserPwd()
+        {
+            return View();
+        }
+        public ActionResult SubmitEditUserPwd()
+        {
+
+            return View();
+        }
     }
 }

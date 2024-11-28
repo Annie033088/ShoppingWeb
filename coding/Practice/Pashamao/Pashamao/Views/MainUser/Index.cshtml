@@ -1,26 +1,33 @@
 ﻿
-@{ Layout = "~/Views/Shared/ManHomeLayout.cshtml"; }
+@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
     ViewBag.Title = "後台設定";
 }
 <body>
 
-    <link href="~/css/ManUser.css" rel="stylesheet" />
+    <link href="~/css/MainUser.css" rel="stylesheet" type="text/css" />
     <main>
         <h1>使用者資料</h1>
-        <table id="userTable" class="table " border="1">
+        <table id="userTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
                     <th>
-                        <button type="button" id="btnAdd" onclick='location.href="/ManUser/CreateUser"'>新增</button>
+                        <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/CreateUser"'>新增</button>
+                    </th>
+                    <th class="text-lg-end">
+                        <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <label>輸入搜尋ID</label>
-                        <input type="text" id="inputSelectUid" />
-                        <button type="button" id="btnSelectByUid" onclick='selectUser()'>搜尋</button>
+                        <input type="text" id="txbSelectUid" style="width:100%" pattern="^[\d]{1,3}$" required />
+                    </th>
+                    <th class="text-lg-start">
+                        <button type="button" id="btnSelectByUid" class="btn btn-outline-dark" onclick='selectUser()'>搜尋</button>
+                    </th>
+                    <th>
+                        <span id="searchWarning" class="text-danger"></span>
                     </th>
                 </tr>
-                <tr class="bg-gradient text-bg-dark">
+                <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
                     <th scope="col">Uid</th>
                     <th scope="col">帳號</th>
@@ -39,10 +46,10 @@
 
 
             // 使用 fetch API 來獲取數據
-            fetch("/ManUser/GetAllUser")  
-                .then(response => response.json())  
+            fetch("/MainUser/GetAllUser")
+                .then(response => response.json())
                 .then(users => {
-                    populateTable(users);  
+                    populateTable(users);
 
                 })
                 .catch(error => {
@@ -62,8 +69,9 @@
                     //不想顯示可以用
 
                     // 創建並填充表格單元格
-                    const rowSort = document.createElement('td');
+                    const rowSort = document.createElement('th');
                     rowSort.textContent = index + 1;
+                    rowSort.scope = "row";
                     row.appendChild(rowSort);
 
                     const cellId = document.createElement('td');
@@ -83,44 +91,68 @@
                     row.appendChild(cellStatus);
 
                     const cellRoleId = document.createElement('td');
-                    cellRoleId.textContent = user.RoleId;
+                    if (user.RoleId == "1") {
+                        cellRoleId.textContent = "SuperAdmin";
+                    }
+                    else if (user.RoleId == "2") {
+                        cellRoleId.textContent = "GerinalAdmin";
+                    }
+                    else if (user.RoleId == "3") {
+                        cellRoleId.textContent = "Waiter";
+                    }
                     row.appendChild(cellRoleId);
+
+                    const cellEdit = document.createElement('td');
 
                     const cellEditBtn = document.createElement("button");
                     cellEditBtn.className = "btnEditUser";
                     cellEditBtn.addEventListener("click", function () {
-                        const url = `/ManUser/EditUser?UID=${user.UID}&Status=${user.Status}`;
+                        const url = `/MainUser/EditUser?UID=${user.UID}&Status=${user.Status}`;
                         // 根據事件進行跳轉
                         window.location.href = url;  // 跳轉到新頁面
                     });
-                    row.appendChild(cellEditBtn);
+                    cellEdit.appendChild(cellEditBtn);
 
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteUser";
                     cellDeleteBtn.addEventListener("click", function () {
-                        const url = `/ManUser/DeleteUser?UID=${user.UID}`;
+                        const url = `/MainUser/DeleteUser?UID=${user.UID}`;
                         // 根據事件進行跳轉
                         window.location.href = url;  // 跳轉到新頁面
                     });
-                    row.appendChild(cellDeleteBtn);
+                    cellEdit.appendChild(cellDeleteBtn);
+                    row.appendChild(cellEdit);
 
 
                     // 把這一行加到表格中
                     tableBody.appendChild(row);
                 });
             }
+
             function selectUser() {
-                const selectUid = document.getElementById("inputSelectUid").value;
-                fetch(`/ManUser/SelectUser?UID=${selectUid}`)
+                var searchInput = document.getElementById('txbSelectUid');
+                var selectUid = searchInput.value;
+                var regex = new RegExp(searchInput.pattern);
+                var inputValue = searchInput.value;
+                if (!regex.test(inputValue)) {
+                    document.getElementById("searchWarning").innerText = "請輸入3位以內數字";
+                    return;
+                }
+                document.getElementById("searchWarning").innerText = " ";
+                fetch(`/MainUser/SelectUser?UID=${selectUid}`)
                     .then(response => response.json())
                     .then(users => {
-                        if (!(users == "noUser")) {
+
+                        if (!(users == "noUser"))
+                        {
 
                             if (!Array.isArray(users)) {
                                 users = [users];  // 如果是單一物件，將其包裝成陣列
                             }
+
                             populateTable(users);
-                        } else {
+                        }
+                        else {
                             document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
                         }
 

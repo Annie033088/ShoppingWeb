@@ -1,5 +1,5 @@
 ﻿body {
-    display: flex; 
+    display: flex;
 }
 
 .sidebar {
@@ -14,4 +14,15 @@
 
 main {
     padding: 20px;
+}
+
+#boxPersonalData {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top:43px;
+    right:25px;
+    width: 255px;
+    height: 165px;
+    background-color: white;
 }

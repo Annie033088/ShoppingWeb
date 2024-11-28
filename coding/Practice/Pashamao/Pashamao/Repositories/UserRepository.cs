@@ -90,8 +90,8 @@ namespace Pashamao.Repositories
 
                 cmd.Connection.Open();
 
-
-                string sessionId = cmd.ExecuteScalar().ToString();
+                var result = cmd.ExecuteScalar();
+                string sessionId = result == null? string.Empty : result.ToString();//當這個user被刪掉會是null
                 return sessionId;
             }
             catch (Exception e)
@@ -243,7 +243,7 @@ namespace Pashamao.Repositories
         /// 更改User
         /// </summary>
         /// <param name="user"></param>
-        internal void Update(User user)
+        internal void UpdateRole(User user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
