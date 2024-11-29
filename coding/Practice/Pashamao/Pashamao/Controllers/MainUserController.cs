@@ -24,6 +24,7 @@ namespace Pashamao.Controllers
             return View();
         }
 
+        [HttpPost]
         /// <summary>
         /// 取得所有使用者資料
         /// </summary>
@@ -54,6 +55,7 @@ namespace Pashamao.Controllers
 
             if (!ModelState.IsValid)
             {
+                
                 return View("CreateUser");
             }
 
@@ -120,6 +122,7 @@ namespace Pashamao.Controllers
             return View("Index");
         }
 
+        [UserRoleAuthFilter(UserRole.GeneralAdmin)]
         /// <summary>
         /// 根據Uid查詢使用者
         /// </summary>
@@ -151,10 +154,18 @@ namespace Pashamao.Controllers
         {
             return View();
         }
-        public ActionResult SubmitEditUserPwd()
+
+        [HttpPost]
+        public ActionResult SubmitEditUserPwd(string OldPwd, string NewPwd)
         {
 
-            return View();
+            if (mainUserService.EditUserPwd(OldPwd, NewPwd))
+            {
+                return View("Index");
+            }
+
+            ViewBag.Message = "密碼輸入錯誤";
+            return View("EditUserPwd");
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
@@ -14,7 +10,8 @@ namespace Pashamao.Controllers
             return View();
         }
 
-        public ActionResult SuspendedInfo() { 
+        public ActionResult SuspendedInfo()
+        {
             return View();
         }
 

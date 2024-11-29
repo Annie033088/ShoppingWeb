@@ -17,6 +17,7 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            Session["UserName"] = "Guest";
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace Pashamao.Controllers
                         Secure = true
                     };
                     Response.Cookies.Add(cookie);
-
+                    Session["UserName"] = "User";
                     logger.Info($"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}.");
                     return RedirectToAction("Index", "MainHome");
                 }

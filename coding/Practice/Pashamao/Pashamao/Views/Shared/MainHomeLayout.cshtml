@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Pashamao</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="~/css/MainHomeLayout.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -14,7 +15,7 @@
         <div class="container">
             <ul class="navbar-nav navbar-dark flex-column">
                 <li>@Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("後台管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>@Html.ActionLink("會員", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
             </ul>
         </div>
@@ -22,6 +23,7 @@
     <div class="position-absolute top-0 end-0 pe-3 d-print-inline ">
         <span class="me-1 mt-2 userName"></span>
         <button type="button" id="btnPersonalData" class="btn btn-outline-primary rounded-pill">Edit</button>
+        <button type="button" id="btnLogOut" class="btn btn-outline-primary rounded-pill" onclick="window.location.href = `/MainHome/Logout`">登出</button>
         <div id="boxPersonalData" class="container border border-4">
             <button id="btnClose" class="btn btn-light mt-1 ">&times;</button>
             <div class=" mt-1 d-md-flex justify-content-md-end">
@@ -31,7 +33,7 @@
             </div>
             <div class="mt-2 d-md-flex justify-content-md-end">
                 <span class="col-8">密碼：******</span>
-                <button class="btn btn-dark col-4 " onclick='location.href="/MainUser/CreateUser"'>改密碼</button>
+                <button class="btn btn-dark col-4 " onclick='location.href="/MainUser/EditUserPwd"'>改密碼</button>
             </div>
         </div>
     </div>
@@ -42,10 +44,12 @@
             <p>&copy; @DateTime.Now.Year - Pashamao</p>
         </footer>
     </div>
+
     <script>
         //設定使用者名稱
         const cookieName = getCookie("cookieName");
         const userName = document.getElementsByClassName("userName");
+
         for (var i = 0; i < userName.length; i++) {
             userName[i].innerHTML = cookieName;
         }
@@ -59,10 +63,12 @@
 
             for (let i = 0; i < cookies.length; i++) {
                 let cookie = cookies[i].trim(); // 去除空白字符
+
                 if (cookie.indexOf(nameEq) === 0) {
                     return cookie.substring(nameEq.length, cookie.length);
                 }
             }
+
             return null;
         }
     </script>
@@ -82,18 +88,22 @@
         function editName() {
             var boxName = document.getElementById('boxPersonalName');
 
-            if (boxName.contentEditable === "false") {
+            if (boxName.contentEditable === "false")
+            {
                 boxName.contentEditable = "true";  // 使 span 可編輯
                 boxName.style.borderStyle = "solid";
-                document.getElementById("btnEditName").textContent = "儲存";            // 變更按鈕文字為 "Save"
-            } else {
+                document.getElementById("btnEditName").textContent = "儲存";
+            }
+            else
+            {
                 boxName.contentEditable = "false"; // 使 span 恢復為不可編輯
                 boxName.style.borderStyle = "none";
-                document.getElementById("btnEditName").textContent = "改名";              // 變更按鈕文字為 "Edit"
+                document.getElementById("btnEditName").textContent = "改名";
             }
-
         }
+
     </script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

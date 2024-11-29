@@ -1,7 +1,7 @@
 ﻿
 @{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
-    ViewBag.Title = "後台設定";
+    ViewBag.Title = "後台帳號設定";
 }
 <body>
 
@@ -18,10 +18,10 @@
                         <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectUid" style="width:100%" pattern="^[\d]{1,3}$" required />
+                        <input type="text" id="txbSelectUid" style="width:100%" pattern="^[\d]{1,5}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByUid" class="btn btn-outline-dark" onclick='selectUser()'>搜尋</button>
+                        <button type="button" id="btnSelectByUid" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
                     </th>
                     <th>
                         <span id="searchWarning" class="text-danger"></span>
@@ -43,9 +43,15 @@
         </table>
 
         <script>
+            axios.post("/MainUser/GetAllUser")
+                .then(response => {
+                    populateTable(response.data);
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
 
-
-            // 使用 fetch API 來獲取數據
+            /* 使用 fetch API 來獲取數據
             fetch("/MainUser/GetAllUser")
                 .then(response => response.json())
                 .then(users => {
@@ -54,7 +60,7 @@
                 })
                 .catch(error => {
                     console.error("Error fetching data:", error);  // 錯誤處理
-                });
+                });*/
 
 
             function populateTable(users) {
@@ -107,19 +113,28 @@
                     const cellEditBtn = document.createElement("button");
                     cellEditBtn.className = "btnEditUser";
                     cellEditBtn.addEventListener("click", function () {
-                        const url = `/MainUser/EditUser?UID=${user.UID}&Status=${user.Status}`;
-                        // 根據事件進行跳轉
-                        window.location.href = url;  // 跳轉到新頁面
+                        let url = `/MainUser/EditUserRole?UID=${user.UID};Status=${user.Status}`;
+                        window.location.href = url;
+                        /*axios.post("/MainUser/EditUserRole", {
+                            UID: user.UID,
+                            Status: user.Status
+                        })
+                            .catch(error => {
+                                console.error(error);
+                            })*/
                     });
                     cellEdit.appendChild(cellEditBtn);
 
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteUser";
                     cellDeleteBtn.addEventListener("click", function () {
-                        const url = `/MainUser/DeleteUser?UID=${user.UID}`;
-                        // 根據事件進行跳轉
-                        window.location.href = url;  // 跳轉到新頁面
+                        axios.post("/MainUser/DeleteUser", { UID: use.UID })
+                            .catch(error => { console.error(error) })
                     });
+                    /*cellDeleteBtn.addEventListener("click", function () {
+                        let url = `/MainUser/DeleteUser?UID=${user.UID}`;
+                        window.location.href = url;
+                    });*/
                     cellEdit.appendChild(cellDeleteBtn);
                     row.appendChild(cellEdit);
 
@@ -135,31 +150,35 @@
                 var regex = new RegExp(searchInput.pattern);
                 var inputValue = searchInput.value;
                 if (!regex.test(inputValue)) {
-                    document.getElementById("searchWarning").innerText = "請輸入3位以內數字";
+                    document.getElementById("searchWarning").innerText = "請輸入5位以內數字";
                     return;
                 }
                 document.getElementById("searchWarning").innerText = " ";
-                fetch(`/MainUser/SelectUser?UID=${selectUid}`)
-                    .then(response => response.json())
-                    .then(users => {
 
+                axios.post("/MainUser/SelectUser", { UID: selectUid })
+                    .then(response => {
+                        let users = response.data;
                         if (!(users == "noUser"))
                         {
 
-                            if (!Array.isArray(users)) {
+                            if (!Array.isArray(users))
+                            {
                                 users = [users];  // 如果是單一物件，將其包裝成陣列
                             }
 
                             populateTable(users);
                         }
-                        else {
+                        else
+                        {
                             document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
                         }
 
                     })
                     .catch(error => {
-                        console.error("Error fetching data:", error);
-                    });
+                        console.error("fail", error);
+                    })
+
+                
             }
         </script>
 

@@ -10,9 +10,12 @@
                     <label class="fs-6 ">請輸入新密碼</label>
                     <input type="password" name="NewPwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
                 </div>
-                <button type="submit" class="btn btn-dark d-grid">確認</button>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-dark">確認</button>
+                    <button type="button" class="btn btn-dark" onclick="window.location.href=`/MainUser/Index`">取消</button>
+                </div>
             </div>
-            <p>@ViewData["Massage"]</p>
+            <p class="text-danger">@ViewBag.Message</p>
         </form>
     </main>
 </body>

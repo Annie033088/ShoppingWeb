@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pashamao.Filters;
 using System.Web.Mvc;
-using Pashamao.Filters;
+using System.Web.Security;
 
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
     public class MainHomeController : Controller
     {
-        // GET: ManHome
+        
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session["UserSession"] = null;
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

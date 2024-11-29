@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Pashamao.Models
+﻿namespace Pashamao.Models
 {
     /// <summary>
     /// 角色

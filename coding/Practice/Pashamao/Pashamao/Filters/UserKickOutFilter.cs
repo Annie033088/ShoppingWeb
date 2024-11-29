@@ -10,7 +10,13 @@ namespace Pashamao.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            SessionModel userModel = HttpContext.Current.Session["UserSession"] as SessionModel;
+            if (HttpContext.Current.Session["UserName"].ToString() == "Guest")
+            {
+                filterContext.Result = new RedirectResult("/Login/Index");
+                base.OnActionExecuting(filterContext);
+                return;
+            }
+            UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
 
             if (userModel == null)
             {

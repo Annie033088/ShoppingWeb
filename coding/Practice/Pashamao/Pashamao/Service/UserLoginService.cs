@@ -1,10 +1,7 @@
 ﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
-using Pashamao.Utility;
-using System;
 using System.Web;
-using System.Web.Mvc;
 
 namespace Pashamao.Service
 {
@@ -37,13 +34,12 @@ namespace Pashamao.Service
             }
             else
             {
-                SessionModel userSession = new SessionModel();
+                UserSessionModel userSession = new UserSessionModel();
                 userSession.UID = user.UID;
                 userSession.RoleId = user.RoleId;
-                HttpContext.Current.Session["userSession"] = userSession;
+                HttpContext.Current.Session["UserSession"] = userSession;
                 return (true);
             }
-
         }
 
         /// <summary>

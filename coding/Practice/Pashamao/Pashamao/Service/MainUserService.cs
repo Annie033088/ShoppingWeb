@@ -4,14 +4,16 @@ using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace Pashamao.Service
 {
     public class MainUserService
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger ();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private UserRepository userRepository;
-        internal MainUserService() { 
+        internal MainUserService()
+        {
             userRepository = new UserRepository();
         }
 
@@ -19,7 +21,8 @@ namespace Pashamao.Service
         /// 取得所有用戶
         /// </summary>
         /// <returns></returns>
-        internal List<User> GetAllUsers() {
+        internal List<User> GetAllUsers()
+        {
             return userRepository.GetAll().ToList();
         }
 
@@ -27,19 +30,21 @@ namespace Pashamao.Service
         /// 新增用戶
         /// </summary>
         /// <param name="createUserViewModel"></param>
-        internal bool CreateUser( CreateUserViewModel createUserViewModel ) {
+        internal bool CreateUser(CreateUserViewModel createUserViewModel)
+        {
             User user = new User();
             try
             {
-                UserRole roleId = (UserRole)Enum.Parse ( typeof ( UserRole ), createUserViewModel.DropDownRole );
+                UserRole roleId = (UserRole)Enum.Parse(typeof(UserRole), createUserViewModel.DropDownRole);
                 user.Account = createUserViewModel.CreateAcct;
                 user.Pwd = createUserViewModel.CreatePwd;
                 user.Name = createUserViewModel.CreateName == null ? string.Empty : createUserViewModel.CreateName;
                 user.RoleId = (int)roleId;
 
                 logger.Trace("CreateUser");
-                return userRepository.Create ( user );
-            } catch (Exception e)
+                return userRepository.Create(user);
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -52,25 +57,25 @@ namespace Pashamao.Service
         internal void DeleteUser(string UID)
         {
             User user = new User();
-            user.UID = int.Parse ( UID );
-            userRepository.Delete ( user );
+            user.UID = int.Parse(UID);
+            userRepository.Delete(user);
         }
-        
+
         /// <summary>
-        /// 修改用戶名稱跟角色
+        /// 修改用戶角色跟狀態
         /// </summary>
         /// <param name="UID"></param>
         /// <param name="Name"></param>
         /// <param name="Status"></param>
-        internal void EditUserRole( string UID,string Role, string Status)
+        internal void EditUserRole(string UID, string Role, string Status)
         {
             User user = new User();
-            UserRole roleId = (UserRole)Enum.Parse ( typeof ( UserRole ), Role );
+            UserRole roleId = (UserRole)Enum.Parse(typeof(UserRole), Role);
 
-            user.UID = int.Parse ( UID );
-            user.RoleId =(int)roleId;
-            user.Status = bool.Parse ( Status );
-            userRepository.UpdateRole ( user );
+            user.UID = int.Parse(UID);
+            user.RoleId = (int)roleId;
+            user.Status = bool.Parse(Status);
+            userRepository.UpdateRole(user);
         }
 
         /// <summary>
@@ -78,9 +83,22 @@ namespace Pashamao.Service
         /// </summary>
         /// <param name="UID"></param>
         /// <returns></returns>
-        internal User GetUser( string UID ) { 
-            int Uid = int.Parse ( UID );
-            return userRepository.Get ( Uid );
+        internal User GetUser(string UID)
+        {
+            int Uid = int.Parse(UID);
+            return userRepository.Get(Uid);
+        }
+
+        /// <summary>
+        /// 修改密碼
+        /// </summary>
+        /// <param name="OldPwd"></param>
+        /// <param name="NewPwd"></param>
+        /// <returns></returns>
+        internal bool EditUserPwd(string OldPwd, string NewPwd)
+        {
+            UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
+            return userRepository.UpdatePwd(userModel.UID, OldPwd, NewPwd);
         }
     }
 }

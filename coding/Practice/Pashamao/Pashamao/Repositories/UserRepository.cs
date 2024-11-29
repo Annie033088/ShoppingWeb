@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web;
 
 namespace Pashamao.Repositories
 {
@@ -56,7 +55,6 @@ namespace Pashamao.Repositories
                 {
                     return null;
                 }
-
             }
             catch (Exception e)
             {
@@ -78,7 +76,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="userSession"></param>
         /// <returns></returns>
-        internal string GetSessionId(SessionModel userSession)
+        internal string GetSessionId(UserSessionModel userSession)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -91,7 +89,7 @@ namespace Pashamao.Repositories
                 cmd.Connection.Open();
 
                 var result = cmd.ExecuteScalar();
-                string sessionId = result == null? string.Empty : result.ToString();//當這個user被刪掉會是null
+                string sessionId = result == null ? string.Empty : result.ToString();//當這個user被刪掉會是null
                 return sessionId;
             }
             catch (Exception e)
@@ -326,6 +324,43 @@ namespace Pashamao.Repositories
                 //判斷是否已關閉
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 修改user密碼
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="oldPwd"></param>
+        /// <param name="newPwd"></param>
+        internal bool UpdatePwd(int uid, string oldPwd, string newPwd)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @uid, @oldPwd, @newPwd";
+
+                cmd.Parameters.Add("@uid", SqlDbType.Int).Value = uid;
+                cmd.Parameters.Add("@oldPwd", SqlDbType.VarChar).Value = oldPwd;
+                cmd.Parameters.Add("@newPwd", SqlDbType.VarChar).Value = newPwd;
+
+                cmd.Connection.Open();
+
+                int exeCnt = cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
             }
         }
     }

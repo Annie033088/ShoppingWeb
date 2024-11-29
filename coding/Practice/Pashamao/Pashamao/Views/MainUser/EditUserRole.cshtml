@@ -1,5 +1,4 @@
 ﻿
-@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 
 <body>
     <main>
@@ -16,7 +15,10 @@
                 <label class="fs-6 ">啟用/禁用狀態</label>
                 <input type="checkbox" id="ckbStatus" name="ckbStatus" checked>
             </div>
-            <button type="button" id="btnSubmitEditUserState" class="btn btn-dark d-grid" >確認</button>
+            <div>
+                <button type="button" id="btnSubmitEditUserState" class="btn btn-dark">確認</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href=`/MainUser/Index`">取消</button>
+            </div>
         </div>
         <script>
             //設定按鈕事件

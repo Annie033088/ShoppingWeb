@@ -139,7 +139,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateUserViewModel.cs" />
-    <Compile Include="Models\SessionModel.cs" />
+    <Compile Include="Models\UserSessionModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
