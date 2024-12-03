@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    public class MainHomeController : Controller
+    public class MainMemberController : Controller
     {
         /// <summary>
         /// 主頁
@@ -13,16 +13,6 @@ namespace Pashamao.Controllers
         public ActionResult Index()
         {
             return View();
-        }
-
-        /// <summary>
-        /// 登出
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Logout()
-        {
-            Session.Abandon();
-            return RedirectToAction("Index", "Login");
         }
     }
 }

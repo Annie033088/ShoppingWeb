@@ -1,5 +1,0 @@
-id (主鍵, INT)
-name (VARCHAR, 類別名稱)
-description (TEXT, 類別描述)
-created_at (TIMESTAMP)
-updated_at (TIMESTAMP)

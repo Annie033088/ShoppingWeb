@@ -1,0 +1,89 @@
+2024-12-03 10:20:01.7637 Info Application Start
+2024-12-03 10:21:04.2140 Info Application Start
+2024-12-03 10:25:28.1798 Info Application End
+2024-12-03 10:26:00.2401 Info Application Start
+2024-12-03 10:39:40.8495 Info Application End
+2024-12-03 10:41:06.9994 Info Application Start
+2024-12-03 11:07:35.3549 Info Application End
+2024-12-03 11:07:55.5350 Info Application Start
+2024-12-03 11:27:24.8209 Info Application End
+2024-12-03 11:27:30.7101 Info Application Start
+2024-12-03 11:29:21.5671 Info Application Start
+2024-12-03 11:33:51.5306 Info Application Start
+2024-12-03 11:36:31.3078 Info Application Start
+2024-12-03 11:36:36.9843 Info Application Start
+2024-12-03 11:51:47.2073 Info Application Start
+2024-12-03 13:13:36.2957 Info Application Start
+2024-12-03 13:14:05.0592 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 01:14:05.
+2024-12-03 13:14:08.0000 Error System.ArgumentException: 資料行 'f_roleId' 不屬於資料表 。
+2024-12-03 13:14:10.6616 Error System.ArgumentException: 資料行 'f_roleId' 不屬於資料表 。
+2024-12-03 13:15:36.6625 Error System.ArgumentException: 資料行 'f_roleId' 不屬於資料表 。
+2024-12-03 13:15:52.0280 Error System.ArgumentException: 資料行 'f_roleId' 不屬於資料表 。
+2024-12-03 13:18:31.9636 Info Application End
+2024-12-03 13:18:43.7538 Info Application Start
+2024-12-03 13:21:51.5393 Info Application Start
+2024-12-03 13:26:39.2979 Info Application Start
+2024-12-03 13:28:56.4679 Info Application Start
+2024-12-03 13:33:58.0005 Info Application End
+2024-12-03 13:34:00.7078 Info Application Start
+2024-12-03 13:43:39.3604 Info Application End
+2024-12-03 13:43:42.1814 Info Application Start
+2024-12-03 13:56:27.5180 Info Application End
+2024-12-03 13:56:30.3869 Info Application Start
+2024-12-03 14:01:17.0158 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 02:01:17.
+2024-12-03 14:03:02.5902 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 02:03:02.
+2024-12-03 14:31:08.1990 Info Application End
+2024-12-03 14:31:14.7228 Info Application Start
+2024-12-03 14:33:37.5707 Info Application Start
+2024-12-03 14:38:24.2602 Info Application Start
+2024-12-03 14:44:37.2761 Info Application End
+2024-12-03 14:50:40.4242 Info Application Start
+2024-12-03 14:59:14.2354 Info Application End
+2024-12-03 14:59:16.3949 Info Application Start
+2024-12-03 14:59:33.0136 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 02:59:33.
+2024-12-03 14:59:50.4058 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 02:59:50.
+2024-12-03 15:03:56.8493 Info Application End
+2024-12-03 15:03:59.3910 Info Application Start
+2024-12-03 15:04:09.3408 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 03:04:09.
+2024-12-03 15:04:30.5706 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 03:04:30.
+2024-12-03 15:04:53.9048 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 03:04:53.
+2024-12-03 15:06:28.8249 Info Application End
+2024-12-03 15:06:31.0203 Info Application Start
+2024-12-03 15:06:53.3220 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 03:06:53.
+2024-12-03 15:07:00.0730 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/3 下午 03:07:00.
+2024-12-03 15:25:02.3419 Info Application End
+2024-12-03 15:25:09.8571 Info Application Start
+2024-12-03 15:25:17.8606 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 03:25:17.
+2024-12-03 15:29:08.5361 Info Application End
+2024-12-03 15:29:10.5542 Info Application Start
+2024-12-03 15:29:17.5849 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 03:29:17.
+2024-12-03 15:29:56.4292 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 03:29:56.
+2024-12-03 15:30:34.9728 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:30:34.
+2024-12-03 15:30:57.5290 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:30:57.
+2024-12-03 15:34:18.4817 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 03:34:18.
+2024-12-03 15:43:44.9160 Info Application End
+2024-12-03 15:43:47.0433 Info Application Start
+2024-12-03 15:44:41.5954 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:44:41.
+2024-12-03 15:45:51.8215 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:45:51.
+2024-12-03 15:45:57.4948 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:45:57.
+2024-12-03 15:46:33.2599 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:46:33.
+2024-12-03 15:47:05.6418 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:47:05.
+2024-12-03 15:47:08.3305 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:47:08.
+2024-12-03 15:50:00.0054 Info Application End
+2024-12-03 15:50:02.1018 Info Application Start
+2024-12-03 15:50:21.9810 Info Application End
+2024-12-03 15:50:23.7842 Info Application Start
+2024-12-03 15:50:38.2315 Info Application End
+2024-12-03 15:50:40.1890 Info Application Start
+2024-12-03 15:51:16.6803 Info Application End
+2024-12-03 15:51:18.6049 Info Application Start
+2024-12-03 15:52:22.7669 Info Application End
+2024-12-03 15:52:25.4326 Info Application Start
+2024-12-03 15:52:34.8834 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 03:52:34.
+2024-12-03 16:21:32.9977 Info Application End
+2024-12-03 16:21:38.8951 Info Application Start
+2024-12-03 16:21:48.8991 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 04:21:48.
+2024-12-03 16:27:32.4794 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 04:27:32.
+2024-12-03 17:14:30.6379 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 05:14:30.
+2024-12-03 17:17:44.7512 Info User 'qwp59felp484' logged in successfully at 2024/12/3 下午 05:17:44.
+2024-12-03 17:25:59.9597 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/3 下午 05:25:59.

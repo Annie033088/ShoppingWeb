@@ -1,0 +1,2 @@
+D:\SecretPlace\coding\Practice\Pashamao\UnitTestPasgamao\obj\Debug\UnitTestPasgamao.csproj.AssemblyReference.cache
+D:\SecretPlace\coding\Practice\Pashamao\UnitTestPasgamao\obj\Debug\UnitTestPasgamao.csproj.CoreCompileInputs.cache

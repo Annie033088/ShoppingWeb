@@ -1,7 +1,0 @@
-欄位名稱	類型	說明
-id	INT	交易ID（主鍵）
-order_id	INT	關聯的帳號ID
-amount	DECIMAL(10, 2)	交易金額
-transaction_type	VARCHAR(50)	交易類型（充值、付款、退款等）
-status	VARCHAR(20)	交易狀態（成功、失敗、待處理等）
-created_at	TIMESTAMP	交易時間

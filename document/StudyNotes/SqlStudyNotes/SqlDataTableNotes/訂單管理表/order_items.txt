@@ -1,6 +1,0 @@
-id (主鍵, INT)
-order_id (外鍵, 參照 orders.id)
-product_id (外鍵, 參照 products.id)
-quantity (INT, 購買數量)
-price (DECIMAL, 單價)
-subtotal (DECIMAL, 小計)

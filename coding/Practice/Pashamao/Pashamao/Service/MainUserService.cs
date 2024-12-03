@@ -35,11 +35,10 @@ namespace Pashamao.Service
             User user = new User();
             try
             {
-                UserRole roleId = (UserRole)Enum.Parse(typeof(UserRole), createUserViewModel.DropDownRole);
                 user.Account = createUserViewModel.CreateAcct;
                 user.Pwd = createUserViewModel.CreatePwd;
                 user.Name = createUserViewModel.CreateName == null ? string.Empty : createUserViewModel.CreateName;
-                user.RoleId = (int)roleId;
+                user.RoleName = createUserViewModel.DropDownRole;
 
                 logger.Trace("CreateUser");
                 return userRepository.Create(user);
@@ -54,11 +53,20 @@ namespace Pashamao.Service
         /// 刪除用戶
         /// </summary>
         /// <param name="UID"></param>
-        internal void DeleteUser(string UID)
+        internal void DeleteUser(string UserId)
         {
             User user = new User();
-            user.UID = int.Parse(UID);
+            user.UserId = int.Parse(UserId);
             userRepository.Delete(user);
+        }
+
+        /// <summary>
+        /// 取得角色名
+        /// </summary>
+        /// <returns></returns>
+        internal List<string> GetAllRoleName()
+        {
+            return userRepository.GetAllRoleName();
         }
 
         /// <summary>
@@ -67,13 +75,12 @@ namespace Pashamao.Service
         /// <param name="UID"></param>
         /// <param name="Name"></param>
         /// <param name="Status"></param>
-        internal void EditUserRole(string UID, string Role, string Status)
+        internal void EditUserRole(string UserId, string Role, string Status)
         {
             User user = new User();
-            UserRole roleId = (UserRole)Enum.Parse(typeof(UserRole), Role);
 
-            user.UID = int.Parse(UID);
-            user.RoleId = (int)roleId;
+            user.UserId = int.Parse(UserId);
+            user.RoleName = Role;
             user.Status = bool.Parse(Status);
             userRepository.UpdateRole(user);
         }
@@ -83,9 +90,9 @@ namespace Pashamao.Service
         /// </summary>
         /// <param name="UID"></param>
         /// <returns></returns>
-        internal User GetUser(string UID)
+        internal User GetUser(string UserId)
         {
-            int Uid = int.Parse(UID);
+            int Uid = int.Parse(UserId);
             return userRepository.Get(Uid);
         }
 
@@ -98,7 +105,7 @@ namespace Pashamao.Service
         internal bool EditUserPwd(string OldPwd, string NewPwd)
         {
             UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
-            return userRepository.UpdatePwd(userModel.UID, OldPwd, NewPwd);
+            return userRepository.UpdatePwd(userModel.UserId, OldPwd, NewPwd);
         }
     }
 }

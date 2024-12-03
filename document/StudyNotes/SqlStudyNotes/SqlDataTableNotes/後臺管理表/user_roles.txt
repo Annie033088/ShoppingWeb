@@ -1,3 +1,0 @@
-id (主鍵, INT)
-user_id (外鍵, 參照 users.id)
-role_id (外鍵, 參照 roles.id)

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI.WebControls;
 
 namespace Pashamao.Repositories
 {
@@ -19,7 +18,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="acct"></param>
         /// <returns></returns>
-        internal (User,long) VerifyAndGetUser(string acct, string pwd, string sessionId)
+        internal (User, long) VerifyAndGetUser(string acct, string pwd, string sessionId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
@@ -44,7 +43,7 @@ namespace Pashamao.Repositories
                 {
                     User user = new User();
                     DataRow dr = dt.Rows[0];
-                    user.UID = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
+                    user.UserId = dr.IsNull("f_uId") ? 0 : dr.Field<int>("f_uId");
                     user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
                     user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
                     user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
@@ -54,7 +53,7 @@ namespace Pashamao.Repositories
                 }
                 else
                 {
-                    return (null,0);
+                    return (null, 0);
                 }
             }
             catch (Exception e)
@@ -84,8 +83,8 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getSessionId @uid";
-                cmd.Parameters.Add("@uid", SqlDbType.Int).Value = userSession.UID;
+                cmd.CommandText = "EXEC pro_pashamao_getSessionId @uId";
+                cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userSession.UserId;
 
                 cmd.Connection.Open();
 
@@ -131,7 +130,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         User user = new User();
-                        user.UID = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
                         user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
                         user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -158,8 +157,6 @@ namespace Pashamao.Repositories
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
-
-
         }
 
         /// <summary>
@@ -178,7 +175,7 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = user.Account;
                 cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = user.Pwd;
                 cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = user.Name;
-                cmd.Parameters.Add("@role", SqlDbType.TinyInt).Value = user.RoleId;
+                cmd.Parameters.Add("@role", SqlDbType.VarChar).Value = user.RoleName;
 
                 cmd.Connection.Open();
 
@@ -218,9 +215,9 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_delUser @uid";
+                cmd.CommandText = "EXEC pro_pashamao_delUser @uId";
 
-                cmd.Parameters.Add("@uid", SqlDbType.VarChar).Value = user.UID;
+                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
 
                 cmd.Connection.Open();
 
@@ -239,6 +236,57 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
+        /// 取得角色名
+        /// </summary>
+        /// <returns></returns>
+        internal List<string> GetAllRoleName()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            List<string> rolesName = new List<string>();
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getAllRole";
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string roleName = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
+                        rolesName.Add(roleName);
+                    }
+                    return rolesName;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
         /// 更改User
         /// </summary>
         /// <param name="user"></param>
@@ -249,10 +297,10 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUser @uid, @roleId, @status";
+                cmd.CommandText = "EXEC pro_pashamao_editUser @uId, @roleName, @status";
 
-                cmd.Parameters.Add("@uid", SqlDbType.VarChar).Value = user.UID;
-                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = user.RoleId;
+                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
+                cmd.Parameters.Add("@roleName", SqlDbType.VarChar).Value = user.RoleName;
                 cmd.Parameters.Add("@status", SqlDbType.Bit).Value = user.Status;
 
                 cmd.Connection.Open();
@@ -286,8 +334,8 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getUser @uid";
-                cmd.Parameters.Add("@uid", SqlDbType.VarChar).Value = primaryId;
+                cmd.CommandText = "EXEC pro_pashamao_getUser @uId";
+                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = primaryId;
 
                 cmd.Connection.Open();
 
@@ -299,7 +347,7 @@ namespace Pashamao.Repositories
                 if (dt.Rows.Count > 0)
                 {
                     DataRow dr = dt.Rows[0];
-                    user.UID = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
+                    user.UserId = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
                     user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
                     user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
                     user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
@@ -331,19 +379,19 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 修改user密碼
         /// </summary>
-        /// <param name="uid"></param>
+        /// <param name="userId"></param>
         /// <param name="oldPwd"></param>
         /// <param name="newPwd"></param>
-        internal bool UpdatePwd(int uid, string oldPwd, string newPwd)
+        internal bool UpdatePwd(int userId, string oldPwd, string newPwd)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @uid, @oldPwd, @newPwd";
+                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @uId, @oldPwd, @newPwd";
 
-                cmd.Parameters.Add("@uid", SqlDbType.Int).Value = uid;
+                cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userId;
                 cmd.Parameters.Add("@oldPwd", SqlDbType.VarChar).Value = oldPwd;
                 cmd.Parameters.Add("@newPwd", SqlDbType.VarChar).Value = newPwd;
 

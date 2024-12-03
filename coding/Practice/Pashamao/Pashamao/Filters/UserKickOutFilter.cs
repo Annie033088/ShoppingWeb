@@ -10,12 +10,14 @@ namespace Pashamao.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
             if (HttpContext.Current.Session["UserName"].ToString() == "Guest")
             {
                 filterContext.Result = new RedirectResult("/Login/Index");
                 base.OnActionExecuting(filterContext);
                 return;
             }
+
             UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
 
             if (userModel == null)
@@ -28,17 +30,19 @@ namespace Pashamao.Filters
                 UserRepository userRepository = new UserRepository();
                 string DBSessionId = userRepository.GetSessionId(userModel);
 
+                if (DBSessionId == null)
+                {
+                    filterContext.Result = new RedirectResult("/Login/Index");
+                }
+
                 //判斷現sessionId與資料庫的sessionId是否相同, 不同的話清除session並且重定向到Login
                 if (DBSessionId != HttpContext.Current.Session.SessionID)
                 {
-                    HttpContext.Current.Session.Clear();
                     HttpContext.Current.Session.Abandon();
                     HttpContext.Current.Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
                     filterContext.Result = new RedirectResult("/Login/Index");
                 }
-
             }
-
             base.OnActionExecuting(filterContext);
         }
     }

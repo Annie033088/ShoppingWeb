@@ -36,7 +36,7 @@ namespace Pashamao.Service
             else
             {
                 UserSessionModel userSession = new UserSessionModel();
-                userSession.UID = user.UID;
+                userSession.UserId = user.UserId;
                 userSession.UserPermission = userPermission;
                 HttpContext.Current.Session["UserSession"] = userSession;
                 return (true);

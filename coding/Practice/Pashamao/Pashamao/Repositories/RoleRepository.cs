@@ -68,6 +68,83 @@ namespace Pashamao.Repositories
             }
         }
 
+        /// <summary>
+        /// 新增角色
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="rolePermission"></param>
+        /// <returns></returns>
+        public bool AddRole(string name, string description, long rolePermission)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
 
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_addRole @name, @description, @rolePermission";
+
+                cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
+                cmd.Parameters.Add("@rolePermission", SqlDbType.BigInt).Value = rolePermission;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                //受影響筆數為1代表成功
+                if (ExeCnt == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 取得角色權限
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public string GetRolePermissions(int roleId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getRolePermission @roleId";
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = (byte)roleId;
+
+                cmd.Connection.Open();
+
+                var result = cmd.ExecuteScalar();
+                string rolePermissions = result == null ? string.Empty : result.ToString();//當這個user被刪掉會是null
+                return rolePermissions;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
     }
 }

@@ -20,9 +20,6 @@
                 <div class="mb-3 ">
                     <label class="fs-6 ">角色</label>
                     <select id="dropDownRole" name="dropDownRole">
-                        <option value="SuperAdmin">SuperAdmin</option>
-                        <option value="GeneralAdmin" selected>GeneralAdmin</option>
-                        <option value="Waiter">Waiter</option>
                     </select>
                 </div>
                 <div>
@@ -34,4 +31,18 @@
         </form>
 
     </main>
+    <script>
+         var NameList = JSON.parse('@Html.Raw(ViewBag.JsonRolesName)');
+         var selectElement = document.getElementById("dropDownRole");
+
+        NameList.forEach(function (name) {
+            if (name != "SuperAdmin") {
+
+                var option = document.createElement("option");
+                option.value = name;
+                option.textContent = name;
+                selectElement.appendChild(option);
+            }
+        });
+    </script>
 </body>

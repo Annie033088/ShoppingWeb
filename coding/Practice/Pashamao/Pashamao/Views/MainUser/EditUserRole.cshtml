@@ -1,14 +1,12 @@
-﻿
-
+﻿@{
+    var jsonRolesName = ViewBag.JsonRolesName;
+}
 <body>
     <main>
         <div asp-controller="action" class="container col-3 mx-auto">
             <div class="mb-3  ">
                 <label class="fs-6 ">角色權限</label>
                 <select id="dropDownRole" name="dropDownRole">
-                    <option value="SuperAdmin">SuperAdmin</option>
-                    <option value="GeneralAdmin" selected>GeneralAdmin</option>
-                    <option value="Waiter">Waiter</option>
                 </select>
             </div>
             <div class="mb-3 ">
@@ -26,9 +24,21 @@
                 const selectRoleElement = document.getElementById("dropDownRole");
                 const status = document.getElementById("ckbStatus").checked;
                 const selectRoleValue = selectRoleElement.value;
-                const url = `/MainUser/SubmitEditUserRole?UID=${@ViewBag.UID}&Role=${selectRoleValue}&Status=${status}`;
+                const url = `/MainUser/SubmitEditUserRole?UserId=${@ViewBag.UserId}&Role=${selectRoleValue}&Status=${status}`;
                 window.location.href = url
             })
+
+            var NameList = JSON.parse('@Html.Raw(ViewBag.JsonRolesName)');
+            var selectElement = document.getElementById("dropDownRole");
+
+            NameList.forEach(function (name) {
+                if (name != "SuperAdmin") {
+                    var option = document.createElement("option");
+                    option.value = name;
+                    option.textContent = name;
+                    selectElement.appendChild(option);
+                }
+            });
         </script>
 
     </main>

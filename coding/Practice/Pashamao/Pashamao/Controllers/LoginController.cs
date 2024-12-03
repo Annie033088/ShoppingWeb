@@ -17,6 +17,10 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            if (Session["UserName"].ToString() != "Guest")
+            {
+                return RedirectToAction("Index", "MainHome");
+            }
             Session["UserName"] = "Guest";
             return View();
         }

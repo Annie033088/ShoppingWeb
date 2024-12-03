@@ -1,7 +1,0 @@
-欄位名稱	類型	說明
-id	INT	操作記錄ID（主鍵）
-admin_id	INT	管理員ID
-action_type	VARCHAR(50)	操作類型（新增、修改、刪除等）
-model_type	VARCHAR         操作的對象，如「產品」、「用戶」
-description	TEXT	操作描述
-created_at	TIMESTAMP	操作時間

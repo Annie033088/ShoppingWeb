@@ -16,7 +16,5 @@ namespace Pashamao.Models
         public string CreateName { get; set; }
 
         public string DropDownRole { get; set; }
-
-
     }
 }

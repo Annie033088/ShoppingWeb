@@ -1,4 +1,5 @@
-﻿using Pashamao.Filters;
+﻿using Newtonsoft.Json;
+using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
+
     public class MainUserController : Controller
     {
         private MainUserService mainUserService;
@@ -20,16 +21,17 @@ namespace Pashamao.Controllers
         /// 後端使用者管理主頁
         /// </summary>
         /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
         /// <summary>
         /// 取得所有使用者資料
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult GetAllUser()
         {
             return Json(mainUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
@@ -39,8 +41,10 @@ namespace Pashamao.Controllers
         /// 創造新的使用者
         /// </summary>
         /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.CreateUser)]
         public ActionResult CreateUser()
         {
+            ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
             return View();
         }
 
@@ -50,6 +54,7 @@ namespace Pashamao.Controllers
         /// <param name="createUserViewModel"></param>
         /// <returns></returns>
         [HttpPost]
+        [UserRoleAuthFilter(UserPermission.CreateUser)]
         public ActionResult SubmitCreateUser(CreateUserViewModel createUserViewModel)
         {
 
@@ -85,49 +90,54 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 修改角色權限
         /// </summary>
-        /// <param name="UID"></param>
+        /// <param name="UserId"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public ActionResult EditUserRole(string UID, string Status)
+        [UserRoleAuthFilter(UserPermission.EditUser)]
+        public ActionResult EditUserRole(string UserId, string Status)
         {
-            ViewBag.UID = UID;
+            ViewBag.UserId = UserId;
             ViewBag.Status = Status;
+            ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
             return View();
         }
 
         /// <summary>
         /// 提交修改角色權限表單
         /// </summary>
-        /// <param name="UID"></param>
+        /// <param name="UserId"></param>
         /// <param name="Role"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        public ActionResult SubmitEditUserRole(string UID, string Role, string Status)
+        [UserRoleAuthFilter(UserPermission.EditUser)]
+        public ActionResult SubmitEditUserRole(string UserId, string Role, string Status)
         {
-            mainUserService.EditUserRole(UID, Role, Status);
+            mainUserService.EditUserRole(UserId, Role, Status);
             return View("Index");
         }
 
         /// <summary>
         /// 刪除使用者
         /// </summary>
-        /// <param name="UID"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
-        public ActionResult DeleteUser(string UID)
+        [UserRoleAuthFilter(UserPermission.DelUser)]
+        public ActionResult DeleteUser(string UserId)
         {
-            mainUserService.DeleteUser(UID);
+            mainUserService.DeleteUser(UserId);
             return View("Index");
         }
 
         /// <summary>
-        /// 根據Uid查詢使用者
+        /// 根據UserId查詢使用者
         /// </summary>
-        /// <param name="UID"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
-        public ActionResult SelectUser(string UID)
+        [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
+        public ActionResult SelectUser(string UserId)
         {
 
-            if (mainUserService.GetUser(UID) == null)
+            if (mainUserService.GetUser(UserId) == null)
             {
                 //沒找到對應使用者
                 string noUser = "noUser";
@@ -135,22 +145,27 @@ namespace Pashamao.Controllers
             }
             else
             {
-                return Json(mainUserService.GetUser(UID), JsonRequestBehavior.AllowGet);
+                return Json(mainUserService.GetUser(UserId), JsonRequestBehavior.AllowGet);
 
             }
-
         }
 
         /// <summary>
         /// 到改密碼頁面
         /// </summary>
-        /// <param name="UID"></param>
+        /// <param name="UserId"></param>
         /// <returns></returns>
         public ActionResult EditUserPwd()
         {
             return View();
         }
 
+        /// <summary>
+        /// 提交修改密碼
+        /// </summary>
+        /// <param name="OldPwd"></param>
+        /// <param name="NewPwd"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SubmitEditUserPwd(string OldPwd, string NewPwd)
         {

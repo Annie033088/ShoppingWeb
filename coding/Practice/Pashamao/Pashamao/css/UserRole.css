@@ -1,0 +1,32 @@
+﻿tbody button {
+    background-size: cover; 
+    background-position: center; 
+    border: none; 
+    padding: 10px; 
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btnEditRole {
+    background-image: url(../images/Pencel.jpg);
+}
+
+
+.popUpContent {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.popUp {
+    display: none;
+    position: fixed;
+    background-color: white;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}

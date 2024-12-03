@@ -18,10 +18,10 @@
                         <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectUid" style="width:100%" pattern="^[\d]{1,5}$" required />
+                        <input type="text" id="txbSelectUserId" style="width:100%" pattern="^[\d]{1,5}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByUid" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
+                        <button type="button" id="btnSelectByUserId" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
                     </th>
                     <th>
                         <span id="searchWarning" class="text-danger"></span>
@@ -29,7 +29,7 @@
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">Uid</th>
+                    <th scope="col">Id</th>
                     <th scope="col">帳號</th>
                     <th scope="col">姓名</th>
                     <th scope="col">狀態</th>
@@ -51,17 +51,6 @@
                     console.error("fail", error);
                 })
 
-            /* 使用 fetch API 來獲取數據
-            fetch("/MainUser/GetAllUser")
-                .then(response => response.json())
-                .then(users => {
-                    populateTable(users);
-
-                })
-                .catch(error => {
-                    console.error("Error fetching data:", error);  // 錯誤處理
-                });*/
-
 
             function populateTable(users) {
                 const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
@@ -81,7 +70,7 @@
                     row.appendChild(rowSort);
 
                     const cellId = document.createElement('td');
-                    cellId.textContent = user.UID;
+                    cellId.textContent = user.UserId;
                     row.appendChild(cellId);
 
                     const cellAcct = document.createElement('td');
@@ -97,15 +86,7 @@
                     row.appendChild(cellStatus);
 
                     const cellRoleId = document.createElement('td');
-                    if (user.RoleId == "1") {
-                        cellRoleId.textContent = "SuperAdmin";
-                    }
-                    else if (user.RoleId == "2") {
-                        cellRoleId.textContent = "GerinalAdmin";
-                    }
-                    else if (user.RoleId == "3") {
-                        cellRoleId.textContent = "Waiter";
-                    }
+                    cellRoleId.textContent = user.RoleId;
                     row.appendChild(cellRoleId);
 
                     const cellEdit = document.createElement('td');
@@ -113,28 +94,20 @@
                     const cellEditBtn = document.createElement("button");
                     cellEditBtn.className = "btnEditUser";
                     cellEditBtn.addEventListener("click", function () {
-                        let url = `/MainUser/EditUserRole?UID=${user.UID};Status=${user.Status}`;
+                        let url = `/MainUser/EditUserRole?UserId=${user.UserId}&Status=${user.Status}`;
                         window.location.href = url;
-                        /*axios.post("/MainUser/EditUserRole", {
-                            UID: user.UID,
-                            Status: user.Status
-                        })
-                            .catch(error => {
-                                console.error(error);
-                            })*/
                     });
                     cellEdit.appendChild(cellEditBtn);
 
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteUser";
                     cellDeleteBtn.addEventListener("click", function () {
-                        axios.post("/MainUser/DeleteUser", { UID: use.UID })
+                        axios.post("/MainUser/DeleteUser", { UserId: user.UserId })
+                            .then(response => {
+                                window.location.href = '/MainUser/Index';
+                            })
                             .catch(error => { console.error(error) })
                     });
-                    /*cellDeleteBtn.addEventListener("click", function () {
-                        let url = `/MainUser/DeleteUser?UID=${user.UID}`;
-                        window.location.href = url;
-                    });*/
                     cellEdit.appendChild(cellDeleteBtn);
                     row.appendChild(cellEdit);
 
@@ -145,8 +118,8 @@
             }
 
             function selectUser() {
-                var searchInput = document.getElementById('txbSelectUid');
-                var selectUid = searchInput.value;
+                var searchInput = document.getElementById('txbSelectUserId');
+                var selectUserId = searchInput.value;
                 var regex = new RegExp(searchInput.pattern);
                 var inputValue = searchInput.value;
                 if (!regex.test(inputValue)) {
@@ -155,7 +128,7 @@
                 }
                 document.getElementById("searchWarning").innerText = " ";
 
-                axios.post("/MainUser/SelectUser", { UID: selectUid })
+                axios.post("/MainUser/SelectUser", { UserId: selectUserId })
                     .then(response => {
                         let users = response.data;
                         if (!(users == "noUser"))
