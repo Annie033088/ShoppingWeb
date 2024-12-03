@@ -1,0 +1,26 @@
+2024-12-02 09:35:44.6049 Info Application Start
+2024-12-02 09:36:44.9993 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/2 上午 09:36:44.
+2024-12-02 09:39:28.5976 Info Application Start
+2024-12-02 09:41:43.0102 Info Application Start
+2024-12-02 11:03:00.1246 Info Application Start
+2024-12-02 11:08:59.9410 Info Application End
+2024-12-02 11:09:14.1840 Info Application Start
+2024-12-02 11:10:37.3412 Info Application Start
+2024-12-02 11:14:27.0449 Info Application Start
+2024-12-02 11:14:55.7426 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:14:55.
+2024-12-02 11:16:15.7191 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:16:15.
+2024-12-02 11:16:45.9751 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:16:45.
+2024-12-02 11:24:58.9384 Info Application Start
+2024-12-02 11:25:06.8275 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:25:06.
+2024-12-02 11:25:45.4261 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:25:45.
+2024-12-02 11:28:09.5611 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:28:09.
+2024-12-02 11:28:31.8170 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:28:31.
+2024-12-02 11:52:46.5106 Info Application Start
+2024-12-02 11:52:52.6061 Info User 'qwp59felp484' logged in successfully at 2024/12/2 上午 11:52:52.
+2024-12-02 16:03:49.5693 Info Application Start
+2024-12-02 16:03:58.2228 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-02 16:10:28.3937 Info Application Start
+2024-12-02 16:10:38.6853 Info User 'qwp59felp484' logged in successfully at 2024/12/2 下午 04:10:38.
+2024-12-02 18:05:54.6506 Info Application End
+2024-12-02 18:06:08.0425 Info Application Start
+2024-12-02 18:14:49.7470 Info User 'PB7m9JsNaRK0' logged in successfully at 2024/12/2 下午 06:14:49.

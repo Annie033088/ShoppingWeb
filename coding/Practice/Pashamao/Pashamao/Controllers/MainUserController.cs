@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
+    [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
     public class MainUserController : Controller
     {
         private MainUserService mainUserService;
@@ -38,7 +39,6 @@ namespace Pashamao.Controllers
         /// 創造新的使用者
         /// </summary>
         /// <returns></returns>
-        [UserRoleAuthFilter(UserRole.SuperAdmin)]
         public ActionResult CreateUser()
         {
             return View();
@@ -55,7 +55,6 @@ namespace Pashamao.Controllers
 
             if (!ModelState.IsValid)
             {
-                
                 return View("CreateUser");
             }
 
@@ -89,7 +88,6 @@ namespace Pashamao.Controllers
         /// <param name="UID"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
-        [UserRoleAuthFilter(UserRole.SuperAdmin)]
         public ActionResult EditUserRole(string UID, string Status)
         {
             ViewBag.UID = UID;
@@ -115,14 +113,12 @@ namespace Pashamao.Controllers
         /// </summary>
         /// <param name="UID"></param>
         /// <returns></returns>
-        [UserRoleAuthFilter(UserRole.SuperAdmin)]
         public ActionResult DeleteUser(string UID)
         {
             mainUserService.DeleteUser(UID);
             return View("Index");
         }
 
-        [UserRoleAuthFilter(UserRole.GeneralAdmin)]
         /// <summary>
         /// 根據Uid查詢使用者
         /// </summary>

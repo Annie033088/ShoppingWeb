@@ -1,0 +1,125 @@
+﻿
+@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "角色設定";
+}
+<body>
+
+    <link href="~/css/MainUser.css" rel="stylesheet" type="text/css" />
+    <main>
+        <h1>使用者資料</h1>
+        <table id="roleTable" class="table" style="table-layout:fixed" border="1">
+            <thead>
+                <tr>
+                    <th>
+                        <button type="button" id="btnAddRole" class="btn btn-outline-dark">新增</button>
+                    </th>
+                    <th class="text-lg-end">
+                        <label>輸入搜尋ID</label>
+                    </th>
+                    <th>
+                        <input type="text" id="txbSelectRoleId" style="width:100%" pattern="^[\d]{1,5}$" required />
+                    </th>
+                    <th class="text-lg-start">
+                        <button type="button" id="btnSelectRoleId" class="btn btn-outline-dark" onclick='selectRole();'>搜尋</button>
+                    </th>
+                    <th>
+                        <span id="searchWarning" class="text-danger"></span>
+                    </th>
+                </tr>
+                <tr class="bg-gradient text-bg-dark ">
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">角色名稱</th>
+                    <th scope="col">描述</th>
+                    <th scope="col">修改</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <script>
+            axios.post("/UserRole/GetAllRole")
+                .then(response => {
+                    populateTable(response.data);
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
+
+
+            function populateTable(roles) {
+                const tableBody = document.getElementById("roleTable").getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = '';
+
+                roles.forEach((role, index) => {
+                    const row = document.createElement('tr'); 
+
+                    const rowSort = document.createElement('th');
+                    rowSort.textContent = index + 1;
+                    rowSort.scope = "row";
+                    row.appendChild(rowSort);
+
+                    const cellId = document.createElement('td');
+                    cellId.textContent = role.RoleId;
+                    row.appendChild(cellId);
+
+                    const cellName = document.createElement('td');
+                    cellName.textContent = role.Name;
+                    row.appendChild(cellName);
+
+                    const cellDescription = document.createElement('td');
+                    cellDescription.textContent = role.Description;
+                    row.appendChild(cellDescription);
+
+                    const cellEdit = document.createElement('td');
+
+                    const cellEditBtn = document.createElement("button");
+                    cellEditBtn.className = "btnEditRole";
+                    cellEditBtn.addEventListener("click", function () {
+                        let url = `/UserRole/EditUserRole?RoleId=${role.RoleId};Status=${user.Status}`;
+                        window.location.href = url;
+                    });
+                    cellEdit.appendChild(cellEditBtn);
+                    row.appendChild(cellEdit);
+
+                    tableBody.appendChild(row);
+                });
+            }
+            function selectRole() {
+                var searchInput = document.getElementById('txbSelectRoleId');
+                var selectRoleId = searchInput.value;
+                var regex = new RegExp(searchInput.pattern);
+                var inputValue = searchInput.value;
+
+                if (!regex.test(inputValue)) {
+                    document.getElementById("searchWarning").innerText = "請輸入5位以內數字";
+                    return;
+                }
+
+                document.getElementById("searchWarning").innerText = " ";
+
+                axios.post("/UserRole/SelectRole", { RoleId: selectRoleId })
+                    .then(response => {
+                        let roles = response.data;
+
+                        if (!(roles == "noRole")) {
+
+                            if (!Array.isArray(Roles)) {
+                                Roles = [Roles];  // 如果是單一物件，將其包裝成陣列
+                            }
+
+                            populateTable(Roles);
+                        }
+                        else {
+                            document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
+        </script>
+    </main>
+</body>

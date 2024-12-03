@@ -15,7 +15,13 @@
         <div class="container">
             <ul class="navbar-nav navbar-dark flex-column">
                 <li>@Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>
+                    @Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })
+                    <ul>
+                        <li>@Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="fs-6">@Html.ActionLink("角色管理", "Index", "UserRole", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </li>
                 <li>@Html.ActionLink("會員", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
             </ul>
         </div>
@@ -88,14 +94,12 @@
         function editName() {
             var boxName = document.getElementById('boxPersonalName');
 
-            if (boxName.contentEditable === "false")
-            {
+            if (boxName.contentEditable === "false") {
                 boxName.contentEditable = "true";  // 使 span 可編輯
                 boxName.style.borderStyle = "solid";
                 document.getElementById("btnEditName").textContent = "儲存";
             }
-            else
-            {
+            else {
                 boxName.contentEditable = "false"; // 使 span 恢復為不可編輯
                 boxName.style.borderStyle = "none";
                 document.getElementById("btnEditName").textContent = "改名";

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace Pashamao.Repositories
 {
@@ -18,13 +19,12 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="acct"></param>
         /// <returns></returns>
-        internal User VerifyAndGetUser(string acct, string pwd, string sessionId)
+        internal (User,long) VerifyAndGetUser(string acct, string pwd, string sessionId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
             SqlDataAdapter da = new SqlDataAdapter(); //宣告一個配接器(DataTable與DataSet必須)
             DataTable dt = new DataTable(); //宣告DataTable物件
-            User user = new User();
 
             try
             {
@@ -42,18 +42,19 @@ namespace Pashamao.Repositories
 
                 if (dt.Rows.Count > 0)
                 {
+                    User user = new User();
                     DataRow dr = dt.Rows[0];
                     user.UID = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
                     user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
                     user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
                     user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
-                    user.RoleId = dr.IsNull("f_roleId") ? 0 : dr.Field<byte>("f_roleId");
 
-                    return user;
+                    long rolePermission = dr.IsNull("f_rolePermission") ? 0 : dr.Field<long>("f_rolePermission");
+                    return (user, rolePermission);
                 }
                 else
                 {
-                    return null;
+                    return (null,0);
                 }
             }
             catch (Exception e)
@@ -175,7 +176,7 @@ namespace Pashamao.Repositories
                 cmd.CommandText = "EXEC pro_pashamao_addUser @acct, @pwd, @name, @role";
 
                 cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = user.Account;
-                cmd.Parameters.Add("@hash", SqlDbType.VarChar).Value = user.Pwd;
+                cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = user.Pwd;
                 cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = user.Name;
                 cmd.Parameters.Add("@role", SqlDbType.TinyInt).Value = user.RoleId;
 
@@ -183,14 +184,14 @@ namespace Pashamao.Repositories
 
                 int ExeCnt = cmd.ExecuteNonQuery();
 
-                //受影響筆數為0代表失敗
-                if (ExeCnt == 0)
+                //受影響筆數為1代表成功
+                if (ExeCnt == 1)
                 {
-                    return false;
+                    return true;
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
 
             }
@@ -350,7 +351,14 @@ namespace Pashamao.Repositories
 
                 int exeCnt = cmd.ExecuteNonQuery();
 
-                return true;
+                if (exeCnt == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception e)
             {

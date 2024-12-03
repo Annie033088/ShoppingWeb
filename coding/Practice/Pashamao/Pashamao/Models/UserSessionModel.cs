@@ -6,6 +6,7 @@ namespace Pashamao.Models
     public class UserSessionModel
     {
         public int UID { get; set; }
-        public int RoleId { get; set; }
+
+        public long UserPermission { get; set; }
     }
 }

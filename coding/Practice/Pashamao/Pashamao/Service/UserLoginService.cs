@@ -25,7 +25,8 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal bool VerifyAndGetUser(string loginAcct, string loginPwd)
         {
-            user = userRepository.VerifyAndGetUser(loginAcct, loginPwd, HttpContext.Current.Session.SessionID);
+            long userPermission;
+            (user, userPermission) = userRepository.VerifyAndGetUser(loginAcct, loginPwd, HttpContext.Current.Session.SessionID);
 
             //帳號匹配成功與否
             if (user == null)
@@ -36,7 +37,7 @@ namespace Pashamao.Service
             {
                 UserSessionModel userSession = new UserSessionModel();
                 userSession.UID = user.UID;
-                userSession.RoleId = user.RoleId;
+                userSession.UserPermission = userPermission;
                 HttpContext.Current.Session["UserSession"] = userSession;
                 return (true);
             }
