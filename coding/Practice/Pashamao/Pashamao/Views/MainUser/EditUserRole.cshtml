@@ -24,8 +24,13 @@
                 const selectRoleElement = document.getElementById("dropDownRole");
                 const status = document.getElementById("ckbStatus").checked;
                 const selectRoleValue = selectRoleElement.value;
-                const url = `/MainUser/SubmitEditUserRole?UserId=${@ViewBag.UserId}&Role=${selectRoleValue}&Status=${status}`;
-                window.location.href = url
+                axios.post("/MainUser/SubmitEditUserRole", { UserId: @ViewBag.UserId, Role: selectRoleValue, Status: status })
+                    .then(response => {
+                        window.location.href = "/MainUser/Index";
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
             })
 
             var NameList = JSON.parse('@Html.Raw(ViewBag.JsonRolesName)');

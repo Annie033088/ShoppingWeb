@@ -1,9 +1,9 @@
 ﻿
 tbody button {
-    background-size: cover; /* 使圖片適應按鈕大小 */
-    background-position: center; /* 圖片居中顯示 */
-    border: none; /* 去除按鈕的邊框 */
-    padding: 10px; /* 按鈕內邊距 */
+    background-size: cover; 
+    background-position: center; 
+    border: none;
+    padding: 10px; 
     cursor: pointer;
     margin-right: 5px;
 }
@@ -13,6 +13,15 @@ tbody button {
 
 .btnDeleteUser {
     background-image: url(../images/Garbage.jpg);
+}
+
+.btnSort {
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
 }
 
 #btnAdd {

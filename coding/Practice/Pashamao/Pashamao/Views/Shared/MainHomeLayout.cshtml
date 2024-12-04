@@ -11,18 +11,21 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
     <nav class="navbar navbar-expand-sm sidebar">
         <div class="container">
-            <ul class="navbar-nav navbar-dark flex-column">
-                <li>@Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
+            <ul class="navbar-nav  flex-column ">
+                <li class=""> @Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>
-                    @Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })
-                    <ul>
-                        <li>@Html.ActionLink("後台帳號管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="fs-6">@Html.ActionLink("角色管理", "Index", "UserRole", new { area = "" }, new { @class = "nav-link" })</li>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#subMenu" aria-expanded="false" aria-controls="subMenu">
+                        ➤ 後台使用者管理
+                    </a>
+                    <ul id="subMenu" class="collapse">
+                        <li >@Html.ActionLink("使用者管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("角色管理", "Index", "UserRole", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </li>
-                <li>@Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
+                <li> @Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
             </ul>
         </div>
     </nav>
@@ -62,20 +65,15 @@
 
         function getCookie(name) {
             const nameEq = name + "=";
-            []
-            //const cookies = document.cookie.split(';');
             const cookies = document.cookie.split(';');
 
-
             for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim(); // 去除空白字符
+                let cookie = cookies[i].trim(); 
 
                 if (cookie.indexOf(nameEq) === 0) {
                     return cookie.substring(nameEq.length, cookie.length);
                 }
             }
-
-            return null;
         }
     </script>
 

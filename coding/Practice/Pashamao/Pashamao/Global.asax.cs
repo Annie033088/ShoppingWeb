@@ -40,7 +40,7 @@ namespace Pashamao
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session["UserName"] = "Guest";
+            Session["UserVisitState"] = "Guest";
         }
     }
 }

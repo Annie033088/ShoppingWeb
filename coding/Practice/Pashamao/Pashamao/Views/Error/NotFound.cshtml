@@ -1,0 +1,24 @@
+﻿
+<body>
+    <div class="container text-center">
+        <h3 class="justify-content-center">沒有這個網址，請回去　<button id="btnErrorGoback" class="btn btn-outline-danger">返回</button></h3>
+    </div>
+
+    <script>
+        var user = "@ViewBag.User";
+        var btnErrorGoback = document.getElementById("btnErrorGoback");
+        if (user === "Guest") {
+            btnErrorGoback.addEventListener("click", backToLogin);
+        }
+        if (user === "User") {
+            btnErrorGoback.addEventListener("click", backToHome);
+        }
+        function backToLogin() {
+            window.location.href = "/Login/Index";
+        }
+        function backToHome() {
+            window.location.href = "/MainHome/Index";
+        }
+    </script>
+</body>
+

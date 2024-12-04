@@ -44,6 +44,7 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserPermission.CreateUser)]
         public ActionResult CreateUser()
         {
+            ViewBag.Message = TempData["Message"];
             ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
             return View();
         }
@@ -73,14 +74,14 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    ViewData["Massage"] = "帳號重複，創建失敗";
-                    return View("CreateUser");
+                    TempData["Message"] = "帳號重複，創建失敗";
+                    return RedirectToAction("CreateUser");
                 }
 
             }
             catch (Exception e)
             {
-                ViewData["Massage"] = "創建失敗";
+                ViewBag.Message = "創建失敗";
                 return View("CreateUser");
                 throw e;
             }

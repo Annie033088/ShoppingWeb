@@ -217,7 +217,6 @@
     <Content Include="Views\Shared\LoginLayout.cshtml" />
     <Content Include="Views\MainHome\Index.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\Error\SuspendedInfo.cshtml" />
     <Content Include="Views\MainUser\Index.cshtml" />
     <Content Include="Views\Shared\MainHomeLayout.cshtml" />
     <Content Include="Views\MainUser\CreateUser.cshtml" />
@@ -225,6 +224,7 @@
     <Content Include="Views\MainUser\EditUserPwd.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\MainMember\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

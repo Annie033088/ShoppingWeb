@@ -3,14 +3,19 @@
 }
 
 .sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    height: 100vh; /* 使側邊欄高度充滿屏幕 */
-    position: fixed; /* 固定在屏幕左側 */
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    background-color: #c4d0d4;
     top: 0;
     left: 0;
     padding-top: 50px;
 }
+
+.navbar-nav .nav-link {
+    color: #000000; /* 深灰色文字 */
+}
+
 
 main {
     padding: 20px;
@@ -20,8 +25,8 @@ main {
     display: none;
     position: fixed;
     z-index: 1;
-    top:43px;
-    right:25px;
+    top: 43px;
+    right: 25px;
     width: 255px;
     height: 165px;
     background-color: white;

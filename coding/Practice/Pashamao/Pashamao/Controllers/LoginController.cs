@@ -17,11 +17,22 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            if (Session["UserName"].ToString() != "Guest")
+            //被踢出去之後, 記下紀錄並清除會話
+            if (Session["KickOutMessage"] != null)
             {
-                return RedirectToAction("Index", "MainHome");
+                ViewBag.Message = Session["KickOutMessage"].ToString();
+                Session.Clear();
+                Session.Abandon();
+                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
             }
-            Session["UserName"] = "Guest";
+
+            if (Session["UserVisitState"] != null)
+            {
+                if (Session["UserVisitState"].ToString() != "Guest")
+                    return RedirectToAction("Index", "MainHome");
+            }
+
+            Session["UserVisitState"] = "Guest";
             return View();
         }
 
@@ -58,7 +69,7 @@ namespace Pashamao.Controllers
                         Secure = true
                     };
                     Response.Cookies.Add(cookie);
-                    Session["UserName"] = "User";
+                    Session["UserVisitState"] = "User";
                     logger.Info($"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}.");
                     return RedirectToAction("Index", "MainHome");
                 }

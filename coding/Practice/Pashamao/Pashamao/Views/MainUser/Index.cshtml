@@ -1,13 +1,13 @@
-﻿
-@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
     ViewBag.Title = "後台帳號設定";
 }
 <body>
-
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/MainUser.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
-        <h1>使用者資料</h1>
+        <h1>使用者管理</h1>
         <table id="userTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
@@ -29,11 +29,11 @@
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">Id</th>
+                    <th scope="col">Id<button class="btnSort"></button></th>
                     <th scope="col">帳號</th>
                     <th scope="col">姓名</th>
-                    <th scope="col">狀態</th>
-                    <th scope="col">角色</th>
+                    <th scope="col">狀態<button class="btnSort"></button></th>
+                    <th scope="col">角色<button class="btnSort"></button></th>
                     <th scope="col">操作選項</th>
                 </tr>
             </thead>
@@ -41,7 +41,6 @@
                 <!-- 用來插入用戶資料的行將在這裡 -->
             </tbody>
         </table>
-
         <script>
             axios.post("/MainUser/GetAllUser")
                 .then(response => {
@@ -50,6 +49,11 @@
                 .catch(error => {
                     console.error("fail", error);
                 })
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const data = getTableElelments();
+                populateTable(data);
+            });
 
 
             function populateTable(users) {
@@ -71,6 +75,7 @@
 
                     const cellId = document.createElement('td');
                     cellId.textContent = user.UserId;
+
                     row.appendChild(cellId);
 
                     const cellAcct = document.createElement('td');
@@ -102,11 +107,23 @@
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteUser";
                     cellDeleteBtn.addEventListener("click", function () {
-                        axios.post("/MainUser/DeleteUser", { UserId: user.UserId })
-                            .then(response => {
-                                window.location.href = '/MainUser/Index';
-                            })
-                            .catch(error => { console.error(error) })
+                        Swal.fire({
+                            title: '確定要刪除這個項目嗎？',
+                            text: "這個操作無法恢復！",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: '刪除',
+                            cancelButtonText: '取消'
+                        }).then((result) => {
+
+                            if (result.isConfirmed) {
+                                axios.post("/MainUser/DeleteUser", { UserId: user.UserId })
+                                    .then(response => {
+                                        window.location.href = '/MainUser/Index';
+                                    })
+                                    .catch(error => { console.error(error) })
+                            }
+                        })
                     });
                     cellEdit.appendChild(cellDeleteBtn);
                     row.appendChild(cellEdit);
@@ -131,18 +148,15 @@
                 axios.post("/MainUser/SelectUser", { UserId: selectUserId })
                     .then(response => {
                         let users = response.data;
-                        if (!(users == "noUser"))
-                        {
+                        if (!(users == "noUser")) {
 
-                            if (!Array.isArray(users))
-                            {
+                            if (!Array.isArray(users)) {
                                 users = [users];  // 如果是單一物件，將其包裝成陣列
                             }
 
                             populateTable(users);
                         }
-                        else
-                        {
+                        else {
                             document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
                         }
 
@@ -151,8 +165,54 @@
                         console.error("fail", error);
                     })
 
-                
+
             }
+
+            function getTableElelments() {
+                const table = document.getElementById("userTable");
+                const rows = table.querySelectorAll("tbody tr");
+                const headers = ["UserId", "Account", "Name", "Status", "RoleId"];
+
+                const data = Array.from(rows).map(row => {
+                    const cells = row.querySelectorAll("td");
+                    const obj = {};
+
+                    for (var i = 0; i < 5; i++) {
+                        obj[headers[i]] = isNaN(cells[i].innerText) ? cells[i].innerText : Number(cells[i].innerText);
+                    }
+
+                    return obj;
+                });
+                return data
+            }
+
+            function sortData(data, column, ascending = true) {
+                return data.sort((a, b) => {
+                    if (a[column] < b[column]) return ascending ? -1 : 1;
+                    if (a[column] > b[column]) return ascending ? 1 : -1;
+                    return 0;
+                });
+            }
+
+            function sortTable(data, column) {
+                const sortedData = sortData(data, column);
+                const tableBody = document.querySelector('#userTable tbody');
+
+                // 清空表格並重新插入排序後的資料
+                tableBody.innerHTML = '';
+                sortedData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${row.name}</td><td>${row.age}</td>`;
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                console.log(getTableElelments());
+            });
+
+
+
         </script>
     </main>
 </body>

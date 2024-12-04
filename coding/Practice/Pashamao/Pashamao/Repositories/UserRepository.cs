@@ -21,9 +21,9 @@ namespace Pashamao.Repositories
         internal (User, long) VerifyAndGetUser(string acct, string pwd, string sessionId)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
-            SqlDataAdapter da = new SqlDataAdapter(); //宣告一個配接器(DataTable與DataSet必須)
-            DataTable dt = new DataTable(); //宣告DataTable物件
+            cmd.Connection = new SqlConnection(this.ConnStr); 
+            SqlDataAdapter da = new SqlDataAdapter(); 
+            DataTable dt = new DataTable(); 
 
             try
             {
@@ -76,21 +76,33 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="userSession"></param>
         /// <returns></returns>
-        internal string GetSessionId(UserSessionModel userSession)
+        internal (bool, string) GetStatusAndSessionId(UserSessionModel userSession)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getSessionId @uId";
+                cmd.CommandText = "EXEC pro_pashamao_getStatusAndSessionId @uId";
                 cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userSession.UserId;
 
                 cmd.Connection.Open();
 
-                var result = cmd.ExecuteScalar();
-                string sessionId = result == null ? string.Empty : result.ToString();//當這個user被刪掉會是null
-                return sessionId;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count>0)
+                {
+                    bool Status = dt.Rows[0].IsNull("f_status") ? false : dt.Rows[0].Field<bool>("f_status");
+                    string SessionId = dt.Rows[0].IsNull("f_sessionId") ? string.Empty : dt.Rows[0].Field<string>("f_sessionId");
+                    return (Status, SessionId);
+                }
+
+                return (false, null);
             }
             catch (Exception e)
             {
@@ -99,7 +111,8 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
-                cmd.Connection.Close();
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
             }
         }
 

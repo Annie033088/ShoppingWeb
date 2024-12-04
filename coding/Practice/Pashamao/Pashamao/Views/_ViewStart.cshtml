@@ -1,11 +1,15 @@
 ﻿
 @{
-    var controllerName = ViewContext.RouteData.Values["controller"].ToString ();
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
 
     if (controllerName == "Login")
     {
-        Layout = "Shared/LoginLayout.cshtml";  // 默認布局
-    } 
+        Layout = "Shared/LoginLayout.cshtml";  
+    }
+    else if (controllerName == "Error")
+    {
+        Layout = "Shared/LoginLayout.cshtml";
+    }
     else
     {
         Layout = "Shared/MainHomeLayout.cshtml";

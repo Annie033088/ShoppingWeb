@@ -1,1 +1,17 @@
-﻿<p>Something Wrong</p>
+﻿
+<body>
+    <div class="container text-center">
+        <h3 class="justify-content-center">出現問題......　<button id="btnErrorGoback" class="btn btn-outline-danger">返回</button></h3>
+    </div>
+
+    <script>
+        var user = "@ViewBag.User";
+        var btnErrorGoback = document.getElementById("btnErrorGoback");
+         btnErrorGoback.addEventListener("click", backToHome);
+
+        function backToHome() {
+            window.location.href = "/MainHome/Index";
+        }
+    </script>
+</body>
+
