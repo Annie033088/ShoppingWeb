@@ -32,8 +32,8 @@ namespace Pashamao.Service
         /// <returns></returns>
         public bool AddRole(List<string> strPermissions, string roleName, string roleDiscript)
         {
-
             List<UserPermission> permissions = new List<UserPermission>();
+            Role role = new Role();
             long allPermission = 0;
 
             foreach (string strPermission in strPermissions)
@@ -42,7 +42,10 @@ namespace Pashamao.Service
                 allPermission += (long)permission;
             }
 
-            return roleRepository.AddRole(roleName, roleDiscript, allPermission);
+            role.Name = roleName;
+            role.Description = roleDiscript;
+            role.Permissions = allPermission;
+            return roleRepository.AddRole(role);
         }
 
         /// <summary>
@@ -50,22 +53,46 @@ namespace Pashamao.Service
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public List<UserPermission> GetRolePermissions(string roleId)
+        public List<string> GetRolePermissions(string roleId)
         {
             string permissionString = roleRepository.GetRolePermissions(int.Parse(roleId));
 
             long permissionValue = long.Parse(permissionString);
-            List<UserPermission> permissions = new List<UserPermission>();
+            List<string> permissions = new List<string>();
 
             foreach (UserPermission permission in Enum.GetValues(typeof(UserPermission)))
             {
                 if (permission != UserPermission.None && (permissionValue & (long)permission) == (long)permission)
                 {
-                    permissions.Add(permission);
+                    permissions.Add(permission.ToString());
                 }
             }
 
             return permissions;
+        }
+
+        public bool EditRole(List<string> strPermissions,string roleId , string roleName, string roleDiscript)
+        {
+            List<UserPermission> permissions = new List<UserPermission>();
+            Role role = new Role();
+            long allPermission = 0;
+
+            foreach (string strPermission in strPermissions)
+            {
+                UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
+                allPermission += (long)permission;
+            }
+
+            role.RoleId = int.Parse(roleId);
+            role.Name = roleName;
+            role.Description = roleDiscript;
+            role.Permissions = allPermission;
+            return roleRepository.EditRole(role);
+        }
+
+        public bool DeleteRole(string roleId) {
+            int intRoleId = int.Parse(roleId);
+            return roleRepository.DeleteRole(intRoleId);
         }
 
     }

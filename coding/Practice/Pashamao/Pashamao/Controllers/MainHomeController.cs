@@ -12,6 +12,7 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            ViewBag.NoPermissionMessage = TempData["NoPermissionMessage"];
             return View();
         }
 

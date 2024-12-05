@@ -310,10 +310,10 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUser @uId, @roleName, @status";
+                cmd.CommandText = "EXEC pro_pashamao_editUser @uId, @roleId, @status";
 
                 cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
-                cmd.Parameters.Add("@roleName", SqlDbType.VarChar).Value = user.RoleName;
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = user.RoleId;
                 cmd.Parameters.Add("@status", SqlDbType.Bit).Value = user.Status;
 
                 cmd.Connection.Open();

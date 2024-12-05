@@ -28,8 +28,7 @@ namespace Pashamao.Controllers
 
             if (Session["UserVisitState"] != null)
             {
-                if (Session["UserVisitState"].ToString() != "Guest")
-                    return RedirectToAction("Index", "MainHome");
+                if (Session["UserVisitState"].ToString() != "Guest") return RedirectToAction("Index", "MainHome");
             }
 
             Session["UserVisitState"] = "Guest";

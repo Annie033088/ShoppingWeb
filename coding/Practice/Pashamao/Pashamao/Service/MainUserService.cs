@@ -75,13 +75,13 @@ namespace Pashamao.Service
         /// <param name="UID"></param>
         /// <param name="Name"></param>
         /// <param name="Status"></param>
-        internal void EditUserRole(string UserId, string Role, string Status)
+        internal void EditUserRole(string UserId, string RoleId, string Status)
         {
             User user = new User();
 
             user.UserId = int.Parse(UserId);
-            user.RoleName = Role;
-            user.Status = bool.Parse(Status);
+            user.RoleId = int.Parse(RoleId);
+            user.Status = Status == "1" ? true : false;
             userRepository.UpdateRole(user);
         }
 

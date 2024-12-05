@@ -8,7 +8,6 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-
     public class MainUserController : Controller
     {
         private MainUserService mainUserService;
@@ -89,31 +88,18 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
-        /// 修改角色權限
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <param name="Status"></param>
-        /// <returns></returns>
-        [UserRoleAuthFilter(UserPermission.EditUser)]
-        public ActionResult EditUserRole(string UserId, string Status)
-        {
-            ViewBag.UserId = UserId;
-            ViewBag.Status = Status;
-            ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
-            return View();
-        }
-
-        /// <summary>
-        /// 提交修改角色權限表單
+        /// 提交修改角色權限
         /// </summary>
         /// <param name="UserId"></param>
         /// <param name="Role"></param>
         /// <param name="Status"></param>
         /// <returns></returns>
         [UserRoleAuthFilter(UserPermission.EditUser)]
-        public ActionResult SubmitEditUserRole(string UserId, string Role, string Status)
+        public ActionResult SubmitEditUserRole(string UserId, string RoleId, string Status)
         {
-            mainUserService.EditUserRole(UserId, Role, Status);
+            Console.WriteLine(UserId, RoleId, Status);
+
+            mainUserService.EditUserRole(UserId, RoleId, Status);
             return View("Index");
         }
 

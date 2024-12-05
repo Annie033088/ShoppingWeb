@@ -16,5 +16,10 @@
         /// 描述
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// 權限
+        /// </summary>
+        public long Permissions {  get; set; }
     }
 }

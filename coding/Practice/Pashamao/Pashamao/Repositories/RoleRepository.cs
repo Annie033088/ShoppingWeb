@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Security;
 
 namespace Pashamao.Repositories
 {
@@ -75,7 +76,7 @@ namespace Pashamao.Repositories
         /// <param name="description"></param>
         /// <param name="rolePermission"></param>
         /// <returns></returns>
-        public bool AddRole(string name, string description, long rolePermission)
+        public bool AddRole(Role role)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -84,9 +85,9 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_addRole @name, @description, @rolePermission";
 
-                cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-                cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = description;
-                cmd.Parameters.Add("@rolePermission", SqlDbType.BigInt).Value = rolePermission;
+                cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = role.Name;
+                cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = role.Description;
+                cmd.Parameters.Add("@rolePermission", SqlDbType.BigInt).Value = role.Permissions;
 
                 cmd.Connection.Open();
 
@@ -138,6 +139,95 @@ namespace Pashamao.Repositories
             }
             catch (Exception e)
             {
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public bool EditRole(Role role)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editRole @roleId, @name, @description, @rolePermission";
+
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = role.RoleId;
+                cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = role.Name;
+                cmd.Parameters.Add("@description", SqlDbType.VarChar).Value = role.Description;
+                cmd.Parameters.Add("@rolePermission", SqlDbType.BigInt).Value = role.Permissions;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                //受影響筆數為1代表成功
+                if (ExeCnt == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 刪除角色
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public bool DeleteRole(int roleId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_DeleteRole @roleId";
+
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = roleId;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                //受影響筆數為1代表成功
+                if (ExeCnt == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
                 throw e;
             }
             finally

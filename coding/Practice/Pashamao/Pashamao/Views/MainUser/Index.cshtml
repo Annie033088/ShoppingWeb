@@ -29,11 +29,11 @@
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">Id<button class="btnSort"></button></th>
+                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="sortByColumn('sortById', 'UserId')"></button></th>
                     <th scope="col">帳號</th>
                     <th scope="col">姓名</th>
-                    <th scope="col">狀態<button class="btnSort"></button></th>
-                    <th scope="col">角色<button class="btnSort"></button></th>
+                    <th scope="col">狀態<button id="sortByStatus" class="btn btnSort" onclick="sortByColumn('sortByStatus', 'Status')"></button></th>
+                    <th scope="col">角色<button id="sortByRole" class="btn btnSort" onclick="sortByColumn('sortByRole', 'RoleId')"></button></th>
                     <th scope="col">操作選項</th>
                 </tr>
             </thead>
@@ -49,12 +49,6 @@
                 .catch(error => {
                     console.error("fail", error);
                 })
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const data = getTableElelments();
-                populateTable(data);
-            });
-
 
             function populateTable(users) {
                 const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
@@ -99,8 +93,8 @@
                     const cellEditBtn = document.createElement("button");
                     cellEditBtn.className = "btnEditUser";
                     cellEditBtn.addEventListener("click", function () {
-                        let url = `/MainUser/EditUserRole?UserId=${user.UserId}&Status=${user.Status}`;
-                        window.location.href = url;
+                        let NameOrAcct = document.getElementById("boxPersonalName").innerText;
+                        editUserRoleAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
                     });
                     cellEdit.appendChild(cellEditBtn);
 
@@ -115,7 +109,6 @@
                             confirmButtonText: '刪除',
                             cancelButtonText: '取消'
                         }).then((result) => {
-
                             if (result.isConfirmed) {
                                 axios.post("/MainUser/DeleteUser", { UserId: user.UserId })
                                     .then(response => {
@@ -126,7 +119,10 @@
                         })
                     });
                     cellEdit.appendChild(cellDeleteBtn);
-                    row.appendChild(cellEdit);
+
+                    if (user.RoleId != "1") {
+                        row.appendChild(cellEdit);
+                    }
 
 
                     // 把這一行加到表格中
@@ -168,6 +164,75 @@
 
             }
 
+            function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
+                let roleSelectOptions;
+                let statusSelectOptions;
+
+                if (userStatus) {
+                    statusSelectOptions = `<option value="1" selected>啟用</option>` + `<option value="0" >禁用</option>`;
+                } else {
+                    statusSelectOptions = `<option value="1" >啟用</option>` + `<option value="0" selected>禁用</option>`;
+                }
+
+                axios.post("/UserRole/GetAllRole")
+                    .then(response => {
+                        roleSelectOptions = populateRoleOptionData(response.data, userRoleId);
+                        Swal.fire({
+                            title: '修改使用者',
+                            html: `
+                             <label for="roleSelect">選擇角色:</label>
+                             <select id="roleSelect" class="swal-selectRole">
+                                ${roleSelectOptions}
+                             </select>
+                             <br><br>
+                             <label for="statusSelect">選擇狀態:</label>
+                             <select id="statusSelect" class="swal-selectStatus">
+                                ${statusSelectOptions}
+                             </select>`
+                            ,
+                            icon: 'question',
+                            background: '#f0f0f0',
+                            showCancelButton: true,
+                            confirmButtonText: '確定',
+                            cancelButtonText: '取消',
+                            preConfirm: () => {
+                                const roleSelectValue = document.getElementById('roleSelect').value;
+                                const statusSelectValue = document.getElementById('statusSelect').value;
+                                return { roleSelect: roleSelectValue, statusSelect: statusSelectValue };
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                axios.post("/MainUser/SubmitEditUserRole", {
+                                    UserId: userId,
+                                    RoleId: result.value.roleSelect,
+                                    Status: result.value.statusSelect
+                                })
+                                    .then(response => {
+                                        window.location.href = "/MainUser/Index"
+                                    })
+                                    .catch(error => {
+                                        console.error("fail", error);
+                                    })
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
+
+            function populateRoleOptionData(roles, roleId) {
+                let selectOptions = '';
+                roles.forEach(role => {
+                    if (role.RoleId === roleId) {
+                        selectOptions += `<option value="${role.RoleId}" selected>角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                    } else {
+                        selectOptions += `<option value="${role.RoleId}">角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                    }
+                });
+                return selectOptions;
+            }
+
             function getTableElelments() {
                 const table = document.getElementById("userTable");
                 const rows = table.querySelectorAll("tbody tr");
@@ -176,6 +241,13 @@
                 const data = Array.from(rows).map(row => {
                     const cells = row.querySelectorAll("td");
                     const obj = {};
+
+                    //狀態設置為1/0
+                    if (cells[3].innerText === "啟用") {
+                        cells[3].innerText = 1;
+                    } else if (cells[3].innerText === "禁用") {
+                        cells[3].innerText = 0;
+                    }
 
                     for (var i = 0; i < 5; i++) {
                         obj[headers[i]] = isNaN(cells[i].innerText) ? cells[i].innerText : Number(cells[i].innerText);
@@ -194,25 +266,23 @@
                 });
             }
 
-            function sortTable(data, column) {
-                const sortedData = sortData(data, column);
-                const tableBody = document.querySelector('#userTable tbody');
 
-                // 清空表格並重新插入排序後的資料
-                tableBody.innerHTML = '';
-                sortedData.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${row.name}</td><td>${row.age}</td>`;
-                    tableBody.appendChild(tr);
-                });
+            function sortByColumn(id, column) {
+                let btn = document.querySelector(`#${id}`);
+                let currentBackground = getComputedStyle(btn).backgroundImage;
+                let data = getTableElelments();
+                let sortedData;
+
+                if (currentBackground.includes('arrowAscending.png')) {
+                    sortedData = sortData(data, column, false);
+                    btn.style.backgroundImage = "url('../images/arrowDescending.png')";
+                } else {
+                    sortedData = sortData(data, column, true);
+                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
+                }
+
+                populateTable(sortedData);
             }
-
-            document.addEventListener("DOMContentLoaded", function () {
-                console.log(getTableElelments());
-            });
-
-
-
         </script>
     </main>
 </body>

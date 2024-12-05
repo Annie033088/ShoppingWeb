@@ -20,6 +20,7 @@ namespace Pashamao.Filters
             //利用位元運算, 沒有符合就返回
             if ((userSession.UserPermission & requiredPermissions) == 0)
             {
+                filterContext.Controller.TempData["NoPermissionMessage"] = "您無此權限";
                 filterContext.Result = new RedirectResult("/MainHome/Index");
             }
 
