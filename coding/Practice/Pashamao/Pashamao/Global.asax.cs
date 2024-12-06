@@ -13,7 +13,7 @@ namespace Pashamao
         protected void Application_Start()
         {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            
+
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);

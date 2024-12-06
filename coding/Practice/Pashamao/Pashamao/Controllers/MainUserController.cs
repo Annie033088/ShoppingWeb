@@ -16,11 +16,11 @@ namespace Pashamao.Controllers
             mainUserService = new MainUserService();
         }
 
+        [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
         /// <summary>
         /// 後端使用者管理主頁
         /// </summary>
         /// <returns></returns>
-        [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
         public ActionResult Index()
         {
             return View();
@@ -120,10 +120,8 @@ namespace Pashamao.Controllers
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
         public ActionResult SelectUser(string UserId)
         {
-
             if (mainUserService.GetUser(UserId) == null)
             {
                 //沒找到對應使用者

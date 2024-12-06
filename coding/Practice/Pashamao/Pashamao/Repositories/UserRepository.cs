@@ -21,9 +21,9 @@ namespace Pashamao.Repositories
         internal (User, long) VerifyAndGetUser(string acct, string pwd, string sessionId)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); 
-            SqlDataAdapter da = new SqlDataAdapter(); 
-            DataTable dt = new DataTable(); 
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
 
             try
             {
@@ -95,7 +95,7 @@ namespace Pashamao.Repositories
 
                 cmd.Connection.Close();
 
-                if (dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     bool Status = dt.Rows[0].IsNull("f_status") ? false : dt.Rows[0].Field<bool>("f_status");
                     string SessionId = dt.Rows[0].IsNull("f_sessionId") ? string.Empty : dt.Rows[0].Field<string>("f_sessionId");

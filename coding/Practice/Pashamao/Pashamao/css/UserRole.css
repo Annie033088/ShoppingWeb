@@ -1,8 +1,8 @@
 ﻿tbody button {
-    background-size: cover; 
-    background-position: center; 
-    border: none; 
-    padding: 10px; 
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 10px;
     cursor: pointer;
     margin-right: 5px;
 }
@@ -11,6 +11,9 @@
     background-image: url(../images/Pencel.jpg);
 }
 
+.btnDeleteRole {
+    background-image: url(../images/Garbage.jpg);
+}
 
 .popUpContent {
     max-height: 400px;

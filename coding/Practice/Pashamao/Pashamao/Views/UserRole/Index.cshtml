@@ -1,24 +1,27 @@
 ﻿
 @{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
-    ViewBag.Title = "角色設定";
+    ViewBag.Title = "角色管理";
 }
 <body>
 
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/UserRole.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
-        <h1>角色管理</h1>
+        <h1 class="text-center mb-3">@ViewBag.Title</h1>
         <table id="roleTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
                     <th>
                         <button type="button" id="btnShowAddRoleCkb" class="btn btn-outline-dark">新增</button>
+                        <button type="button" id="btnGetAllRole" class="btn btn-outline-dark " onclick='getAllRole()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectRoleId" style="width:100%" pattern="^[\d]{1,5}$" required />
+                        <input type="text" id="txbSelectRoleId" style="width:100%" pattern="^[\d]{1,8}$" required />
                     </th>
                     <th class="text-lg-start">
                         <button type="button" id="btnSelectRoleId" class="btn btn-outline-dark" onclick='selectRole();'>搜尋</button>
@@ -83,24 +86,28 @@
                     <label><input type="checkbox" class="subCkb" id="ckb24" data-Parent="ckbMain5" value="EditCategory"> 修改分類</label><br>
                 </div>
                 <div class="d-flex">
-                    <label id="labelRoleName"> <input type="text" name="name" id="txbRoleName" value="" />輸入名稱</label>
-                    <label id="labelRoleDiscript"> <input type="text" name="name" id="txbRoleDiscript" value="" />描述角色</label>
-                    <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark" style="display:block">提交</button>
-                    <button id="btnSubmitEditRole" class="btnSubmitRole btn btn-outline-dark" style="display:block">提交</button>
+                    <label id="labelRoleName"> 輸入名稱：<input type="text" name="name" id="txbRoleName" value="" /></label>
+                    <label id="labelRoleDiscript"> 描述角色：<input type="text" name="name" id="txbRoleDiscript" value="" /></label>
+                    <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
+                    <button id="btnSubmitEditRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
                 </div>
             </div>
         </div>
 
 
         <script>
-            axios.post("/UserRole/GetAllRole")
-                .then(response => {
-                    populateTable(response.data);
-                })
-                .catch(error => {
-                    console.error("fail", error);
-                })
 
+            getAllRole();
+
+            function getAllRole() {
+                axios.post("/UserRole/GetAllRole")
+                    .then(response => {
+                        populateTable(response.data);
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
 
             function populateTable(roles) {
                 const tableBody = document.getElementById("roleTable").getElementsByTagName('tbody')[0];
@@ -154,22 +161,7 @@
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteRole";
                     cellDeleteBtn.addEventListener("click", function () {
-                        Swal.fire({
-                            title: '確定要刪除這個項目嗎？',
-                            text: "這個操作無法恢復！",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: '刪除',
-                            cancelButtonText: '取消'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                axios.post("/MainUser/DeleteRole", { RoleId: role.RoleId })
-                                    .then(response => {
-                                        window.location.href = '/UserRole/Index';
-                                    })
-                                    .catch(error => { console.error(error) })
-                            }
-                        })
+                        delRole(role.RoleId);
                     });
                     cellEdit.appendChild(cellDeleteBtn);
 
@@ -182,6 +174,25 @@
                 });
             }
 
+            function delRole(roleId) {
+                Swal.fire({
+                    title: '確定要刪除這個項目嗎？',
+                    text: "這個操作無法恢復！",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '刪除',
+                    cancelButtonText: '取消'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("/UserRole/DeleteRole", { RoleId: roleId })
+                            .then(response => {
+                                window.location.href = '/UserRole/Index';
+                            })
+                            .catch(error => { console.error(error) })
+                    }
+                })
+            }
+
             function selectRole() {
                 var searchInput = document.getElementById('txbSelectRoleId');
                 var selectRoleId = searchInput.value;
@@ -189,7 +200,7 @@
                 var inputValue = searchInput.value;
 
                 if (!regex.test(inputValue)) {
-                    document.getElementById("searchWarning").innerText = "請輸入5位以內數字";
+                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
                     return;
                 }
 
@@ -201,11 +212,11 @@
 
                         if (!(roles == "noRole")) {
 
-                            if (!Array.isArray(Roles)) {
-                                Roles = [Roles];  // 如果是單一物件，將其包裝成陣列
+                            if (!Array.isArray(roles)) {
+                                roles = [roles];
                             }
 
-                            populateTable(Roles);
+                            populateTable(roles);
                         }
                         else {
                             document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
@@ -254,7 +265,9 @@
             const subCkbs = document.querySelectorAll('.subCkb');
 
             btnShowAddRoleCkb.addEventListener("click", function () {
-
+                subCkbs.forEach(function (subCkb) {
+                    subCkb.checked = false;
+                })
                 popUp.style.display = "block";
                 btnSubmitAddRole.style.display = "block";
                 btnSubmitEditRole.style.display = "none";

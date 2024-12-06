@@ -1,6 +1,5 @@
 ﻿using Pashamao.Models;
 using Pashamao.Repositories;
-using System;
 using System.Web;
 using System.Web.Mvc;
 
@@ -53,7 +52,7 @@ namespace Pashamao.Filters
                 //判斷現sessionId與資料庫的sessionId是否相同, 不同的話清除session並且重定向到Login
                 if (DBSessionId != HttpContext.Current.Session.SessionID)
                 {
-                    HttpContext.Current.Session["KickOutMessage"] = "您的帳號已被他人踢出";  
+                    HttpContext.Current.Session["KickOutMessage"] = "您的帳號已被他人踢出";
                     filterContext.Result = new RedirectResult("/Login/Index");
                 }
             }

@@ -26,6 +26,7 @@ namespace Pashamao.Controllers
                 Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
             }
 
+            //判斷狀態為登入或未登入
             if (Session["UserVisitState"] != null)
             {
                 if (Session["UserVisitState"].ToString() != "Guest") return RedirectToAction("Index", "MainHome");

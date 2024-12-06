@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
+    [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser)]
     public class UserRoleController : Controller
     {
         private readonly UserRoleService userRoleService;
@@ -85,10 +86,30 @@ namespace Pashamao.Controllers
         /// <param name="RoleId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DeleteRole(string RoleId) {
-
+        public ActionResult DeleteRole(string RoleId)
+        {
+            userRoleService.DeleteRole(RoleId);
             return View("Index");
         }
 
+        /// <summary>
+        /// 搜尋角色
+        /// </summary>
+        /// <param name="RoleId"></param>
+        /// <returns></returns>
+        public ActionResult SelectRole(string RoleId)
+        {
+            Role role = userRoleService.GetRole(RoleId);
+            if (role == null)
+            {
+                string noRole = "noRole";
+                return Json(noRole, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(role, JsonRequestBehavior.AllowGet);
+
+            }
+        }
     }
 }

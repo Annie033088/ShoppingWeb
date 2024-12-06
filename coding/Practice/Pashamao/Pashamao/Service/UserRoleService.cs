@@ -49,7 +49,7 @@ namespace Pashamao.Service
         }
 
         /// <summary>
-        /// 取得所有角色權限
+        /// 取得對應角色權限
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -71,7 +71,15 @@ namespace Pashamao.Service
             return permissions;
         }
 
-        public bool EditRole(List<string> strPermissions,string roleId , string roleName, string roleDiscript)
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="strPermissions"></param>
+        /// <param name="roleId"></param>
+        /// <param name="roleName"></param>
+        /// <param name="roleDiscript"></param>
+        /// <returns></returns>
+        public bool EditRole(List<string> strPermissions, string roleId, string roleName, string roleDiscript)
         {
             List<UserPermission> permissions = new List<UserPermission>();
             Role role = new Role();
@@ -90,9 +98,25 @@ namespace Pashamao.Service
             return roleRepository.EditRole(role);
         }
 
-        public bool DeleteRole(string roleId) {
+        /// <summary>
+        /// 刪除角色
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public bool DeleteRole(string roleId)
+        {
             int intRoleId = int.Parse(roleId);
             return roleRepository.DeleteRole(intRoleId);
+        }
+
+        /// <summary>
+        /// 取得角色
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public Role GetRole(string roleId)
+        {
+            return roleRepository.GetRole(int.Parse(roleId));
         }
 
     }

@@ -20,6 +20,6 @@
         /// <summary>
         /// 權限
         /// </summary>
-        public long Permissions {  get; set; }
+        public long Permissions { get; set; }
     }
 }

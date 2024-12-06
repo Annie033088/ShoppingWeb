@@ -1,24 +1,25 @@
 ﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
-    ViewBag.Title = "後台帳號設定";
+    ViewBag.Title = "使用者管理";
 }
 <body>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/MainUser.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
-        <h1>使用者管理</h1>
+        <h1 class="text-center mb-3">@ViewBag.Title</h1>
         <table id="userTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
                     <th>
                         <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/CreateUser"'>新增</button>
+                        <button type="button" id="btnGetAllUser" class="btn btn-outline-dark" onclick='getAllUser()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectUserId" style="width:100%" pattern="^[\d]{1,5}$" required />
+                        <input type="text" id="txbSelectUserId" style="width:100%" pattern="^[\d]{1,8}$" required />
                     </th>
                     <th class="text-lg-start">
                         <button type="button" id="btnSelectByUserId" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
@@ -42,13 +43,17 @@
             </tbody>
         </table>
         <script>
-            axios.post("/MainUser/GetAllUser")
-                .then(response => {
-                    populateTable(response.data);
-                })
-                .catch(error => {
-                    console.error("fail", error);
-                })
+            getAllUser();
+
+            function getAllUser() {
+                axios.post("/MainUser/GetAllUser")
+                    .then(response => {
+                        populateTable(response.data);
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
 
             function populateTable(users) {
                 const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
@@ -101,22 +106,7 @@
                     const cellDeleteBtn = document.createElement("button");
                     cellDeleteBtn.className = "btnDeleteUser";
                     cellDeleteBtn.addEventListener("click", function () {
-                        Swal.fire({
-                            title: '確定要刪除這個項目嗎？',
-                            text: "這個操作無法恢復！",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: '刪除',
-                            cancelButtonText: '取消'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                axios.post("/MainUser/DeleteUser", { UserId: user.UserId })
-                                    .then(response => {
-                                        window.location.href = '/MainUser/Index';
-                                    })
-                                    .catch(error => { console.error(error) })
-                            }
-                        })
+                        delUser(user.UserId);
                     });
                     cellEdit.appendChild(cellDeleteBtn);
 
@@ -130,13 +120,33 @@
                 });
             }
 
+            function delUser(userId) {
+                Swal.fire({
+                    title: '確定要刪除這個項目嗎？',
+                    text: "這個操作無法恢復！",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '刪除',
+                    cancelButtonText: '取消'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("/MainUser/DeleteUser", { UserId: userId })
+                            .then(response => {
+                                window.location.href = '/MainUser/Index';
+                            })
+                            .catch(error => { console.error(error) })
+                    }
+                })
+
+            }
+
             function selectUser() {
                 var searchInput = document.getElementById('txbSelectUserId');
                 var selectUserId = searchInput.value;
                 var regex = new RegExp(searchInput.pattern);
                 var inputValue = searchInput.value;
                 if (!regex.test(inputValue)) {
-                    document.getElementById("searchWarning").innerText = "請輸入5位以內數字";
+                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
                     return;
                 }
                 document.getElementById("searchWarning").innerText = " ";
@@ -160,8 +170,6 @@
                     .catch(error => {
                         console.error("fail", error);
                     })
-
-
             }
 
             function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
@@ -224,13 +232,32 @@
             function populateRoleOptionData(roles, roleId) {
                 let selectOptions = '';
                 roles.forEach(role => {
-                    if (role.RoleId === roleId) {
-                        selectOptions += `<option value="${role.RoleId}" selected>角色名：${role.Name}－權限描述：${role.Description}</option>`;
-                    } else {
-                        selectOptions += `<option value="${role.RoleId}">角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                    if (role.RoleId != "1") {
+                        if (role.RoleId === roleId) {
+                            selectOptions += `<option value="${role.RoleId}" selected>角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                        } else {
+                            selectOptions += `<option value="${role.RoleId}">角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                        }
                     }
                 });
                 return selectOptions;
+            }
+
+            function sortByColumn(id, column) {
+                let btn = document.querySelector(`#${id}`);
+                let currentBackground = getComputedStyle(btn).backgroundImage;
+                let data = getTableElelments();
+                let sortedData;
+
+                if (currentBackground.includes('arrowAscending.png')) {
+                    sortedData = sortData(data, column, false);
+                    btn.style.backgroundImage = "url('../images/arrowDescending.png')";
+                } else {
+                    sortedData = sortData(data, column, true);
+                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
+                }
+
+                populateTable(sortedData);
             }
 
             function getTableElelments() {
@@ -266,23 +293,6 @@
                 });
             }
 
-
-            function sortByColumn(id, column) {
-                let btn = document.querySelector(`#${id}`);
-                let currentBackground = getComputedStyle(btn).backgroundImage;
-                let data = getTableElelments();
-                let sortedData;
-
-                if (currentBackground.includes('arrowAscending.png')) {
-                    sortedData = sortData(data, column, false);
-                    btn.style.backgroundImage = "url('../images/arrowDescending.png')";
-                } else {
-                    sortedData = sortData(data, column, true);
-                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
-                }
-
-                populateTable(sortedData);
-            }
         </script>
     </main>
 </body>

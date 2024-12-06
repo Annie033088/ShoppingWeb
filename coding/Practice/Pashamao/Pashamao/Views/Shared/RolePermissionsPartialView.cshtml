@@ -1,0 +1,51 @@
+﻿
+<div class="boxRolePermission ms-3">
+    <button id="btnCloseCkb" class="btn btn-light mt-1 ">&times;</button>
+    <input type="checkbox" id="ckbMain1"> 使用者管理
+    <div style="padding-left: 20px;">
+        <label><input type="checkbox" class="subCkb" id="ckb1" data-Parent="ckbMain1" value="SelectUser"> 搜尋使用者</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb2" data-Parent="ckbMain1" value="CreateUser"> 創建使用者</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb3" data-Parent="ckbMain1" value="EditUser"> 修改使用者</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb4" data-Parent="ckbMain1" value="DelUser"> 刪除使用者</label><br>
+    </div>
+    <input type="checkbox" id="ckbMain2"> 會員管理
+    <div style="padding-left: 20px;">
+        <label><input type="checkbox" class="subCkb" id="ckb5" data-Parent="ckbMain2" value="SelectMember"> 搜尋會員</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb6" data-Parent="ckbMain2" value="CreateMember"> 創建會員</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb7" data-Parent="ckbMain2" value="EditMemberAddress"> 修改會員地址</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb8" data-Parent="ckbMain2" value="EditMemberPhone"> 修改會員電話</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb9" data-Parent="ckbMain2" value="EditMemberEmail"> 修改會員信箱</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb10" data-Parent="ckbMain2" value="EditMemberLevel"> 修改會員等級</label><br>
+    </div>
+    <input type="checkbox" id="ckbMain3"> 訂單管理
+    <div style="padding-left: 20px;">
+        <label><input type="checkbox" class="subCkb" id="ckb11" data-Parent="ckbMain3" value="SelectOrder"> 搜尋訂單</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb12" data-Parent="ckbMain3" value="EditOrderPrice"> 修改訂單金額</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb13" data-Parent="ckbMain3" value="EditOrderStatus"> 修改訂單狀態</label><br>
+    </div>
+    <input type="checkbox" id="ckbMain4"> 商品管理
+    <div style="padding-left: 20px;">
+        <label><input type="checkbox" class="subCkb" id="ckb14" data-Parent="ckbMain4" value="SelectProduct"> 搜尋商品</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb15" data-Parent="ckbMain4" value="CreateProduct"> 創建商品</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb16" data-Parent="ckbMain4" value="EditProductName"> 修改商品名</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb17" data-Parent="ckbMain4" value="EditProductDescription"> 修改商品描述</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb18" data-Parent="ckbMain4" value="EditProductPrice"> 修改商品價錢</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb19" data-Parent="ckbMain4" value="EditProductQuantity"> 修改商品庫存</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb20" data-Parent="ckbMain4" value="EditProductCategory"> 修改商品分類</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb21" data-Parent="ckbMain4" value="EditProductStatus"> 修改商品狀態</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb22" data-Parent="ckbMain4" value="DelProduct"> 刪除商品</label><br>
+    </div>
+    <input type="checkbox" id="ckbMain5"> 商品分類管理
+    <div style="padding-left: 20px;">
+        <label><input type="checkbox" class="subCkb" id="ckb23" data-Parent="ckbMain5" value="SelectCategory"> 搜尋分類</label><br>
+        <label><input type="checkbox" class="subCkb" id="ckb24" data-Parent="ckbMain5" value="EditCategory"> 修改分類</label><br>
+    </div>
+    <div class="d-flex">
+        <label id="labelRoleName"> <input type="text" name="name" id="txbRoleName" value="" />輸入名稱</label>
+        <label id="labelRoleDiscript"> <input type="text" name="name" id="txbRoleDiscript" value="" />描述角色</label>
+        <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark" style="display:block">提交</button>
+        <button id="btnSubmitEditRole" class="btnSubmitRole btn btn-outline-dark" style="display:block">提交</button>
+    </div>
+</div>
+<style>
+</style>

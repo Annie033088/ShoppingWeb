@@ -183,6 +183,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
+    <Content Include="js\CreateAndEditRole.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -220,10 +221,11 @@
     <Content Include="Views\MainUser\Index.cshtml" />
     <Content Include="Views\Shared\MainHomeLayout.cshtml" />
     <Content Include="Views\MainUser\CreateUser.cshtml" />
-    <Content Include="Views\MainUser\EditUserRole.cshtml" />
+    <Content Include="Views\MainUser\EditUserPwd.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\MainMember\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\RolePermissionsPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

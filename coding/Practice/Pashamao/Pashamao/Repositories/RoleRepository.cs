@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.Security;
 
 namespace Pashamao.Repositories
 {
@@ -21,9 +20,9 @@ namespace Pashamao.Repositories
         public IEnumerable<Role> GetAllRole()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
-            SqlDataAdapter da = new SqlDataAdapter(); //宣告一個配接器(DataTable與DataSet必須)
-            DataTable dt = new DataTable(); //宣告DataTable物件
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
             List<Role> roles = new List<Role>();
 
             try
@@ -206,7 +205,7 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_DeleteRole @roleId";
+                cmd.CommandText = "EXEC [pro_pashamao_delRole] @roleId";
 
                 cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = roleId;
 
@@ -234,6 +233,58 @@ namespace Pashamao.Repositories
             {
                 cmd.Parameters.Clear();
                 cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 取得角色
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public Role GetRole(int roleId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getRole @roleId";
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = roleId;
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    Role role = new Role();
+                    role.RoleId = roleId;
+                    role.Name = dt.Rows[0].IsNull("f_name") ? string.Empty : dt.Rows[0].Field<string>("f_name");
+                    role.Description = dt.Rows[0].IsNull("f_description") ? string.Empty : dt.Rows[0].Field<string>("f_description");
+                    return role;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
             }
         }
     }
