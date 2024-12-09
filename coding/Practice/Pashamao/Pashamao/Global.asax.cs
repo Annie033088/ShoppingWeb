@@ -21,14 +21,18 @@ namespace Pashamao
 
         }
 
-        protected void Application_Error(Exception error)
+        protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
 
             if (exception != null)
             {
-                logger.Error(error);
-                Response.Redirect("/Views/Login/Index.cshtml");
+                logger.Error(exception);
+                if ( Session["UserVisitState"] != null)
+                {
+                    if (Session["UserVisitState"].ToString() == "User") Response.Redirect("/MainHome/Index");
+                }
+                Response.Redirect("/Login/Index");
                 Server.ClearError();
             }
         }

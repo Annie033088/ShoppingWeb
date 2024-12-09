@@ -13,6 +13,9 @@
     </main>
     <script>
         let alertMessage = "@ViewBag.NoPermissionMessage";
+
+       if ("修改密碼成功" == "@ViewBag.EditPwdMessage") editPwdSuccess();
+
         if (alertMessage != "") {
             Swal.fire({
                 title: '警告',
@@ -22,7 +25,13 @@
             });
         }
 
-
+        function editPwdSuccess() {
+            Swal.fire({
+                title: '修改密碼成功',
+                icon: 'info',
+                confirmButtonText: '確認'
+            })
+        }
     </script>
 </body>
 

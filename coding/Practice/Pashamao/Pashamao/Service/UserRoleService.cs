@@ -1,4 +1,5 @@
-﻿using Pashamao.Models;
+﻿using NLog;
+using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace Pashamao.Service
 {
     public class UserRoleService
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private RoleRepository roleRepository;
         public UserRoleService()
         {
@@ -20,7 +22,15 @@ namespace Pashamao.Service
         /// <returns></returns>
         public List<Role> GetAllRole()
         {
-            return roleRepository.GetAllRole().ToList();
+            try
+            {
+                return roleRepository.GetAllRole().ToList();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -36,16 +46,24 @@ namespace Pashamao.Service
             Role role = new Role();
             long allPermission = 0;
 
-            foreach (string strPermission in strPermissions)
+            try
             {
-                UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
-                allPermission += (long)permission;
-            }
+                foreach (string strPermission in strPermissions)
+                {
+                    UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
+                    allPermission += (long)permission;
+                }
 
-            role.Name = roleName;
-            role.Description = roleDiscript;
-            role.Permissions = allPermission;
-            return roleRepository.AddRole(role);
+                role.Name = roleName;
+                role.Description = roleDiscript;
+                role.Permissions = allPermission;
+                return roleRepository.AddRole(role);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -55,20 +73,28 @@ namespace Pashamao.Service
         /// <returns></returns>
         public List<string> GetRolePermissions(string roleId)
         {
-            string permissionString = roleRepository.GetRolePermissions(int.Parse(roleId));
-
-            long permissionValue = long.Parse(permissionString);
-            List<string> permissions = new List<string>();
-
-            foreach (UserPermission permission in Enum.GetValues(typeof(UserPermission)))
+            try
             {
-                if (permission != UserPermission.None && (permissionValue & (long)permission) == (long)permission)
-                {
-                    permissions.Add(permission.ToString());
-                }
-            }
+                string permissionString = roleRepository.GetRolePermissions(int.Parse(roleId));
 
-            return permissions;
+                long permissionValue = long.Parse(permissionString);
+                List<string> permissions = new List<string>();
+
+                foreach (UserPermission permission in Enum.GetValues(typeof(UserPermission)))
+                {
+                    if (permission != UserPermission.None && (permissionValue & (long)permission) == (long)permission)
+                    {
+                        permissions.Add(permission.ToString());
+                    }
+                }
+
+                return permissions;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -85,17 +111,25 @@ namespace Pashamao.Service
             Role role = new Role();
             long allPermission = 0;
 
-            foreach (string strPermission in strPermissions)
+            try
             {
-                UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
-                allPermission += (long)permission;
-            }
+                foreach (string strPermission in strPermissions)
+                {
+                    UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
+                    allPermission += (long)permission;
+                }
 
-            role.RoleId = int.Parse(roleId);
-            role.Name = roleName;
-            role.Description = roleDiscript;
-            role.Permissions = allPermission;
-            return roleRepository.EditRole(role);
+                role.RoleId = int.Parse(roleId);
+                role.Name = roleName;
+                role.Description = roleDiscript;
+                role.Permissions = allPermission;
+                return roleRepository.EditRole(role);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -105,8 +139,16 @@ namespace Pashamao.Service
         /// <returns></returns>
         public bool DeleteRole(string roleId)
         {
-            int intRoleId = int.Parse(roleId);
-            return roleRepository.DeleteRole(intRoleId);
+            try
+            {
+                int intRoleId = int.Parse(roleId);
+                return roleRepository.DeleteRole(intRoleId);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -116,8 +158,15 @@ namespace Pashamao.Service
         /// <returns></returns>
         public Role GetRole(string roleId)
         {
-            return roleRepository.GetRole(int.Parse(roleId));
+            try
+            {
+                return roleRepository.GetRole(int.Parse(roleId));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
-
     }
 }

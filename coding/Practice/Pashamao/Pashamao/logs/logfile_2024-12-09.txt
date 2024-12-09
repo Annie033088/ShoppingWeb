@@ -1,0 +1,154 @@
+2024-12-09 09:22:01.7535 Info Application Start
+2024-12-09 09:25:25.9161 Info Application Start
+2024-12-09 09:43:45.7169 Info Application End
+2024-12-09 09:44:56.4037 Info Application Start
+2024-12-09 10:01:11.7487 Info Application Start
+2024-12-09 10:03:11.6576 Info Application End
+2024-12-09 10:03:13.7659 Info Application Start
+2024-12-09 10:03:52.0669 Info Application End
+2024-12-09 10:03:54.1341 Info Application Start
+2024-12-09 10:04:46.0246 Info Application Start
+2024-12-09 10:24:56.6028 Info Application End
+2024-12-09 10:25:10.7056 Info Application Start
+2024-12-09 10:27:29.6514 Info Application End
+2024-12-09 10:55:48.1708 Info Application Start
+2024-12-09 10:56:12.6574 Info Application End
+2024-12-09 10:57:22.6681 Info Application Start
+2024-12-09 10:57:45.5397 Info Application End
+2024-12-09 10:59:33.7914 Info Application Start
+2024-12-09 11:01:07.5581 Info Application End
+2024-12-09 11:03:03.7241 Info Application Start
+2024-12-09 11:09:38.3911 Info Application End
+2024-12-09 11:43:25.0180 Info Application Start
+2024-12-09 11:51:48.7370 Info Application End
+2024-12-09 11:51:54.8972 Info Application Start
+2024-12-09 11:52:58.8787 Info Application End
+2024-12-09 13:04:41.7707 Info Application Start
+2024-12-09 13:07:21.8293 Info Application End
+2024-12-09 13:07:51.3753 Info Application Start
+2024-12-09 13:09:00.2198 Info Application End
+2024-12-09 13:09:02.3980 Info Application Start
+2024-12-09 13:09:16.7525 Info Application Start
+2024-12-09 13:10:17.5110 Info Application Start
+2024-12-09 13:10:51.5495 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 'IndexRgwg'。
+2024-12-09 13:10:51.9553 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:51.9613 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:51.9773 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:51.9922 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:51.9922 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0092 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0321 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0550 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0550 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0710 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.0880 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1059 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1209 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1328 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1328 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1608 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1757 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1837 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:52.1837 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.2554 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.2633 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.2763 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.2943 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.3152 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.3332 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.3531 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.3711 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.3860 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4020 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4020 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4179 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4399 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4558 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4698 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.4818 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.5047 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.5207 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.5316 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:53.5466 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.5812 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.5922 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6091 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6251 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6420 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6660 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6839 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.6839 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7078 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7268 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7467 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7617 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7737 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.7986 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8136 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8215 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8435 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8604 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8744 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:10:58.8824 Error System.Web.HttpException: 找不到路徑 '/Views/MainHome/Index.cshtml'。
+2024-12-09 13:13:45.9121 Info Application End
+2024-12-09 13:13:50.0264 Info Application Start
+2024-12-09 13:13:58.0948 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 'qwqe'。
+2024-12-09 13:14:24.5139 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 01:14:24.
+2024-12-09 13:14:41.7120 Error System.Web.HttpException: 找不到路徑 '/eqwe' 的控制器或是未實作 IController。
+2024-12-09 13:17:09.1741 Info Application End
+2024-12-09 13:17:11.3832 Info Application Start
+2024-12-09 13:17:23.7641 Error System.Web.HttpException: 找不到路徑 '/ertl' 的控制器或是未實作 IController。
+2024-12-09 13:22:43.6585 Info Application End
+2024-12-09 13:22:45.4653 Info Application Start
+2024-12-09 13:23:21.7863 Error System.Web.HttpException: 找不到路徑 '/weqwe' 的控制器或是未實作 IController。
+2024-12-09 13:23:32.3958 Error System.Web.HttpException: 找不到路徑 '/lolo' 的控制器或是未實作 IController。
+2024-12-09 13:23:48.4462 Error System.Web.HttpException: 找不到路徑 '/loloooo' 的控制器或是未實作 IController。
+2024-12-09 13:23:53.5234 Error System.Web.HttpException: 找不到路徑 '/loloooo555' 的控制器或是未實作 IController。
+2024-12-09 13:25:39.7195 Info Application End
+2024-12-09 13:25:41.5264 Info Application Start
+2024-12-09 13:25:49.6020 Info Application End
+2024-12-09 13:25:52.5589 Info Application Start
+2024-12-09 13:25:59.5656 Error System.Web.HttpException: 找不到路徑 '/ll' 的控制器或是未實作 IController。
+2024-12-09 13:26:10.1818 Info Application End
+2024-12-09 13:26:21.7529 Info Application Start
+2024-12-09 13:26:34.2158 Error System.Web.HttpException: 找不到路徑 '/;;[ll' 的控制器或是未實作 IController。
+2024-12-09 14:12:16.1770 Info Application End
+2024-12-09 14:12:24.7655 Info Application Start
+2024-12-09 14:17:52.4514 Info Application End
+2024-12-09 14:26:34.8854 Info Application Start
+2024-12-09 14:26:44.5131 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainMemberController' 上找不到公用動作方法 'edd'。
+2024-12-09 14:28:27.1748 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 02:28:27.
+2024-12-09 14:28:56.0590 Info Application End
+2024-12-09 14:30:46.7218 Info Application Start
+2024-12-09 14:30:55.8863 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 02:30:55.
+2024-12-09 14:31:09.0335 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 02:31:09.
+2024-12-09 16:13:35.0847 Info Application End
+2024-12-09 16:13:45.7212 Info Application Start
+2024-12-09 16:14:01.3247 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/9 下午 04:14:01.
+2024-12-09 16:16:41.2279 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 04:16:41.
+2024-12-09 16:17:08.8356 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 04:17:08.
+2024-12-09 16:25:37.3226 Info Application End
+2024-12-09 16:25:42.7131 Info Application Start
+2024-12-09 16:26:03.5358 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/9 下午 04:26:03.
+2024-12-09 16:36:28.0755 Info Application End
+2024-12-09 16:36:30.8268 Info Application Start
+2024-12-09 17:03:24.1086 Info Application End
+2024-12-09 17:03:31.3819 Info Application Start
+2024-12-09 17:03:52.9443 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/9 下午 05:03:52.
+2024-12-09 17:16:45.6991 Info Application End
+2024-12-09 17:16:53.0894 Info Application Start
+2024-12-09 17:17:01.9689 Error System.Web.HttpException: 找不到路徑 '/wqlepqw' 的控制器或是未實作 IController。
+2024-12-09 17:18:37.0914 Info Application End
+2024-12-09 17:18:39.1720 Info Application Start
+2024-12-09 17:18:45.8102 Error System.Web.HttpException: 找不到路徑 '/wlpw' 的控制器或是未實作 IController。
+2024-12-09 17:19:34.0097 Info Application End
+2024-12-09 17:19:36.0756 Info Application Start
+2024-12-09 17:20:15.1121 Info Application End
+2024-12-09 17:20:17.5017 Info Application Start
+2024-12-09 17:20:23.4218 Error System.Web.HttpException: 找不到路徑 '/trr' 的控制器或是未實作 IController。
+2024-12-09 17:20:58.6197 Info Application Start
+2024-12-09 17:21:10.0572 Info Application Start
+2024-12-09 17:22:07.2304 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 'Iee'。
+2024-12-09 17:24:02.8062 Info Application Start
+2024-12-09 17:26:24.1993 Info Application Start
+2024-12-09 17:53:15.9582 Info Application Start

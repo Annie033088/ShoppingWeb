@@ -42,6 +42,7 @@
             </tbody>
         </table>
 
+        <div id="overlay"></div>
         <div id="ckbPopUp" class="popUp ">
             <div class="popUpContent ms-3">
                 <button id="btnCloseCkb" class="btn btn-light mt-1 ">&times;</button>
@@ -147,6 +148,7 @@
                             .catch(error => {
                                 console.error("fail", error);
                             })
+                        document.getElementById("overlay").style.display = "block";
                         document.getElementById("ckbPopUp").style.display = "block";
                         document.getElementById("btnSubmitEditRole").style.display = "block";
                         document.getElementById("btnSubmitAddRole").style.display = "none";
@@ -271,6 +273,7 @@
                 popUp.style.display = "block";
                 btnSubmitAddRole.style.display = "block";
                 btnSubmitEditRole.style.display = "none";
+                document.getElementById("overlay").style.display = "block";
                 document.getElementById("btnSubmitAddRole").style.display = "block";
                 roleName.value = "";
                 roleDiscript.value = "";
@@ -278,6 +281,7 @@
 
 
             btnCloseCkb.addEventListener("click", function () {
+                document.getElementById("overlay").style.display = "none";
                 popUp.style.display = "none";
             });
 
@@ -320,6 +324,7 @@
 
                 axios.post("/UserRole/EditRole", { selectedCkbs, roleId: roleId, roleName: roleName.value, roleDiscript: roleDiscript.value })
                     .then(response => {
+                        document.getElementById("overlay").style.display = "none";
                         popUp.style.display = "none";
                         window.location.href = "/UserRole/Index";
                     })

@@ -137,7 +137,6 @@
                             .catch(error => { console.error(error) })
                     }
                 })
-
             }
 
             function selectUser() {
@@ -234,9 +233,9 @@
                 roles.forEach(role => {
                     if (role.RoleId != "1") {
                         if (role.RoleId === roleId) {
-                            selectOptions += `<option value="${role.RoleId}" selected>角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                            selectOptions += `<option value="${role.RoleId}" selected>角色名：${role.Name}</option>`;//－權限描述：${role.Description}
                         } else {
-                            selectOptions += `<option value="${role.RoleId}">角色名：${role.Name}－權限描述：${role.Description}</option>`;
+                            selectOptions += `<option value="${role.RoleId}">角色名：${role.Name}</option>`;
                         }
                     }
                 });

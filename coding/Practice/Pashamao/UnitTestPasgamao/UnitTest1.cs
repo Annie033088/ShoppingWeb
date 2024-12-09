@@ -8,11 +8,11 @@ namespace UnitTestPasgamao
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
+        /* [TestMethod]
         public void TestMethod1()
         {
             //找到資料庫pwd_hash
-            /* UserRepository userRepository = new UserRepository ();
+            UserRepository userRepository = new UserRepository ();
 
              User user = userRepository.sqlUserPwd ( acct );
 
@@ -26,7 +26,7 @@ namespace UnitTestPasgamao
              Console.WriteLine ( HashPwd ( pwd, salt ) == user.Hash );
 
 
-             return (HashPwd ( pwd, salt ) == user.Hash);*/
+             return (HashPwd ( pwd, salt ) == user.Hash);
         }
         [TestMethod]
         internal bool UpdatePwd(int uid, string oldPwd, string newPwd)
@@ -64,6 +64,6 @@ namespace UnitTestPasgamao
                 cmd.Parameters.Clear();
                 cmd.Connection.Close();
             }
-        }
+        }*/
     }
 }

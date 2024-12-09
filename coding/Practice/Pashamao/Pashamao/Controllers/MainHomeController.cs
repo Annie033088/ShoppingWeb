@@ -12,6 +12,7 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
+            ViewBag.EditPwdMessage = TempData["Message"];
             ViewBag.NoPermissionMessage = TempData["NoPermissionMessage"];
             return View();
         }
@@ -22,6 +23,7 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Logout()
         {
+            Session.Clear();
             Session.Abandon();
             return RedirectToAction("Index", "Login");
         }

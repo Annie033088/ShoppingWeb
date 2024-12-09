@@ -106,6 +106,7 @@ namespace Pashamao.Repositories
             }
             catch (Exception e)
             {
+                logger.Error(e);
                 throw e;
             }
             finally

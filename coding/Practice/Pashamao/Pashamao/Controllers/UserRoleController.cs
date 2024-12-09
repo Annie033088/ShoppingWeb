@@ -1,8 +1,10 @@
-﻿using Pashamao.Filters;
+﻿using NLog;
+using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System;
 
 namespace Pashamao.Controllers
 {
@@ -10,6 +12,7 @@ namespace Pashamao.Controllers
     [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser)]
     public class UserRoleController : Controller
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly UserRoleService userRoleService;
 
         public UserRoleController()
@@ -33,7 +36,15 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult GetAllRole()
         {
-            return Json(userRoleService.GetAllRole(), JsonRequestBehavior.AllowGet);
+            try
+            {
+                return Json(userRoleService.GetAllRole(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -46,8 +57,18 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult AddRole(List<string> selectedCkbs, string roleName, string roleDiscript)
         {
-            userRoleService.AddRole(selectedCkbs, roleName, roleDiscript);
-            return View("Index");
+            try
+            {
+
+                userRoleService.AddRole(selectedCkbs, roleName, roleDiscript);
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -62,9 +83,10 @@ namespace Pashamao.Controllers
             {
                 return Json(userRoleService.GetRolePermissions(RoleId), JsonRequestBehavior.AllowGet);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-
+                logger.Error(e);
+                return View("Index");
                 throw e;
             }
         }
@@ -76,8 +98,17 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult EditRole(List<string> selectedCkbs, string roleId, string roleName, string roleDiscript)
         {
-            userRoleService.EditRole(selectedCkbs, roleId, roleName, roleDiscript);
-            return View("Index");
+            try
+            {
+                userRoleService.EditRole(selectedCkbs, roleId, roleName, roleDiscript);
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -88,8 +119,17 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult DeleteRole(string RoleId)
         {
-            userRoleService.DeleteRole(RoleId);
-            return View("Index");
+            try
+            {
+                userRoleService.DeleteRole(RoleId);
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -99,16 +139,26 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult SelectRole(string RoleId)
         {
-            Role role = userRoleService.GetRole(RoleId);
-            if (role == null)
+            try
             {
-                string noRole = "noRole";
-                return Json(noRole, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(role, JsonRequestBehavior.AllowGet);
+                Role role = userRoleService.GetRole(RoleId);
 
+                if (role == null)
+                {
+                    string noRole = "noRole";
+                    return Json(noRole, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(role, JsonRequestBehavior.AllowGet);
+
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
             }
         }
     }

@@ -23,7 +23,15 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal List<User> GetAllUsers()
         {
-            return userRepository.GetAll().ToList();
+            try
+            {
+                return userRepository.GetAll().ToList();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -45,6 +53,7 @@ namespace Pashamao.Service
             }
             catch (Exception e)
             {
+                logger.Error(e);
                 throw e;
             }
         }
@@ -55,9 +64,17 @@ namespace Pashamao.Service
         /// <param name="UID"></param>
         internal void DeleteUser(string UserId)
         {
-            User user = new User();
-            user.UserId = int.Parse(UserId);
-            userRepository.Delete(user);
+            try
+            {
+                User user = new User();
+                user.UserId = int.Parse(UserId);
+                userRepository.Delete(user);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -66,7 +83,15 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal List<string> GetAllRoleName()
         {
-            return userRepository.GetAllRoleName();
+            try
+            {
+                return userRepository.GetAllRoleName();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -77,12 +102,20 @@ namespace Pashamao.Service
         /// <param name="Status"></param>
         internal void EditUserRole(string UserId, string RoleId, string Status)
         {
-            User user = new User();
+            try
+            {
+                User user = new User();
 
-            user.UserId = int.Parse(UserId);
-            user.RoleId = int.Parse(RoleId);
-            user.Status = Status == "1" ? true : false;
-            userRepository.UpdateRole(user);
+                user.UserId = int.Parse(UserId);
+                user.RoleId = int.Parse(RoleId);
+                user.Status = Status == "1" ? true : false;
+                userRepository.UpdateRole(user);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -92,8 +125,16 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal User GetUser(string UserId)
         {
-            int Uid = int.Parse(UserId);
-            return userRepository.Get(Uid);
+            try
+            {
+                int Uid = int.Parse(UserId);
+                return userRepository.Get(Uid);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -104,8 +145,16 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal bool EditUserPwd(string OldPwd, string NewPwd)
         {
-            UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
-            return userRepository.UpdatePwd(userModel.UserId, OldPwd, NewPwd);
+            try
+            {
+                UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
+                return userRepository.UpdatePwd(userModel.UserId, OldPwd, NewPwd);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
     }
 }

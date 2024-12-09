@@ -14,6 +14,12 @@ namespace Pashamao
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "MainHome", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "noUrl",
+                url: "{*url}",
+                defaults: new { controller = "MainHome", action = "Index" }
+            );
         }
     }
 }

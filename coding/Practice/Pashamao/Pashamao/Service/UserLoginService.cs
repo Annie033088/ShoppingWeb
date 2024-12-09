@@ -1,6 +1,7 @@
 ﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
+using System;
 using System.Web;
 
 namespace Pashamao.Service
@@ -25,21 +26,29 @@ namespace Pashamao.Service
         /// <returns></returns>
         internal bool VerifyAndGetUser(string loginAcct, string loginPwd)
         {
-            long userPermission;
-            (user, userPermission) = userRepository.VerifyAndGetUser(loginAcct, loginPwd, HttpContext.Current.Session.SessionID);
+            try
+            {
+                long userPermission;
+                (user, userPermission) = userRepository.VerifyAndGetUser(loginAcct, loginPwd, HttpContext.Current.Session.SessionID);
 
-            //帳號匹配成功與否
-            if (user == null)
-            {
-                return (false);
+                //帳號匹配成功與否
+                if (user == null)
+                {
+                    return (false);
+                }
+                else
+                {
+                    UserSessionModel userSession = new UserSessionModel();
+                    userSession.UserId = user.UserId;
+                    userSession.UserPermission = userPermission;
+                    HttpContext.Current.Session["UserSession"] = userSession;
+                    return (true);
+                }
             }
-            else
+            catch (Exception e)
             {
-                UserSessionModel userSession = new UserSessionModel();
-                userSession.UserId = user.UserId;
-                userSession.UserPermission = userPermission;
-                HttpContext.Current.Session["UserSession"] = userSession;
-                return (true);
+                logger.Error(e);
+                throw e;
             }
         }
 

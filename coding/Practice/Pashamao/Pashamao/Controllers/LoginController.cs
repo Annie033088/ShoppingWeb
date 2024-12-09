@@ -17,23 +17,35 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            //被踢出去之後, 記下紀錄並清除會話
-            if (Session["KickOutMessage"] != null)
+            try
             {
-                ViewBag.Message = Session["KickOutMessage"].ToString();
-                Session.Clear();
-                Session.Abandon();
-                Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
-            }
+                //被踢出去之後, 記下紀錄並清除會話
+                if (TempData["KickOutMessage"] != null)
+                {
+                    ViewBag.Message = TempData["KickOutMessage"].ToString();
+                    Session.Clear();
+                    Session.Abandon();
+                    Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
+                }
+                else
+                {
+                    ViewBag.Message = "";
+                }
 
-            //判斷狀態為登入或未登入
-            if (Session["UserVisitState"] != null)
+                //判斷狀態為登入或未登入
+                if (Session["UserVisitState"] != null)
+                {
+                    if (Session["UserVisitState"].ToString() != "Guest") return RedirectToAction("Index", "MainHome");
+                }
+
+                Session["UserVisitState"] = "Guest";
+                return View();
+            }
+            catch (Exception e)
             {
-                if (Session["UserVisitState"].ToString() != "Guest") return RedirectToAction("Index", "MainHome");
+                logger.Error(e);
+                throw e;
             }
-
-            Session["UserVisitState"] = "Guest";
-            return View();
         }
 
         /// <summary>
@@ -45,13 +57,13 @@ namespace Pashamao.Controllers
         public ActionResult Submit(LoginUserViewModel userViewModel)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return View("Index");
-            }
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("Index");
+                }
+
                 UserLoginService userLogin = new UserLoginService();
 
                 if (userLogin.VerifyAndGetUser(userViewModel.LoginAcct, userViewModel.LoginPwd))
@@ -86,7 +98,6 @@ namespace Pashamao.Controllers
                 return View("Index");
                 throw e;
             }
-
         }
     }
 }

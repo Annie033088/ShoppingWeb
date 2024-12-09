@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
@@ -10,6 +11,7 @@ namespace Pashamao.Controllers
     [UserKickOutFilter]
     public class MainUserController : Controller
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private MainUserService mainUserService;
         public MainUserController()
         {
@@ -33,7 +35,15 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult GetAllUser()
         {
-            return Json(mainUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
+            try
+            {
+                return Json(mainUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -43,9 +53,18 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserPermission.CreateUser)]
         public ActionResult CreateUser()
         {
-            ViewBag.Message = TempData["Message"];
-            ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
-            return View();
+            try
+            {
+                ViewBag.Message = TempData["Message"];
+                ViewBag.JsonRolesName = JsonConvert.SerializeObject(mainUserService.GetAllRoleName());
+                return View();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -57,14 +76,14 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserPermission.CreateUser)]
         public ActionResult SubmitCreateUser(CreateUserViewModel createUserViewModel)
         {
-
-            if (!ModelState.IsValid)
-            {
-                return View("CreateUser");
-            }
-
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("CreateUser");
+                }
+
+
                 bool success = mainUserService.CreateUser(createUserViewModel);
 
                 if (success)
@@ -81,10 +100,10 @@ namespace Pashamao.Controllers
             catch (Exception e)
             {
                 ViewBag.Message = "創建失敗";
+                logger.Error(e);
                 return View("CreateUser");
                 throw e;
             }
-
         }
 
         /// <summary>
@@ -97,10 +116,18 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserPermission.EditUser)]
         public ActionResult SubmitEditUserRole(string UserId, string RoleId, string Status)
         {
-            Console.WriteLine(UserId, RoleId, Status);
+            try
+            {
 
-            mainUserService.EditUserRole(UserId, RoleId, Status);
-            return View("Index");
+                mainUserService.EditUserRole(UserId, RoleId, Status);
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -111,8 +138,17 @@ namespace Pashamao.Controllers
         [UserRoleAuthFilter(UserPermission.DelUser)]
         public ActionResult DeleteUser(string UserId)
         {
-            mainUserService.DeleteUser(UserId);
-            return View("Index");
+            try
+            {
+                mainUserService.DeleteUser(UserId);
+                return View("Index");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
 
         /// <summary>
@@ -122,16 +158,25 @@ namespace Pashamao.Controllers
         /// <returns></returns>
         public ActionResult SelectUser(string UserId)
         {
-            if (mainUserService.GetUser(UserId) == null)
+            try
             {
-                //沒找到對應使用者
-                string noUser = "noUser";
-                return Json(noUser, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(mainUserService.GetUser(UserId), JsonRequestBehavior.AllowGet);
+                if (mainUserService.GetUser(UserId) == null)
+                {
+                    //沒找到對應使用者
+                    string noUser = "noUser";
+                    return Json(noUser, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(mainUserService.GetUser(UserId), JsonRequestBehavior.AllowGet);
 
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
             }
         }
 
@@ -154,14 +199,29 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult SubmitEditUserPwd(string OldPwd, string NewPwd)
         {
-
-            if (mainUserService.EditUserPwd(OldPwd, NewPwd))
+            try
             {
-                return View("Index");
-            }
+                if (OldPwd == NewPwd)
+                {
+                    ViewBag.Message = "密碼輸入重複";
+                    return View("EditUserPwd");
+                }
 
-            ViewBag.Message = "密碼輸入錯誤";
-            return View("EditUserPwd");
+                if (mainUserService.EditUserPwd(OldPwd, NewPwd))
+                {
+                    TempData["Message"] = "修改密碼成功";
+                    return RedirectToAction("Index", "MainHome");
+                }
+
+                ViewBag.Message = "密碼輸入錯誤";
+                return View("EditUserPwd");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
+                throw e;
+            }
         }
     }
 }
