@@ -32,6 +32,14 @@ tbody button {
     background-image: url(../images/arrowAscending.png);
 }
 
+#sortByAcct {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByName {
+    background-image: url(../images/arrowAscending.png);
+}
+
 #sortByStatus {
     background-image: url(../images/arrowAscending.png);
 }

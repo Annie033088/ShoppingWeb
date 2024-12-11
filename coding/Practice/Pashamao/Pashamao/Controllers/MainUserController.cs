@@ -47,6 +47,27 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
+        /// 取得排序資料
+        /// </summary>
+        /// <param name="Column"></param>
+        /// <param name="Page"></param>
+        /// <param name="SortOrder"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetSortedUser(string Column, string Page, string SortOrder)
+        {
+            try
+            {
+                return Json(mainUserService.GetSortedUser(Column, Page, SortOrder), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// 創造新的使用者
         /// </summary>
         /// <returns></returns>

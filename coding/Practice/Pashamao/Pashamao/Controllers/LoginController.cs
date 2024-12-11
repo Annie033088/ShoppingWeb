@@ -33,12 +33,8 @@ namespace Pashamao.Controllers
                 }
 
                 //判斷狀態為登入或未登入
-                if (Session["UserVisitState"] != null)
-                {
-                    if (Session["UserVisitState"].ToString() != "Guest") return RedirectToAction("Index", "MainHome");
-                }
-
-                Session["UserVisitState"] = "Guest";
+                if (Session["UserSeesion"] != null) return RedirectToAction("Index", "MainHome");
+                
                 return View();
             }
             catch (Exception e)
@@ -81,7 +77,6 @@ namespace Pashamao.Controllers
                         Secure = true
                     };
                     Response.Cookies.Add(cookie);
-                    Session["UserVisitState"] = "User";
                     logger.Info($"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}.");
                     return RedirectToAction("Index", "MainHome");
                 }

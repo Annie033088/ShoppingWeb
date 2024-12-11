@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace Pashamao.Repositories
@@ -72,11 +73,11 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 取得 sessionId
+        /// 取得 sessionId, status 跟權限
         /// </summary>
         /// <param name="userSession"></param>
         /// <returns></returns>
-        internal (bool, string) GetStatusAndSessionId(UserSessionModel userSession)
+        internal (bool, string, long) GetAtEveryRequest(UserSessionModel userSession)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -85,7 +86,7 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getStatusAndSessionId @uId";
+                cmd.CommandText = "EXEC pro_pashamao_getAtEveryRequest @uId";
                 cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userSession.UserId;
 
                 cmd.Connection.Open();
@@ -99,10 +100,11 @@ namespace Pashamao.Repositories
                 {
                     bool Status = dt.Rows[0].IsNull("f_status") ? false : dt.Rows[0].Field<bool>("f_status");
                     string SessionId = dt.Rows[0].IsNull("f_sessionId") ? string.Empty : dt.Rows[0].Field<string>("f_sessionId");
-                    return (Status, SessionId);
+                    long Permissions = dt.Rows[0].IsNull("f_rolePermission") ? 0 : dt.Rows[0].Field<long>("f_rolePermission");
+                    return (Status, SessionId, Permissions);
                 }
 
-                return (false, null);
+                return (false, null, 0);
             }
             catch (Exception e)
             {
@@ -121,12 +123,12 @@ namespace Pashamao.Repositories
         /// 取得所有User 
         /// </summary>
         /// <returns></returns>
-        internal IEnumerable<User> GetAll()
+        internal List<User> GetAll()
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
-            SqlDataAdapter da = new SqlDataAdapter(); //宣告一個配接器(DataTable與DataSet必須)
-            DataTable dt = new DataTable(); //宣告DataTable物件
+            cmd.Connection = new SqlConnection(this.ConnStr); 
+            SqlDataAdapter da = new SqlDataAdapter(); 
+            DataTable dt = new DataTable(); 
             List<User> users = new List<User>();
             try
             {
@@ -341,9 +343,9 @@ namespace Pashamao.Repositories
         internal User Get(int primaryId)
         {
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); //設定連線字串
-            SqlDataAdapter da = new SqlDataAdapter(); //宣告一個配接器(DataTable與DataSet必須)
-            DataTable dt = new DataTable(); //宣告DataTable物件
+            cmd.Connection = new SqlConnection(this.ConnStr); 
+            SqlDataAdapter da = new SqlDataAdapter(); 
+            DataTable dt = new DataTable(); 
             User user = new User();
 
             try
@@ -431,6 +433,75 @@ namespace Pashamao.Repositories
             {
                 cmd.Parameters.Clear();
                 cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 排序user並傳回table
+        /// </summary>
+        /// <param name="column"></param>
+        /// <param name="page"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
+        internal (List<User>, int) GetSortedUser(string column, int page, string sortOrder) {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr); 
+            SqlDataAdapter da = new SqlDataAdapter(); 
+            DataTable dt = new DataTable(); 
+            List<User> users = new List<User>();
+            int totalPages = 0;
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getSortedUser @column, @page, @sortOrder, @totalPages OUTPUT";
+
+                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(totalPagesOutput);
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                totalPages = (int)totalPagesOutput.Value;
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        User user = new User();
+                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
+                        user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
+                        user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
+                        user.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
+                        users.Add(user);
+                    }
+                    return (users, totalPages);
+                }
+                else
+                {
+                    return (null, 0);
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
             }
         }
     }

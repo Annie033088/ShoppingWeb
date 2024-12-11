@@ -87,8 +87,8 @@
                     <label><input type="checkbox" class="subCkb" id="ckb24" data-Parent="ckbMain5" value="EditCategory"> 修改分類</label><br>
                 </div>
                 <div class="d-flex">
-                    <label id="labelRoleName"> 輸入名稱：<input type="text" name="name" id="txbRoleName" value="" /></label>
-                    <label id="labelRoleDiscript"> 描述角色：<input type="text" name="name" id="txbRoleDiscript" value="" /></label>
+                    <label id="labelRoleName"> 輸入名稱：<input type="text" name="name" id="txbRoleName" value="" required /></label>
+                    <label id="labelRoleDiscript"> 描述角色：<input type="text" name="name" id="txbRoleDiscript" value="" required /></label>
                     <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
                     <button id="btnSubmitEditRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
                 </div>
@@ -99,6 +99,15 @@
         <script>
 
             getAllRole();
+            let message = '@ViewBag.Message';
+            if (message == "刪除失敗") {
+                Swal.fire({
+                    title: '刪除失敗',
+                    text: "有使用者持有此角色！",
+                    icon: 'warning',
+                    confirmButtonText: '確認'
+                })
+            }
 
             function getAllRole() {
                 axios.post("/UserRole/GetAllRole")
@@ -304,6 +313,18 @@
                     }
                 });
 
+                const roleName = document.getElementById("txbRoleName");
+                const roleDiscript = document.getElementById("txbRoleDiscript");
+
+                if (roleName.value == "" || roleDiscript.value == "") {
+                    Swal.fire({
+                        title: '名稱及敘述請勿填空！',
+                        icon: 'warning',
+                        confirmButtonText: '確認'
+                    })
+                    return;
+                }
+
                 axios.post("/UserRole/AddRole", { selectedCkbs, roleName: roleName.value, roleDiscript: roleDiscript.value })
                     .then(response => {
                         popUp.style.display = "none";
@@ -321,6 +342,15 @@
                         selectedCkbs.push(subCkb.value);
                     }
                 });
+
+                if (roleName.value == "" || roleDiscript.value == "") {
+                    Swal.fire({
+                        title: '名稱及敘述請勿填空！',
+                        icon: 'warning',
+                        confirmButtonText: '確認'
+                    })
+                    return;
+                }
 
                 axios.post("/UserRole/EditRole", { selectedCkbs, roleId: roleId, roleName: roleName.value, roleDiscript: roleDiscript.value })
                     .then(response => {

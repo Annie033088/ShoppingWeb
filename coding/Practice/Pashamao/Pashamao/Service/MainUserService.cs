@@ -25,7 +25,7 @@ namespace Pashamao.Service
         {
             try
             {
-                return userRepository.GetAll().ToList();
+                return userRepository.GetAll();
             }
             catch (Exception e)
             {
@@ -155,6 +155,17 @@ namespace Pashamao.Service
                 logger.Error(e);
                 throw e;
             }
+        }
+
+        internal (List<User>, int) GetSortedUser(string column, string page, string sortOrder)
+        {
+            if (column == "UserId") column = "f_uid";
+            if (column == "Account") column = "f_account";
+            if (column == "Name") column = "f_name";
+            if (column == "Status") column = "f_status";
+            if (column == "RoleId") column = "f_roleId";
+
+            return userRepository.GetSortedUser(column, int.Parse(page), sortOrder);
         }
     }
 }

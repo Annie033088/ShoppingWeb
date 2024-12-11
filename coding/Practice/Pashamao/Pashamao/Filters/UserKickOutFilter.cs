@@ -4,6 +4,7 @@ using Pashamao.Repositories;
 using System;
 using System.Web;
 using System.Web.Mvc;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Pashamao.Filters
 {
@@ -14,24 +15,9 @@ namespace Pashamao.Filters
         {
             try
             {
-                if (HttpContext.Current.Session["UserVisitState"] == null)
-                {
-                    HttpContext.Current.Session["UserVisitState"] = "Guest";
-                    filterContext.Result = new RedirectResult("/Login/Index");
-                    base.OnActionExecuting(filterContext);
-                    return;
-                }
+                UserSessionModel userSessionModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
 
-                if (HttpContext.Current.Session["UserVisitState"].ToString() == "Guest")
-                {
-                    filterContext.Result = new RedirectResult("/Login/Index");
-                    base.OnActionExecuting(filterContext);
-                    return;
-                }
-
-                UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
-
-                if (userModel == null)
+                if (userSessionModel == null)
                 {
                     filterContext.Result = new RedirectResult("/Login/Index");
                 }
@@ -41,7 +27,8 @@ namespace Pashamao.Filters
                     UserRepository userRepository = new UserRepository();
                     bool DBStatus;
                     string DBSessionId;
-                    (DBStatus, DBSessionId) = userRepository.GetStatusAndSessionId(userModel);
+                    long DBPermissions;
+                    (DBStatus, DBSessionId, DBPermissions) = userRepository.GetAtEveryRequest(userSessionModel);
 
                     if (DBSessionId == null)
                     {
@@ -60,6 +47,10 @@ namespace Pashamao.Filters
                         filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被他人踢出";
                         filterContext.Result = new RedirectResult("/Login/Index");
                     }
+
+                    //隨時更新角色權限
+                    userSessionModel.UserPermission = DBPermissions;
+                    HttpContext.Current.Session["UserSession"] = userSessionModel;
                 }
                 base.OnActionExecuting(filterContext);
             }
