@@ -123,12 +123,13 @@ namespace Pashamao.Controllers
             {
                 if (userRoleService.DeleteRole(RoleId))
                 {
-                    return View("Index");
+                    string message = "刪除成功";
+                    return Json(message);
                 }
                 else
                 {
-                    ViewBag.Message = "刪除失敗";
-                    return View("Index");
+                    string message = "刪除失敗";
+                    return Json(message);
                 }
                 
             }

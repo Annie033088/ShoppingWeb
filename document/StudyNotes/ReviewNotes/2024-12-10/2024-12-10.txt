@@ -4,7 +4,7 @@ Session[UserVisitState] 設計理由 刪了 ok
 
 custom error
 
-事件紀錄簿 產生錯誤 並記錄下來
+事件紀錄簿 產生錯誤 並記錄下來 ok
 
 url 不用放太多雜訊息 ok
 

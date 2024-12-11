@@ -1,2 +1,262 @@
-﻿
-會員喔
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "使用者管理";
+}
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/css/MainMember.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <main>
+        <h1 class="text-center mb-3">@ViewBag.Title</h1>
+        <table id="userTable" class="table" style="table-layout:fixed" border="1">
+            <thead>
+                <tr>
+                    <th>
+                        <!--<button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/CreateMembe"'>新增</button>-->
+                        <button type="button" id="btnGetAllMember" class="btn btn-outline-dark" onclick='getFirstPage()'>查詢全部</button>
+                    </th>
+                    <th class="text-lg-end">
+                        <label>輸入搜尋ID</label>
+                    </th>
+                    <th>
+                        <input type="text" id="txbSelectMemberId" style="width:100%" pattern="^[\d]{1,8}$" required />
+                    </th>
+                    <th class="text-lg-start">
+                        <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
+                    </th>
+                    <th>
+                        <span id="searchWarning" class="text-danger"></span>
+                    </th>
+                </tr>
+                <tr class="bg-gradient text-bg-dark ">
+                    <th scope="col">#</th>
+                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="getSortedUser('sortById', 'UserId')"></button></th>
+                    <th scope="col">帳號<button id="sortByAcct" class="btn btnSort" onclick="getSortedUser('sortByAcct', 'Account')"></button></th>
+                    <th scope="col">姓名<button id="sortByName" class="btn btnSort" onclick="getSortedUser('sortByName', 'Name')"></button></th>
+                    <th scope="col">狀態<button id="sortByStatus" class="btn btnSort" onclick="getSortedUser('sortByStatus', 'Status')"></button></th>
+                    <th scope="col">角色<button id="sortByRole" class="btn btnSort" onclick="getSortedUser('sortByRole', 'RoleId')"></button></th>
+                    <th scope="col">操作選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 用來插入用戶資料的行將在這裡 -->
+            </tbody>
+        </table>
+        <nav aria-label="Data navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><button class="page-link" id="previousPage" onclick="previousPage()">Previous</button></li>
+                <li class="page-item"><button class="page-link" id="firstPage" onclick="firstPage()">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="currentPage">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="lastPage" onclick="lastPage()">9</button></li>
+                <li class="page-item"><button class="page-link" id="nextPage" onclick="nextPage()">Next</button></li>
+            </ul>
+        </nav>
+        <script>
+
+            let lastSortBtnColumn = "UserId";
+            let lastSortOrder = "Ascending";
+            let lastSelectId = "";
+
+            getFirstPage();
+
+            function getFirstPage() {
+                lastSelectId = "";
+                getUser("UserId", 1, "Ascending");
+            }
+
+            function firstPage() {
+                if (lastSelectId === "") {
+                    getUser(lastSortBtnColumn, 1, lastSortOrder);
+                }
+            }
+
+            function previousPage() {
+                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
+
+                if (currentPage > 1) {
+                    document.getElementById("currentPage").innerHTML = oldCurrentPage - 1
+                }
+
+                let newCurrentPage = document.getElementById("currentPage").innerHTML
+                if (lastSelectId === "") {
+                    getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+            }
+
+            function nextPage() {
+                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
+                let maxPage = document.getElementById("lastPage").innerHTML;
+                if (oldCurrentPage < maxPage) {
+                    document.getElementById("currentPage").innerHTML = oldCurrentPage + 1;
+                }
+                let newCurrentPage = document.getElementById("currentPage").innerHTML;
+                if (lastSelectId === "") {
+                    getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+            }
+
+            function lastPage() {
+                let maxPage = document.getElementById("lastPage").innerHTML
+                if (lastSelectId === "") {
+                    getUser(lastSortBtnColumn, maxPage, lastSortOrder);
+                }
+            }
+
+            function getUser(column, page, sortOrder) {
+                lastSortBtnColumn = column;
+                lastSortOrder = sortOrder;
+                axios.post("/MainUser/GetSortedUser", { Column: column, Page: page, SortOrder: sortOrder })
+                    .then(response => {
+                        populateTable(response.data.Item1);
+                        document.getElementById("lastPage").innerHTML = response.data.Item2;
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
+
+            function getSortedUser(btnId, column) {
+                let btn = document.querySelector(`#${btnId}`);
+                let currentBackground = getComputedStyle(btn).backgroundImage;
+                let sortOrder;
+                let currentPage = document.getElementById("currentPage").innerHTML;
+                lastSortBtnColumn = column;
+
+                if (currentBackground.includes('arrowAscending.png')) {
+                    sortOrder = 'Descending';
+                    btn.style.backgroundImage = "url('../images/arrowDescending.png')";
+                }
+                else {
+                    sortOrder = 'Ascending';
+                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
+                }
+                lastSortOrder = sortOrder;
+                if (lastSelectId === "") {
+                    console.log(column, currentPage, sortOrder)
+                    getUser(column, currentPage, sortOrder);
+                }
+            }
+
+            function populateTable(users) {
+                const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
+
+                // 清空表格（如果之前有數據）
+                tableBody.innerHTML = '';
+
+                // 遍歷所有用戶，並創建相應的表格行
+                users.forEach((user, index) => {
+                    const row = document.createElement('tr');  // 創建一行
+                    //不想顯示可以用
+
+                    // 創建並填充表格單元格
+                    const rowSort = document.createElement('th');
+                    rowSort.textContent = index + 1;
+                    rowSort.scope = "row";
+                    row.appendChild(rowSort);
+
+                    const cellId = document.createElement('td');
+                    cellId.textContent = user.UserId;
+
+                    row.appendChild(cellId);
+
+                    const cellAcct = document.createElement('td');
+                    cellAcct.textContent = user.Account;
+                    row.appendChild(cellAcct);
+
+                    const cellName = document.createElement('td');
+                    cellName.textContent = user.Name;
+                    row.appendChild(cellName);
+
+                    const cellStatus = document.createElement('td');
+                    cellStatus.textContent = user.Status ? "啟用" : "禁用";
+                    row.appendChild(cellStatus);
+
+                    const cellRoleId = document.createElement('td');
+                    cellRoleId.textContent = user.RoleId;
+                    row.appendChild(cellRoleId);
+
+                    const cellEdit = document.createElement('td');
+
+                    const cellEditBtn = document.createElement("button");
+                    cellEditBtn.className = "btnEditUser";
+                    cellEditBtn.addEventListener("click", function () {
+                        let NameOrAcct = document.getElementById("boxPersonalName").innerText;
+                        editUserRoleAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
+                    });
+                    cellEdit.appendChild(cellEditBtn);
+
+                    const cellDeleteBtn = document.createElement("button");
+                    cellDeleteBtn.className = "btnDeleteUser";
+                    cellDeleteBtn.addEventListener("click", function () {
+                        delUser(user.UserId);
+                    });
+                    cellEdit.appendChild(cellDeleteBtn);
+
+                    if (user.RoleId != "1") {
+                        row.appendChild(cellEdit);
+                    }
+
+
+                    // 把這一行加到表格中
+                    tableBody.appendChild(row);
+                });
+            }
+
+            function delUser(userId) {
+                Swal.fire({
+                    title: '確定要刪除這個項目嗎？',
+                    text: "這個操作無法恢復！",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '刪除',
+                    cancelButtonText: '取消'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("/MainUser/DeleteUser", { UserId: userId })
+                            .then(response => {
+                                window.location.href = '/MainUser/Index';
+                            })
+                            .catch(error => { console.error(error) })
+                    }
+                })
+            }
+
+            function selectUser() {
+                var searchInput = document.getElementById('txbSelectUserId');
+                var selectUserId = searchInput.value;
+                var regex = new RegExp(searchInput.pattern);
+                lastSelectId = selectUserId;
+
+                if (!regex.test(selectUserId)) {
+                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
+                    return;
+                }
+
+                document.getElementById("searchWarning").innerText = " ";
+
+                axios.post("/MainUser/SelectUser", { UserId: selectUserId })
+                    .then(response => {
+                        let users = response.data;
+                        if (!(users == "noUser")) {
+
+                            if (!Array.isArray(users)) {
+                                users = [users];  // 如果是單一物件，將其包裝成陣列
+                            }
+
+                            populateTable(users);
+                        }
+                        else {
+                            document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                        }
+
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
+
+        </script>
+    </main>
+</body>

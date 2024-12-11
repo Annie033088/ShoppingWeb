@@ -135,6 +135,7 @@
     <Compile Include="Controllers\MainMemberController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
+    <Compile Include="Controllers\WarmUpController.cs" />
     <Compile Include="Filters\UserKickOutFilter.cs" />
     <Compile Include="Filters\UserRoleAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -176,6 +177,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="css\MainHomeLayout.css" />
+    <Content Include="css\MainMember.css" />
     <Content Include="css\MainUser.css" />
     <Content Include="css\UserRole.css" />
     <Content Include="favicon.ico" />
@@ -229,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
+    <Folder Include="Views\WarmUp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

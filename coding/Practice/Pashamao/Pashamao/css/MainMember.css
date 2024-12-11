@@ -1,0 +1,50 @@
+﻿
+tbody button {
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btnEditMember {
+    background-image: url(../images/Pencel.jpg);
+}
+
+.btnDeleteMember {
+    background-image: url(../images/Garbage.jpg);
+}
+
+.btnSort {
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#btnAdd {
+    text-align: center;
+}
+
+#sortById {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByAcct {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByName {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByStatus {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByRole {
+    background-image: url(../images/arrowAscending.png);
+}

@@ -99,16 +99,6 @@
         <script>
 
             getAllRole();
-            let message = '@ViewBag.Message';
-            if (message == "刪除失敗") {
-                Swal.fire({
-                    title: '刪除失敗',
-                    text: "有使用者持有此角色！",
-                    icon: 'warning',
-                    confirmButtonText: '確認'
-                })
-            }
-
             function getAllRole() {
                 axios.post("/UserRole/GetAllRole")
                     .then(response => {
@@ -197,7 +187,23 @@
                     if (result.isConfirmed) {
                         axios.post("/UserRole/DeleteRole", { RoleId: roleId })
                             .then(response => {
-                                window.location.href = '/UserRole/Index';
+
+                                if (response.data == "刪除失敗") {
+                                    Swal.fire({
+                                        title: '刪除失敗',
+                                        text: "有使用者持有此角色！",
+                                        icon: 'warning',
+                                        confirmButtonText: '確認'
+                                    })
+                                }
+
+                                if (response.data == "刪除成功") {
+                                    Swal.fire({
+                                        title: '刪除成功！',
+                                        icon: 'warning',
+                                        confirmButtonText: '確認'
+                                    }).then((result) => { window.location.href = "/UserRole/Index" })
+                                }
                             })
                             .catch(error => { console.error(error) })
                     }
@@ -240,6 +246,7 @@
 
             function checkPermission(permissions) {
                 const subCkbs = document.querySelectorAll('.subCkb');
+                const mainCkbs = document.querySelectorAll('input[type="checkbox"][id^="ckbMain"]');
                 let havePermissionFlag = new Array(subCkbs.length)
 
                 //設定flag為真(flag為擁有的權限)
@@ -259,6 +266,17 @@
                         subCkbs[i].checked = false;
                     }
                 }
+
+                mainCkbs.forEach(function (mainCkb) {
+                    let parentId = mainCkb.id;
+                    let mainCheckFlag = true;
+                    let subCkbsForMain = document.querySelectorAll(`.subCkb[data-Parent="${parentId}"]`);
+                    subCkbsForMain.forEach(function (subCkb) {
+                        if (!subCkb.checked) { mainCheckFlag = false }
+                    });
+
+                    if (mainCheckFlag) mainCkb.checked = true;
+                });
             }
         </script>
 
@@ -278,6 +296,9 @@
             btnShowAddRoleCkb.addEventListener("click", function () {
                 subCkbs.forEach(function (subCkb) {
                     subCkb.checked = false;
+                })
+                mainCkbs.forEach(function (mainCkb) {
+                    mainCkb.checked = false;
                 })
                 popUp.style.display = "block";
                 btnSubmitAddRole.style.display = "block";
