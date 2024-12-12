@@ -29,24 +29,6 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
-        /// 取得所有使用者資料
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult GetAllUser()
-        {
-            try
-            {
-                return Json(mainUserService.GetAllUsers(), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
-
-        /// <summary>
         /// 取得排序資料
         /// </summary>
         /// <param name="Column"></param>
@@ -181,7 +163,9 @@ namespace Pashamao.Controllers
         {
             try
             {
-                if (mainUserService.GetUser(UserId) == null)
+                User user = mainUserService.GetUser(UserId);
+
+                if (user == null)
                 {
                     //沒找到對應使用者
                     string noUser = "noUser";
@@ -189,7 +173,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    return Json(mainUserService.GetUser(UserId), JsonRequestBehavior.AllowGet);
+                    return Json(user, JsonRequestBehavior.AllowGet);
 
                 }
             }

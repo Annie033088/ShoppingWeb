@@ -1,0 +1,70 @@
+2024-12-12 14:23:38.3775 Info Application Start
+2024-12-12 14:36:11.3323 Info Application End
+2024-12-12 14:36:21.7785 Info Application Start
+2024-12-12 14:36:22.1399 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 14:36:22.1559 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 14:36:42.4105 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 02:36:42.
+2024-12-12 15:21:49.6660 Info Application End
+2024-12-12 15:21:58.1623 Info Application Start
+2024-12-12 15:22:16.8074 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:22:16.
+2024-12-12 15:26:50.8481 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 15:26:50.8750 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 15:27:09.4722 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 15:27:09.4722 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-12 15:27:58.4046 Info Application Start
+2024-12-12 15:28:20.3297 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:28:20.
+2024-12-12 15:28:54.0872 Info Application Start
+2024-12-12 15:29:13.0737 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:29:13.
+2024-12-12 15:30:00.1890 Error System.Web.HttpParseException: "[" 在程式碼區塊的開頭無效。只有識別項、關鍵字、註解、"(" 和 "{" 是有效的。
+
+2024-12-12 15:31:11.7495 Info Application Start
+2024-12-12 15:31:23.1144 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:31:23.
+2024-12-12 15:31:44.5660 Error System.Web.HttpParseException: "[" 在程式碼區塊的開頭無效。只有識別項、關鍵字、註解、"(" 和 "{" 是有效的。
+
+2024-12-12 15:33:05.6240 Info Application Start
+2024-12-12 15:33:11.5637 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:33:11.
+2024-12-12 15:33:14.1103 Error System.Web.HttpParseException: "[" 在程式碼區塊的開頭無效。只有識別項、關鍵字、註解、"(" 和 "{" 是有效的。
+
+2024-12-12 15:37:56.3982 Info Application Start
+2024-12-12 15:38:29.6453 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:38:29.
+2024-12-12 15:38:48.1158 Error System.Web.HttpParseException: "[" 在程式碼區塊的開頭無效。只有識別項、關鍵字、註解、"(" 和 "{" 是有效的。
+
+2024-12-12 15:42:04.0351 Info Application Start
+2024-12-12 15:42:13.9677 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 03:42:13.
+2024-12-12 15:42:17.9343 Error System.Web.HttpParseException: "[" 在程式碼區塊的開頭無效。只有識別項、關鍵字、註解、"(" 和 "{" 是有效的。
+
+2024-12-12 15:54:35.5506 Info Application End
+2024-12-12 15:54:48.4428 Info Application Start
+2024-12-12 16:01:42.6342 Info Application End
+2024-12-12 16:01:43.9365 Info Application Start
+2024-12-12 16:03:00.7361 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(11),@pwd varchar(10),@email varchar(11),@phone ch' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:03:00.7480 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(11),@pwd varchar(10),@email varchar(11),@phone ch' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:03:00.7480 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(11),@pwd varchar(10),@email varchar(11),@phone ch' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:03:00.7530 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(11),@pwd varchar(10),@email varchar(11),@phone ch' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:04:01.4536 Info Application Start
+2024-12-12 16:04:08.9453 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 04:04:08.
+2024-12-12 16:05:03.4683 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(12),@pwd varchar(15),@email varchar(3),@phone cha' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:05:03.5285 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(12),@pwd varchar(15),@email varchar(3),@phone cha' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:05:18.8045 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(12),@pwd varchar(15),@email varchar(3),@phone cha' 必須有參數 '@nickname'，但未提供。
+2024-12-12 16:23:03.7623 Info Application Start
+2024-12-12 16:23:20.0280 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 04:23:20.
+2024-12-12 16:36:50.3613 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:36:50.4198 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:36:50.4664 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:37:01.5316 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:39:49.4281 Info Application Start
+2024-12-12 16:40:01.6356 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 04:40:01.
+2024-12-12 16:42:33.9709 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:42:34.1398 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:42:34.1833 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:42:35.4677 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:46:41.4041 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:46:41.5686 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:46:41.6155 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:46:43.3002 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:52:35.1058 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:52:35.1876 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:52:35.2834 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:52:48.7710 Error System.InvalidCastException: 指定的轉換無效。
+2024-12-12 16:55:09.1650 Info Application Start
+2024-12-12 16:55:21.6117 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/12 下午 04:55:21.

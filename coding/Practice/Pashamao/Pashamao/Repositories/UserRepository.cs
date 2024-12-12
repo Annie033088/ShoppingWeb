@@ -120,63 +120,7 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 取得所有User 
-        /// </summary>
-        /// <returns></returns>
-        internal List<User> GetAll()
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); 
-            SqlDataAdapter da = new SqlDataAdapter(); 
-            DataTable dt = new DataTable(); 
-            List<User> users = new List<User>();
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_getAllUser";
-
-                cmd.Connection.Open();
-
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-
-                cmd.Connection.Close();
-
-                if (dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        User user = new User();
-                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
-                        user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
-                        user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
-                        user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
-                        user.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
-                        users.Add(user);
-                    }
-                    return users;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                //判斷是否已關閉
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
-            }
-        }
-
-        /// <summary>
-        /// 新增User
+        /// 新增使用者
         /// </summary>
         /// <param name="user"></param>
         internal bool Create(User user)
@@ -221,7 +165,7 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 刪除User
+        /// 刪除使用者
         /// </summary>
         /// <param name="user"></param>
         internal void Delete(User user)
@@ -303,7 +247,7 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 更改User
+        /// 更改使用者角色跟權限
         /// </summary>
         /// <param name="user"></param>
         internal void UpdateRole(User user)
@@ -336,7 +280,7 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 取得1個User
+        /// 取得1個使用者
         /// </summary>
         /// <param name="primaryId"></param>
         /// <returns></returns>
@@ -393,7 +337,7 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 修改user密碼
+        /// 修改使用者密碼
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="oldPwd"></param>

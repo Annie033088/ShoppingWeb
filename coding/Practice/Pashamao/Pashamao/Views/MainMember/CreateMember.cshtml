@@ -1,0 +1,49 @@
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    <main>
+        <form method="post" action="/MainMember/SubmitCreateMember">
+            <div asp-controller="action" class="container col-3 mx-auto">
+                <div class="mb-3  ">
+                    <label class="fs-6 control-form-label ">帳號</label>
+                    <input type="text" name="Acct" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                </div>
+                <div class="mb-3 ">
+                    <label class="fs-6 ">密碼</label>
+                    <input type="password" name="Pwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                </div>
+                <div class="mb-3 ">
+                    <label class="fs-6 ">信箱</label>
+                    <input type="text" name="Email" class="form-control" placeholder="Enter your email" required />
+                </div>
+                <div class="mb-3" >
+                    <div class="" style="display:flex">
+                        <label class="fs-6 me-3">國際碼(可空)</label>
+                        <label class="fs-6 ">手機號碼(可空)</label>
+                         </div>
+                    <div style="display:flex">
+                        <input type="text" style="width:50px;" name="CountryCode" class="form-control" placeholder="Enter your phone country code" pattern="^(\d{0, 4})?$" />
+                        <input type="text" style="margin-left: 50px" name="Phone" class="form-control" placeholder="Enter your phone" pattern="^(\d{4, 20})?$" />
+                    </div>
+                </div>
+                <div class="mb-3 ">
+                    <label class="fs-6 ">名字</label>
+                    <input type="text" name="MemberName" class="form-control" placeholder="Enter your full name" pattern="^.{1,50}$" required />
+                </div>
+                <div class="mb-3 ">
+                    <label class="fs-6 ">暱稱(可空)</label>
+                    <input type="text" name="Nickname" class="form-control" placeholder="Enter your nickname" pattern="^.{0,25}$" />
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-dark">確認</button>
+                    <button type="button" class="btn btn-dark" onclick="window.location.href=`/MainMember/Index`">取消</button>
+                </div>
+            </div>
+            <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>
+        </form>
+    </main>
+</body>

@@ -18,23 +18,6 @@ namespace Pashamao.Service
         }
 
         /// <summary>
-        /// 取得所有用戶
-        /// </summary>
-        /// <returns></returns>
-        internal List<User> GetAllUsers()
-        {
-            try
-            {
-                return userRepository.GetAll();
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
-
-        /// <summary>
         /// 新增用戶
         /// </summary>
         /// <param name="createUserViewModel"></param>

@@ -141,15 +141,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateMemberViewModel.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
+    <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\UserPermission.cs" />
     <Compile Include="Models\UserSessionModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Service\MainMemberService.cs" />
     <Compile Include="Service\MainUserService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Service\UserRoleService.cs" />
@@ -228,6 +232,7 @@
     <Content Include="Views\MainMember\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\RolePermissionsPartialView.cshtml" />
+    <Content Include="Views\MainMember\CreateMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

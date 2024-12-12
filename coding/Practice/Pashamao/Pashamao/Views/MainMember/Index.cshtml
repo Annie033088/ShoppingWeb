@@ -1,6 +1,6 @@
 ﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
-    ViewBag.Title = "使用者管理";
+    ViewBag.Title = "會員管理";
 }
 <body>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
@@ -8,12 +8,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h1 class="text-center mb-3">@ViewBag.Title</h1>
-        <table id="userTable" class="table" style="table-layout:fixed" border="1">
+        <table id="memberTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
-                    <th>
-                        <!--<button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/CreateMembe"'>新增</button>-->
-                        <button type="button" id="btnGetAllMember" class="btn btn-outline-dark" onclick='getFirstPage()'>查詢全部</button>
+                    <th style="display:flex">
+                        <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainMember/CreateMember"'>新增</button>
+                        <button type="button" id="btnGetAllMember" class="btn btn-outline-dark" onclick='getAll()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
@@ -22,7 +22,16 @@
                         <input type="text" id="txbSelectMemberId" style="width:100%" pattern="^[\d]{1,8}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
+                        <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberId", "MemberId");'>搜尋</button>
+                    </th>
+                    <th class="text-lg-end">
+                        <label>輸入搜尋姓名</label>
+                    </th>
+                    <th>
+                        <input type="text" id="txbSelectMemberName" style="width:100%" required />
+                    </th>
+                    <th class="text-lg-start">
+                        <button type="button" id="btnSelectByMemberName" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberName", "MemberName");'>搜尋</button>
                     </th>
                     <th>
                         <span id="searchWarning" class="text-danger"></span>
@@ -30,11 +39,12 @@
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="getSortedUser('sortById', 'UserId')"></button></th>
-                    <th scope="col">帳號<button id="sortByAcct" class="btn btnSort" onclick="getSortedUser('sortByAcct', 'Account')"></button></th>
-                    <th scope="col">姓名<button id="sortByName" class="btn btnSort" onclick="getSortedUser('sortByName', 'Name')"></button></th>
-                    <th scope="col">狀態<button id="sortByStatus" class="btn btnSort" onclick="getSortedUser('sortByStatus', 'Status')"></button></th>
-                    <th scope="col">角色<button id="sortByRole" class="btn btnSort" onclick="getSortedUser('sortByRole', 'RoleId')"></button></th>
+                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="getSortedMember('sortById', 'UserId')"></button></th>
+                    <th scope="col">信箱<button id="sortByEmail" class="btn btnSort" onclick="getSortedMember('sortByEmail', 'Email')"></button></th>
+                    <th scope="col">電話<button id="sortByPhone" class="btn btnSort" onclick="getSortedMember('sortByPhone', 'Phone')"></button></th>
+                    <th scope="col">姓名<button id="sortByMemberName" class="btn btnSort" onclick="getSortedMember('sortByMemberName', 'MemberName')"></button></th>
+                    <th scope="col">狀態<button id="sortByStatus" class="btn btnSort" onclick="getSortedMember('sortByStatus', 'Status')"></button></th>
+                    <th scope="col">等級<button id="sortByLevel" class="btn btnSort" onclick="getSortedMember('sortByRole', 'Level')"></button></th>
                     <th scope="col">操作選項</th>
                 </tr>
             </thead>
@@ -55,20 +65,20 @@
         </nav>
         <script>
 
-            let lastSortBtnColumn = "UserId";
+            let lastSortBtnColumn = "MemberId";
             let lastSortOrder = "Ascending";
-            let lastSelectId = "";
+            let lastSelect = "";
 
-            getFirstPage();
+            getAll();
 
-            function getFirstPage() {
-                lastSelectId = "";
-                getUser("UserId", 1, "Ascending");
+            function getAll() {
+                lastSelect = "";
+                getMember("MemberId", 1, "Ascending");
             }
 
             function firstPage() {
-                if (lastSelectId === "") {
-                    getUser(lastSortBtnColumn, 1, lastSortOrder);
+                if (lastSelect === "") {
+                    getMember(lastSortBtnColumn, 1, lastSortOrder);
                 }
             }
 
@@ -80,44 +90,51 @@
                 }
 
                 let newCurrentPage = document.getElementById("currentPage").innerHTML
-                if (lastSelectId === "") {
-                    getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                if (lastSelect === "") {
+                    getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
             }
 
             function nextPage() {
                 let oldCurrentPage = document.getElementById("currentPage").innerHTML;
                 let maxPage = document.getElementById("lastPage").innerHTML;
+
                 if (oldCurrentPage < maxPage) {
                     document.getElementById("currentPage").innerHTML = oldCurrentPage + 1;
                 }
+
                 let newCurrentPage = document.getElementById("currentPage").innerHTML;
-                if (lastSelectId === "") {
-                    getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                if (lastSelect === "") {
+                    getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
             }
 
             function lastPage() {
                 let maxPage = document.getElementById("lastPage").innerHTML
-                if (lastSelectId === "") {
-                    getUser(lastSortBtnColumn, maxPage, lastSortOrder);
+
+                if (lastSelect === "") {
+                    getMember(lastSortBtnColumn, maxPage, lastSortOrder);
                 }
             }
 
-            function getUser(column, page, sortOrder) {
+            function getMember(column, page, sortOrder) {
                 lastSortBtnColumn = column;
                 lastSortOrder = sortOrder;
-                axios.post("/MainUser/GetSortedUser", { Column: column, Page: page, SortOrder: sortOrder })
+                axios.post("/MainMember/GetSortedMember", { Column: column, Page: page, SortOrder: sortOrder })
                     .then(response => {
-                        populateTable(response.data.Item1);
-                        document.getElementById("lastPage").innerHTML = response.data.Item2;
+                        console.log(response.data);
+                        if (response.data != "noMember")
+                        {
+                            populateTable(response.data.Item1);
+                            document.getElementById("lastPage").innerHTML = response.data.Item2;
+                        }
                     })
                     .catch(error => {
                         console.error("fail", error);
                     })
             }
 
-            function getSortedUser(btnId, column) {
+            function getSortedMember(btnId, column) {
                 let btn = document.querySelector(`#${btnId}`);
                 let currentBackground = getComputedStyle(btn).backgroundImage;
                 let sortOrder;
@@ -133,20 +150,20 @@
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
                 }
                 lastSortOrder = sortOrder;
-                if (lastSelectId === "") {
+                if (lastSelect === "") {
                     console.log(column, currentPage, sortOrder)
                     getUser(column, currentPage, sortOrder);
                 }
             }
 
-            function populateTable(users) {
-                const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
+            function populateTable(members) {
+                const tableBody = document.getElementById("memberTable").getElementsByTagName('tbody')[0];
 
                 // 清空表格（如果之前有數據）
                 tableBody.innerHTML = '';
 
                 // 遍歷所有用戶，並創建相應的表格行
-                users.forEach((user, index) => {
+                members.forEach((member, index) => {
                     const row = document.createElement('tr');  // 創建一行
                     //不想顯示可以用
 
@@ -157,79 +174,53 @@
                     row.appendChild(rowSort);
 
                     const cellId = document.createElement('td');
-                    cellId.textContent = user.UserId;
+                    cellId.textContent = member.MemberId;
 
                     row.appendChild(cellId);
 
-                    const cellAcct = document.createElement('td');
-                    cellAcct.textContent = user.Account;
-                    row.appendChild(cellAcct);
+                    const cellEmail = document.createElement('td');
+                    cellEmail.textContent = member.Email;
+                    row.appendChild(cellEmail);
 
-                    const cellName = document.createElement('td');
-                    cellName.textContent = user.Name;
-                    row.appendChild(cellName);
+                    const cellPhone = document.createElement('td');
+                    cellPhone.textContent = member.Phone;
+                    row.appendChild(cellPhone);
+
+                    const cellMemberName = document.createElement('td');
+                    cellMemberName.textContent = member.MemberName;
+                    row.appendChild(cellMemberName);
 
                     const cellStatus = document.createElement('td');
-                    cellStatus.textContent = user.Status ? "啟用" : "禁用";
+                    cellStatus.textContent = member.Status ? "啟用" : "禁用";
                     row.appendChild(cellStatus);
 
-                    const cellRoleId = document.createElement('td');
-                    cellRoleId.textContent = user.RoleId;
-                    row.appendChild(cellRoleId);
+                    const cellLevel = document.createElement('td');
+                    cellLevel.textContent = member.Level;
+                    row.appendChild(cellLevel);
 
                     const cellEdit = document.createElement('td');
 
                     const cellEditBtn = document.createElement("button");
-                    cellEditBtn.className = "btnEditUser";
+                    cellEditBtn.className = "btnEditMember";
                     cellEditBtn.addEventListener("click", function () {
                         let NameOrAcct = document.getElementById("boxPersonalName").innerText;
-                        editUserRoleAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
+                        //editMemberLevelAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
                     });
                     cellEdit.appendChild(cellEditBtn);
-
-                    const cellDeleteBtn = document.createElement("button");
-                    cellDeleteBtn.className = "btnDeleteUser";
-                    cellDeleteBtn.addEventListener("click", function () {
-                        delUser(user.UserId);
-                    });
-                    cellEdit.appendChild(cellDeleteBtn);
-
-                    if (user.RoleId != "1") {
-                        row.appendChild(cellEdit);
-                    }
-
+                    row.appendChild(cellEdit);
 
                     // 把這一行加到表格中
                     tableBody.appendChild(row);
                 });
             }
 
-            function delUser(userId) {
-                Swal.fire({
-                    title: '確定要刪除這個項目嗎？',
-                    text: "這個操作無法恢復！",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: '刪除',
-                    cancelButtonText: '取消'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        axios.post("/MainUser/DeleteUser", { UserId: userId })
-                            .then(response => {
-                                window.location.href = '/MainUser/Index';
-                            })
-                            .catch(error => { console.error(error) })
-                    }
-                })
-            }
-
-            function selectUser() {
+            function selectMember(txbSelectId, selectColumn) {
                 var searchInput = document.getElementById('txbSelectUserId');
-                var selectUserId = searchInput.value;
+                var selectText= searchInput.value;
                 var regex = new RegExp(searchInput.pattern);
-                lastSelectId = selectUserId;
+                lastSelect = selectText;
 
-                if (!regex.test(selectUserId)) {
+                if (!regex.test(selectText)) {
                     document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
                     return;
                 }
