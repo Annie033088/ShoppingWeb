@@ -134,6 +134,8 @@
     <Compile Include="Controllers\MainHomeController.cs" />
     <Compile Include="Controllers\MainMemberController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
+    <Compile Include="Models\MemberAddress.cs" />
+    <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\WarmUpController.cs" />
     <Compile Include="Filters\UserKickOutFilter.cs" />
@@ -233,6 +235,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\RolePermissionsPartialView.cshtml" />
     <Content Include="Views\MainMember\CreateMember.cshtml" />
+    <Content Include="Views\MemberAddress\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

@@ -17,15 +17,23 @@
             <ul class="navbar-nav  flex-column ">
                 <li class=""> @Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
                 <li>
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#subMenu" aria-expanded="false" aria-controls="subMenu">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#userSubMenu" aria-expanded="false" aria-controls="userSubMenu">
                         ➤ 後台使用者管理
                     </a>
-                    <ul id="subMenu" class="collapse">
-                        <li >@Html.ActionLink("使用者管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
+                    <ul id="userSubMenu" class="collapse">
+                        <li>@Html.ActionLink("使用者管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("角色管理", "Index", "UserRole", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </li>
-                <li> @Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#memberSubMenu" aria-expanded="false" aria-controls="memberSubMenu">
+                        ➤ 會員管理
+                    </a>
+                    <ul id="memberSubMenu" class="collapse">
+                        <li>@Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("會員地址管理", "Index", "MemberAddress", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>

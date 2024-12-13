@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Pashamao.Controllers
 {
@@ -45,6 +49,35 @@ namespace Pashamao.Controllers
             catch (Exception e)
             {
                 logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 根據欄位查詢排序後使用者
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        public ActionResult SelectUser(string SelectColumn, string Value, string SortColumn, string Page, string SortOrder)
+        {
+            try
+            {
+                (List<User> users, int totalPages) = mainUserService.SelectUser(SelectColumn, Value, SortColumn, Page, SortOrder);
+
+                if (users == null)
+                {
+                    string noUser = "noUser";
+                    return Json(noUser, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json((users, totalPages), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                return View("Index");
                 throw e;
             }
         }
@@ -145,37 +178,6 @@ namespace Pashamao.Controllers
             {
                 mainUserService.DeleteUser(UserId);
                 return View("Index");
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                return View("Index");
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// 根據UserId查詢使用者
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <returns></returns>
-        public ActionResult SelectUser(string UserId)
-        {
-            try
-            {
-                User user = mainUserService.GetUser(UserId);
-
-                if (user == null)
-                {
-                    //沒找到對應使用者
-                    string noUser = "noUser";
-                    return Json(noUser, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(user, JsonRequestBehavior.AllowGet);
-
-                }
             }
             catch (Exception e)
             {

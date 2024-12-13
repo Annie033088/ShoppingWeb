@@ -1,0 +1,16 @@
+加上登出功能
+
+預設頁面要改掉 設定登入之後預設頁面會到 mainHome
+
+super admin設計理念(腳色設計)	角色在各個頁面的權限
+
+update可以使用output得到資料 就可以節省資源 (output使用方法 跟判斷update是否有成功)
+
+命名方式要符合物件(類別)sessionModel=>UserSessionModel
+userSession=>userSessionModel
+
+demo:新增帳號 修改 刪除 後踢前
+
+
+改一下 DB 加鹽 改到c#做 確定長度(密碼欄位的長度之後要改)
+做code review時先跑流程

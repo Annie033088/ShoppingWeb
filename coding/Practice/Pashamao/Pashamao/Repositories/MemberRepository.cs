@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Data.Common;
 
 namespace Pashamao.Repositories
 {
@@ -133,7 +134,8 @@ namespace Pashamao.Repositories
             }
         }
 
-  /*      internal List<Member> GetSelectMember(string column, string value) {
+        internal (List<Member>, int) GetSelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
             SqlDataAdapter da = new SqlDataAdapter();
@@ -142,9 +144,11 @@ namespace Pashamao.Repositories
             int totalPages = 0;
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getSortedMember @column, @page, @sortOrder, @totalPages OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_getSelectMember @selectColumn, @value, @sortColumn, @page, @sortOrder, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
+                cmd.Parameters.Add("@selectColumn", SqlDbType.VarChar).Value = selectColumn;
+                cmd.Parameters.Add("@value", SqlDbType.VarChar).Value = value;
+                cmd.Parameters.Add("@sortColumn", SqlDbType.VarChar).Value = sortColumn;
                 cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
                 cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
@@ -180,7 +184,6 @@ namespace Pashamao.Repositories
                 {
                     return (null, 0);
                 }
-
             }
             catch (Exception e)
             {
@@ -196,27 +199,36 @@ namespace Pashamao.Repositories
             }
         }
 
-        */
         /// <summary>
-        /// 更改User
+        /// 更改會員等級跟狀態
         /// </summary>
         /// <param name="user"></param>
-        internal void UpdateRole(User user)
+        internal bool UpdateMemberLevel(Member member)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUser @uId, @roleId, @status";
+                cmd.CommandText = "EXEC pro_pashamao_editMemberLevelAndStatus @memberId, @status, @points, @level";
 
-                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
-                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = user.RoleId;
-                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = user.Status;
+                cmd.Parameters.Add("@memberId", SqlDbType.Int).Value = member.MemberId;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = member.Status;
+                cmd.Parameters.Add("@points", SqlDbType.Int).Value = member.Points;
+                cmd.Parameters.Add("@level", SqlDbType.TinyInt).Value = member.Level;
 
                 cmd.Connection.Open();
 
                 int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
             catch (Exception e)
             {

@@ -1,10 +1,14 @@
-﻿using NLog;
+﻿using Newtonsoft.Json.Linq;
+using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace Pashamao.Service
 {
@@ -15,6 +19,56 @@ namespace Pashamao.Service
         internal MainUserService()
         {
             userRepository = new UserRepository();
+        }
+
+
+
+        /// <summary>
+        /// 取得搜尋之前的使用者資料
+        /// </summary>
+        /// <param name="column"></param>
+        /// <param name="page"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
+        internal (List<User>, int) GetSortedUser(string column, string page, string sortOrder)
+        {
+            if (column == "UserId") column = "f_uid";
+            if (column == "Account") column = "f_account";
+            if (column == "Name") column = "f_name";
+            if (column == "Status") column = "f_status";
+            if (column == "RoleId") column = "f_roleId";
+
+            return userRepository.GetSortedUser(column, int.Parse(page), sortOrder);
+        }
+
+        /// <summary>
+        /// 取得指定用戶資料(並排序)
+        /// </summary>
+        /// <param name="UID"></param>
+        /// <returns></returns>
+        internal (List<User>, int) SelectUser(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        {
+            try
+            {
+                //以下是目前有的搜尋欄位, 如果要擴充, 需要注意先把欄位level跟status進行轉換判斷, 可以轉換成byte(tinyint)或者bool(bit)
+                if (selectColumn == "UserId")
+                {
+                    selectColumn = "f_uid";
+                }
+
+                //根據甚麼欄位進行排序
+                if (sortColumn == "UserId") sortColumn = "f_uid";
+                if (sortColumn == "Account") sortColumn = "f_account";
+                if (sortColumn == "Name") sortColumn = "f_name";
+                if (sortColumn == "Status") sortColumn = "f_status";
+                if (sortColumn == "RoleId") sortColumn = "f_roleId";
+                return userRepository.GetSelectUser(selectColumn, value, sortColumn, page, sortOrder);
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         /// <summary>
@@ -101,24 +155,6 @@ namespace Pashamao.Service
             }
         }
 
-        /// <summary>
-        /// 取得指定用戶資料
-        /// </summary>
-        /// <param name="UID"></param>
-        /// <returns></returns>
-        internal User GetUser(string UserId)
-        {
-            try
-            {
-                int Uid = int.Parse(UserId);
-                return userRepository.Get(Uid);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
 
         /// <summary>
         /// 修改密碼
@@ -138,17 +174,6 @@ namespace Pashamao.Service
                 logger.Error(e);
                 throw e;
             }
-        }
-
-        internal (List<User>, int) GetSortedUser(string column, string page, string sortOrder)
-        {
-            if (column == "UserId") column = "f_uid";
-            if (column == "Account") column = "f_account";
-            if (column == "Name") column = "f_name";
-            if (column == "Status") column = "f_status";
-            if (column == "RoleId") column = "f_roleId";
-
-            return userRepository.GetSortedUser(column, int.Parse(page), sortOrder);
         }
     }
 }

@@ -1,0 +1,120 @@
+2024-12-13 09:44:03.5131 Info Application Start
+2024-12-13 09:44:16.9353 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 09:44:16.
+2024-12-13 09:49:34.1916 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2024-12-13 09:49:34.2649 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2024-12-13 09:49:34.3267 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2024-12-13 09:49:40.4836 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2024-12-13 09:52:54.2697 Info Application Start
+2024-12-13 09:54:14.4943 Info Application Start
+2024-12-13 09:54:24.8133 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 09:54:24.
+2024-12-13 09:56:55.2642 Info Application Start
+2024-12-13 09:57:08.2299 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 09:57:08.
+2024-12-13 10:37:24.8741 Info Application Start
+2024-12-13 10:40:35.6910 Info Application Start
+2024-12-13 10:40:46.7751 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 10:40:46.
+2024-12-13 10:43:58.6762 Info Application Start
+2024-12-13 10:44:34.4884 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 10:44:34.
+2024-12-13 10:46:03.9520 Info Application Start
+2024-12-13 10:46:15.1823 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 10:46:15.
+2024-12-13 10:48:42.7715 Info Application Start
+2024-12-13 10:48:52.4767 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 10:48:52.
+2024-12-13 10:49:16.0995 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(14),@pwd varchar(15),@email varchar(17),@phone ch' 必須有參數 '@phone'，但未提供。
+2024-12-13 10:49:16.1571 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(14),@pwd varchar(15),@email varchar(17),@phone ch' 必須有參數 '@phone'，但未提供。
+2024-12-13 10:49:16.2054 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(14),@pwd varchar(15),@email varchar(17),@phone ch' 必須有參數 '@phone'，但未提供。
+2024-12-13 10:50:20.8741 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@acct varchar(14),@pwd varchar(15),@email varchar(17),@phone ch' 必須有參數 '@phone'，但未提供。
+2024-12-13 10:57:01.2153 Info Application Start
+2024-12-13 10:57:07.6270 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 10:57:07.
+2024-12-13 11:22:53.6469 Info Application Start
+2024-12-13 11:23:07.4110 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 11:23:07.
+2024-12-13 11:24:21.9815 Info Application Start
+2024-12-13 11:24:31.3481 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 11:24:31.
+2024-12-13 11:44:13.4410 Info Application Start
+2024-12-13 11:44:49.0810 Info Application Start
+2024-12-13 11:45:12.9132 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 上午 11:45:12.
+2024-12-13 11:58:50.0858 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-13 11:58:50.1745 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-13 11:59:00.8402 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-13 12:57:10.4602 Info Application Start
+2024-12-13 12:57:36.2231 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 12:57:36.
+2024-12-13 13:07:30.1211 Info Application Start
+2024-12-13 13:07:40.5131 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 01:07:40.
+2024-12-13 14:04:34.0001 Info Application Start
+2024-12-13 14:05:59.4279 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 02:05:59.
+2024-12-13 14:09:03.8944 Error System.FormatException: 字串未被辨認為有效的 Boolean。
+2024-12-13 14:10:52.3757 Error System.FormatException: 字串未被辨認為有效的 Boolean。
+2024-12-13 14:12:15.0830 Error System.FormatException: 字串未被辨認為有效的 Boolean。
+2024-12-13 14:12:55.2005 Error System.FormatException: 字串未被辨認為有效的 Boolean。
+2024-12-13 14:33:38.4607 Info Application Start
+2024-12-13 14:39:53.2657 Info Application End
+2024-12-13 14:40:10.7770 Info Application Start
+2024-12-13 14:41:19.5024 Error System.Web.HttpException: 找不到路徑 '/L545' 的控制器或是未實作 IController。
+2024-12-13 14:54:18.6009 Info Application End
+2024-12-13 15:14:15.8602 Info Application Start
+2024-12-13 15:15:01.5697 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 03:15:01.
+2024-12-13 15:15:16.0546 Error System.Web.HttpException: 找不到路徑 '/dalp/s' 的控制器或是未實作 IController。
+2024-12-13 15:17:56.6051 Info Application End
+2024-12-13 15:17:58.8598 Info Application Start
+2024-12-13 15:18:22.0853 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 03:18:22.
+2024-12-13 15:18:57.2029 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 03:18:57.
+2024-12-13 15:24:01.5580 Info Application End
+2024-12-13 15:24:15.3699 Info Application Start
+2024-12-13 15:26:14.5327 Info Application Start
+2024-12-13 15:26:29.5651 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 03:26:29.
+2024-12-13 15:31:13.5661 Info Application Start
+2024-12-13 15:31:21.6939 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 03:31:21.
+2024-12-13 15:39:31.6740 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 03:39:31.
+2024-12-13 15:44:59.1904 Info Application Start
+2024-12-13 15:45:14.6988 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 03:45:14.
+2024-12-13 15:45:26.4838 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/13 下午 03:45:26.
+2024-12-13 17:35:14.3192 Info Application Start
+2024-12-13 17:36:28.1531 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 05:36:28.
+2024-12-13 17:41:11.9768 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:41:11.9768 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:41:39.4530 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:41:39.4530 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:42:49.0856 Info Application End
+2024-12-13 17:43:02.8533 Info Application Start
+2024-12-13 17:43:12.7831 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 05:43:12.
+2024-12-13 17:43:23.2419 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:46:16.7899 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:05.3394 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:07.4969 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:16.2662 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:18.9582 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:40.9513 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:41.0541 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:47:56.8881 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:48:06.3345 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+無效的資料行名稱 'f_uid'。
+2024-12-13 17:52:11.3039 Info Application Start
+2024-12-13 17:52:20.9854 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/13 下午 05:52:20.

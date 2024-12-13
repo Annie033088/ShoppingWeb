@@ -22,16 +22,16 @@
                         <input type="text" id="txbSelectMemberId" style="width:100%" pattern="^[\d]{1,8}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberId", "MemberId");'>搜尋</button>
+                        <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberId", "MemberId","unknown" , "MemberId", 1, "Ascending");'>搜尋</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋姓名</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectMemberName" style="width:100%" required />
+                        <input type="text" id="txbSelectMemberName" style="width:100%" pattern="^.{1,50}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByMemberName" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberName", "MemberName");'>搜尋</button>
+                        <button type="button" id="btnSelectByMemberName" class="btn btn-outline-dark" onclick='selectMember("txbSelectMemberName", "MemberName","unknown" , "MemberId", 1, "Ascending");'>搜尋</button>
                     </th>
                     <th>
                         <span id="searchWarning" class="text-danger"></span>
@@ -39,13 +39,14 @@
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="getSortedMember('sortById', 'UserId')"></button></th>
+                    <th scope="col">Id<button id="sortById" class="btn btnSort" onclick="getSortedMember('sortById', 'MemberId')"></button></th>
                     <th scope="col">信箱<button id="sortByEmail" class="btn btnSort" onclick="getSortedMember('sortByEmail', 'Email')"></button></th>
                     <th scope="col">電話<button id="sortByPhone" class="btn btnSort" onclick="getSortedMember('sortByPhone', 'Phone')"></button></th>
                     <th scope="col">姓名<button id="sortByMemberName" class="btn btnSort" onclick="getSortedMember('sortByMemberName', 'MemberName')"></button></th>
+                    <th scope="col">修改資料</th>
                     <th scope="col">狀態<button id="sortByStatus" class="btn btnSort" onclick="getSortedMember('sortByStatus', 'Status')"></button></th>
-                    <th scope="col">等級<button id="sortByLevel" class="btn btnSort" onclick="getSortedMember('sortByRole', 'Level')"></button></th>
-                    <th scope="col">操作選項</th>
+                    <th scope="col">等級<button id="sortByLevel" class="btn btnSort" onclick="getSortedMember('sortByLevel', 'Level')"></button></th>
+                    <th scope="col">操作等級</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,53 +68,90 @@
 
             let lastSortBtnColumn = "MemberId";
             let lastSortOrder = "Ascending";
-            let lastSelect = "";
+            let lastSelectTxbId = "";
+            let lastSelectColumn = "";
+            let lastSelectValue = "";
 
             getAll();
 
             function getAll() {
-                lastSelect = "";
+                let btns = document.querySelectorAll(`.btnSort`);
+                btns.forEach(btn => {
+                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
+                })
+                lastSelectTxbId = "";
+                lastSelectColumn = "";
+                lastSelectValue = "";
                 getMember("MemberId", 1, "Ascending");
             }
 
             function firstPage() {
-                if (lastSelect === "") {
+                document.getElementById("currentPage").innerHTML = 1;
+
+                if (lastSelectColumn === "" || lastSelectValue === "" || lastSelectTxbId === "") {
                     getMember(lastSortBtnColumn, 1, lastSortOrder);
+                }
+                else
+                {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, 1, lastSortOrder)
                 }
             }
 
             function previousPage() {
-                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
 
-                if (currentPage > 1) {
-                    document.getElementById("currentPage").innerHTML = oldCurrentPage - 1
+                if (oldCurrentPage > 1) {
+                    newCurrentPage = oldCurrentPage - 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else
+                {
+                    newCurrentPage = 1
                 }
 
-                let newCurrentPage = document.getElementById("currentPage").innerHTML
-                if (lastSelect === "") {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
+                {
                     getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+                else
+                {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
                 }
             }
 
             function nextPage() {
-                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
-                let maxPage = document.getElementById("lastPage").innerHTML;
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML)
+                let newCurrentPage = oldCurrentPage
 
                 if (oldCurrentPage < maxPage) {
-                    document.getElementById("currentPage").innerHTML = oldCurrentPage + 1;
+                    newCurrentPage = oldCurrentPage + 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else {
+                    newCurrentPage = maxPage;
                 }
 
-                let newCurrentPage = document.getElementById("currentPage").innerHTML;
-                if (lastSelect === "") {
+                if (lastSelectColumn === "" || lastSelectValue === "" || lastSelectTxbId === "") {
                     getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+                else {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
                 }
             }
 
             function lastPage() {
-                let maxPage = document.getElementById("lastPage").innerHTML
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                document.getElementById("currentPage").innerHTML = maxPage;
 
-                if (lastSelect === "") {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
+                {
                     getMember(lastSortBtnColumn, maxPage, lastSortOrder);
+                }
+                else
+                {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, maxPage, lastSortOrder)
                 }
             }
 
@@ -122,9 +160,7 @@
                 lastSortOrder = sortOrder;
                 axios.post("/MainMember/GetSortedMember", { Column: column, Page: page, SortOrder: sortOrder })
                     .then(response => {
-                        console.log(response.data);
-                        if (response.data != "noMember")
-                        {
+                        if (response.data != "noMember") {
                             populateTable(response.data.Item1);
                             document.getElementById("lastPage").innerHTML = response.data.Item2;
                         }
@@ -141,18 +177,25 @@
                 let currentPage = document.getElementById("currentPage").innerHTML;
                 lastSortBtnColumn = column;
 
-                if (currentBackground.includes('arrowAscending.png')) {
+                if (currentBackground.includes('arrowAscending.png'))
+                {
                     sortOrder = 'Descending';
                     btn.style.backgroundImage = "url('../images/arrowDescending.png')";
                 }
-                else {
+                else
+                {
                     sortOrder = 'Ascending';
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
                 }
                 lastSortOrder = sortOrder;
-                if (lastSelect === "") {
-                    console.log(column, currentPage, sortOrder)
-                    getUser(column, currentPage, sortOrder);
+
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
+                {
+                    getMember(column, currentPage, sortOrder);
+                }
+                else
+                {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, column, currentPage, sortOrder)
                 }
             }
 
@@ -190,62 +233,154 @@
                     cellMemberName.textContent = member.MemberName;
                     row.appendChild(cellMemberName);
 
+                    const cellEditData = document.createElement('td');
+
+                    const cellEditDataBtn = document.createElement("button");
+                    cellEditDataBtn.className = "btnEditMemberData";
+                    cellEditDataBtn.style.backgroundImage = "url('../images/Pencel.jpg')";
+                    cellEditDataBtn.addEventListener("click", function () {
+                    });
+                    cellEditData.appendChild(cellEditDataBtn);
+                    row.appendChild(cellEditData);
+
                     const cellStatus = document.createElement('td');
                     cellStatus.textContent = member.Status ? "啟用" : "禁用";
                     row.appendChild(cellStatus);
 
                     const cellLevel = document.createElement('td');
-                    cellLevel.textContent = member.Level;
+                    if (member.Level == 1) {
+                        cellLevel.textContent = "普通會員";
+                    } else if (member.Level == 2) {
+                        cellLevel.textContent = "白金會員";
+                    } else if (member.Level == 3) {
+                        cellLevel.textContent = "鑽石會員";
+                    }
+
                     row.appendChild(cellLevel);
 
-                    const cellEdit = document.createElement('td');
+                    const cellEditLevel = document.createElement('td');
 
-                    const cellEditBtn = document.createElement("button");
-                    cellEditBtn.className = "btnEditMember";
-                    cellEditBtn.addEventListener("click", function () {
-                        let NameOrAcct = document.getElementById("boxPersonalName").innerText;
-                        //editMemberLevelAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
-                    });
-                    cellEdit.appendChild(cellEditBtn);
-                    row.appendChild(cellEdit);
+                    const cellEditLevelBtn = document.createElement("button");
+                    cellEditLevelBtn.className = "btnEditMemberLevel";
+                    cellEditLevelBtn.style.backgroundImage = "url('../images/Pencel.jpg')";
+                    cellEditLevelBtn.addEventListener("click", function () { editMemberLevel(member.MemberId, member.Status, member.Level) });
+                    cellEditLevel.appendChild(cellEditLevelBtn);
+                    row.appendChild(cellEditLevel);
 
                     // 把這一行加到表格中
                     tableBody.appendChild(row);
                 });
             }
 
-            function selectMember(txbSelectId, selectColumn) {
-                var searchInput = document.getElementById('txbSelectUserId');
-                var selectText= searchInput.value;
+            function selectMember(txbSelectElementId, selectColumn, value, sortColumn, page, sortOrder) {
+                var searchInput = document.getElementById(txbSelectElementId);
+                var selectText = searchInput.value;
                 var regex = new RegExp(searchInput.pattern);
-                lastSelect = selectText;
 
-                if (!regex.test(selectText)) {
-                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
+                //設定最後搜尋欄位
+                lastSelectTxbId = txbSelectElementId;
+                lastSelectColumn = selectColumn;
+
+                //如果說是第一次搜尋(分成找上次搜尋的資料或者新的搜尋)
+                if (value === "unknown")
+                {
+                    lastSelectValue = selectText;
+                    value = selectText;
+                }
+
+                if (!regex.test(selectText))
+                {
+                    document.getElementById("searchWarning").innerText = "請輸入有效格式";
                     return;
                 }
 
                 document.getElementById("searchWarning").innerText = " ";
 
-                axios.post("/MainUser/SelectUser", { UserId: selectUserId })
+                axios.post("/MainMember/SelectMember", { SelectColumn: selectColumn, Value: value, SortColumn: sortColumn, Page: page, SortOrder: sortOrder })
                     .then(response => {
-                        let users = response.data;
-                        if (!(users == "noUser")) {
+                        if (response.data != "noMember") {
+                            let members = response.data.Item1;
 
-                            if (!Array.isArray(users)) {
-                                users = [users];  // 如果是單一物件，將其包裝成陣列
-                            }
+                            if (!Array.isArray(members)) members = [members];  // 如果是單一物件，將其包裝成陣列
 
-                            populateTable(users);
+                            populateTable(members);
+                            document.getElementById("lastPage").innerHTML = response.data.Item2;
                         }
                         else {
-                            document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
                         }
-
                     })
                     .catch(error => {
                         console.error("fail", error);
                     })
+            }
+
+            function editMemberData() {
+            }
+
+            function editMemberLevel(memberId, status, level) {
+                let statusSelectOptions;
+                let levelSelectOptions;
+                if (status) {
+                    statusSelectOptions = `<option value="1" selected>啟用</option>` + `<option value="0" >禁用</option>`;
+                } else {
+                    statusSelectOptions = `<option value="1">啟用</option>` + `<option value="0" selected>禁用</option>`;
+                }
+                if (level == 1) {
+                    levelSelectOptions = `<option value="1" selected>普通會員</option>` + `<option value="2" >白金會員</option>` + `<option value = "3" > 鑽石會員</option > `;
+                } else if (level == 2)
+                {
+                    levelSelectOptions = `<option value="1">普通會員</option>` + `<option value="2" selected >白金會員</option>` + `<option value = "3" > 鑽石會員</option > `;
+                } else if (level == 3) {
+                    levelSelectOptions = `<option value="1">普通會員</option>` + `<option value="2" >白金會員</option>` + `<option value = "3" selected > 鑽石會員</option > `;
+                }
+                Swal.fire({
+                    title: '修改會員等級跟狀態',
+                    html: `
+                     <label for="levelSelect">選擇等級:</label>
+                     <select id="levelSelect" class="swal-selectLevel">
+                        ${levelSelectOptions}
+                     </select>
+                     <br><br>
+                     <label for="statusSelect">選擇狀態:</label>
+                     <select id="statusSelect" class="swal-selectStatus">
+                        ${statusSelectOptions}
+                     </select>`
+                    ,
+                    icon: 'question',
+                    background: '#f0f0f0',
+                    showCancelButton: true,
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消',
+                    preConfirm: () => {
+                        const levelSelectValue = document.getElementById('levelSelect').value;
+                        const statusSelectValue = document.getElementById('statusSelect').value;
+                        return { levelSelect: levelSelectValue, statusSelect: statusSelectValue };
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.post("/MainMember/SubmitEditMemberlevel", {
+                            MemberId: memberId,
+                            Level: result.value.levelSelect,
+                            Status: result.value.statusSelect
+                        })
+                            .then(response => {
+                                if (response.data == "false") {
+                                    Swal.fire({ title : "修改失敗" })
+                                        .then((result) => {
+                                            window.location.href = "/MainMember/Index"
+                                        })
+                                } else
+                                {
+                                    window.location.href = "/MainMember/Index"
+                                }
+                            })
+                            .catch(error => {
+                                console.error("fail", error);
+                            })
+                    }
+                });
             }
 
         </script>

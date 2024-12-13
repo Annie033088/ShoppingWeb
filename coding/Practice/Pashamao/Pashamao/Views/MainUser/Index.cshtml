@@ -13,7 +13,7 @@
                 <tr>
                     <th>
                         <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/CreateUser"'>新增</button>
-                        <button type="button" id="btnGetAllUser" class="btn btn-outline-dark" onclick='getFirstPage()'>查詢全部</button>
+                        <button type="button" id="btnGetAllUser" class="btn btn-outline-dark" onclick='getAll()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
@@ -22,7 +22,7 @@
                         <input type="text" id="txbSelectUserId" style="width:100%" pattern="^[\d]{1,8}$" required />
                     </th>
                     <th class="text-lg-start">
-                        <button type="button" id="btnSelectByUserId" class="btn btn-outline-dark" onclick='selectUser();'>搜尋</button>
+                        <button type="button" id="btnSelectByUserId" class="btn btn-outline-dark" onclick='selectUser("txbSelectUserId", "UserId", "unknown", "UserId", 1, "Ascending");'>搜尋</button>
                     </th>
                     <th>
                         <span id="searchWarning" class="text-danger"></span>
@@ -57,50 +57,88 @@
 
             let lastSortBtnColumn = "UserId";
             let lastSortOrder = "Ascending";
-            let lastSelectId = "";
+            let lastSelectTxbId = "";
+            let lastSelectColumn = "";
+            let lastSelectValue = "";
 
-            getFirstPage(); //第一次
+            getAll(); //第一次
 
-            function getFirstPage() {
-                lastSelectId = "";
+            function getAll() {
+                let btns = document.querySelectorAll(`.btnSort`);
+                btns.forEach(btn => {
+                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
+                })
+                lastSelectTxbId = "";
+                lastSelectColumn = "";
+                lastSelectValue = "";
                 getUser("UserId", 1, "Ascending");
             }
 
             function firstPage() {
-                if (lastSelectId === "") {
+                document.getElementById("currentPage").innerHTML = 1;
+
+                if (lastSelectTxbId == "" || lastSelectColumn == "" || lastSelectValue == "") {
                     getUser(lastSortBtnColumn, 1, lastSortOrder);
+                }
+                else
+                {
+                    selectUser(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, 1, lastSortOrder)
                 }
             }
 
             function previousPage() {
-                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
 
                 if (currentPage > 1) {
-                    document.getElementById("currentPage").innerHTML = oldCurrentPage - 1
+                    newCurrentPage = oldCurrentPage - 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else
+                {
+                    newCurrentPage = 1
                 }
 
-                let newCurrentPage = document.getElementById("currentPage").innerHTML
-                if (lastSelectId === "") {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
+                {
                     getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+                else
+                {
+                    selectUser(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
                 }
             }
 
             function nextPage() {
-                let oldCurrentPage = document.getElementById("currentPage").innerHTML;
-                let maxPage = document.getElementById("lastPage").innerHTML;
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML)
+                let newCurrentPage = oldCurrentPage
+
                 if (oldCurrentPage < maxPage) {
-                    document.getElementById("currentPage").innerHTML = oldCurrentPage + 1;
+                    newCurrentPage = oldCurrentPage + 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
                 }
-                let newCurrentPage = document.getElementById("currentPage").innerHTML;
-                if (lastSelectId === "") {
+                else {
+                    newCurrentPage = maxPage;
+                }
+
+                if (lastSelectColumn === "" || lastSelectValue === "" || lastSelectTxbId === "") {
                     getUser(lastSortBtnColumn, newCurrentPage, lastSortOrder);
+                }
+                else {
+                    selectUser(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
                 }
             }
 
             function lastPage() {
-                let maxPage = document.getElementById("lastPage").innerHTML
-                if (lastSelectId === "") {
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                document.getElementById("currentPage").innerHTML = maxPage;
+
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
                     getUser(lastSortBtnColumn, maxPage, lastSortOrder);
+                }
+                else {
+                    selectUser(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, maxPage, lastSortOrder);
                 }
             }
 
@@ -110,6 +148,7 @@
                 axios.post("/MainUser/GetSortedUser", { Column: column, Page: page, SortOrder: sortOrder })
                     .then(response => {
                         populateTable(response.data.Item1);
+                        console.log(response.data.Item2);
                         document.getElementById("lastPage").innerHTML = response.data.Item2;
                     })
                     .catch(error => {
@@ -133,9 +172,12 @@
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
                 }
                 lastSortOrder = sortOrder;
-                if (lastSelectId === "") {
-                    console.log(column, currentPage, sortOrder)
+
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
                     getUser(column, currentPage, sortOrder);
+                }
+                else {
+                    selectUser(lastSelectTxbId, lastSelectColumn, lastSelectValue, column, currentPage, sortOrder)
                 }
             }
 
@@ -223,34 +265,42 @@
                 })
             }
 
-            function selectUser() {
-                var searchInput = document.getElementById('txbSelectUserId');
-                var selectUserId = searchInput.value;
+            function selectUser(txbSelectElementId, selectColumn, value, sortColumn, page, sortOrder) {
+                var searchInput = document.getElementById(txbSelectElementId);
+                var selectText = searchInput.value;
                 var regex = new RegExp(searchInput.pattern);
-                lastSelectId = selectUserId;
 
-                if (!regex.test(selectUserId)) {
-                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
+                //設定最後搜尋欄位
+                lastSelectTxbId = txbSelectElementId;
+                lastSelectColumn = selectColumn;
+
+                //如果說是第一次搜尋(分成找上次搜尋的資料或者新的搜尋)
+                if (value === "unknown")
+                {
+                    lastSelectValue = selectText;
+                    value = selectText;
+                }
+
+                if (!regex.test(selectText))
+                {
+                    document.getElementById("searchWarning").innerText = "請輸入有效格式";
                     return;
                 }
 
                 document.getElementById("searchWarning").innerText = " ";
 
-                axios.post("/MainUser/SelectUser", { UserId: selectUserId })
+                axios.post("/MainUser/SelectUser", { SelectColumn: selectColumn, Value: value, SortColumn: sortColumn, Page: page, SortOrder: sortOrder })
                     .then(response => {
-                        let users = response.data;
+                        let users = response.data.Item1;
                         if (!(users == "noUser")) {
-
-                            if (!Array.isArray(users)) {
-                                users = [users];  // 如果是單一物件，將其包裝成陣列
-                            }
-
+                            if (!Array.isArray(users))  users = [users]; 
                             populateTable(users);
+                            document.getElementById("lastPage").innerHTML = response.data.Item2;
                         }
                         else {
+                            document.getElementById("lastPage").innerHTML = 1;
                             document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
                         }
-
                     })
                     .catch(error => {
                         console.error("fail", error);
@@ -273,15 +323,15 @@
                         Swal.fire({
                             title: '修改使用者',
                             html: `
-                                     <label for="roleSelect">選擇角色:</label>
-                                     <select id="roleSelect" class="swal-selectRole">
-                                        ${roleSelectOptions}
-                                     </select>
-                                     <br><br>
-                                     <label for="statusSelect">選擇狀態:</label>
-                                     <select id="statusSelect" class="swal-selectStatus">
-                                        ${statusSelectOptions}
-                                     </select>`
+                                                     <label for="roleSelect">選擇角色:</label>
+                                                     <select id="roleSelect" class="swal-selectRole">
+                                                        ${roleSelectOptions}
+                                                     </select>
+                                                     <br><br>
+                                                     <label for="statusSelect">選擇狀態:</label>
+                                                     <select id="statusSelect" class="swal-selectStatus">
+                                                        ${statusSelectOptions}
+                                                     </select>`
                             ,
                             icon: 'question',
                             background: '#f0f0f0',
@@ -327,57 +377,6 @@
                 });
                 return selectOptions;
             }
-
-           /* function sortByColumn(id, column) {
-                let btn = document.querySelector(`#${id}`);
-                let currentBackground = getComputedStyle(btn).backgroundImage;
-                let data = getTableElelments();
-                let sortedData;
-
-                if (currentBackground.includes('arrowAscending.png')) {
-                    sortedData = sortData(data, column, false);
-                    btn.style.backgroundImage = "url('../images/arrowDescending.png')";
-                } else {
-                    sortedData = sortData(data, column, true);
-                    btn.style.backgroundImage = "url(../images/arrowAscending.png)";
-                }
-
-                populateTable(sortedData);
-            }
-
-            function getTableElelments() {
-                const table = document.getElementById("userTable");
-                const rows = table.querySelectorAll("tbody tr");
-                const headers = ["UserId", "Account", "Name", "Status", "RoleId"];
-
-                const data = Array.from(rows).map(row => {
-                    const cells = row.querySelectorAll("td");
-                    const obj = {};
-
-                    //狀態設置為1/0
-                    if (cells[3].innerText === "啟用") {
-                        cells[3].innerText = 1;
-                    } else if (cells[3].innerText === "禁用") {
-                        cells[3].innerText = 0;
-                    }
-
-                    for (var i = 0; i < 5; i++) {
-                        obj[headers[i]] = isNaN(cells[i].innerText) ? cells[i].innerText : Number(cells[i].innerText);
-                    }
-
-                    return obj;
-                });
-                return data
-            }
-
-            function sortData(data, column, ascending = true) {
-                return data.sort((a, b) => {
-                    if (a[column] < b[column]) return ascending ? -1 : 1;
-                    if (a[column] > b[column]) return ascending ? 1 : -1;
-                    return 0;
-                });
-            }
-            */
         </script>
     </main>
 </body>

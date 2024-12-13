@@ -27,7 +27,7 @@ namespace Pashamao
         {
             Exception exception = Server.GetLastError();
 
-            /*string source = "PashaMaoSource";
+            string source = "PashaMaoSource";
             string logName = "PashaMao";
 
             if (!EventLog.SourceExists(source))
@@ -38,9 +38,8 @@ namespace Pashamao
             EventLog eventLog = new EventLog();
             eventLog.Source = source;
 
-            eventLog.WriteEntry(exception.ToString(), EventLogEntryType.Information);
-            */
-
+            eventLog.WriteEntry(exception.ToString(), EventLogEntryType.Error);
+            
             if (exception != null)
             {
                 logger.Error(exception);

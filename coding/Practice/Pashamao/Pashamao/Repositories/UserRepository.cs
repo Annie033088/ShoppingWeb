@@ -120,6 +120,146 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
+        /// 排序搜尋之前的使用者資料並傳回
+        /// </summary>
+        /// <param name="column"></param>
+        /// <param name="page"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
+        internal (List<User>, int) GetSortedUser(string column, int page, string sortOrder)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            List<User> users = new List<User>();
+            int totalPages = 0;
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getSortedUser @column, @page, @sortOrder, @totalPages OUTPUT";
+
+                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(totalPagesOutput);
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                totalPages = (int)totalPagesOutput.Value;
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        User user = new User();
+                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
+                        user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
+                        user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
+                        user.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
+                        users.Add(user);
+                    }
+                    return (users, totalPages);
+                }
+                else
+                {
+                    return (null, 0);
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 取得查詢的使用者
+        /// </summary>
+        /// <param name="primaryId"></param>
+        /// <returns></returns>
+        internal (List<User>, int) GetSelectUser(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            List<User> users = new List<User>();
+            int totalPages = 0;
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getSelectedUser @selectColumn, @value, @sortColumn, @page, @sortOrder, @totalPages OUTPUT";
+
+                cmd.Parameters.Add("@selectColumn", SqlDbType.VarChar).Value = selectColumn;
+                cmd.Parameters.Add("@value", SqlDbType.VarChar).Value = value;
+                cmd.Parameters.Add("@sortColumn", SqlDbType.VarChar).Value = sortColumn;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(totalPagesOutput);
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                totalPages = (int)totalPagesOutput.Value;
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        User user = new User();
+                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
+                        user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
+                        user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
+                        user.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
+                        users.Add(user);
+                    }
+                    return (users, totalPages);
+                }
+                else
+                {
+                    return (null, 0);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                //判斷是否已關閉
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
+            }
+
+        }
+
+        /// <summary>
         /// 新增使用者
         /// </summary>
         /// <param name="user"></param>
@@ -279,62 +419,6 @@ namespace Pashamao.Repositories
             }
         }
 
-        /// <summary>
-        /// 取得1個使用者
-        /// </summary>
-        /// <param name="primaryId"></param>
-        /// <returns></returns>
-        internal User Get(int primaryId)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); 
-            SqlDataAdapter da = new SqlDataAdapter(); 
-            DataTable dt = new DataTable(); 
-            User user = new User();
-
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_getUser @uId";
-                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = primaryId;
-
-                cmd.Connection.Open();
-
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-
-                cmd.Connection.Close();
-
-                if (dt.Rows.Count > 0)
-                {
-                    DataRow dr = dt.Rows[0];
-                    user.UserId = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
-                    user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
-                    user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
-                    user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
-                    user.RoleId = dr.IsNull("f_roleId") ? 0 : dr.Field<byte>("f_roleId");
-
-                    Console.WriteLine(user.Name);
-                    return user;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                //判斷是否已關閉
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
-            }
-        }
 
         /// <summary>
         /// 修改使用者密碼
@@ -380,73 +464,5 @@ namespace Pashamao.Repositories
             }
         }
 
-        /// <summary>
-        /// 排序user並傳回table
-        /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
-        internal (List<User>, int) GetSortedUser(string column, int page, string sortOrder) {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr); 
-            SqlDataAdapter da = new SqlDataAdapter(); 
-            DataTable dt = new DataTable(); 
-            List<User> users = new List<User>();
-            int totalPages = 0;
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_getSortedUser @column, @page, @sortOrder, @totalPages OUTPUT";
-
-                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
-                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
-                SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(totalPagesOutput);
-
-                cmd.Connection.Open();
-
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-                totalPages = (int)totalPagesOutput.Value;
-
-                cmd.Connection.Close();
-
-                if (dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        User user = new User();
-                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
-                        user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
-                        user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
-                        user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
-                        user.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
-                        users.Add(user);
-                    }
-                    return (users, totalPages);
-                }
-                else
-                {
-                    return (null, 0);
-                }
-
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                //判斷是否已關閉
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
-            }
-        }
     }
 }

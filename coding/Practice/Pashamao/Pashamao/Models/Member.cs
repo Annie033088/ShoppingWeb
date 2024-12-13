@@ -23,7 +23,7 @@ namespace Pashamao.Models
 
         public bool Status { get; set; }
 
-        public string Points { get; set; }
+        public int Points { get; set; }
 
         public int Level { get; set; }
     }

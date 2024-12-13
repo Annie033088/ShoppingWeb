@@ -8,12 +8,12 @@ tbody button {
     margin-right: 5px;
 }
 
-.btnEditMember {
+.btnEditMemberData {
     background-image: url(../images/Pencel.jpg);
 }
 
-.btnDeleteMember {
-    background-image: url(../images/Garbage.jpg);
+.btnEditMemberLevel {
+    background-image: url(../images/Pencel.jpg);
 }
 
 .btnSort {
@@ -33,11 +33,15 @@ tbody button {
     background-image: url(../images/arrowAscending.png);
 }
 
-#sortByAcct {
+#sortByEmail {
     background-image: url(../images/arrowAscending.png);
 }
 
-#sortByName {
+#sortByPhone {
+    background-image: url(../images/arrowAscending.png);
+}
+
+#sortByMemberName {
     background-image: url(../images/arrowAscending.png);
 }
 
@@ -45,6 +49,6 @@ tbody button {
     background-image: url(../images/arrowAscending.png);
 }
 
-#sortByRole {
+#sortByLevel {
     background-image: url(../images/arrowAscending.png);
 }

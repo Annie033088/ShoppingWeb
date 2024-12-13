@@ -22,8 +22,13 @@ namespace Pashamao.Filters
             {
                 UserSessionModel userSession = HttpContext.Current.Session["UserSession"] as UserSessionModel;
 
-                //利用位元運算, 沒有符合就返回
-                if ((userSession.UserPermission & requiredPermissions) == 0)
+                if (userSession == null)
+                {
+                    filterContext.Result = new RedirectResult("/Login/Index");
+                    base.OnActionExecuting(filterContext);
+                    return;
+                }
+                else if ((userSession.UserPermission & requiredPermissions) == 0)
                 {
                     filterContext.Controller.TempData["NoPermissionMessage"] = "您無此權限";
                     filterContext.Result = new RedirectResult("/MainHome/Index");

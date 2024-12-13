@@ -17,13 +17,13 @@ namespace Pashamao.Models
         public string Pwd { get; set; }
 
         [StringLength(254, ErrorMessage = "信箱長度應該小於254")]
-        [RegularExpression("^([\\w\\.-]{1,64}@[a-zA-Z0-9-]{1,253}\\.[a-zA-Z]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
+        [RegularExpression("^([\\w\\.-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z0-9]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
         public string Email {  get; set; }
 
-        [StringLength(4, ErrorMessage = "信箱長度應該小於4")]
+        [RegularExpression("^([0-9]{0,4})?$", ErrorMessage = "國際碼應輸入小於4的數字")]
         public string CountryCode { get; set; }
 
-        [RegularExpression("^(\\d{4, 20})?$", ErrorMessage = "請輸入4位以上，且20位以內數字")]
+        [RegularExpression("^([0-9]{4,20})?$", ErrorMessage = "請輸入4位以上，且20位以內數字")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "名字不得為空")]

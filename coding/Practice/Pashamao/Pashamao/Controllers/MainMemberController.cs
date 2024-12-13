@@ -12,8 +12,8 @@ using System.Diagnostics;
 
 namespace Pashamao.Controllers
 {
-    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberAddress | UserPermission.EditMemberPhone | UserPermission.EditMemberEmail | UserPermission.EditMemberLevel)]
     [UserKickOutFilter]
+    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberAddress | UserPermission.EditMemberPhone | UserPermission.EditMemberEmail | UserPermission.EditMemberLevel)]
     public class MainMemberController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -33,11 +33,51 @@ namespace Pashamao.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 取得會員(無搜尋狀態)
+        /// </summary>
+        /// <param name="Column"></param>
+        /// <param name="Page"></param>
+        /// <param name="SortOrder"></param>
+        /// <returns></returns>
         public ActionResult GetSortedMember(string Column, string Page, string SortOrder)
         {
             try
             {
                 (List<Member> members, int totalPages) = mainMemberService.GetSortedMember(Column, Page, SortOrder);
+
+                if (members == null)
+                {
+                    string noMember = "noMember";
+                    return Json(noMember, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json((members, totalPages), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 搜尋會員並取得會員
+        /// </summary>
+        /// <param name="SelectColumn"></param>
+        /// <param name="Value"></param>
+        /// <param name="SortColumn"></param>
+        /// <param name="Page"></param>
+        /// <param name="SortOrder"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult SelectMember(string SelectColumn, string Value, string SortColumn, string Page, string SortOrder)
+        {
+            try
+            {
+                (List<Member> members, int totalPages) = mainMemberService.SelectMember(SelectColumn, Value, SortColumn, Page, SortOrder);
 
                 if (members == null)
                 {
@@ -89,12 +129,21 @@ namespace Pashamao.Controllers
                         {
                             foreach (var error in state.Errors)
                             {
-                                ViewBag.Message = ViewBag.Message + "失敗: " + error.ErrorMessage;
+                                ViewBag.Message = ViewBag.Message + "失敗: " + error.ErrorMessage + "；";
                             }
                         }
                     }
 
                     return View("CreateMember");
+                }
+
+                if (createMemberViewModel.CountryCode != null)
+                {
+                    if (createMemberViewModel.Phone == null)
+                    {
+                        ViewBag.Message = "無效的電話號碼, 請再試一次";
+                        return View("CreateMember");
+                    }
                 }
 
                 bool createSuccessFlag = mainMemberService.CreateMember(createMemberViewModel);
@@ -116,11 +165,19 @@ namespace Pashamao.Controllers
             }
         }
 
+        /// <summary>
+        /// 修改會員等級跟狀態
+        /// </summary>
+        /// <param name="MemberId"></param>
+        /// <param name="Level"></param>
+        /// <param name="Status"></param>
+        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditMemberLevel)]
         [HttpPost]
-        public ActionResult SelectMember(string Column, string Value)
+        public ActionResult SubmitEditMemberlevel(string MemberId, string Level, string Status)
         {
-            return View();
+            Console.WriteLine(MemberId, Level, Status);
+            return Json(mainMemberService.EditMemberlevel(MemberId, Level, Status), JsonRequestBehavior.AllowGet);
         }
-
     }
 }
