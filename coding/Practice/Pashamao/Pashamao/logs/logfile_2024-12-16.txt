@@ -1,0 +1,21 @@
+2024-12-16 09:56:35.0129 Info Application Start
+2024-12-16 10:00:00.5246 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:00.5246 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:00.5246 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:00.6383 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:01.2378 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:01.2378 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:01.2378 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:01.2408 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:22.4490 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:22.4490 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:22.4490 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:22.4490 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'MemberAddress'。
+2024-12-16 10:00:28.0068 Info Application End
+2024-12-16 10:00:30.7141 Info Application Start
+2024-12-16 16:22:46.4925 Info Application End
+2024-12-16 16:38:08.0146 Info Application Start
+2024-12-16 16:57:22.1108 Info Application End
+2024-12-16 16:57:23.8892 Info Application Start
+2024-12-16 17:21:23.6967 Info Application End
+2024-12-16 17:21:27.3504 Info Application Start

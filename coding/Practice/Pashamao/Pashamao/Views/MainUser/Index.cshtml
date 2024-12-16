@@ -148,7 +148,6 @@
                 axios.post("/MainUser/GetSortedUser", { Column: column, Page: page, SortOrder: sortOrder })
                     .then(response => {
                         populateTable(response.data.Item1);
-                        console.log(response.data.Item2);
                         document.getElementById("lastPage").innerHTML = response.data.Item2;
                     })
                     .catch(error => {

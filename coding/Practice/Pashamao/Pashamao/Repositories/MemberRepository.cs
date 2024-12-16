@@ -134,6 +134,15 @@ namespace Pashamao.Repositories
             }
         }
 
+        /// <summary>
+        /// 取得搜尋且排序後的會員資料
+        /// </summary>
+        /// <param name="selectColumn"></param>
+        /// <param name="value"></param>
+        /// <param name="sortColumn"></param>
+        /// <param name="page"></param>
+        /// <param name="sortOrder"></param>
+        /// <returns></returns>
         internal (List<Member>, int) GetSelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
         {
             SqlCommand cmd = new SqlCommand();

@@ -1,0 +1,172 @@
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "商品管理";
+}
+
+
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/css/Product.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <main>
+        <h2 class="text-center mb-3">@ViewBag.Title</h2>
+        <div id="navCategory" class="text-center col-sm-12 row">
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+            <a class="h5 text-black col-1">分類</a>
+        </div>
+        <div id="productList" class="container col-sm-12 row text-center">
+
+        </div>
+        <nav aria-label="Data navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><button class="page-link" id="previousPage" onclick="">Previous</button></li>
+                <li class="page-item"><button class="page-link" id="firstPage" onclick="">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="currentPage">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="lastPage" onclick="">9</button></li>
+                <li class="page-item"><button class="page-link" id="nextPage" onclick="">Next</button></li>
+            </ul>
+        </nav>
+        <script>
+
+            let lastPage = "";
+            let lastCategory = "All";
+
+            const productList = document.getElementById("productList");
+
+            productList.innerHTML = '';
+            for (var i = 0; i < 9; i++) {
+
+                const productBox = document.createElement('div');
+                productBox.className = "col-4";
+
+                const productPicBox = document.createElement('div');
+                const productPicUrl = document.createElement('a');
+                const productPic = document.createElement('img');
+                productPic.src = "../images/ProductImage/floorMat/地墊.jpg";
+                productPicUrl.appendChild(productPic);
+                productPicBox.appendChild(productPicUrl);
+
+                const productTitleBox = document.createElement('div');
+                const productTitle = document.createElement('a');
+                productTitle.innerHTML = "防滑地墊(多色)";
+                const productPrice = document.createElement('p');
+                productPrice.innerHTML = "NT$50";
+                productTitleBox.appendChild(productTitle);
+                productTitleBox.appendChild(productPrice);
+
+                productBox.appendChild(productPicBox);
+                productBox.appendChild(productTitleBox);
+
+                productList.appendChild(productBox);
+            }
+
+            function getAll() {
+                lastCategory = "All";
+                lastPage = "1";
+                getProduct(1, lastCategory);
+            }
+
+            function firstPage() {
+                document.getElementById("currentPage").innerHTML = 1;
+
+                getProduct(1, lastCategory);
+            }
+
+            function previousPage() {
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
+
+                if (oldCurrentPage > 1) {
+                    newCurrentPage = oldCurrentPage - 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else {
+                    newCurrentPage = 1
+                }
+
+                getProduct(newCurrentPage, lastCategory);
+            }
+
+            function nextPage() {
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML)
+                let newCurrentPage = oldCurrentPage
+
+                if (oldCurrentPage < maxPage) {
+                    newCurrentPage = oldCurrentPage + 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else {
+                    newCurrentPage = maxPage;
+                }
+
+                getProduct(newCurrentPage, lastCategory);
+            }
+
+            function lastPage() {
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                document.getElementById("currentPage").innerHTML = maxPage;
+
+                getProduct(maxPage, lastCategory);
+            }
+
+            function getProduct(page, category) {
+                lastPage = page;
+                lastCategory = category;
+                axios.post("/Product/GetProduct", { Page: page, Category: category })
+                    .then(response => {
+                        if (response.data != "noProduct") {
+                            populateProduct(response.data.Item1);
+                            document.getElementById("lastPage").innerHTML = response.data.Item2;
+                        }
+                    })
+                    .catch(error => {
+                        console.error("fail", error);
+                    })
+            }
+
+            function populateProduct(products) {
+                const productList = document.getElementById("productList");
+
+                productList.innerHTML = '';
+
+                products.forEach((product, index) => {
+                    const productBox = document.createElement('div');
+                    productBox.className = "col-4";
+
+                    const productPicBox = document.createElement('div');
+                    const productPicUrl = document.createElement('a');
+                    const productPic = document.createElement('img');
+                    productPic.src = "../images/ProductImage/floorMat/地墊.jpg";
+                    productPicUrl.appendChild(productPic);
+                    productPicBox.appendChild(productPicUrl);
+
+                    const productTitleBox = document.createElement('div');
+                    const productTitle = document.createElement('a');
+                    productTitle.innerHTML = "防滑地墊(多色)";
+                    const productPrice = document.createElement('p');
+                    productPrice.innerHTML = "NT$50";
+                    productTitleBox.appendChild(productTitle);
+                    productTitleBox.appendChild(productPrice);
+
+                    productBox.appendChild(productPicBox);
+                    productBox.appendChild(productTitleBox);
+
+                    productList.appendChild(productBox);
+                });
+            }
+        </script>
+    </main>
+</body>

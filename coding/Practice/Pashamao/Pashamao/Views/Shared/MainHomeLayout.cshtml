@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-sm sidebar">
+    <nav class="navbar navbar-expand-sm sidebar " style="position:sticky">
         <div class="container">
             <ul class="navbar-nav  flex-column ">
                 <li class=""> @Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
@@ -32,6 +32,15 @@
                     <ul id="memberSubMenu" class="collapse">
                         <li>@Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("會員地址管理", "Index", "MemberAddress", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#productSubMenu" aria-expanded="false" aria-controls="productSubMenu">
+                        ➤ 商品
+                    </a>
+                    <ul id="productSubMenu" class="collapse">
+                        <li>@Html.ActionLink("商品管理", "Index", "Product", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("分類管理", "Index", "Product", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </li>
             </ul>
