@@ -1,0 +1,9 @@
+	@productName NVARCHAR(30),
+	@description NVARCHAR(40),
+	@introduction NVARCHAR(1500),
+	@status BIT,
+	@imageUrl NVARCHAR(100),
+	@style NVARCHAR(25),
+	@price DECIMAL,
+	@stockQuantity INT,
+	@categoryName NVARCHAR(10)

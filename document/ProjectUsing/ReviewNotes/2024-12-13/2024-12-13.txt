@@ -2,8 +2,5 @@
 
 使用custom error 直接顯示Error在瀏覽器上
 
-demo：商品新增功能
+demo：商品新增功能(盡量)
 
-未來有機會-
-優化：每次請求檢查permission, sessionId, 如何減少入庫
-優化：修改密碼時，　請使用者重複輸入一次密碼　檢查一不一致

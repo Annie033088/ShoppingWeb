@@ -1,0 +1,19 @@
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "商品信息";
+    var jsonData = ViewBag.JsonData;
+}
+
+
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/css/Product.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <main>
+        <h2 class="text-center mb-3">@ViewBag.Title</h2>
+           
+    </main>
+    <script>
+        console.log(jsonData);
+    </script>
+</body>

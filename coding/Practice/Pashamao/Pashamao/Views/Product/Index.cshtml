@@ -40,48 +40,19 @@
         </nav>
         <script>
 
-            let lastPage = "";
             let lastCategory = "All";
 
-            const productList = document.getElementById("productList");
-
-            productList.innerHTML = '';
-            for (var i = 0; i < 9; i++) {
-
-                const productBox = document.createElement('div');
-                productBox.className = "col-4";
-
-                const productPicBox = document.createElement('div');
-                const productPicUrl = document.createElement('a');
-                const productPic = document.createElement('img');
-                productPic.src = "../images/ProductImage/floorMat/地墊.jpg";
-                productPicUrl.appendChild(productPic);
-                productPicBox.appendChild(productPicUrl);
-
-                const productTitleBox = document.createElement('div');
-                const productTitle = document.createElement('a');
-                productTitle.innerHTML = "防滑地墊(多色)";
-                const productPrice = document.createElement('p');
-                productPrice.innerHTML = "NT$50";
-                productTitleBox.appendChild(productTitle);
-                productTitleBox.appendChild(productPrice);
-
-                productBox.appendChild(productPicBox);
-                productBox.appendChild(productTitleBox);
-
-                productList.appendChild(productBox);
-            }
+            getAll();
 
             function getAll() {
                 lastCategory = "All";
-                lastPage = "1";
-                getProduct(1, lastCategory);
+                getAllProduct(1);
             }
 
             function firstPage() {
                 document.getElementById("currentPage").innerHTML = 1;
 
-                getProduct(1, lastCategory);
+                getAllProduct(1);
             }
 
             function previousPage() {
@@ -96,7 +67,7 @@
                     newCurrentPage = 1
                 }
 
-                getProduct(newCurrentPage, lastCategory);
+                getAllProduct(newCurrentPage);
             }
 
             function nextPage() {
@@ -112,20 +83,18 @@
                     newCurrentPage = maxPage;
                 }
 
-                getProduct(newCurrentPage, lastCategory);
+                getAllProduct(newCurrentPage);
             }
 
             function lastPage() {
                 let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
                 document.getElementById("currentPage").innerHTML = maxPage;
 
-                getProduct(maxPage, lastCategory);
+                getAllProduct(maxPage);
             }
 
-            function getProduct(page, category) {
-                lastPage = page;
-                lastCategory = category;
-                axios.post("/Product/GetProduct", { Page: page, Category: category })
+            function getAllProduct(page) {
+                axios.post("/Product/GetAllProduct", { Page: page })
                     .then(response => {
                         if (response.data != "noProduct") {
                             populateProduct(response.data.Item1);
@@ -141,23 +110,26 @@
                 const productList = document.getElementById("productList");
 
                 productList.innerHTML = '';
-
-                products.forEach((product, index) => {
+                for (var i = 0; i < products.ProductId.length; i++) {
                     const productBox = document.createElement('div');
                     productBox.className = "col-4";
 
                     const productPicBox = document.createElement('div');
                     const productPicUrl = document.createElement('a');
                     const productPic = document.createElement('img');
-                    productPic.src = "../images/ProductImage/floorMat/地墊.jpg";
+                    productPic.src = products.ImageUrl[i];
+                    productPicUrl.className = "btn";
+                    productPicUrl.addEventListener('click', function () { getToProductDetail(products.ProductId[i]) })
                     productPicUrl.appendChild(productPic);
                     productPicBox.appendChild(productPicUrl);
 
                     const productTitleBox = document.createElement('div');
                     const productTitle = document.createElement('a');
-                    productTitle.innerHTML = "防滑地墊(多色)";
+                    productTitle.innerHTML = products.ProductId[i] + ". " + products.Name[i];
+                    productPicUrl.className = "btn";
+                    productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i]) })
                     const productPrice = document.createElement('p');
-                    productPrice.innerHTML = "NT$50";
+                    productPrice.innerHTML = products.Price[i];
                     productTitleBox.appendChild(productTitle);
                     productTitleBox.appendChild(productPrice);
 
@@ -165,7 +137,23 @@
                     productBox.appendChild(productTitleBox);
 
                     productList.appendChild(productBox);
-                });
+                };
+            }
+
+            function getToProductDetail(ProductId) {
+                axios.post("/Product/GetProductDetail", { ProductId: ProductId })
+                    .then(response => {
+                        if (response.status === 200) {
+                            document.open();
+                            document.write(response.data);
+                            document.close();
+                        } else {
+                            console.error('請求失敗:', response);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('請求出錯:', error);
+                    });
             }
         </script>
     </main>
