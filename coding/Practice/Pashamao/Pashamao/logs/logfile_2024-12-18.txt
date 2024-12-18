@@ -1,0 +1,96 @@
+2024-12-18 09:02:29.8870 Info Application Start
+2024-12-18 09:09:25.3003 Error System.Data.SqlClient.SqlException: 程序或函數 'pro_pashamao_getAllProduct' 必須有參數 '@totalPages'，但是並未提供。
+2024-12-18 09:09:41.4099 Error System.Data.SqlClient.SqlException: 程序或函數 'pro_pashamao_getAllProduct' 必須有參數 '@totalPages'，但是並未提供。
+2024-12-18 09:09:53.2497 Error System.Data.SqlClient.SqlException: 程序或函數 'pro_pashamao_getAllProduct' 必須有參數 '@totalPages'，但是並未提供。
+2024-12-18 09:10:38.4389 Info Application Start
+2024-12-18 09:11:25.4524 Error System.Data.SqlClient.SqlException: 程序或函數 'pro_pashamao_getAllProduct' 必須有參數 '@totalPages'，但是並未提供。
+2024-12-18 09:14:21.5689 Error System.ArgumentException: 資料行 'f_productStyleId' 不屬於資料表 Table。
+2024-12-18 09:15:01.8871 Error System.ArgumentException: 資料行 'f_productStyleId' 不屬於資料表 Table。
+2024-12-18 09:17:17.5402 Error System.ArgumentException: 資料行 'f_productStyleId' 不屬於資料表 Table。
+2024-12-18 09:29:09.1998 Info Application Start
+2024-12-18 09:33:51.5602 Info Application End
+2024-12-18 09:33:53.6333 Info Application Start
+2024-12-18 09:38:21.2123 Info Application End
+2024-12-18 09:38:24.8110 Info Application Start
+2024-12-18 09:43:08.6991 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/18 上午 09:43:08.
+2024-12-18 09:52:16.8208 Info Application End
+2024-12-18 09:54:28.3550 Info Application Start
+2024-12-18 10:02:58.2998 Info Application End
+2024-12-18 10:03:06.5174 Info Application Start
+2024-12-18 10:07:54.2554 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'GetProductDetail'。
+2024-12-18 10:08:17.8769 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'GetProductDetail'。
+2024-12-18 10:08:22.0861 Info Application End
+2024-12-18 10:08:24.4643 Info Application Start
+2024-12-18 10:08:31.1371 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'GetProductDetail'。
+2024-12-18 10:09:07.9920 Info Application End
+2024-12-18 10:09:10.0901 Info Application Start
+2024-12-18 10:11:53.2606 Info Application End
+2024-12-18 10:12:02.8621 Info Application Start
+2024-12-18 10:34:58.0554 Info Application Start
+2024-12-18 10:41:41.3655 Info Application Start
+2024-12-18 10:41:42.6148 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 10:41:49.6146 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 10:57:24.1605 Info Application End
+2024-12-18 10:57:49.4245 Info Application Start
+2024-12-18 11:05:29.0076 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 11:09:43.0957 Info Application End
+2024-12-18 11:09:44.7336 Info Application Start
+2024-12-18 11:32:56.6428 Info Application End
+2024-12-18 11:33:45.4069 Info Application Start
+2024-12-18 11:47:47.4504 Info Application End
+2024-12-18 11:47:49.0646 Info Application Start
+2024-12-18 11:54:15.2203 Info Application End
+2024-12-18 11:54:18.3898 Info Application Start
+2024-12-18 11:54:18.8236 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 11:55:38.9940 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 12:01:25.8124 Info Application End
+2024-12-18 12:01:29.1711 Info Application Start
+2024-12-18 12:05:53.1021 Info Application End
+2024-12-18 12:05:54.5464 Info Application Start
+2024-12-18 12:56:53.6261 Info Application End
+2024-12-18 12:58:11.3043 Info Application Start
+2024-12-18 13:08:11.7245 Info Application End
+2024-12-18 13:08:13.3741 Info Application Start
+2024-12-18 13:16:55.6434 Info Application End
+2024-12-18 13:16:58.7124 Info Application Start
+2024-12-18 13:32:09.5345 Info Application End
+2024-12-18 13:32:11.3336 Info Application Start
+2024-12-18 13:54:26.2182 Info Application End
+2024-12-18 13:54:30.0657 Info Application Start
+2024-12-18 14:25:41.9489 Info Application End
+2024-12-18 14:25:44.3873 Info Application Start
+2024-12-18 14:46:10.4488 Info Application End
+2024-12-18 14:46:41.8064 Info Application Start
+2024-12-18 14:47:38.3862 Info Application End
+2024-12-18 14:47:42.1374 Info Application Start
+2024-12-18 14:47:51.2958 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 14:59:11.2644 Info Application End
+2024-12-18 14:59:12.9628 Info Application Start
+2024-12-18 15:32:58.5200 Info Application End
+2024-12-18 15:33:01.5900 Info Application Start
+2024-12-18 15:49:27.3805 Info Application End
+2024-12-18 15:49:43.9485 Info Application Start
+2024-12-18 16:10:42.7502 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 16:12:51.8072 Info Application End
+2024-12-18 16:12:54.2738 Info Application Start
+2024-12-18 16:14:30.9087 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 16:38:27.4887 Info Application End
+2024-12-18 16:38:37.3145 Info Application Start
+2024-12-18 16:44:28.6071 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 16:50:18.4039 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 16:55:27.0283 Info Application End
+2024-12-18 16:55:33.6431 Info Application Start
+2024-12-18 17:07:55.6470 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-18 17:17:06.2861 Info Application End
+2024-12-18 17:17:08.0923 Info Application Start

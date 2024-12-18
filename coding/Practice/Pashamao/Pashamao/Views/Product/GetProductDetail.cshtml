@@ -1,19 +1,257 @@
 ﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
     ViewBag.Title = "商品信息";
-    var jsonData = ViewBag.JsonData;
 }
 
 
 <body>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="~/css/Product.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/ProductDetail.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
-           
+        <div>
+            <div id="imageBox" style="height: 100%; width: 60%;">
+                <div id="mainImageBox">
+                    <img id="mainImage" src="#" style="height: 100%; width: 50%;" />
+                </div>
+                <div id="navImageBox" class="navImageBox" style="width: 50%; overflow: hidden; display: flex; position: relative">
+
+                    <button id="btnPrevious" class="btn btn-dark btnNav" style="position: absolute; " onclick="imagePrevious()"></button>
+                    <div id="navImageContainer" class="navImageContainer">
+                        <img id="navImage1" src="#" class="me-2 navImage" style="width: 25%; height:100%" />
+                    </div>
+                    <button id="btnNext" class="btn btn-dark btnNav" style="position: absolute; right: 0; width: 5%; height: 100%" onclick="imageNext()"></button>
+                </div>
+                <button id="btnEditImage" class="btn btn-dark mt-1" style="height: 100%; width: 50%; opacity:0.9" onclick="getImageAndEdit()">修改圖片</button>
+            </div>
+        </div>
     </main>
     <script>
-        console.log(jsonData);
+        var jsonData = @Html.Raw(ViewBag.JsonData);
+        let product = jsonData.Item1;
+        let styles = jsonData.Item2;
+        let images = jsonData.Item3;
+        let totalImages;
+        let currentImageIndex = 0;
+        let showNavImageCnt = 4;
+        let navImages;
+        const prevBtn = document.getElementById('btnPrevious');
+        const nextBtn = document.getElementById('btnNext');
+
+        console.log(product, styles, images);
+        populateImage();
+
+        updateImageDisplay();
+
+
+        function populateProductDetail() {
+        }
+
+        function populateImage() {
+            mainImage = document.getElementById("mainImage");
+            navImage1 = document.getElementById("navImage1");
+            mainImage.src = styles[0].ImageUrl;
+            navImage1.src = styles[0].ImageUrl;
+            navImage1.addEventListener("click", function () {
+                setMainImage(navImage1.src);
+            })
+
+            navImageContainer = document.getElementById("navImageContainer");
+
+            for (var i = 0; i < images.length; i++) {
+                let navProductImage = document.createElement('img');
+                navProductImage.src = images[i].ImageUrl;
+                navProductImage.style = " width: 25%; height:100%";
+                navProductImage.className = "me-2 navImage";
+                navProductImage.addEventListener("click", function () {
+                    setMainImage(navProductImage.src);
+                })
+                navImageContainer.appendChild(navProductImage);
+            }
+
+            for (var i = 0; i < 5; i++) {
+                var navProductImage = document.createElement('img');
+                navProductImage.src = images[0].ImageUrl;
+                navProductImage.style = " width: 25%; height:100%";
+                navProductImage.className = "me-2 navImage";
+                navProductImage.addEventListener("click", function () {
+                    setMainImage(navProductImage.src);
+                })
+                navImageContainer.appendChild(navProductImage);
+            }
+            navImages = document.querySelectorAll('.navImage');
+            totalImages = navImages.length;
+        }
+
+        function updateImageDisplay() {
+            navImages.forEach((img, index) => {
+                if (index < showNavImageCnt + currentImageIndex &&index >=currentImageIndex) {
+                    img.style.display = 'block';
+                } else {
+                    img.style.display = 'none';
+                }
+            });
+
+            if (currentImageIndex <= 0)
+            {
+                prevBtn.style.opacity = "0";
+                prevBtn.disabled = true;
+            } else
+            {
+                prevBtn.style.opacity = "0.8";
+                prevBtn.disabled = false;
+            }
+
+            if (currentImageIndex >= totalImages - showNavImageCnt)
+            {
+                nextBtn.style.opacity = "0";
+                nextBtn.disabled = true;
+            } else
+            {
+                nextBtn.style.opacity = "0.8";
+                nextBtn.disabled = false;
+            }
+        }
+
+        function imagePrevious() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateImageDisplay();
+            }
+        }
+
+        function imageNext() {
+            if (currentImageIndex < totalImages - showNavImageCnt) {
+                currentImageIndex++;
+                updateImageDisplay();
+            }
+        }
+
+        function setMainImage(imageUrl) {
+            mainImage = document.getElementById("mainImage");
+            mainImage.src = imageUrl;
+        }
+
+        function getImageAndEdit()
+        {
+            let imgHtml = "";
+            
+            images.forEach(img => {
+                let fileName = img.ImageUrl.split('\\').pop();
+                imgHtml += `
+                    <div id="ProductiImageBox + ${img.ProductImageId}" class="imageContainer me-2 col-6" style=" position: relative; ">
+                        <img id="ProductImage + ${img.ProductImageId}" src="${img.ImageUrl}" class="img-fluid" />
+                        <p >${fileName}</p>
+                        <button class = "btn btnDeleteImage" style="" data-id="${img.ProductImageId}">
+                    <div>`
+            })
+
+
+            Swal.fire({
+                title: '修改圖片',
+                width: '80%',
+                html: `
+                <div id= "addImageBox"> 
+                    <div id= "imagePreviews" style = "display: flex; align-items: flex-start; justify-content: space-between; position: relative">
+                           ${imgHtml}
+                    </div>
+                </div>
+                `
+                ,
+                background: '#f0f0f0',
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                heightAuto: true,
+                didOpen: () => {
+
+                    var addImageBox = document.getElementById('addImageBox');
+                    var imgUploadBox = document.createElement('div');
+                    var inputElement = document.createElement('input');
+                    var btnAddImage = document.createElement('button');
+                    imgUploadBox.id = "imgUploadBox";
+                    inputElement.type = "file";
+                    inputElement.id = "txbImage";
+                    inputElement.accept = "image/*";
+                    inputElement.style.display = "none";
+                    btnAddImage.id = "btnUploadImage";
+                    btnAddImage.className = "btn btnAdd"
+
+                    imgUploadBox.appendChild(btnAddImage);
+                    imgUploadBox.appendChild(inputElement);
+                    addImageBox.appendChild(imgUploadBox);
+
+
+                    const imagePreviews = document.getElementById('imagePreviews');
+                    const txbImage = document.getElementById('txbImage');
+                    const btnUploadImage = document.getElementById('btnUploadImage');
+                    btnUploadImage.addEventListener('click', () => {
+                        txbImage.click();
+                    });
+
+                    txbImage.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function (event) {
+                                const imgNewBox = document.createElement('div');
+                                const imgElement = document.createElement('img');
+                                const imgNameElement = document.createElement('p');
+                                const btnDeleteImage = document.createElement('button');
+                                imgNameElement.innerHTML = file.name;
+                                imgNewBox.className = "imageContainer me-2 col-6";
+                                imgNewBox.style.position = "relative";
+                                btnDeleteImage.className = "btn btnDeleteImage";
+
+                                imgElement.src = event.target.result;
+                                imgElement.className = "img-fluid newAddImages";
+
+                                btnDeleteImage.addEventListener('click', (event) => {
+                                    const parentDiv = event.target.parentElement;
+
+                                    parentDiv.remove();
+                                });
+
+                                imgNewBox.appendChild(imgElement);
+                                imgNewBox.appendChild(imgNameElement);
+                                imgNewBox.appendChild(btnDeleteImage);
+                                imagePreviews.appendChild(imgNewBox);
+                            };
+                            reader.readAsDataURL(file);
+                    });
+
+                    let delImageList = "";
+                    const buttons = document.querySelectorAll('.btnDeleteImage')
+                    buttons.forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            delImageList.push(button.dataset.id);
+                            const parentDiv = event.target.parentElement;
+
+                            parentDiv.remove();
+                        });
+                    });
+
+                }
+                preConfirm: () => {
+                    const roleSelectValue = document.getElementById('roleSelect').value;
+                    const statusSelectValue = document.getElementById('statusSelect').value;
+                    return { delImageList: delImageList};
+                }
+            })/*.then((result) => {
+                if (result.isConfirmed) {
+                    axios.post("/MainUser/SubmitEditUserRole", {
+                        UserId: userId,
+                        RoleId: result.value.roleSelect,
+                        Status: result.value.statusSelect
+                    })
+                        .then(response => {
+                            window.location.href = "/MainUser/Index"
+                        })
+                        .catch(error => {
+                            console.error("fail", error);
+                        })
+                }
+            });*/
+        }
     </script>
 </body>

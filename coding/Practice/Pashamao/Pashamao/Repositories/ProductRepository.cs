@@ -92,7 +92,7 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAllProduct @productId";
+                cmd.CommandText = "EXEC pro_pashamao_getProductDetail @productId";
 
                 cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
 
@@ -112,17 +112,18 @@ namespace Pashamao.Repositories
                 product.CreateTime = ds.Tables[0].Rows[0].IsNull("f_createTime") ? DateTime.Now : ds.Tables[0].Rows[0].Field<DateTime>("f_createTime");
                 product.LastShelveEditTime = ds.Tables[0].Rows[0].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[0].Rows[0].Field<DateTime>("f_lastShelveEditTime");
 
+                Console.WriteLine(ds.Tables[1].Rows[0]);
 
                 for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
                 {
                     ProductStyle style = new ProductStyle();
-                    style.ProductStyleId = ds.Tables[0].Rows[i].IsNull("f_productStyleId") ? 0 : ds.Tables[0].Rows[i].Field<int>("f_productStyleId");
-                    style.Style = ds.Tables[0].Rows[i].IsNull("f_style") ? string.Empty : ds.Tables[0].Rows[i].Field<string>("f_style");
-                    style.Price = ds.Tables[0].Rows[i].IsNull("f_price") ? 0 : ds.Tables[0].Rows[i].Field<decimal>("f_price");
-                    style.StockQuantity = ds.Tables[0].Rows[i].IsNull("f_stockQuantity") ? 0 : ds.Tables[0].Rows[i].Field<int>("f_stockQuantity");
-                    style.ImageUrl = ds.Tables[0].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[0].Rows[i].Field<string>("f_imageUrl");
-                    style.CreateTime = ds.Tables[0].Rows[i].IsNull("f_createTime") ? DateTime.Now : ds.Tables[0].Rows[i].Field<DateTime>("f_createTime");
-                    style.LastShelveEditTime = ds.Tables[0].Rows[i].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[0].Rows[i].Field<DateTime>("f_lastShelveEditTime");
+                    style.ProductStyleId = ds.Tables[1].Rows[i].IsNull("f_productStyleId") ? 0 : ds.Tables[1].Rows[i].Field<int>("f_productStyleId");
+                    style.Style = ds.Tables[1].Rows[i].IsNull("f_style") ? string.Empty : ds.Tables[1].Rows[i].Field<string>("f_style");
+                    style.Price = ds.Tables[1].Rows[i].IsNull("f_price") ? 0 : ds.Tables[1].Rows[i].Field<decimal>("f_price");
+                    style.StockQuantity = ds.Tables[1].Rows[i].IsNull("f_stockQuantity") ? 0 : ds.Tables[1].Rows[i].Field<int>("f_stockQuantity");
+                    style.ImageUrl = ds.Tables[1].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[1].Rows[i].Field<string>("f_imageUrl");
+                    style.CreateTime = ds.Tables[1].Rows[i].IsNull("f_createTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_createTime");
+                    style.LastShelveEditTime = ds.Tables[1].Rows[i].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_lastShelveEditTime");
 
                     styles.Add(style);
                 }
@@ -130,11 +131,12 @@ namespace Pashamao.Repositories
                 for (int i = 0; i < ds.Tables[2].Rows.Count; i++)
                 {
                     ProductImage image = new ProductImage();
-                    image.ProductImageId = ds.Tables[0].Rows[i].IsNull("f_productImageId") ? 0 : ds.Tables[0].Rows[i].Field<int>("f_productImageId");
-                    image.ImageUrl = ds.Tables[0].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[0].Rows[i].Field<string>("f_imageUrl");
+                    image.ProductImageId = ds.Tables[2].Rows[i].IsNull("f_productImageId") ? 0 : ds.Tables[2].Rows[i].Field<int>("f_productImageId");
+                    image.ImageUrl = ds.Tables[2].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[2].Rows[i].Field<string>("f_imageUrl");
 
                     images.Add(image);
                 }
+
 
                 return (product, styles, images);
             }

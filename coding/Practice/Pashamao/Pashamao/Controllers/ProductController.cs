@@ -62,23 +62,23 @@ namespace Pashamao.Controllers
             }
         }
 
-        [HttpPost]
         public ActionResult GetProductDetail(string ProductId)
         {
-            TempData["ProductId"] = ProductId;
             (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productService.GetProductDetail(ProductId);
 
-            if (images != null)
+
+            if (images == null)
             {
-                ViewBag.JsonData = JsonConvert.SerializeObject((product, styles, "noImage"));
+                string jsonData = JsonConvert.SerializeObject((product, styles, "noImage"));
+                ViewBag.JsonData = jsonData;
             }
             else
             {
-                ViewBag.JsonData = JsonConvert.SerializeObject((product, styles, images));
+                string jsonData = JsonConvert.SerializeObject((product, styles, images));
+                ViewBag.JsonData = jsonData;
             }
 
             return View();
         }
-
     }
 }

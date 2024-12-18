@@ -1,0 +1,63 @@
+﻿.btnNav {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+
+#btnPrevious {
+    background-image: url("/images/arrowPre.png");
+}
+
+#btnNext {
+    background-image: url("/images/arrowNext.png");
+}
+
+.btnAdd {
+    position: relative;
+    background-image: url("/images/add.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    opacity: 0.6;
+}
+
+.btnAdd:hover {
+    border: solid;
+    opacity: 0.9;
+}
+
+.navImage:hover {
+    cursor: pointer;
+}
+
+.navImageContainer {
+    display: flex;
+}
+#imagePreviews {
+    width: 100%;
+    max-width: 250px;
+    max-height: 250px;
+    object-fit: cover;
+}
+.btnDeleteImage {
+    position: absolute;
+    background-image: url("/images/del.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    top: 0%;
+    right: 0%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+    .btnDeleteImage:hover {
+        opacity: 0.9;
+    }

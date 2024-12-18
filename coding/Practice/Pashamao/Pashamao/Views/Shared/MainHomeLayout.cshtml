@@ -73,16 +73,16 @@
 
     <script>
         //設定使用者名稱
-        const cookieName = getCookie("cookieName");
-        const userName = document.getElementsByClassName("userName");
+        var cookieName = getCookie("cookieName") == null ? "" : getCookie("cookieName");
+        var userName = document.getElementsByClassName("userName");
 
         for (var i = 0; i < userName.length; i++) {
             userName[i].innerHTML = cookieName;
         }
 
         function getCookie(name) {
-            const nameEq = name + "=";
-            const cookies = document.cookie.split(';');
+            var nameEq = name + "=";
+            var cookies = document.cookie.split(';');
 
             for (let i = 0; i < cookies.length; i++) {
                 let cookie = cookies[i].trim(); 

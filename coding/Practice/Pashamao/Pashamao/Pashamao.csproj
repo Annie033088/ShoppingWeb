@@ -195,6 +195,7 @@
     <Content Include="css\MainMember.css" />
     <Content Include="css\MainUser.css" />
     <Content Include="css\Product.css" />
+    <Content Include="css\ProductDetail.css" />
     <Content Include="css\UserRole.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

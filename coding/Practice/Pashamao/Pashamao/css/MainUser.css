@@ -1,6 +1,6 @@
 ﻿
 tbody button {
-    background-size: cover; 
+    background-size: contain; 
     background-position: center; 
     border: none;
     padding: 10px; 

@@ -107,28 +107,28 @@
             }
 
             function populateProduct(products) {
-                const productList = document.getElementById("productList");
+                var productList = document.getElementById("productList");
 
                 productList.innerHTML = '';
-                for (var i = 0; i < products.ProductId.length; i++) {
-                    const productBox = document.createElement('div');
+                for (let i = 0; i < products.ProductId.length; i++) {
+                    var productBox = document.createElement('div');
                     productBox.className = "col-4";
 
-                    const productPicBox = document.createElement('div');
-                    const productPicUrl = document.createElement('a');
-                    const productPic = document.createElement('img');
+                    var productPicBox = document.createElement('div');
+                    var productPicUrl = document.createElement('a');
+                    var productPic = document.createElement('img');
                     productPic.src = products.ImageUrl[i];
                     productPicUrl.className = "btn";
                     productPicUrl.addEventListener('click', function () { getToProductDetail(products.ProductId[i]) })
                     productPicUrl.appendChild(productPic);
                     productPicBox.appendChild(productPicUrl);
 
-                    const productTitleBox = document.createElement('div');
-                    const productTitle = document.createElement('a');
-                    productTitle.innerHTML = products.ProductId[i] + ". " + products.Name[i];
+                    var productTitleBox = document.createElement('div');
+                    var productTitle = document.createElement('a');
+                    productTitle.innerHTML = i + ". " + products.Name[i];
                     productPicUrl.className = "btn";
-                    productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i]) })
-                    const productPrice = document.createElement('p');
+                    productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i])})
+                    var productPrice = document.createElement('p');
                     productPrice.innerHTML = products.Price[i];
                     productTitleBox.appendChild(productTitle);
                     productTitleBox.appendChild(productPrice);
@@ -141,19 +141,7 @@
             }
 
             function getToProductDetail(ProductId) {
-                axios.post("/Product/GetProductDetail", { ProductId: ProductId })
-                    .then(response => {
-                        if (response.status === 200) {
-                            document.open();
-                            document.write(response.data);
-                            document.close();
-                        } else {
-                            console.error('請求失敗:', response);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('請求出錯:', error);
-                    });
+                window.location.href = `/Product/GetProductDetail?ProductId=${ProductId}`;
             }
         </script>
     </main>
