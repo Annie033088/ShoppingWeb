@@ -151,5 +151,43 @@ namespace Pashamao.Repositories
                     cmd.Connection.Close();
             }
         }
+
+        internal bool EditProductImage(string delImageId, int productId, string addImageUrl)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editProductImage @delImageId, @productId, @addImageUrl";
+
+                cmd.Parameters.Add("@delImageId", SqlDbType.VarChar).Value = delImageId;
+                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+                cmd.Parameters.Add("@addImageUrl", SqlDbType.NVarChar).Value = addImageUrl;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
     }
 }

@@ -1,0 +1,77 @@
+2024-12-19 09:03:44.0029 Info Application Start
+2024-12-19 09:03:44.4850 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-19 09:40:13.8363 Info Application End
+2024-12-19 09:40:19.2275 Info Application Start
+2024-12-19 10:55:25.3050 Info Application End
+2024-12-19 10:55:31.5523 Info Application Start
+2024-12-19 10:55:32.4032 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-19 13:01:38.3549 Info Application End
+2024-12-19 13:02:16.5591 Info Application Start
+2024-12-19 13:07:32.4860 Info Application Start
+2024-12-19 13:15:32.3976 Info Application Start
+2024-12-19 13:21:53.1570 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-19 13:22:22.9358 Info Application Start
+2024-12-19 13:22:48.3061 Info Application Start
+2024-12-19 13:25:41.8967 Info Application Start
+2024-12-19 13:26:22.2457 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[Pashamao.Models.ProductImage]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'id', line 1, position 6.
+2024-12-19 13:31:28.4386 Info Application Start
+2024-12-19 13:32:19.4779 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[Pashamao.Models.ProductImage]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'Id', line 1, position 6.
+2024-12-19 13:39:45.3414 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[Pashamao.Models.ProductImage]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'ProductImageId', line 1, position 18.
+2024-12-19 13:42:38.2523 Error System.UnauthorizedAccessException: 拒絕存取路徑 'images\productImage\寵物防滑地墊 (多色)'。
+2024-12-19 13:44:50.7238 Error System.UnauthorizedAccessException: 拒絕存取路徑 '..\images\productImage\寵物防滑地墊 (多色)'。
+2024-12-19 13:49:09.2475 Error System.UnauthorizedAccessException: 拒絕存取路徑 'images\productImage\寵物防滑地墊 (多色)'。
+2024-12-19 13:50:07.6452 Error System.Web.HttpException: SaveAs 方法設定為需要根路徑，而路徑 'images\productImage\寵物防滑地墊 (多色)1734587370026-統計報表參考.webp.jpg' 不是根目錄。
+2024-12-19 13:53:05.3880 Error System.Web.HttpException: SaveAs 方法設定為需要根路徑，而路徑 'images\productImage\寵物防滑地墊 (多色)' 不是根目錄。
+2024-12-19 13:56:16.9174 Error System.Web.HttpException: SaveAs 方法設定為需要根路徑，而路徑 'images\productImage\寵物防滑地墊 (多色)' 不是根目錄。
+2024-12-19 14:09:37.4267 Info Application Start
+2024-12-19 14:12:12.6011 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\images\productImage\寵物防滑地墊 (多色)\展示1.jpg' 的一部分。
+2024-12-19 14:12:14.7244 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\images\productImage\寵物防滑地墊 (多色)\展示1.jpg' 的一部分。
+2024-12-19 14:45:08.9906 Info Application Start
+2024-12-19 15:09:08.6592 Info Application Start
+2024-12-19 15:09:55.6274 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_productId'，資料表 'ShopWeb.dbo.t_productImages'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2024-12-19 15:09:55.6622 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_productId'，資料表 'ShopWeb.dbo.t_productImages'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2024-12-19 15:09:58.3877 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_productId'，資料表 'ShopWeb.dbo.t_productImages'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2024-12-19 15:13:26.6554 Info Application Start
+2024-12-19 15:18:09.2782 Info Application Start
+2024-12-19 16:00:19.8042 Info Application Start
+2024-12-19 16:00:25.6840 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-19 16:06:25.1310 Info Application Start
+2024-12-19 16:31:39.5458 Info Application Start
+2024-12-19 16:32:12.8806 Info Application Start
+2024-12-19 16:35:35.9551 Error System.FormatException: 輸入字串格式不正確。
+2024-12-19 16:38:47.7543 Error System.FormatException: 輸入字串格式不正確。
+2024-12-19 16:39:02.9612 Error System.FormatException: 輸入字串格式不正確。
+2024-12-19 17:24:12.7371 Info Application End
+2024-12-19 17:24:16.2331 Info Application Start
+2024-12-19 17:28:02.5777 Info Application End
+2024-12-19 17:28:05.9706 Info Application Start
+2024-12-19 17:28:06.3446 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-19 17:28:43.7327 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\tableText\categoryTable.txt' 的一部分。
+2024-12-19 17:28:43.7327 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\tableText\categoryTable.txt' 的一部分。
+2024-12-19 17:28:49.3679 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\tableText\categoryTable.txt' 的一部分。
+2024-12-19 17:28:49.3679 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\tableText\categoryTable.txt' 的一部分。
+2024-12-19 17:29:15.9596 Info Application Start
+2024-12-19 17:30:05.3092 Info Application Start
+2024-12-19 17:31:58.1514 Info Application Start
+2024-12-19 17:46:32.5526 Info Application End
+2024-12-19 17:46:35.7611 Info Application Start
+2024-12-19 18:04:20.1693 Info Application End
+2024-12-19 18:04:21.8576 Info Application Start
+2024-12-19 18:15:11.1390 Info Application End
+2024-12-19 18:15:19.9741 Info Application Start
+2024-12-19 18:41:45.4418 Info Application Start
+2024-12-19 18:41:45.7758 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String

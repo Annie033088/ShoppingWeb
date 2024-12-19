@@ -9,6 +9,8 @@ using System.Web;
 using Pashamao.Repositories;
 using System.Web.UI;
 using System.Xml.Linq;
+using System.IO;
+using Microsoft.Ajax.Utilities;
 
 namespace Pashamao.Service
 {
@@ -104,9 +106,103 @@ namespace Pashamao.Service
             }
         }
 
-        public (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(string productId)
+        public (ProductDetail, List<ProductStyle>, List<ProductImage>, string) GetProductDetail(string productId)
         {
-            return productRepository.GetProductDetail(int.Parse(productId));
+            (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productRepository.GetProductDetail(int.Parse(productId));
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = appDirectory + "/tableText/categoryTable.txt";
+            string categoryName = "其他";
+
+            try
+            {
+                foreach (var line in File.ReadLines(filePath))
+                {
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length == 2)
+                    {
+                        if (product.CategoryId == int.Parse(parts[0].Trim()))
+                        {
+                            categoryName = parts[1].Trim();
+                        }
+                    }
+                }
+                return (product, styles, images, categoryName);
+            }
+            catch (Exception e)
+            {
+                logger.Error (e);
+                throw e;
+            }
         }
+
+        public bool EditProductImage(string productId, List<ProductImage> delOldImageList, string productName, HttpFileCollectionBase files)
+        {
+            //設置增加的檔案數跟刪除的檔案
+            string addImageUrl = " ";
+            string delImageId = " ";
+
+            //設置當前(檔案)位置
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Directory.SetCurrentDirectory(appDirectory);
+
+            try
+            {
+                //下載檔案
+                for (int i = 0; i < files.Count; i++)
+                {
+                    string fileName = Path.GetFileName(files[i].FileName);
+                    string folderPath = appDirectory + @"images\productImage\" + productName;
+
+                    if (Directory.Exists(folderPath))
+                    {
+                        string filePath = folderPath + @"\" + fileName;
+                        string relativePath = @"\images\productImage\" + productName + @"\" + fileName;
+                        files[i].SaveAs(filePath);
+                        if (addImageUrl == " ")
+                        {
+                            addImageUrl = relativePath;
+                        }
+                        else
+                        {
+                            addImageUrl = addImageUrl + "," + relativePath;
+                        }
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(folderPath);
+                        string filePath = folderPath + @"\" + fileName;
+                        string absoluteFilePath = appDirectory + filePath;
+                        files[i].SaveAs(absoluteFilePath);
+                    }
+                }
+
+
+                //刪除檔案
+                for (int i = 0; i < delOldImageList.Count; i++)
+                {
+                    string absoluteImagePath = appDirectory + delOldImageList[i].ImageUrl;
+                    if (File.Exists(absoluteImagePath))
+                    {
+                        File.Delete(absoluteImagePath);
+                        if (delImageId == " ")
+                        {
+                            delImageId = delOldImageList[i].ProductImageId.ToString();
+                        }
+                        else
+                        {
+                            delImageId = delImageId +  "," + delOldImageList[i].ProductImageId;
+                        }
+                    }
+                }
+                return productRepository.EditProductImage(delImageId, int.Parse(productId), addImageUrl); ;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
     }
 }

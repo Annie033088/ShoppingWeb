@@ -33,17 +33,37 @@
     cursor: pointer;
 }
 
-.navImageContainer {
+#mainImageBox {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 400px;
+    max-width: 400px;
+    overflow: hidden;
 }
+
 #imagePreviews {
     width: 100%;
     max-width: 250px;
     max-height: 250px;
     object-fit: cover;
 }
+
+#mainImage {
+    object-fit: scale-down;
+    width: 100%;
+    height: 100%;
+}
+
+.navImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 100px;
+    max-width: 350px;
+}
 .btnDeleteImage {
-    position: absolute;
+    position: relative;
     background-image: url("/images/del.png");
     background-size: contain;
     background-position: center;
@@ -61,3 +81,24 @@
     .btnDeleteImage:hover {
         opacity: 0.9;
     }
+
+
+#editStyleImage {
+    position: absolute;
+    background-image: url("/images/Pencel.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    top: 0%;
+    right: 0%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#editStyleImage:hover {
+    opacity: 1;
+}

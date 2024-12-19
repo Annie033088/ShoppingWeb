@@ -202,7 +202,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
-    <Content Include="js\CreateAndEditRole.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -251,6 +250,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
+    <Folder Include="tableText\" />
     <Folder Include="Views\WarmUp\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,21 +10,52 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
-        <div>
-            <div id="imageBox" style="height: 100%; width: 60%;">
-                <div id="mainImageBox">
-                    <img id="mainImage" src="#" style="height: 100%; width: 50%;" />
+        <div class="d-flex">
+            <div id="imageBox"  style="height: 100%; width: 60%; ">
+                <div id="mainImageBox" style=" ">
+                    <img id="mainImage" src="#" style="" />
                 </div>
-                <div id="navImageBox" class="navImageBox" style="width: 50%; overflow: hidden; display: flex; position: relative">
+                <div id="navImageBox" class="navImageBox ms-5" style="width: 50%; overflow: hidden; display: flex; position: relative">
 
-                    <button id="btnPrevious" class="btn btn-dark btnNav" style="position: absolute; " onclick="imagePrevious()"></button>
-                    <div id="navImageContainer" class="navImageContainer">
+                    <button id="btnPrevious" class="btn btn-dark btnNav" style="position: absolute; width: 5%; height: 100%" onclick="imagePrevious()"></button>
+                    <div id="navImageContainer" class="navImageContainer" >
                         <img id="navImage1" src="#" class="me-2 navImage" style="width: 25%; height:100%" />
                     </div>
                     <button id="btnNext" class="btn btn-dark btnNav" style="position: absolute; right: 0; width: 5%; height: 100%" onclick="imageNext()"></button>
                 </div>
-                <button id="btnEditImage" class="btn btn-dark mt-1" style="height: 100%; width: 50%; opacity:0.9" onclick="getImageAndEdit()">修改圖片</button>
+                <button id="btnEditImage" class="btn btn-dark mt-1 ms-5" style="height: 100%; width: 50%; opacity:0.9" onclick="getImageAndEdit()">修改圖片</button>
             </div>
+
+            <div id="productDetailBox" style="height: 100%; width: 50%; ">
+                <div id="productNameBox" class="input-group mt-3">
+                    <span class="input-group-text">商品名稱</span>
+                    <input id="txbTitle" type="text" class="form-control">
+                </div>
+
+                <div id="productDescriptionBox" class="input-group mt-3">
+                    <span class="input-group-text">商品簡述</span>
+                    <input id="txbDescription" type="text" class="form-control auto-expand-textarea" style="height: 50px; overflow-y: auto;">
+                </div>
+
+                <div id="productCategoryBox" class="input-group mt-3">
+                    <span class="input-group-text">分類</span>
+                    <input id="txbCategory" type="text" class="form-control">
+                </div>
+
+                <div id="productStyleBox" class="mt-3 d-flex" >
+
+                </div>
+                <div id="productStatusBox" class="mt-3">
+
+                </div>
+                <div id="productCreateTimeBox" class="mt-3">
+
+                </div>
+                <div id="shelveEditTimeBox">
+
+                </div>
+            </div>
+
         </div>
     </main>
     <script>
@@ -32,6 +63,7 @@
         let product = jsonData.Item1;
         let styles = jsonData.Item2;
         let images = jsonData.Item3;
+        let categoryName = jsonData.Item4;
         let totalImages;
         let currentImageIndex = 0;
         let showNavImageCnt = 4;
@@ -43,10 +75,39 @@
         populateImage();
 
         updateImageDisplay();
-
+        populateProductDetail();
 
         function populateProductDetail() {
+            document.getElementById("txbTitle").value = product.Name
+            document.getElementById("txbDescription").value = product.Description;
+            document.getElementById("txbCategory").value = categoryName;
+            populateStyle();
         }
+
+        function populateStyle() {
+            productStyleBigBox = document.getElementById("productStyleBox");
+            
+            for (let i = 0; i < styles.length; i++) {
+                let productStyleBox = document.createElement('div');
+                productStyleBox.style = " border: 2px solid #476ad1; border-radius: 15px;" ;
+                productStyleBox.className = "me-1"
+
+                let productStyle = document.createElement('button');
+                productStyle.className = "btn btn-outline-primary ms-1 me-1";
+                productStyle.innerHTML = styles[i].Style;
+                productStyle.addEventListener("click", function () {
+                    getStyleAndEdit(styles[i]);
+                })
+
+                let delStyleBtn = document.createElement('button');
+                delStyleBtn.className = "btn btnDeleteImage";
+
+                productStyleBox.appendChild(productStyle);
+                productStyleBox.appendChild(delStyleBtn);
+                productStyleBigBox.appendChild(productStyleBox);
+            }
+        }
+
 
         function populateImage() {
             mainImage = document.getElementById("mainImage");
@@ -70,16 +131,6 @@
                 navImageContainer.appendChild(navProductImage);
             }
 
-            for (var i = 0; i < 5; i++) {
-                var navProductImage = document.createElement('img');
-                navProductImage.src = images[0].ImageUrl;
-                navProductImage.style = " width: 25%; height:100%";
-                navProductImage.className = "me-2 navImage";
-                navProductImage.addEventListener("click", function () {
-                    setMainImage(navProductImage.src);
-                })
-                navImageContainer.appendChild(navProductImage);
-            }
             navImages = document.querySelectorAll('.navImage');
             totalImages = navImages.length;
         }
@@ -136,23 +187,27 @@
         function getImageAndEdit()
         {
             let imgHtml = "";
-            
+            let addImageList = [];
+            let delOldImageList =[]
+            let imageCount = 0;
+
             images.forEach(img => {
+                imageCount++;
                 let fileName = img.ImageUrl.split('\\').pop();
                 imgHtml += `
                     <div id="ProductiImageBox + ${img.ProductImageId}" class="imageContainer me-2 col-6" style=" position: relative; ">
                         <img id="ProductImage + ${img.ProductImageId}" src="${img.ImageUrl}" class="img-fluid" />
-                        <p >${fileName}</p>
-                        <button class = "btn btnDeleteImage" style="" data-id="${img.ProductImageId}">
-                    <div>`
+                        <p class="imageName">${fileName}</p>
+                        <button class = "btn btnDeleteImage" style="" data-id="${img.ProductImageId}" data-imageurl="${img.ImageUrl}">
+                    </div>`
             })
-
 
             Swal.fire({
                 title: '修改圖片',
                 width: '80%',
                 html: `
-                <div id= "addImageBox"> 
+                <p class="text-danger">最多放10張圖片</p>
+                <div id= "addImageBox">
                     <div id= "imagePreviews" style = "display: flex; align-items: flex-start; justify-content: space-between; position: relative">
                            ${imgHtml}
                     </div>
@@ -196,9 +251,11 @@
                             reader.onload = function (event) {
                                 const imgNewBox = document.createElement('div');
                                 const imgElement = document.createElement('img');
-                                const imgNameElement = document.createElement('p');
+                                let imgNameElement = document.createElement('p');
                                 const btnDeleteImage = document.createElement('button');
-                                imgNameElement.innerHTML = file.name;
+                                const timestamp = new Date().getTime();
+                                imgNameElement.innerHTML = `${file.name}`;
+                                imgElement.id = `${timestamp}-${file.name}`;
                                 imgNewBox.className = "imageContainer me-2 col-6";
                                 imgNewBox.style.position = "relative";
                                 btnDeleteImage.className = "btn btnDeleteImage";
@@ -209,6 +266,13 @@
                                 btnDeleteImage.addEventListener('click', (event) => {
                                     const parentDiv = event.target.parentElement;
 
+                                    const index = addImageList.indexOf(imgElement.id);
+
+                                    if (index > -1) {
+                                        addImageList.splice(index, 1);
+                                    }
+
+                                    imageCount--;
                                     parentDiv.remove();
                                 });
 
@@ -216,42 +280,108 @@
                                 imgNewBox.appendChild(imgNameElement);
                                 imgNewBox.appendChild(btnDeleteImage);
                                 imagePreviews.appendChild(imgNewBox);
+                                addImageList.push(imgElement.id);
+                                imageCount++;
                             };
                             reader.readAsDataURL(file);
                     });
 
-                    let delImageList = "";
                     const buttons = document.querySelectorAll('.btnDeleteImage')
                     buttons.forEach(button => {
                         button.addEventListener('click', (event) => {
-                            delImageList.push(button.dataset.id);
-                            const parentDiv = event.target.parentElement;
+                            const btn = event.target;
+                            delOldImageList.push({ ProductImageId: btn.dataset.id, ImageUrl: btn.dataset.imageurl })
+                            const parentDiv = btn.parentElement;
 
+                            imageCount--;
                             parentDiv.remove();
                         });
                     });
 
-                }
+                },
                 preConfirm: () => {
-                    const roleSelectValue = document.getElementById('roleSelect').value;
-                    const statusSelectValue = document.getElementById('statusSelect').value;
-                    return { delImageList: delImageList};
+                    return { delOldImageList: delOldImageList, addImageList: addImageList };
                 }
-            })/*.then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.post("/MainUser/SubmitEditUserRole", {
-                        UserId: userId,
-                        RoleId: result.value.roleSelect,
-                        Status: result.value.statusSelect
+                    console.log(result.value.delOldImageList, result.value.addImageList);
+                    const formData = new FormData();
+
+
+                    formData.append('ProductId', product.ProductId);
+                    formData.append('ProductName', product.Name);
+                    formData.append('DelOldImageList', JSON.stringify(result.value.delOldImageList));
+
+
+                    result.value.addImageList.forEach(imgId => {
+                        const imgFile = document.getElementById(imgId);
+                        const imgBlob = dataURItoBlob(imgFile.src);
+
+                        formData.append('images[]', imgBlob, `${imgId}`);
+                    });
+                    axios.post("/Product/EditProductImage", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
                     })
                         .then(response => {
-                            window.location.href = "/MainUser/Index"
-                        })
+                            window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                    })
                         .catch(error => {
-                            console.error("fail", error);
-                        })
+                        console.error("fail", error);
+                    })
                 }
-            });*/
+            });
+        }
+
+        function dataURItoBlob(dataURI) {
+            var byteString = atob(dataURI.split(',')[1]);
+            var arrayBuffer = new ArrayBuffer(byteString.length);
+            var uintArray = new Uint8Array(arrayBuffer);
+            for (var i = 0; i < byteString.length; i++) {
+                uintArray[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([uintArray], { type: 'image/jpeg' });
+        }
+
+        function getStyleAndEdit(style) {
+            Swal.fire({
+                title: '細項設定',
+                html: `
+               <div class="editStyleBox">
+                    <div id="editStyleImageBox" class="position-relative">
+                        <img class="img-fluid" src="${style.ImageUrl}" alt=""> 
+                        <button id="editStyleImage" class="btn" ></button>
+                        <input type="file" id="txbEditImage" accept="image/*" style="display: none;">
+                    </div>
+                    <div id="editStyleNameBox" class="input-group mt-3">
+                        <span class="input-group-text">分類名</span>
+                        <input id="txbEditStyleName" type="text" class="form-control" value="${style.Style}">
+                    </div>
+
+                    <div id="editStylePriceBox" class="input-group mt-3">
+                        <span class="input-group-text">價格</span>
+                        <input id="txbEditStylePrice" type="text" class="form-control" value="${style.Price}">
+                    </div>
+
+                    <div id="editStyleQuantityBox" class="input-group mt-3">
+                        <span class="input-group-text">數量</span>
+                        <input id="txbEditStyleQuantity" type="text" class="form-control" value="${style.StockQuantity}">
+                    </div>
+                </div>
+                `,
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                didOpen: () => {
+                    editStyleImage = document.getElementById("editStyleImage");
+                    editStyleImage.addEventListener('click', () => { txbImage.click(); });
+
+                },
+                preConfirm: () => {
+                    
+                }
+            });
         }
     </script>
 </body>
