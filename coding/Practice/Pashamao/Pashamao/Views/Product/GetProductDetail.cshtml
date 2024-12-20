@@ -11,14 +11,14 @@
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
         <div class="d-flex">
-            <div id="imageBox"  style="height: 100%; width: 60%; ">
+            <div id="imageBox" style="height: 100%; width: 60%; flex-wrap: wrap; ">
                 <div id="mainImageBox" style=" ">
                     <img id="mainImage" src="#" style="" />
                 </div>
                 <div id="navImageBox" class="navImageBox ms-5" style="width: 50%; overflow: hidden; display: flex; position: relative">
 
                     <button id="btnPrevious" class="btn btn-dark btnNav" style="position: absolute; width: 5%; height: 100%" onclick="imagePrevious()"></button>
-                    <div id="navImageContainer" class="navImageContainer" >
+                    <div id="navImageContainer" class="navImageContainer">
                         <img id="navImage1" src="#" class="me-2 navImage" style="width: 25%; height:100%" />
                     </div>
                     <button id="btnNext" class="btn btn-dark btnNav" style="position: absolute; right: 0; width: 5%; height: 100%" onclick="imageNext()"></button>
@@ -28,34 +28,70 @@
 
             <div id="productDetailBox" style="height: 100%; width: 50%; ">
                 <div id="productNameBox" class="input-group mt-3">
-                    <span class="input-group-text">商品名稱</span>
-                    <input id="txbTitle" type="text" class="form-control">
+                    <span class="input-group-text w-25">商品名稱</span>
+                    <input id="txbName" type="text" class="form-control" style="width:10%">
                 </div>
 
                 <div id="productDescriptionBox" class="input-group mt-3">
-                    <span class="input-group-text">商品簡述</span>
+                    <span class="input-group-text w-25">商品簡述</span>
                     <input id="txbDescription" type="text" class="form-control auto-expand-textarea" style="height: 50px; overflow-y: auto;">
                 </div>
 
-                <div id="productCategoryBox" class="input-group mt-3">
-                    <span class="input-group-text">分類</span>
-                    <input id="txbCategory" type="text" class="form-control">
+                <div class="input-group mt-3 d-flex flex-wrap w-75">
+                    <span class="input-group-text w-25">分類</span>
+                    <div style="width: 15%; height:100% ;text-align: center;" class="me-1">
+                        <span id="txtCategory" class="form-control " style=" height:100%;"></span>
+                    </div>
                 </div>
 
-                <div id="productStyleBox" class="mt-3 d-flex" >
+                <div id="productCategoryBox" class="input-group mt-3 d-flex flex-wrap w-75">
 
                 </div>
-                <div id="productStatusBox" class="mt-3">
+
+                <div id="productStatusBox" class="mt-3" style="display:flex">
+                    <span id="txtProductStatus" class="input-group-text">商品狀態：上架；</span>
+                    <button id="btnProductStatusOn" class="btn btn-dark" disabled>上架</button>
+                    <button id="btnProductStatusOff" class="btn btn-dark">下架</button>
+                </div>
+
+                <div id="shelveEditTimeBox" class="w-75 mt-3" style="display:flex ;background-color:aliceblue">
+                    <span id="" class="input-group-text ">最後上架下架時間：</span>
+                    <p id="productShelveEditTime" class=" text-center "></p>
+                </div>
+
+                <div class="mt-3">
+                    <p>－－－－－－－－－－－－－－－－－－－－－－－－－－－</p>
+                    <span id="" class="input-group-text w-75 justify-content-center">細分項目：</span>
+                </div>
+
+                <div id="productStyleBox" class="mt-3 d-flex w-75 flex-wrap">
 
                 </div>
-                <div id="productCreateTimeBox" class="mt-3">
 
+                <div id="productStyleStatusBox" class="mt-3">
+                    <span id="productStyleStatus" class="input-group-text w-75">項目狀態：</span>
                 </div>
-                <div id="shelveEditTimeBox">
 
+                <div id="productQuantityBox" class="mt-3">
+                    <span id="productQuantity" class="input-group-text w-75">數量：</span>
+                </div>
+
+                <div id="productPriceBox" class="mt-3">
+                    <span id="productPrice" class="input-group-text w-75">價格：</span>
+                </div>
+
+                <div class="mt-3 " style="">
+                    <button class="btn btn-success" onclick="editProduct()"> 確認修改商品</button>
+                    <button class="btn btn-dark" onclick="window.location.href='/Product/Index'"> 取消</button>
                 </div>
             </div>
+        </div>
 
+        <div class="position-relative " style="width:100%">
+            <div id="productIntroduceBox" class="" style="width:25%">
+                <span id="productPrice" class="input-group-text justify-content-center ">商品介紹：</span>
+                <textarea class="form-control w-100" id="productIntroduce" style="height:1000px;" placeholder="在此輸入內容..."></textarea>
+            </div>
         </div>
     </main>
     <script>
@@ -63,51 +99,133 @@
         let product = jsonData.Item1;
         let styles = jsonData.Item2;
         let images = jsonData.Item3;
-        let categoryName = jsonData.Item4;
+        let categoryTable = jsonData.Item4;
         let totalImages;
         let currentImageIndex = 0;
         let showNavImageCnt = 4;
         let navImages;
+        let productStatus = product.Status;
         const prevBtn = document.getElementById('btnPrevious');
         const nextBtn = document.getElementById('btnNext');
 
-        console.log(product, styles, images);
+        console.log(product, styles, images, categoryTable);
         populateImage();
-
         updateImageDisplay();
         populateProductDetail();
 
         function populateProductDetail() {
-            document.getElementById("txbTitle").value = product.Name
+            document.getElementById("txbName").value = product.Name
             document.getElementById("txbDescription").value = product.Description;
-            document.getElementById("txbCategory").value = categoryName;
+            document.getElementById("productQuantity").innerHTML = "數量：" + styles[0].StockQuantity;
+            document.getElementById("productPrice").innerHTML = "價格：" + styles[0].Price;
+            document.getElementById("productIntroduce").innerHTML = product.Introduction;
+
+            categoryTable.forEach(category => {
+                if (category.CategoryId == product.CategoryId) {
+                    document.getElementById("txtCategory").innerHTML = category.Name;
+                }
+            })
+
+            var productStyleStatus = "";
+            if (styles[0].Status) {
+                productStyleStatus = "上架";
+            } else {
+                productStyleStatus = "下架";
+            }
+
+            document.getElementById("productStyleStatus").innerHTML = "項目狀態：" + productStyleStatus;
+            btnProductStatusOn = document.getElementById("btnProductStatusOn");
+            btnProductStatusOff = document.getElementById("btnProductStatusOff");
+            if (product.Status) {
+                btnProductStatusOn.disabled = true;
+                btnProductStatusOff.disabled = false;
+            } else {
+                btnProductStatusOn.disabled = false;
+                btnProductStatusOff.disabled = true;
+            }
+
+            btnProductStatusOn.addEventListener("click", function () {
+                btnProductStatusOn.disabled = 1;
+                btnProductStatusOff.disabled = 0;
+                productStatus = true;
+                document.getElementById("txtProductStatus").innerHTML = "商品狀態：上架；";
+            })
+            btnProductStatusOff.addEventListener("click", function () {
+                btnProductStatusOn.disabled = 0;
+                btnProductStatusOff.disabled = 1;
+                productStatus = false;
+                document.getElementById("txtProductStatus").innerHTML = "商品狀態：下架；";
+            })
+
+            const lastShelveEditTime = new Date(product.LastShelveEditTime);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const formattedDate = lastShelveEditTime.toLocaleString('zh-TW', options);
+            document.getElementById("productShelveEditTime").innerHTML = formattedDate;
+
+            populateCategory();
             populateStyle();
         }
 
         function populateStyle() {
             productStyleBigBox = document.getElementById("productStyleBox");
-            
+
             for (let i = 0; i < styles.length; i++) {
                 let productStyleBox = document.createElement('div');
-                productStyleBox.style = " border: 2px solid #476ad1; border-radius: 15px;" ;
-                productStyleBox.className = "me-1"
+                productStyleBox.style = " border: 2px solid #476ad1; border-radius: 15px; display:flex; align-content:center" ;
+                productStyleBox.className = "me-1 mt-1";
+
 
                 let productStyle = document.createElement('button');
-                productStyle.className = "btn btn-outline-primary ms-1 me-1";
+                productStyle.className = "btn btn-outline-primary  ";
+                productStyle.style = "border: none; ";
                 productStyle.innerHTML = styles[i].Style;
                 productStyle.addEventListener("click", function () {
+                    setMainImage(styles[i].ImageUrl);
+                    document.getElementById("navImage1").src = styles[i].ImageUrl;
+                    document.getElementById("productQuantity").innerHTML = "數量：" + styles[i].StockQuantity;
+                    document.getElementById("productPrice").innerHTML = "價格：" + styles[i].Price;
+                    var productStyleStatus = "";
+                    if (styles[i].Status) {
+                        productStyleStatus = "上架";
+                    } else {
+                        productStyleStatus = "下架";
+                    }
+                    document.getElementById("productStyleStatus").innerHTML = "項目狀態：" + productStyleStatus;
+                })
+
+                let editProductStyle = document.createElement('button');
+                editProductStyle.className = "btn ms-1 mt-1 editProductStyle";
+                editProductStyle.addEventListener("click", function () {
                     getStyleAndEdit(styles[i]);
                 })
 
                 let delStyleBtn = document.createElement('button');
                 delStyleBtn.className = "btn btnDeleteImage";
 
+                if (styles.length < 2) { delStyleBtn.disabled = true; }
+                else { delStyleBtn.disabled = false; }
+
+                delStyleBtn.addEventListener("click", function () {
+                    delStyle(styles[i].ProductStyleId);
+                })
+
                 productStyleBox.appendChild(productStyle);
+                productStyleBox.appendChild(editProductStyle);
                 productStyleBox.appendChild(delStyleBtn);
                 productStyleBigBox.appendChild(productStyleBox);
             }
-        }
 
+
+            let addProductStyle = document.createElement('button');
+            addProductStyle.className = "btn ms-1 mt-1 btnAdd";
+            addProductStyle.style = "height: 50px; width: 50px;";
+            addProductStyle.addEventListener("click", function () {
+                addStyle();
+            })
+            productStyleBigBox.appendChild(addProductStyle);
+
+
+        }
 
         function populateImage() {
             mainImage = document.getElementById("mainImage");
@@ -133,6 +251,45 @@
 
             navImages = document.querySelectorAll('.navImage');
             totalImages = navImages.length;
+        }
+
+        function populateCategory() {
+            productCategoryBox = document.getElementById("productCategoryBox");
+
+            for (let i = 0; i < categoryTable.length; i++) {
+                let categoryBox = document.createElement('div');
+                categoryBox.style = " border: 2px solid #476ad1; border-radius: 15px; display:flex; align-content:center";
+                categoryBox.className = "me-1 mt-1";
+
+
+                let category = document.createElement('button');
+                category.className = "btn btn-outline-primary  ";
+                category.style = "border: none; ";
+                category.innerHTML = categoryTable[i].Name;
+                category.addEventListener("click", function () {
+                    document.getElementById("txtCategory").innerHTML = categoryTable[i].Name;
+                })
+
+                let delCategoryBtn = document.createElement('button');
+                delCategoryBtn.className = "btn btnDeleteImage";
+
+                delCategoryBtn.addEventListener("click", function () {
+                    delCategory(categoryTable[i].CategoryId);
+                })
+
+                categoryBox.appendChild(category);
+                categoryBox.appendChild(delCategoryBtn);
+                productCategoryBox.appendChild(categoryBox);
+            }
+
+
+            let addCategory = document.createElement('button');
+            addCategory.className = "btn ms-1 mt-1 btnAdd";
+            addCategory.style = "height: 50px; width: 50px;";
+            addCategory.addEventListener("click", function () {
+                addProduct();
+            })
+            productCategoryBox.appendChild(addCategory);
         }
 
         function updateImageDisplay() {
@@ -304,7 +461,6 @@
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    console.log(result.value.delOldImageList, result.value.addImageList);
                     const formData = new FormData();
 
 
@@ -345,14 +501,33 @@
         }
 
         function getStyleAndEdit(style) {
+            let btnStatusOnDisable = "";
+            let btnStatusOffDisable = "";
+            let status = "";
+            let updateStyleImage = false;
+            if (style.Status) {
+                btnStatusOnDisable = "disabled";
+                btnStatusOffDisable = "";
+                status = "上架";
+            }else {
+                btnStatusOnDisable = "";
+                btnStatusOffDisable = "disabled";
+                status = "下架";
+            }
+            let htmlStatus = ` <div id="editStyleStatusBox" class="input-group mt-3">
+                                    <span id="txtStatus" class="input-group-text">狀態：${status}；</span>
+                                    <button id="btnStatusOn" class="btn btn-dark btnStyleStatus" ${btnStatusOnDisable}>上架</button>
+                                    <button id="btnStatusOff" class="btn btn-dark btnStyleStatus" ${btnStatusOffDisable}>下架</button>
+                                </div>`
+
             Swal.fire({
                 title: '細項設定',
                 html: `
                <div class="editStyleBox">
-                    <div id="editStyleImageBox" class="position-relative">
-                        <img class="img-fluid" src="${style.ImageUrl}" alt=""> 
-                        <button id="editStyleImage" class="btn" ></button>
+                    <div id="editStyleImageBox" class="position-relative" style="border:solid">
+                        <img id="editStyleImage" class="img-fluid styleImage" src="${style.ImageUrl}" alt="" data-id="editStyleImage">
                         <input type="file" id="txbEditImage" accept="image/*" style="display: none;">
+                        <p>點擊圖片修改</p>
                     </div>
                     <div id="editStyleNameBox" class="input-group mt-3">
                         <span class="input-group-text">分類名</span>
@@ -368,20 +543,361 @@
                         <span class="input-group-text">數量</span>
                         <input id="txbEditStyleQuantity" type="text" class="form-control" value="${style.StockQuantity}">
                     </div>
+                    ${htmlStatus}
                 </div>
                 `,
                 showCancelButton: true,
                 confirmButtonText: '確定',
                 cancelButtonText: '取消',
                 didOpen: () => {
-                    editStyleImage = document.getElementById("editStyleImage");
-                    editStyleImage.addEventListener('click', () => { txbImage.click(); });
+                    let editStyleImage = document.getElementById("editStyleImage");
+                    let txbEditImage = document.getElementById("txbEditImage");
+                    let btnStatusOn = document.getElementById("btnStatusOn");
+                    let btnStatusOff = document.getElementById("btnStatusOff");
+                    editStyleImage.addEventListener('click', () => { txbEditImage.click(); });
+
+                    txbEditImage.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            editStyleImage.src = event.target.result;
+                        };
+                        const timestamp = new Date().getTime();
+                        editStyleImage.dataset.id = `${timestamp}-${file.name}`;
+                        reader.readAsDataURL(file);
+                        updateStyleImage = true;
+                    });
+
+                    btnStatusOn.addEventListener("click", function () {
+                        btnStatusOn.disabled = 1;
+                        btnStatusOff.disabled = 0;
+                        document.getElementById("txtStatus").innerHTML = "狀態：上架；";
+                    })
+                    btnStatusOff.addEventListener("click", function () {
+                        btnStatusOn.disabled = 0;
+                        btnStatusOff.disabled = 1;
+                        document.getElementById("txtStatus").innerHTML = "狀態：下架；";
+                    })
 
                 },
                 preConfirm: () => {
-                    
+                    let styleStatus = "";
+                    let styleName = document.getElementById("txbEditStyleName").value;
+                    let stylePrice = document.getElementById("txbEditStylePrice").value;
+                    let styleQuantity = document.getElementById("txbEditStyleQuantity").value;
+                    let btnStatusOn = document.getElementById("btnStatusOn");
+                    let btnStatusOff = document.getElementById("btnStatusOff");
+                    let afterEditStyle = [];
+                    let updateStyleStatus = false;
+                    if (btnStatusOn.disabled) { styleStatus = true; }
+                    else { styleStatus = false; }
+
+                    if (styleStatus != styleStatus) { updateStyleStatus = true; } //更新了上下架狀態
+                    afterEditStyle.push({ ProductStyleId: style.ProductStyleId, ProductName: product.Name, Style: styleName, Price: stylePrice, StockQuantity: styleQuantity, LastShelveEditTime: style.LastShelveEditTime, Status: styleStatus, OldImageUrl: style.ImageUrl, UpdateStyleStatus: updateStyleStatus })
+
+                    //驗證輸入符合格式
+                    const nameRegex = /^.+$/;
+                    if (!nameRegex.test(styleName)) {
+                        Swal.showValidationMessage('請輸入項目名');
+                        return false;
+                    }
+
+                    const priceRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
+                    if (!priceRegex.test(stylePrice)) {
+                        Swal.showValidationMessage('請輸入有效的價格（EX：123、123.45）');
+                        return false;
+                    }
+
+                    const QuantityRegex = /^\d+$/;
+                    if (!QuantityRegex.test(styleQuantity)) {
+                        Swal.showValidationMessage('請輸入有效的數量');
+                        return false;
+                    }
+
+
+
+                    let imageName = document.getElementById("editStyleImage").dataset.id;
+                    return { afterEditStyle: afterEditStyle, imageName: imageName };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const formData = new FormData();
+                    formData.append('AfterEditStyle', JSON.stringify(result.value.afterEditStyle));
+                    const imgFile = document.getElementById("editStyleImage");
+
+                    if (updateStyleImage) {
+                        const imgBlob = dataURItoBlob(imgFile.src);
+                        formData.append('images[]', imgBlob, `${result.value.imageName}`);
+                    }
+
+                    axios.post("/Product/EditProductStyle", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                        .then(response => {
+                            window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                        })
+                        .catch(error => {
+                            console.error("fail", error);
+                        })
                 }
             });
         }
+
+        function addStyle() {
+            let addImage = false;
+            let htmlStatus = `
+                        <div id="addStyleStatusBox" class="input-group mt-3">
+                            <span id="txtStatus" class="input-group-text">狀態：上架；</span>
+                            <button id="btnStatusOn" class="btn btn-dark btnStyleStatus" disabled>上架</button>
+                            <button id="btnStatusOff" class="btn btn-dark btnStyleStatus" >下架</button>
+                        </div>`
+
+            Swal.fire({
+                title: '新增細項',
+                html: `
+       <div class="addStyleBox">
+            <div id="addStyleImageBox" class="position-relative" style="border:solid">
+                <img id="addStyleImage" class="img-fluid styleImage" src="/images/productImage/noImage.jpg" alt="" data-id="noImage.jpg">
+                <input type="file" id="txbAddImage" accept="image/*" style="display: none;">
+                <p>點擊圖片修改</p>
+            </div>
+            <div id="addStyleNameBox" class="input-group mt-3">
+                <span class="input-group-text">分類名</span>
+                <input id="txbAddStyleName" type="text" class="form-control" value="">
+            </div>
+
+            <div id="addStylePriceBox" class="input-group mt-3">
+                <span class="input-group-text">價格</span>
+                <input id="txbAddStylePrice" type="text" class="form-control" value="">
+            </div>
+
+            <div id="addStyleQuantityBox" class="input-group mt-3">
+                <span class="input-group-text">數量</span>
+                <input id="txbAddStyleQuantity" type="text" class="form-control" value="">
+            </div>
+            ${htmlStatus}
+        </div>
+        `,
+                showCancelButton: true,
+                confirmButtonText: '確定',
+                cancelButtonText: '取消',
+                didOpen: () => {
+                    let addStyleImage = document.getElementById("addStyleImage");
+                    let txbAddImage = document.getElementById("txbAddImage");
+                    let btnStatusOn = document.getElementById("btnStatusOn");
+                    let btnStatusOff = document.getElementById("btnStatusOff");
+                    addStyleImage.addEventListener('click', () => { txbAddImage.click(); });
+
+                    txbAddImage.addEventListener('change', (e) => {
+                        const file = e.target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                            addStyleImage.src = event.target.result;
+                            addImage = true;
+                        };
+                        const timestamp = new Date().getTime();
+                        addStyleImage.dataset.id = `${timestamp}-${file.name}`;
+                        reader.readAsDataURL(file);
+                    });
+
+                    btnStatusOn.addEventListener("click", function () {
+                        btnStatusOn.disabled = 1;
+                        btnStatusOff.disabled = 0;
+                        document.getElementById("txtStatus").innerHTML = "狀態：上架；";
+                    })
+                    btnStatusOff.addEventListener("click", function () {
+                        btnStatusOn.disabled = 0;
+                        btnStatusOff.disabled = 1;
+                        document.getElementById("txtStatus").innerHTML = "狀態：下架；";
+                    })
+
+                },
+                preConfirm: () => {
+                    let styleStatus = "";
+                    let styleName = document.getElementById("txbAddStyleName").value;
+                    let stylePrice = document.getElementById("txbAddStylePrice").value;
+                    let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
+                    let btnStatusOn = document.getElementById("btnStatusOn");
+                    let btnStatusOff = document.getElementById("btnStatusOff");
+                    if (btnStatusOn.disabled) { styleStatus = true; }
+                    else { styleStatus = false; }
+
+                    let addStyle = {
+                        ProductId: product.ProductId,
+                        Style: styleName,
+                        Price: stylePrice,
+                        StockQuantity: styleQuantity,
+                        Status: styleStatus,
+                    }
+
+                    let imageName = document.getElementById("addStyleImage").dataset.id;
+
+                    //驗證輸入符合訊息
+                    const nameRegex = /^.+$/;
+                    if (!nameRegex.test(styleName)) {
+                        Swal.showValidationMessage('請輸入項目名');
+                        return false;
+                    }
+
+                    const priceRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
+                    if (!priceRegex.test(stylePrice)) {
+                        Swal.showValidationMessage('請輸入有效的價格（EX：123、123.45）');
+                        return false;
+                    }
+
+                    const QuantityRegex = /^\d+$/;
+                    if (!QuantityRegex.test(styleQuantity)) {
+                        Swal.showValidationMessage('請輸入有效的數量');
+                        return false;
+                    }
+
+                    return { addStyle: addStyle, imageName: imageName };
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const formData = new FormData();
+                    console.log(product.Name, result.value.addStyle);
+                    formData.append('ProductName', product.Name);
+                    formData.append('AddStyle', JSON.stringify(result.value.addStyle));
+
+                    const imgFile = document.getElementById("addStyleImage");
+                    if (addImage) {
+                        const imgBlob = dataURItoBlob(imgFile.src);
+                        console.log(imgBlob)
+                        formData.append('images[]', imgBlob, `${result.value.imageName}`);
+                    }
+
+                    axios.post("/Product/AddProductStyle", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                        .then(response => {
+                            window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                        })
+                        .catch(error => {
+                            console.error("fail", error);
+                        })
+                }
+            });
+        }
+
+        function delStyle(styleId) {
+            Swal.fire({
+                title: '確定要刪除這個項目嗎？',
+                text: "這個操作無法恢復！",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '刪除',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post("/Product/DeleteProductStyle", { ProductStyleId: styleId })
+                        .then(response => {
+                            window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`;
+                        })
+                        .catch(error => { console.error(error) })
+                }
+            })
+        }
+
+        function editProduct() {
+            var productName = document.getElementById("txbName").value;
+            var productDescription = document.getElementById("txbDescription").value;
+            var productCategroyName = document.getElementById("txtCategory").innerText;
+            var productIntroduce = document.getElementById("productIntroduce").value;
+            var productCategroyId = "1";
+            var updateStatus = false;
+
+
+            for (var i = 0; i < categoryTable.length; i++) {
+                if (productCategroyName == categoryTable[i].Name) {
+                    productCategroyId = categoryTable[i].CategoryId;
+                }
+            }
+
+
+            if (productName == "") productName = " ";
+            if (productDescription == "") productDescription = " ";
+            if (productIntroduce == "") productIntroduce = " ";
+
+
+
+            //console.log(product.ProductId, productCategroyId, productName, productDescription, productIntroduce, productStatus)
+            let productDetail = {
+                ProductId: product.ProductId,
+                CategoryId: productCategroyId,
+                Name: productName,
+                Description: productDescription,
+                Introduction: productIntroduce,
+                Status: productStatus
+            }
+
+            if (product.Status != productStatus) {
+                updateStatus = true;
+            }
+            axios.post("/Product/EditProduct", {
+                productDetail,
+                UpdateStatus: updateStatus
+            })
+                .then(response => {
+                    window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
+        }
+
+        function addProduct() {
+            Swal.fire({
+                title: '請輸入預計創建的分類',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消',
+                inputValidator: (value) => {
+                    if (!value) {
+                        return '請輸入分類！';
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post("/Product/AddProductCategory", { Category: result.value })
+                        .then(response => {
+                            if (response.data == "False") {
+                                Swal.fire({
+                                    text: '分類重複！',
+                                    icon: 'error'
+                                })
+                            } else {
+                                window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                            }
+                        })
+                        .catch(error => {
+                            console.error("fail", error);
+                        })
+                }
+            });
+        }
+
+        function delCategory(categoryId) {
+            axios.post("/Product/DeleteProductCategory", { CategoryId: categoryId })
+                .then(response => {
+                    if (response.data == "False") {
+                        Swal.fire({
+                            text: '刪除失敗，請先將此類型產品的分類改掉！',
+                            icon: 'error'
+                        })
+                    } else {
+                        window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
+        }
+
     </script>
 </body>

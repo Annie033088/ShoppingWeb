@@ -1,0 +1,145 @@
+2024-12-20 08:35:06.9474 Info Application Start
+2024-12-20 08:35:07.4122 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 08:38:36.0646 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 08:43:48.4475 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'ImageUrl'。
+2024-12-20 08:50:59.2062 Info Application End
+2024-12-20 08:51:00.8462 Info Application Start
+2024-12-20 08:56:20.4189 Info Application End
+2024-12-20 08:56:21.8926 Info Application Start
+2024-12-20 09:39:28.1741 Info Application End
+2024-12-20 09:39:40.3268 Info Application Start
+2024-12-20 09:39:41.2868 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 09:39:49.6956 Error System.ArgumentException: 資料行 'f_status' 不屬於資料表 Table1。
+2024-12-20 09:39:54.5474 Error System.ArgumentException: 資料行 'f_status' 不屬於資料表 Table1。
+2024-12-20 09:39:57.3047 Error System.ArgumentException: 資料行 'f_status' 不屬於資料表 Table1。
+2024-12-20 09:41:33.4407 Info Application Start
+2024-12-20 09:46:04.2400 Info Application Start
+2024-12-20 10:43:47.2010 Info Application End
+2024-12-20 10:43:57.5426 Info Application Start
+2024-12-20 10:43:58.4751 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 10:49:11.3506 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 10:49:16.1023 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 10:50:27.5346 Info Application Start
+2024-12-20 10:53:17.3343 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 10:53:43.0833 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 10:54:58.8119 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 10:55:41.3893 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.ProductStyle' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 11:04:33.8398 Info Application Start
+2024-12-20 11:04:52.9527 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.EditProductStyleViewModel' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 11:05:22.3465 Info Application Start
+2024-12-20 11:06:17.2410 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.EditProductStyleViewModel' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 11:06:46.5401 Error Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON array (e.g. [1,2,3]) into type 'Pashamao.Models.EditProductStyleViewModel' because the type requires a JSON object (e.g. {"name":"value"}) to deserialize correctly.
+To fix this error either change the JSON to a JSON object (e.g. {"name":"value"}) or change the deserialized type to an array or a type that implements a collection interface (e.g. ICollection, IList) like List<T> that can be deserialized from a JSON array. JsonArrayAttribute can also be added to the type to force it to deserialize from a JSON array.
+Path '', line 1, position 1.
+2024-12-20 11:56:17.8578 Info Application Start
+2024-12-20 12:31:11.9409 Info Application Start
+2024-12-20 13:22:05.9873 Info Application Start
+2024-12-20 13:26:52.1196 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: value
+2024-12-20 13:30:19.2631 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: value
+2024-12-20 13:47:58.1214 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: value
+2024-12-20 13:48:53.2020 Error System.IO.DirectoryNotFoundException: 找不到路徑 '\images\productImage\noImage.jpg' 的一部分。
+2024-12-20 13:50:19.9844 Error System.IO.IOException: 目標檔案 "D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\寵物防滑地墊 (多色)" 是目錄，而非檔案。
+2024-12-20 13:53:00.1635 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\寵物防滑地墊 (多色)\' 的一部分。
+2024-12-20 14:09:45.9725 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'DeleteProductStyle'。
+2024-12-20 14:10:22.6380 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'DeleteProductStyle'。
+2024-12-20 14:10:37.8253 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'DeleteProductStyle'。
+2024-12-20 14:10:50.6974 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'DeleteProductStyle'。
+2024-12-20 14:11:34.8932 Info Application Start
+2024-12-20 14:11:40.2043 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 14:11:58.6443 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 14:12:07.8112 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 14:24:23.7790 Info Application End
+2024-12-20 14:24:26.8639 Info Application Start
+2024-12-20 14:37:51.4151 Info Application End
+2024-12-20 14:38:08.3805 Info Application Start
+2024-12-20 14:46:30.7005 Info Application End
+2024-12-20 14:46:34.0268 Info Application Start
+2024-12-20 14:55:42.6535 Info Application End
+2024-12-20 14:55:45.4006 Info Application Start
+2024-12-20 15:08:49.4423 Info Application End
+2024-12-20 15:08:52.0996 Info Application Start
+2024-12-20 15:19:09.2501 Info Application End
+2024-12-20 15:19:11.0288 Info Application Start
+2024-12-20 15:21:31.3627 Info Application Start
+2024-12-20 15:30:48.1791 Info Application End
+2024-12-20 15:30:52.0348 Info Application Start
+2024-12-20 15:54:48.3011 Info Application End
+2024-12-20 15:54:50.4832 Info Application Start
+2024-12-20 16:22:28.8080 Info Application Start
+2024-12-20 16:22:29.1471 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 16:55:14.4991 Info Application End
+2024-12-20 16:55:33.4665 Info Application Start
+2024-12-20 17:03:48.8084 Info Application Start
+2024-12-20 17:03:55.4017 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 17:05:57.0555 Info Application End
+2024-12-20 17:05:59.7219 Info Application Start
+2024-12-20 17:06:00.0259 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-20 17:15:13.6461 Info Application End
+2024-12-20 17:15:15.3201 Info Application Start
+2024-12-20 17:45:43.3548 Info Application End
+2024-12-20 18:06:01.4261 Info Application Start
+2024-12-20 18:06:39.8210 Error System.ArgumentOutOfRangeException: 索引超出範圍。必須為非負數且小於集合的大小。
+參數名稱: index
+2024-12-20 18:06:39.8379 Error System.ArgumentOutOfRangeException: 索引超出範圍。必須為非負數且小於集合的大小。
+參數名稱: index
+2024-12-20 18:08:41.4407 Error System.ArgumentOutOfRangeException: 索引超出範圍。必須為非負數且小於集合的大小。
+參數名稱: index
+2024-12-20 18:08:41.4407 Error System.ArgumentOutOfRangeException: 索引超出範圍。必須為非負數且小於集合的大小。
+參數名稱: index
+2024-12-20 18:11:06.0138 Info Application End
+2024-12-20 18:11:20.3964 Info Application Start
+2024-12-20 18:13:46.6022 Info Application Start
+2024-12-20 18:15:27.0093 Info Application Start
+2024-12-20 18:29:22.2822 Info Application Start
+2024-12-20 18:32:20.8768 Info Application End
+2024-12-20 18:32:23.3446 Info Application Start
+2024-12-20 18:44:50.1040 Info Application End
+2024-12-20 18:44:57.0304 Info Application Start
+2024-12-20 18:45:33.7295 Info Application Start
+2024-12-20 19:45:18.1362 Info Application Start
+2024-12-20 19:45:40.0145 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:46:15.9780 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:46:29.8165 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:46:31.9574 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:48:10.1363 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:48:13.9837 Error System.ArgumentException: 對 'Pashamao.Controllers.ProductController' 的方法 'System.Web.Mvc.ActionResult EditProduct(Pashamao.Models.ProductDetail, Boolean)' 中不可為 null 型別 'System.Boolean' 的參數 'updateStatus' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-20 19:49:31.8196 Info Application End
+2024-12-20 19:49:42.6652 Info Application Start
+2024-12-20 19:52:46.4322 Error System.Data.SqlClient.SqlException: 將 varchar 資料類型轉換成 datetime 資料類型時，產生超出範圍的值。
+2024-12-20 19:52:46.4937 Error System.Data.SqlClient.SqlException: 將 varchar 資料類型轉換成 datetime 資料類型時，產生超出範圍的值。
+2024-12-20 19:52:48.3093 Error System.Data.SqlClient.SqlException: 將 varchar 資料類型轉換成 datetime 資料類型時，產生超出範圍的值。

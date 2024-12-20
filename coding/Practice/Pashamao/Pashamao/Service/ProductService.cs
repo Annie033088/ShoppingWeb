@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Xml.Linq;
 using System.IO;
 using Microsoft.Ajax.Utilities;
+using System.Web.Optimization;
 
 namespace Pashamao.Service
 {
@@ -106,32 +107,32 @@ namespace Pashamao.Service
             }
         }
 
-        public (ProductDetail, List<ProductStyle>, List<ProductImage>, string) GetProductDetail(string productId)
+        public (ProductDetail, List<ProductStyle>, List<ProductImage>, List<ProductCategory>) GetProductDetail(string productId)
         {
             (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productRepository.GetProductDetail(int.Parse(productId));
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string filePath = appDirectory + "/tableText/categoryTable.txt";
-            string categoryName = "其他";
+            List<ProductCategory> categories = new List<ProductCategory>();
 
             try
             {
                 foreach (var line in File.ReadLines(filePath))
                 {
+                    ProductCategory category = new ProductCategory();
                     string[] parts = line.Split(',');
 
                     if (parts.Length == 2)
                     {
-                        if (product.CategoryId == int.Parse(parts[0].Trim()))
-                        {
-                            categoryName = parts[1].Trim();
-                        }
+                        category.CategoryId = int.Parse(parts[0].Trim());
+                        category.Name = parts[1].Trim();
                     }
+                    categories.Add(category);
                 }
-                return (product, styles, images, categoryName);
+                return (product, styles, images, categories);
             }
             catch (Exception e)
             {
-                logger.Error (e);
+                logger.Error(e);
                 throw e;
             }
         }
@@ -191,7 +192,7 @@ namespace Pashamao.Service
                         }
                         else
                         {
-                            delImageId = delImageId +  "," + delOldImageList[i].ProductImageId;
+                            delImageId = delImageId + "," + delOldImageList[i].ProductImageId;
                         }
                     }
                 }
@@ -204,5 +205,237 @@ namespace Pashamao.Service
             }
         }
 
+        public bool EditProductStyle(List<EditProductStyleViewModel> afterEditStyle, HttpFileCollectionBase files)
+        {
+            ProductStyle productStyle = new ProductStyle();
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Directory.SetCurrentDirectory(appDirectory);
+
+            if (files.Count > 0)
+            {
+                string fileName = Path.GetFileName(files[0].FileName);
+                string folderPath = appDirectory + @"images\productImage\" + afterEditStyle[0].ProductName;
+                string relativePath = @"\images\productImage\" + afterEditStyle[0].ProductName + @"\" + fileName;
+                //下載檔案
+                if (Directory.Exists(folderPath))
+                {
+                    string filePath = folderPath + @"\" + fileName;
+                    files[0].SaveAs(filePath);
+                    productStyle.ImageUrl = relativePath;
+                }
+                else
+                {
+                    Directory.CreateDirectory(folderPath);
+                    string filePath = folderPath + @"\" + fileName;
+                    string absoluteFilePath = appDirectory + filePath;
+                    files[0].SaveAs(absoluteFilePath);
+                    productStyle.ImageUrl = relativePath;
+                }
+
+                //刪除檔案
+                string absoluteImagePath = appDirectory + afterEditStyle[0].OldImageUrl;
+                if (File.Exists(absoluteImagePath))
+                {
+                    File.Delete(absoluteImagePath);
+                }
+            }
+            else
+            {
+                productStyle.ImageUrl = afterEditStyle[0].OldImageUrl;
+            }
+
+            if (afterEditStyle[0].UpdateStyleStatus)
+            {
+                productStyle.LastShelveEditTime = DateTime.Now;
+            }
+            else
+            {
+                productStyle.LastShelveEditTime = afterEditStyle[0].LastShelveEditTime;
+            }
+
+            productStyle.ProductStyleId = afterEditStyle[0].ProductStyleId;
+            productStyle.Status = afterEditStyle[0].Status;
+            productStyle.StockQuantity = afterEditStyle[0].StockQuantity;
+            productStyle.Price = afterEditStyle[0].Price;
+            productStyle.Style = afterEditStyle[0].Style;
+
+
+            return productRepository.EditProductStyle(productStyle);
+        }
+
+        public bool AddProductStyle(ProductStyle productStyle, string productName, HttpFileCollectionBase files)
+        {
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Directory.SetCurrentDirectory(appDirectory);
+            if (files.Count > 0)
+            {
+                string fileName = Path.GetFileName(files[0].FileName);
+                string folderPath = appDirectory + @"images\productImage\" + productName;
+                string relativePath = @"\images\productImage\" + productName + @"\" + fileName;
+                //下載檔案
+                if (Directory.Exists(folderPath))
+                {
+                    string filePath = folderPath + @"\" + fileName;
+                    files[0].SaveAs(filePath);
+                }
+                else
+                {
+                    Directory.CreateDirectory(folderPath);
+                    string filePath = folderPath + @"\" + fileName;
+                    string absoluteFilePath = appDirectory + filePath;
+                    files[0].SaveAs(absoluteFilePath);
+                }
+                productStyle.ImageUrl = relativePath;
+            }
+            else
+            {
+                string sourceFilePath = appDirectory + @"\images\productImage\noImage.jpg";
+                string destinationFilePath = appDirectory + @"images\productImage\" + productName + @"\noImage.jpg";
+                File.Copy(sourceFilePath, destinationFilePath, overwrite: true);
+                string relativePath = @"\images\productImage\" + productName + @"\noImage.jpg";
+                productStyle.ImageUrl = relativePath;
+            }
+            return productRepository.AddProductStyle(productStyle);
+        }
+
+        public bool DeleteProductStyle(string productStyleId)
+        {
+            return productRepository.DeleteProductStyle(int.Parse(productStyleId));
+        }
+
+        public bool AddProductCategory(string categoryName)
+        {
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = appDirectory + "/tableText/categoryTable.txt";
+            List<int> categoriesId = new List<int>();
+
+            try
+            {
+                foreach (var line in File.ReadLines(filePath))
+                {
+                    ProductCategory category = new ProductCategory();
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length == 2)
+                    {
+                        categoriesId.Add(int.Parse(parts[0].Trim()));
+                        if (parts[1].Trim() == categoryName)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < categoriesId.Count + 1; i++)
+                {
+                    int id = i + 1;
+                    if (id != categoriesId.Count + 1)
+                    {
+                        bool repeatId = false;
+
+                        for (int j = 0; j < categoriesId.Count; j++)
+                        {
+                            if (id == categoriesId[j])
+                            {
+                                repeatId = true;
+                                break;
+                            }
+                        }
+
+                        if (!repeatId)
+                        {
+                            string categoryLine = id.ToString() + "," + categoryName;
+                            File.AppendAllText(filePath, categoryLine + Environment.NewLine);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        string categoryLine = id.ToString() + "," + categoryName;
+                        File.AppendAllText(filePath, categoryLine + Environment.NewLine);
+                        return true;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        public bool DeleteProductCategory(string categoryId)
+        {
+
+            try
+            {
+                //沒有商品擁有這個分類才可以刪除
+                if (!productRepository.GetExistProductCategory(int.Parse(categoryId)))
+                {
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = appDirectory + "/tableText/categoryTable.txt";
+
+                    List<string> lines = File.ReadAllLines(filePath).ToList();
+                    List<string> newLines = new List<string>();
+
+                    foreach (string line in lines)
+                    {
+                        if (!line.StartsWith(categoryId.ToString() + ","))
+                        {
+                            newLines.Add(line);
+                        }
+                    }
+                    File.WriteAllLines(filePath, newLines);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+
+        }
+
+        public bool EditProduct(ProductDetail product)
+        {
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = appDirectory + "/tableText/categoryTable.txt";
+            bool haveThisCategory = false;
+
+            try
+            {
+                foreach (var line in File.ReadLines(filePath))
+                {
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length == 2)
+                    {
+                        if (int.Parse(parts[0].Trim()) == product.CategoryId)
+                        {
+                            haveThisCategory = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (haveThisCategory)
+                {
+                    return productRepository.EditProduct(product);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
     }
 }

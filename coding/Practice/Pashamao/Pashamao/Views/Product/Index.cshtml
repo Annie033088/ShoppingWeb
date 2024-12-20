@@ -124,7 +124,7 @@
 
                     var productTitleBox = document.createElement('div');
                     var productTitle = document.createElement('a');
-                    productTitle.innerHTML = i + ". " + products.Name[i];
+                    productTitle.innerHTML = products.ProductId[i] + ". " + products.Name[i];
                     productPicUrl.className = "btn";
                     productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i])})
                     var productPrice = document.createElement('p');

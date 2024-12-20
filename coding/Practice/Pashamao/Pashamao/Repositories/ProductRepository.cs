@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Web.UI;
+using Microsoft.Ajax.Utilities;
 
 namespace Pashamao.Repositories
 {
@@ -54,6 +55,7 @@ namespace Pashamao.Repositories
                     {
                         ProductSimple product = new ProductSimple();
                         product.ProductId = dt.Rows[i].IsNull("f_productId") ? 0 : dt.Rows[i].Field<int>("f_productId");
+                        product.CategoryId = dt.Rows[i].IsNull("f_categoryId") ? 0 : dt.Rows[i].Field<int>("f_categoryId");
                         product.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         product.Price = dt.Rows[i].IsNull("f_price") ? 0 : dt.Rows[i].Field<decimal>("f_price");
                         product.ImageUrl = dt.Rows[i].IsNull("f_imageUrl") ? string.Empty : dt.Rows[i].Field<string>("f_imageUrl");
@@ -122,6 +124,7 @@ namespace Pashamao.Repositories
                     style.Price = ds.Tables[1].Rows[i].IsNull("f_price") ? 0 : ds.Tables[1].Rows[i].Field<decimal>("f_price");
                     style.StockQuantity = ds.Tables[1].Rows[i].IsNull("f_stockQuantity") ? 0 : ds.Tables[1].Rows[i].Field<int>("f_stockQuantity");
                     style.ImageUrl = ds.Tables[1].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[1].Rows[i].Field<string>("f_imageUrl");
+                    style.Status = ds.Tables[1].Rows[i].IsNull("f_status") ? false : ds.Tables[1].Rows[i].Field<bool>("f_status");
                     style.CreateTime = ds.Tables[1].Rows[i].IsNull("f_createTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_createTime");
                     style.LastShelveEditTime = ds.Tables[1].Rows[i].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_lastShelveEditTime");
 
@@ -159,11 +162,203 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editProductImage @delImageId, @productId, @addImageUrl";
+                cmd.CommandText = "EXEC pro_pashamao_delAndAddProductImage @delImageId, @productId, @addImageUrl";
 
                 cmd.Parameters.Add("@delImageId", SqlDbType.VarChar).Value = delImageId;
                 cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
                 cmd.Parameters.Add("@addImageUrl", SqlDbType.NVarChar).Value = addImageUrl;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        internal bool EditProductStyle(ProductStyle productStyle)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editProductStyle @productStyleId, @imageUrl, @style, @price, @stockQuantity, @status, @lastShelveEditTime";
+                cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyle.ProductStyleId;
+                cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
+                cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = productStyle.Style;
+                cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
+                cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = productStyle.Status;
+                cmd.Parameters.Add("@lastShelveEditTime", SqlDbType.DateTime).Value = productStyle.LastShelveEditTime;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        internal bool AddProductStyle(ProductStyle productStyle)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status";
+                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productStyle.ProductId;
+                cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
+                cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = productStyle.Style;
+                cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
+                cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = productStyle.Status;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        internal bool DeleteProductStyle(int productStyleId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_delProductStyle @productStyleId";
+                cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyleId;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+
+        }
+
+        internal bool GetExistProductCategory(int categoryId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getExistProductCategory @categoryId";
+
+                cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = categoryId;
+
+                cmd.Connection.Open();
+
+                var ExeCnt = cmd.ExecuteScalar();
+                if (ExeCnt == null)
+                {
+                    return false;
+                }
+                else //代表有商品有這個分類 此分類不能刪除
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        internal bool EditProduct(ProductDetail product)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editProduct @productId, @categoryId, @name, @description, @introduction, @status, @lastShelveEditTime";
+                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = product.ProductId;
+                cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = product.Name;
+                cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
+                cmd.Parameters.Add("@introduction", SqlDbType.NVarChar).Value = product.Introduction;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = product.Status;
+                cmd.Parameters.Add("@lastShelveEditTime", SqlDbType.DateTime).Value = product.LastShelveEditTime;
 
                 cmd.Connection.Open();
 

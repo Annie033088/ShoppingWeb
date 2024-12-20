@@ -135,6 +135,7 @@
     <Compile Include="Controllers\MainMemberController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Models\EditProductStyleViewModel.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\CreateMemberViewModel.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductSimple.cs" />
