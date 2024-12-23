@@ -2,13 +2,9 @@
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
-using System.Data.Common;
-using System.Data.SqlClient;
 using System;
-using System.Web.Mvc;
-using System.Web.UI;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {

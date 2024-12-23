@@ -3,12 +3,8 @@ using Pashamao.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace Pashamao.Repositories
 {

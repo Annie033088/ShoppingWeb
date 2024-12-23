@@ -2,7 +2,6 @@
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
-using System.Diagnostics;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +18,7 @@ namespace Pashamao.Controllers
         public ActionResult Index()
         {
             try
-            {   
+            {
                 //被踢出去之後, 記下紀錄並清除會話
                 if (TempData["KickOutMessage"] != null)
                 {
@@ -35,7 +34,7 @@ namespace Pashamao.Controllers
 
                 //判斷狀態為登入或未登入
                 if (Session["UserSeesion"] != null) return RedirectToAction("Index", "MainHome");
-                
+
                 return View();
             }
             catch (Exception e)

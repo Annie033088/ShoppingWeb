@@ -1,0 +1,6 @@
+2024-12-22 00:09:05.3803 Info Application Start
+2024-12-22 00:09:07.1250 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-22 00:09:20.7121 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-22 00:10:30.6653 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/22 上午 12:10:30.

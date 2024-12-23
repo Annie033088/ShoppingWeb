@@ -1,14 +1,11 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace Pashamao.Controllers
 {

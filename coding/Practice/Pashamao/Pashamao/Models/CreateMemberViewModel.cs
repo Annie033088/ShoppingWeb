@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Pashamao.Models
 {
@@ -18,7 +14,7 @@ namespace Pashamao.Models
 
         [StringLength(254, ErrorMessage = "信箱長度應該小於254")]
         [RegularExpression("^([\\w\\.-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z0-9]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
-        public string Email {  get; set; }
+        public string Email { get; set; }
 
         [RegularExpression("^([0-9]{0,4})?$", ErrorMessage = "國際碼應輸入小於4的數字")]
         public string CountryCode { get; set; }

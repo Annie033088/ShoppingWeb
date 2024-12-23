@@ -4,7 +4,6 @@ using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 
 namespace Pashamao.Service
 {
@@ -151,7 +150,7 @@ namespace Pashamao.Service
             if (level == "2") member.Points = 3000;
             if (level == "3") member.Points = 12000;
 
-            return memberRepository.UpdateMemberLevel(member); 
+            return memberRepository.UpdateMemberLevel(member);
         }
     }
 }

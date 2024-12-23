@@ -1,17 +1,11 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
-using Pashamao.Repositories;
-using System.Web.UI;
-using System.Xml.Linq;
-using System.IO;
-using Microsoft.Ajax.Utilities;
-using System.Web.Optimization;
 
 namespace Pashamao.Service
 {
@@ -23,65 +17,92 @@ namespace Pashamao.Service
         {
             productRepository = new ProductRepository();
         }
-        public (List<string>, List<string>, List<string>, List<string>, int) GetAllProduct(string page)
+
+        /// <summary>
+        /// 取得所有商品(包括分類)
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public (List<string>, List<string>, List<string>, List<string>, List<string>, List<int>, List<ProductCategory>, int) GetAllProduct(string page)
         {
             try
             {
                 (List<ProductSimple> products, int totalPages) = productRepository.GetAllProduct(int.Parse(page));
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = appDirectory + "/tableText/categoryTable.txt";
+                List<ProductCategory> categories = new List<ProductCategory>();
 
+                //取得產品類別列表
+                foreach (var line in File.ReadLines(filePath))
+                {
+                    ProductCategory category = new ProductCategory();
+                    string[] parts = line.Split(',');
+
+                    if (parts.Length == 2)
+                    {
+                        category.CategoryId = int.Parse(parts[0].Trim());
+                        category.Name = parts[1].Trim();
+                    }
+
+                    categories.Add(category);
+                }
+
+                //取得主頁資訊
                 if (products != null)
                 {
                     List<string> ProductId = new List<string>();
                     List<string> Name = new List<string>();
                     List<string> Price = new List<string>();
                     List<string> ImageUrl = new List<string>();
+                    List<string> CategoryId = new List<string>();
+                    List<int> StockQuantitySmall = new List<int>();
                     List<decimal> PriceSmall = new List<decimal>();
                     List<decimal> PriceBig = new List<decimal>();
-
 
                     foreach (ProductSimple product in products)
                     {
                         //這個商品的id有記錄過了嗎?預設 無
                         bool haveThisProductIdFlag = false;
 
-
-                        if (ProductId.Count == 0)
-                        {
-                            ProductId.Add(product.ProductId.ToString());
-                            Name.Add(product.Name);
-                            ImageUrl.Add(product.ImageUrl);
-                            PriceSmall.Add(product.Price);
-                            PriceBig.Add(product.Price);
-                        }
-
+                        //拿來設定此商品的最大金額到最小金額 跟 庫存數量
                         for (int i = 0; i < ProductId.Count; i++)
                         {
                             if (ProductId[i] == product.ProductId.ToString())
                             {
                                 //這個商品id記錄過了=>有
                                 haveThisProductIdFlag = true;
+
                                 if (product.Price < PriceSmall[i])
                                 {
-                                    PriceSmall[i] = products[i].Price;
+                                    PriceSmall[i] = product.Price;
                                 }
 
-                                if (products[i].Price > PriceBig[i])
+                                if (product.Price > PriceBig[i])
                                 {
-                                    PriceBig[i] = products[i].Price;
+                                    PriceBig[i] = product.Price;
+                                }
+
+                                if (product.StockQuantity < StockQuantitySmall[i])
+                                {
+                                    StockQuantitySmall[i] = product.StockQuantity;
                                 }
                             }
                         }
 
-                        if (haveThisProductIdFlag == false)
+                        if (ProductId.Count == 0 || !haveThisProductIdFlag)
                         {
                             ProductId.Add(product.ProductId.ToString());
                             Name.Add(product.Name);
                             ImageUrl.Add(product.ImageUrl);
+                            CategoryId.Add(product.CategoryId.ToString());
+                            StockQuantitySmall.Add(product.StockQuantity);
                             PriceSmall.Add(product.Price);
                             PriceBig.Add(product.Price);
                         }
                     }
 
+
+                    //把每個商品的最大最小價錢記錄下來
                     for (int i = 0; i < PriceSmall.Count; i++)
                     {
                         if (PriceSmall[i] == PriceBig[i])
@@ -94,11 +115,10 @@ namespace Pashamao.Service
                         }
                     }
 
-                    return (ProductId, Name, Price, ImageUrl, totalPages);
+                    return (ProductId, Name, Price, ImageUrl, CategoryId, StockQuantitySmall, categories, totalPages);
                 }
 
-
-                return (null, null, null, null, 0);
+                return (null, null, null, null, null, null, null, 0);
             }
             catch (Exception e)
             {
@@ -107,6 +127,103 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 取得分類下的商品
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public (List<string>, List<string>, List<string>, List<string>, List<string>, List<int>, int) GetProductByCategory(string categoryId, string page)
+        {
+            try
+            {
+                (List<ProductSimple> products, int totalPages) = productRepository.GetProductByCategory(int.Parse(categoryId), int.Parse(page));
+
+                //取得主頁資訊
+                if (products != null)
+                {
+                    List<string> ProductId = new List<string>();
+                    List<string> Name = new List<string>();
+                    List<string> Price = new List<string>();
+                    List<string> ImageUrl = new List<string>();
+                    List<string> CategoryId = new List<string>();
+                    List<int> StockQuantitySmall = new List<int>();
+                    List<decimal> PriceSmall = new List<decimal>();
+                    List<decimal> PriceBig = new List<decimal>();
+
+                    foreach (ProductSimple product in products)
+                    {
+                        //這個商品的id有記錄過了嗎?預設 無
+                        bool haveThisProductIdFlag = false;
+
+                        //拿來設定此商品的最大金額到最小金額
+                        for (int i = 0; i < ProductId.Count; i++)
+                        {
+                            if (ProductId[i] == product.ProductId.ToString())
+                            {
+                                //這個商品id記錄過了=>有
+                                haveThisProductIdFlag = true;
+
+                                if (product.Price < PriceSmall[i])
+                                {
+                                    PriceSmall[i] = product.Price;
+                                }
+
+                                if (product.Price > PriceBig[i])
+                                {
+                                    PriceBig[i] = product.Price;
+                                }
+
+                                if (product.StockQuantity < StockQuantitySmall[i])
+                                {
+                                    StockQuantitySmall[i] = product.StockQuantity;
+                                }
+                            }
+                        }
+
+                        if (ProductId.Count == 0 || !haveThisProductIdFlag)
+                        {
+                            ProductId.Add(product.ProductId.ToString());
+                            Name.Add(product.Name);
+                            ImageUrl.Add(product.ImageUrl);
+                            CategoryId.Add(product.CategoryId.ToString());
+                            StockQuantitySmall.Add(product.StockQuantity);
+                            PriceSmall.Add(product.Price);
+                            PriceBig.Add(product.Price);
+                        }
+                    }
+
+
+                    //把每個商品的最大最小價錢記錄下來
+                    for (int i = 0; i < PriceSmall.Count; i++)
+                    {
+                        if (PriceSmall[i] == PriceBig[i])
+                        {
+                            Price.Add("$" + PriceSmall[i].ToString());
+                        }
+                        else
+                        {
+                            Price.Add("$" + PriceSmall[i].ToString() + "~" + PriceBig[i].ToString());
+                        }
+                    }
+
+                    return (ProductId, Name, Price, ImageUrl, CategoryId, StockQuantitySmall, totalPages);
+                }
+
+                return (null, null, null, null, null, null, 0);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+
+        /// <summary>
+        /// 取得商品詳細資訊
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public (ProductDetail, List<ProductStyle>, List<ProductImage>, List<ProductCategory>) GetProductDetail(string productId)
         {
             (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productRepository.GetProductDetail(int.Parse(productId));
@@ -126,6 +243,7 @@ namespace Pashamao.Service
                         category.CategoryId = int.Parse(parts[0].Trim());
                         category.Name = parts[1].Trim();
                     }
+
                     categories.Add(category);
                 }
                 return (product, styles, images, categories);
@@ -137,6 +255,14 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 修改商品圖片(包括刪除跟新增)
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="delOldImageList"></param>
+        /// <param name="productName"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
         public bool EditProductImage(string productId, List<ProductImage> delOldImageList, string productName, HttpFileCollectionBase files)
         {
             //設置增加的檔案數跟刪除的檔案
@@ -205,7 +331,13 @@ namespace Pashamao.Service
             }
         }
 
-        public bool EditProductStyle(List<EditProductStyleViewModel> afterEditStyle, HttpFileCollectionBase files)
+        /// <summary>
+        /// 修改商品細項
+        /// </summary>
+        /// <param name="afterEditStyle"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public bool EditProductStyle(EditProductStyleViewModel afterEditStyle, HttpFileCollectionBase files)
         {
             ProductStyle productStyle = new ProductStyle();
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -214,8 +346,8 @@ namespace Pashamao.Service
             if (files.Count > 0)
             {
                 string fileName = Path.GetFileName(files[0].FileName);
-                string folderPath = appDirectory + @"images\productImage\" + afterEditStyle[0].ProductName;
-                string relativePath = @"\images\productImage\" + afterEditStyle[0].ProductName + @"\" + fileName;
+                string folderPath = appDirectory + @"images\productImage\" + afterEditStyle.ProductName;
+                string relativePath = @"\images\productImage\" + afterEditStyle.ProductName + @"\" + fileName;
                 //下載檔案
                 if (Directory.Exists(folderPath))
                 {
@@ -233,7 +365,7 @@ namespace Pashamao.Service
                 }
 
                 //刪除檔案
-                string absoluteImagePath = appDirectory + afterEditStyle[0].OldImageUrl;
+                string absoluteImagePath = appDirectory + afterEditStyle.OldImageUrl;
                 if (File.Exists(absoluteImagePath))
                 {
                     File.Delete(absoluteImagePath);
@@ -241,28 +373,38 @@ namespace Pashamao.Service
             }
             else
             {
-                productStyle.ImageUrl = afterEditStyle[0].OldImageUrl;
+                productStyle.ImageUrl = afterEditStyle.OldImageUrl;
             }
 
-            if (afterEditStyle[0].UpdateStyleStatus)
+            //要不要修改 最後上下架時間
+            if (afterEditStyle.UpdateStyleStatus)
             {
                 productStyle.LastShelveEditTime = DateTime.Now;
+                productStyle.ProductStyleId = afterEditStyle.ProductStyleId;
+                productStyle.Status = afterEditStyle.Status;
+                productStyle.StockQuantity = afterEditStyle.StockQuantity;
+                productStyle.Price = afterEditStyle.Price;
+                productStyle.Style = afterEditStyle.Style;
+                return productRepository.EditProductStyleAndShelveTime(productStyle);
             }
             else
             {
-                productStyle.LastShelveEditTime = afterEditStyle[0].LastShelveEditTime;
+                productStyle.ProductStyleId = afterEditStyle.ProductStyleId;
+                productStyle.Status = afterEditStyle.Status;
+                productStyle.StockQuantity = afterEditStyle.StockQuantity;
+                productStyle.Price = afterEditStyle.Price;
+                productStyle.Style = afterEditStyle.Style;
+                return productRepository.EditProductStyle(productStyle);
             }
-
-            productStyle.ProductStyleId = afterEditStyle[0].ProductStyleId;
-            productStyle.Status = afterEditStyle[0].Status;
-            productStyle.StockQuantity = afterEditStyle[0].StockQuantity;
-            productStyle.Price = afterEditStyle[0].Price;
-            productStyle.Style = afterEditStyle[0].Style;
-
-
-            return productRepository.EditProductStyle(productStyle);
         }
 
+        /// <summary>
+        /// 新增商品細項
+        /// </summary>
+        /// <param name="productStyle"></param>
+        /// <param name="productName"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
         public bool AddProductStyle(ProductStyle productStyle, string productName, HttpFileCollectionBase files)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -298,11 +440,21 @@ namespace Pashamao.Service
             return productRepository.AddProductStyle(productStyle);
         }
 
+        /// <summary>
+        /// 刪除商品細項
+        /// </summary>
+        /// <param name="productStyleId"></param>
+        /// <returns></returns>
         public bool DeleteProductStyle(string productStyleId)
         {
             return productRepository.DeleteProductStyle(int.Parse(productStyleId));
         }
 
+        /// <summary>
+        /// 新增商品分類
+        /// </summary>
+        /// <param name="categoryName"></param>
+        /// <returns></returns>
         public bool AddProductCategory(string categoryName)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -366,6 +518,11 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 刪除商品分類
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
         public bool DeleteProductCategory(string categoryId)
         {
 
@@ -400,6 +557,11 @@ namespace Pashamao.Service
 
         }
 
+        /// <summary>
+        /// 修改商品(包括名稱, 介紹等等)
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public bool EditProduct(ProductDetail product)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -430,6 +592,68 @@ namespace Pashamao.Service
                 {
                     return false;
                 }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 取得所有分類
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public List<ProductCategory> GetProductCategory() {
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = appDirectory + "/tableText/categoryTable.txt";
+            List<ProductCategory> categories = new List<ProductCategory>();
+
+            //取得產品類別列表
+            foreach (var line in File.ReadLines(filePath))
+            {
+                ProductCategory category = new ProductCategory();
+                string[] parts = line.Split(',');
+
+                if (parts.Length == 2)
+                {
+                    category.CategoryId = int.Parse(parts[0].Trim());
+                    category.Name = parts[1].Trim();
+                }
+
+                categories.Add(category);
+            }
+            return categories;
+
+        }
+
+        public bool AddProduct(CreateProductViewModel product, HttpFileCollectionBase files)
+        {
+            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Directory.SetCurrentDirectory(appDirectory);
+
+            try
+            {
+                string fileName = Path.GetFileName(files[0].FileName);
+                string folderPath = appDirectory + @"images\productImage\" + product.ProductName;
+                string relativePath = @"\images\productImage\" + product.ProductName + @"\" + fileName;
+                string filePath = folderPath + @"\" + fileName;
+
+                //下載檔案
+                if (Directory.Exists(folderPath))
+                {
+                    files[0].SaveAs(filePath);
+                }
+                else
+                {
+                    Directory.CreateDirectory(folderPath);
+                    files[0].SaveAs(filePath);
+                }
+
+                product.ImageUrl = relativePath;
+
+                return productRepository.AddProduct(product);
             }
             catch (Exception e)
             {

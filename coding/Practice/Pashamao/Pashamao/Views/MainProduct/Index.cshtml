@@ -11,11 +11,23 @@
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
         <div id="navCategory" class="text-center col-sm-12 row justify-content-center">
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">全部</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">新品</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">特價</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">用品</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">飼料</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">罐頭</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">零食</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">貓砂</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">保健</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">生活</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">品牌</button>
         </div>
         <div>
-            <button type="button" id="btnAddProduct" class="btn btn-outline-dark" onclick='window.location.href="/Product/CreateProduct"'>新增商品</button>
+            <button type="button" id="btnAddProduct" class="btn btn-outline-dark" onclick='window.location.href="/MainProduct/CreateProduct"'>新增商品</button>
         </div>
-        <div id="productList" class="container col-sm-12 row text-center">
+        <div id="productList" class="container text-center">
+
         </div>
         <nav aria-label="Data navigation">
             <ul class="pagination justify-content-center">
@@ -109,12 +121,11 @@
             }
 
             function getAllProduct(page) {
-                axios.post("/Product/GetAllProduct", { Page: page })
+                axios.post("/MainProduct/GetAllProduct", { Page: page })
                     .then(response => {
                         if (response.data.Item1 != "noProduct") {
                             populateProduct(response.data.Item1);
-                            populateCategory(response.data.Item2);
-                            document.getElementById("lastPage").innerHTML = response.data.Item3;
+                            document.getElementById("lastPage").innerHTML = response.data.Item2;
                         }
                     })
                     .catch(error => {
@@ -122,7 +133,10 @@
                     })
             }
 
-            function getProductByCategory(lastSelectCategoryId, page) {
+            function getProductByCategory(selectCategoryName, lastSelectCategoryId, page) {
+
+                document.getElementById("currentPage").innerHTML = 1;
+                lastCategoryId = selectCategoryName;
 
                 axios.post("/Product/GetProductByCategory", { LastSelectCategoryId: lastSelectCategoryId,  Page: page })
                     .then(response => {
@@ -136,34 +150,6 @@
                     .catch(error => {
                         console.error("fail", error);
                     })
-            }
-
-            function populateCategory(categories) {
-                let categoryList = document.getElementById("navCategory");
-                categoryList.innerHTML = '';
-
-                //生成查詢全部分類的元素
-
-                var btnCategoryAll = document.createElement('button');
-                btnCategoryAll.innerHTML = "全部";
-                btnCategoryAll.className = "col-1 h5 btn btn-outline-secondary me-1";
-                btnCategoryAll.addEventListener('click', function () {
-                    getAll();
-                })
-                categoryList.appendChild(btnCategoryAll);
-
-                //生成分類的元素
-                for (let i = 0; i < categories.length; i++) {
-                    var btnCategoryName = document.createElement('button');
-                    btnCategoryName.innerHTML = categories[i].Name;
-                    btnCategoryName.className = "col-1 h5 btn btn-outline-secondary me-1";
-                    btnCategoryName.addEventListener('click', function () {
-                        document.getElementById("currentPage").innerHTML = 1;
-                        lastCategoryId = categories[i].CategoryId;
-                        getProductByCategory(lastCategoryId, 1)
-                    })
-                    categoryList.appendChild(btnCategoryName);
-                }
             }
 
             function populateProduct(products) {

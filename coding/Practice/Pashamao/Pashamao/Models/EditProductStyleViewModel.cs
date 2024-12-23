@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models
 {
     public class EditProductStyleViewModel
     {
-        public int ProductStyleId {  get; set; }
+        public int ProductStyleId { get; set; }
         public string ProductName { get; set; }
         public string Style { get; set; }
         public decimal Price { get; set; }
@@ -18,7 +15,7 @@ namespace Pashamao.Models
         /// <summary>
         /// 上架下架
         /// </summary>
-        public bool Status {  get; set; }
+        public bool Status { get; set; }
         public string OldImageUrl { get; set; }
 
         /// <summary>

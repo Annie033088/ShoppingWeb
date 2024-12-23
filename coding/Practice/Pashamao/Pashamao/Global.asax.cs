@@ -1,10 +1,8 @@
 using NLog;
 using System;
-using System.Diagnostics;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Diagnostics;
 
 namespace Pashamao
 {
@@ -31,7 +29,7 @@ namespace Pashamao
             {
                 logger.Error(exception);
 
-                if ( Session["UserSession"] != null) Response.Redirect("/MainHome/Index");
+                if (Session["UserSession"] != null) Response.Redirect("/MainHome/Index");
 
                 Response.Redirect("/Login/Index");
                 Server.ClearError();

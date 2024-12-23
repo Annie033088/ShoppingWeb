@@ -1,0 +1,74 @@
+2024-12-23 09:00:54.7777 Info Application Start
+2024-12-23 09:11:50.4341 Info Application End
+2024-12-23 09:11:54.6284 Info Application Start
+2024-12-23 09:13:07.6151 Info Application End
+2024-12-23 09:13:10.0339 Info Application Start
+2024-12-23 09:23:00.0958 Info Application End
+2024-12-23 09:23:03.1338 Info Application Start
+2024-12-23 09:24:06.5660 Info Application Start
+2024-12-23 09:36:11.2799 Info Application Start
+2024-12-23 09:51:29.3166 Info Application Start
+2024-12-23 10:22:14.2928 Info Application End
+2024-12-23 10:22:25.3397 Info Application Start
+2024-12-23 10:22:25.7114 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-23 10:42:11.6849 Info Application End
+2024-12-23 10:42:21.0738 Info Application Start
+2024-12-23 10:54:37.1069 Info Application End
+2024-12-23 10:54:38.6486 Info Application Start
+2024-12-23 11:18:22.9197 Info Application End
+2024-12-23 11:18:30.7112 Info Application Start
+2024-12-23 11:21:52.8292 Info Application End
+2024-12-23 11:21:56.7561 Info Application Start
+2024-12-23 11:22:00.6529 Error System.Web.HttpException: 找不到路徑 '/prodct' 的控制器或是未實作 IController。
+2024-12-23 11:45:28.8574 Info Application End
+2024-12-23 11:45:35.3675 Info Application Start
+2024-12-23 11:56:18.4658 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 上午 11:56:18.
+2024-12-23 13:03:27.7132 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: String
+2024-12-23 13:06:54.1300 Info Application End
+2024-12-23 13:06:57.7004 Info Application Start
+2024-12-23 13:11:06.3318 Info Application End
+2024-12-23 13:11:07.8729 Info Application Start
+2024-12-23 13:18:01.5601 Info Application End
+2024-12-23 13:18:03.3674 Info Application Start
+2024-12-23 13:25:07.8285 Info Application End
+2024-12-23 13:25:11.5118 Info Application Start
+2024-12-23 13:25:11.8948 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'CreateProduct'。
+2024-12-23 13:28:16.5523 Info Application End
+2024-12-23 13:28:19.5482 Info Application Start
+2024-12-23 13:42:09.5107 Info Application End
+2024-12-23 13:42:21.8882 Info Application Start
+2024-12-23 13:47:23.5277 Info Application End
+2024-12-23 13:47:25.7773 Info Application Start
+2024-12-23 14:02:06.3220 Info Application End
+2024-12-23 14:02:08.1298 Info Application Start
+2024-12-23 14:05:00.9721 Info Application End
+2024-12-23 14:05:19.2652 Info Application Start
+2024-12-23 14:23:42.5827 Info Application End
+2024-12-23 14:23:47.3233 Info Application Start
+2024-12-23 14:27:42.1667 Info Application End
+2024-12-23 14:27:59.4708 Info Application Start
+2024-12-23 14:29:51.2512 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 14:43:34.8018 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 14:43:45.0492 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 14:43:55.9532 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 14:44:08.1671 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 下午 02:44:08.
+2024-12-23 14:44:13.0526 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 14:44:39.2059 Info Application End
+2024-12-23 14:44:50.1318 Info Application Start
+2024-12-23 14:45:01.7252 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 下午 02:45:01.
+2024-12-23 14:45:34.1461 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ProductController' 上找不到公用動作方法 'Product'。
+2024-12-23 15:39:00.1253 Info Application Start
+2024-12-23 16:03:53.9333 Info Application End
+2024-12-23 16:03:56.9638 Info Application Start
+2024-12-23 16:05:57.0073 Info Application End
+2024-12-23 16:06:00.0292 Info Application Start
+2024-12-23 16:06:05.0813 Info Application End
+2024-12-23 16:06:07.3922 Info Application Start
+2024-12-23 16:06:40.0113 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 下午 04:06:40.
+2024-12-23 16:06:52.9763 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 下午 04:06:52.
+2024-12-23 16:07:04.8467 Info Application End
+2024-12-23 16:07:07.6671 Info Application Start
+2024-12-23 16:08:14.7043 Info Application Start
+2024-12-23 16:08:42.3429 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/23 下午 04:08:42.

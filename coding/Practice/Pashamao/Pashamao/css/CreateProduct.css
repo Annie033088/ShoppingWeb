@@ -1,0 +1,51 @@
+﻿.btnAdd {
+    position: relative;
+    background-image: url("/images/add.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+    opacity: 0.6;
+}
+
+    .btnAdd:hover {
+        border: solid;
+        opacity: 0.9;
+    }
+
+.btnDeleteImage {
+    position: relative;
+    background-image: url("/images/del.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    top: 0%;
+    right: 0%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+    .btnDeleteImage:hover {
+        opacity: 0.9;
+    }
+
+
+#imageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 400px;
+    max-width: 400px;
+    overflow: hidden;
+}
+
+#mainImage {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+}

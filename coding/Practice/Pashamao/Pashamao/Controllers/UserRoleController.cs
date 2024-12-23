@@ -2,9 +2,9 @@
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System;
 
 namespace Pashamao.Controllers
 {
@@ -131,7 +131,7 @@ namespace Pashamao.Controllers
                     string message = "刪除失敗";
                     return Json(message);
                 }
-                
+
             }
             catch (Exception e)
             {

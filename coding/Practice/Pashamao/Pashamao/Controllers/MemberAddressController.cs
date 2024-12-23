@@ -1,10 +1,8 @@
 ﻿using NLog;
+using Pashamao.Models;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Pashamao.Models;
 using System.Web.Mvc;
 
 namespace Pashamao.Controllers
@@ -13,7 +11,7 @@ namespace Pashamao.Controllers
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private MemberAddressService MemberAddressService;
-        
+
         public MemberAddressController()
         {
             MemberAddressService = new MemberAddressService();

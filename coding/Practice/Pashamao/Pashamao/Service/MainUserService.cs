@@ -1,14 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
-using NLog;
+﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 
 namespace Pashamao.Service
 {
