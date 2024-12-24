@@ -248,15 +248,6 @@ namespace Pashamao.Controllers
             return View("CreateProduct");
         }
 
-        public ActionResult SubmitCreateProduct()
-        {
-            var files = Request.Files;
-            CreateProductViewModel AddProduct = JsonConvert.DeserializeObject<CreateProductViewModel>(Request.Form["AddStyle"]);
-
-            bool success = true;
-            string returnMessage = success.ToString();
-            return Json(returnMessage);
-        }
 
     }
 }

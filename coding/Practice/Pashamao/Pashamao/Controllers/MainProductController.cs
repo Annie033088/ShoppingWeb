@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
@@ -13,6 +14,7 @@ namespace Pashamao.Controllers
     [UserRoleAuthFilter(UserPermission.SelectProduct | UserPermission.CreateProduct | UserPermission.EditProductName | UserPermission.EditProductDescription | UserPermission.EditProductPrice | UserPermission.EditProductQuantity | UserPermission.EditProductCategory | UserPermission.EditProductStatus | UserPermission.DelProduct)]
     public class MainProductController : Controller
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         MainProductService mainProductService;
 
         public MainProductController()
@@ -24,16 +26,29 @@ namespace Pashamao.Controllers
 
             return View();
         }
-
-        [HttpPost]
-        public ActionResult GetAllProduct()
+        public ActionResult ProductDetail()
         {
-            ProductSimple productSimple = mainProductService.GetAllProduct();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult CreateProduct() { return View(); }
+        public ActionResult GetAllProduct(string page)
+        {
+            // ProductSimple productSimple = mainProductService.GetAllProduct(page);
+            return View();
+        }
+
+        public ActionResult CreateProduct(ProductDetail productDetail, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
+        {
+            return View();
+        }
+
+        public ActionResult SubmitCreateProduct(ProductDetail productDetail, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
+        {
+            mainProductService.CreateProduct(productDetail, StyleList, ImageList);  
+            return View();
+        }
 
         [HttpPost]
         public ActionResult EditProduct() { return View(); }

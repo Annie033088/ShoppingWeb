@@ -10,8 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
-        <div id="navCategory" class="text-center col-sm-12 row justify-content-center">
-            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">全部</button>
+        <div id="navCategory" class="text-center col-sm-12 row justify-content-center mb-1">
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">新品</button>
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">特價</button>
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">用品</button>
@@ -22,13 +21,37 @@
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">保健</button>
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">生活</button>
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">品牌</button>
+            <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="">其他</button>
         </div>
-        <div>
-            <button type="button" id="btnAddProduct" class="btn btn-outline-dark" onclick='window.location.href="/MainProduct/CreateProduct"'>新增商品</button>
-        </div>
-        <div id="productList" class="container text-center">
+        <div class="d-flex justify-content-center mb-1">
+            <button type="button" id="btnAdd" class="btn btn-outline-dark me-2" onclick='location.href="/MainProduct/CreateProduct"'>新增</button>
+            <button type="button" id="btnGetAllProduct" class="btn btn-outline-dark me-5" onclick='getAll()'>查詢全部</button>
+            <label class="me-1 align-content-center">輸入搜尋ID：</label>
+            <input type="text" class="form-control me-1" id="txbSelectProductId" style="max-width: 200px;" pattern="^[\d]{1,8}$" required />
+            <button type="button" id="btnSelectByProductId" class="btn btn-outline-dark me-2">搜尋</button>
 
+            <label class="me-1  align-content-center">輸入搜尋商品名：</label>
+            <input type="text" class="form-control me-1" id="txbSelectProductName" style="max-width: 200px;" pattern="^.{1,50}$" required />
+            <button type="button" id="btnSelectByProductName" class="btn btn-outline-dark me-1">搜尋</button>
+            <span id="searchWarning" class="text-danger"></span>
         </div>
+
+        <table id="memberTable" class="table" style="table-layout:fixed" border="1">
+            <thead>
+                <tr class="bg-gradient text-bg-dark ">
+                    <th scope="col">#</th>
+                    <th scope="col">Id<button id="sortById" class="btn btnSort"></button></th>
+                    <th scope="col">商品名稱<button id="sortByEmail" class="btn btnSort"></button></th>
+                    <th scope="col">分類<button id="sortByPhone" class="btn btnSort"></button></th>
+                    <th scope="col">價格<button id="sortByMemberName" class="btn btnSort"></button></th>
+                    <th scope="col">狀態<button id="sortByStatus" class="btn btnSort"></button></th>
+                    <th scope="col">操作選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 用來插入用戶資料的行將在這裡 -->
+            </tbody>
+        </table>
         <nav aria-label="Data navigation">
             <ul class="pagination justify-content-center">
                 <li class="page-item"><button class="page-link" id="previousPage" onclick="">Previous</button></li>
@@ -57,8 +80,7 @@
                 if (lastCategoryId == "All") {
                     getAllProduct(1);
                 }
-                else
-                {
+                else {
                     getProductByCategory(lastCategoryId, 1);
                 }
             }
@@ -78,8 +100,7 @@
                 if (lastCategoryId == "All") {
                     getAllProduct(newCurrentPage);
                 }
-                else
-                {
+                else {
                     getProductByCategory(lastCategoryId, newCurrentPage);
                 }
             }
@@ -97,12 +118,10 @@
                     newCurrentPage = maxPage;
                 }
 
-                if (lastCategoryId == "All")
-                {
+                if (lastCategoryId == "All") {
                     getAllProduct(newCurrentPage);
                 }
-                else
-                {
+                else {
                     getProductByCategory(lastCategoryId, newCurrentPage);
                 }
             }
@@ -114,8 +133,7 @@
                 if (lastCategoryId == "All") {
                     getAllProduct(maxPage);
                 }
-                else
-                {
+                else {
                     getProductByCategory(lastCategoryId, maxPage);
                 }
             }
@@ -138,7 +156,7 @@
                 document.getElementById("currentPage").innerHTML = 1;
                 lastCategoryId = selectCategoryName;
 
-                axios.post("/Product/GetProductByCategory", { LastSelectCategoryId: lastSelectCategoryId,  Page: page })
+                axios.post("/Product/GetProductByCategory", { LastSelectCategoryId: lastSelectCategoryId, Page: page })
                     .then(response => {
                         if (response.data != "noProduct") {
                             populateProduct(response.data.Item1);
@@ -172,7 +190,7 @@
                     var productTitle = document.createElement('a');
                     productTitle.innerHTML = products.ProductId[i] + ". " + products.Name[i];
                     productPicUrl.className = "btn";
-                    productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i])})
+                    productTitle.addEventListener('click', function () { getToProductDetail(products.ProductId[i]) })
                     var productPrice = document.createElement('p');
                     productPrice.innerHTML = products.Price[i];
                     var stockWarning = document.createElement('p');
@@ -181,11 +199,9 @@
                     if (products.StockQuantity[i] == 0) {
                         stockWarning.innerHTML = "庫存量不足";
                     }
-                    else if (products.StockQuantity[i] <= 3)
-                    {
+                    else if (products.StockQuantity[i] <= 3) {
                         stockWarning.innerHTML = "庫存量即將不足";
-                    } else
-                    {
+                    } else {
                         stockWarning.innerHTML = "";
                     }
 

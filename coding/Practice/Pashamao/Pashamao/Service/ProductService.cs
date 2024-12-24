@@ -628,38 +628,5 @@ namespace Pashamao.Service
 
         }
 
-        public bool AddProduct(CreateProductViewModel product, HttpFileCollectionBase files)
-        {
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            Directory.SetCurrentDirectory(appDirectory);
-
-            try
-            {
-                string fileName = Path.GetFileName(files[0].FileName);
-                string folderPath = appDirectory + @"images\productImage\" + product.ProductName;
-                string relativePath = @"\images\productImage\" + product.ProductName + @"\" + fileName;
-                string filePath = folderPath + @"\" + fileName;
-
-                //下載檔案
-                if (Directory.Exists(folderPath))
-                {
-                    files[0].SaveAs(filePath);
-                }
-                else
-                {
-                    Directory.CreateDirectory(folderPath);
-                    files[0].SaveAs(filePath);
-                }
-
-                product.ImageUrl = relativePath;
-
-                return productRepository.AddProduct(product);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
     }
 }

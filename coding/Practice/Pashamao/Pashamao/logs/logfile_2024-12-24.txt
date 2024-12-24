@@ -1,0 +1,418 @@
+2024-12-24 09:24:51.5669 Info Application Start
+2024-12-24 09:25:08.3648 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/24 上午 09:25:08.
+2024-12-24 09:25:13.7295 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:27:31.8273 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:27:45.3627 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:28:11.4690 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:28:27.5789 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:28:48.5528 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:29:36.4639 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:29:45.1179 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:30:30.6481 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:30:36.1164 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:30:47.8070 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:31:01.3549 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:31:19.1094 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:31:20.1456 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:31:29.9820 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:32:13.9240 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:32:55.5863 Info Application End
+2024-12-24 09:32:57.4694 Info Application Start
+2024-12-24 09:32:59.6807 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:34:22.7542 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:35:00.1884 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:35:06.9285 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:35:07.8730 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:35:14.9370 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:36:06.4150 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:46:43.0210 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:48:29.6883 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:48:43.2002 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:54:29.1134 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 09:54:42.9257 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:06:58.4406 Info Application End
+2024-12-24 10:07:03.2772 Info Application Start
+2024-12-24 10:07:03.6332 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainProductController' 上找不到公用動作方法 'ProductDetail'。
+2024-12-24 10:07:23.5191 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:07:53.4577 Info Application End
+2024-12-24 10:07:55.9453 Info Application Start
+2024-12-24 10:16:09.7859 Info Application End
+2024-12-24 10:16:11.6978 Info Application Start
+2024-12-24 10:16:26.9360 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:16:49.3656 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:34:51.6880 Info Application End
+2024-12-24 10:34:55.2845 Info Application Start
+2024-12-24 10:37:23.8431 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:39:11.2867 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 10:56:44.8740 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainProductController' 上找不到公用動作方法 'getProduct'。
+2024-12-24 11:09:11.7530 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 11:12:21.0270 Info Application End
+2024-12-24 11:13:07.0306 Info Application Start
+2024-12-24 11:17:04.5605 Info Application End
+2024-12-24 11:17:09.9531 Info Application Start
+2024-12-24 11:20:15.6150 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 11:22:20.0627 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 11:22:25.7382 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainProductController' 上找不到公用動作方法 'CreateProduct'。
+2024-12-24 11:24:42.9094 Info Application End
+2024-12-24 11:24:46.9626 Info Application Start
+2024-12-24 11:25:36.3131 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 11:33:53.2944 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 11:43:14.2210 Info Application End
+2024-12-24 11:43:16.2336 Info Application Start
+2024-12-24 11:50:52.5526 Info Application End
+2024-12-24 11:50:54.0117 Info Application Start
+2024-12-24 13:27:15.8227 Info Application End
+2024-12-24 13:40:38.7360 Info Application Start
+2024-12-24 15:49:37.5873 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainProductController' 上找不到公用動作方法 'undefined'。
+2024-12-24 16:43:15.5556 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 16:43:25.9667 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 16:44:16.8064 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 16:44:27.7912 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 16:44:35.6385 Info Application End
+2024-12-24 16:44:39.7071 Info Application Start
+2024-12-24 16:44:43.2777 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-24 18:51:52.3081 Info Application End

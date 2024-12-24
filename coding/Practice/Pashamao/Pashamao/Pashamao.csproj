@@ -136,7 +136,8 @@
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Models\CreateProductViewModel.cs" />
+    <Compile Include="Models\CreateProductStyleViewModel.cs" />
+    <Compile Include="Models\CreateProductImageViewModel.cs" />
     <Compile Include="Models\EditProductStyleViewModel.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
+    <Content Include="js\createProduct.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -256,6 +258,8 @@
     <Content Include="Views\Product\GetProductDetail.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\MainProduct\Index.cshtml" />
+    <Content Include="Views\MainProduct\ProductDetail.cshtml" />
+    <Content Include="Views\MainProduct\CreateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

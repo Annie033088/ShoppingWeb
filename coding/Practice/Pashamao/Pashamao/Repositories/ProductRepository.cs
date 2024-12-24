@@ -531,48 +531,6 @@ namespace Pashamao.Repositories
             }
         }
 
-        internal bool AddProduct(CreateProductViewModel product)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr);
-
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_addProduct @categoryId, @productName, @description, @introduction, @productStatus, @style, @price, @stockQuantity, @styleStatus, @imageUrl";
-                cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
-                cmd.Parameters.Add("@productName", SqlDbType.NVarChar).Value = product.ProductName;
-                cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
-                cmd.Parameters.Add("@introduction", SqlDbType.NVarChar).Value = product.Introduction;
-                cmd.Parameters.Add("@productStatus", SqlDbType.Bit).Value = product.ProductStatus;
-                cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = product.Style;
-                cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = product.Price;
-                cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = product.StockQuantity;
-                cmd.Parameters.Add("@styleStatus", SqlDbType.Bit).Value = product.StyleStatus;
-                cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = product.ImageUrl;
-
-                cmd.Connection.Open();
-
-                int ExeCnt = cmd.ExecuteNonQuery();
-
-                if (ExeCnt > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                cmd.Connection.Close();
-            }
-        }
+     
     }
 }
