@@ -1,0 +1,17 @@
+﻿tbody button {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btnEditProduct {
+    background-image: url(../images/Pencel.jpg);
+}
+
+.btnDeleteProduct {
+    background-image: url(../images/Garbage.jpg);
+}

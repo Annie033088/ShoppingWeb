@@ -19,64 +19,59 @@ namespace Pashamao.Service
             mainProductRepository = new MainProductRepository();
         }
 
-        public (List<ProductSimple>, int) GetAllProduct(string page)
+        public (List<ProductDetail>, int) GetAllProduct(string page)
         {
-            (List<ProductSimple> products, int totalPage) = mainProductRepository.GetAllProduct(int.Parse(page));
-
-            /*List<ProductSimple> productSimples = new List<ProductSimple>();
-
-            foreach (ProductSimple product in products)
-            {
-                //這個商品的id有記錄過了嗎?預設 無
-                bool haveThisProductIdFlag = false;
-
-                //拿來設定此商品的最大金額到最小金額 跟 庫存數量
-                for (int i = 0; i < productSimples.Count; i++)
-                {
-                    if (productSimples[i].ProductId == product.ProductId)
-                    {
-                        //這個商品id記錄過了=>有
-                        haveThisProductIdFlag = true;
-
-                        if (product.Price < PriceSmall[i])
-                        {
-                            PriceSmall[i] = product.Price;
-                        }
-
-                        if (product.Price > PriceBig[i])
-                        {
-                            PriceBig[i] = product.Price;
-                        }
-
-                        if (product.StockQuantity < StockQuantitySmall[i])
-                        {
-                            StockQuantitySmall[i] = product.StockQuantity;
-                        }
-                    }
-                }
-
-                if (ProductId.Count == 0 || !haveThisProductIdFlag)
-                {
-                    ProductId.Add(product.ProductId.ToString());
-                    Name.Add(product.Name);
-                    ImageUrl.Add(product.ImageUrl);
-                    CategoryId.Add(product.CategoryId.ToString());
-                    StockQuantitySmall.Add(product.StockQuantity);
-                    PriceSmall.Add(product.Price);
-                    PriceBig.Add(product.Price);
-                }
-            }*/
-
-            return (null, 0);
+            return mainProductRepository.GetAllProduct(int.Parse(page));
+        }
+        public (List<ProductDetail>, int) GetProductByCategory(string categoryId, string page)
+        {
+            return mainProductRepository.GetProductByCategory(int.Parse(categoryId), int.Parse(page));
         }
 
+        public (List<ProductDetail>, int) GetProductById(string productId, string page)
+        {
+            return mainProductRepository.GetProductById(int.Parse(productId), int.Parse(page));
+        }
+
+
+        public (List<ProductDetail>, int) GetProductByName(string productName, string page)
+        {
+            try
+            {
+                return mainProductRepository.GetProductByName(productName, int.Parse(page));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 取得商品詳細資訊
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(string productId)
+        {
+            try
+            {
+                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductRepository.GetProductDetail(int.Parse(productId));
+                return (product, styles, images);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
 
         public bool CreateProduct(ProductDetail product, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             Directory.SetCurrentDirectory(appDirectory);
             List<ProductStyle> productStyles = new List<ProductStyle>();
-            List<string> productImageUrl= new List<string>();
+            List<string> productImageUrl = new List<string>();
 
             try
             {
@@ -86,13 +81,26 @@ namespace Pashamao.Service
                 {
                     ProductStyle productStyle = new ProductStyle();
 
-                    string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
-                    byte[] imageBytes = Convert.FromBase64String(base64String);
-                    string fileName = Path.GetFileName(StyleList[i].ImageName);
-                    string relativePath = @"\images\productImage\" + product.Name + @"\" + fileName;
-                    string filePath = folderPath + @"\" + fileName;
-                    File.WriteAllBytes(filePath, imageBytes);
-                    productStyle.ImageUrl = relativePath;
+                    if (StyleList[i].ImageUrl == " ")
+                    {
+                        productStyle.ImageUrl = " ";
+                    }
+                    else
+                    {
+
+                        string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
+                        byte[] imageBytes = Convert.FromBase64String(base64String);
+                        string fileName = Path.GetFileName(StyleList[i].ImageName);
+                        string relativePath = @"\images\productImage\" + product.Name + @"\" + fileName;
+                        string filePath = folderPath + @"\" + fileName;
+
+                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                        File.WriteAllBytes(filePath, imageBytes);
+                        productStyle.ImageUrl = relativePath;
+
+                    }
+
                     productStyle.Price = StyleList[i].Price;
                     productStyle.Style = StyleList[i].Style;
                     productStyle.StockQuantity = StyleList[i].StockQuantity;
@@ -100,29 +108,70 @@ namespace Pashamao.Service
                     productStyles.Add(productStyle);
                 }
 
-
-                for (int i = 0; i < ImageList.Count; i++)
+                if (ImageList[0].ImageUrl == " ")
                 {
-                    ProductStyle productStyle = new ProductStyle();
+                    productImageUrl.Add(" ");
+                }
+                else
+                {
+                    for (int i = 0; i < ImageList.Count; i++)
+                    {
+                        string base64String = ImageList[i].ImageUrl.Substring(ImageList[i].ImageUrl.IndexOf(",") + 1);
+                        byte[] imageBytes = Convert.FromBase64String(base64String);
+                        string fileName = Path.GetFileName(ImageList[i].ImageName);
+                        string relativePath = @"\images\productImage\" + product.Name + @"\" + fileName;
+                        string filePath = folderPath + @"\" + fileName;
+                        File.WriteAllBytes(filePath, imageBytes);
 
-                    string base64String = ImageList[i].ImageUrl.Substring(ImageList[i].ImageUrl.IndexOf(",") + 1);
-                    byte[] imageBytes = Convert.FromBase64String(base64String);
-                    string fileName = Path.GetFileName(ImageList[i].ImageName);
-                    string relativePath = @"\images\productImage\" + product.Name + @"\" + fileName;
-                    string filePath = folderPath + @"\" + fileName;
-                    File.WriteAllBytes(filePath, imageBytes);
-
-                    productImageUrl.Add(relativePath);
+                        productImageUrl.Add(relativePath);
+                    }
                 }
 
-                return mainProductRepository.AddProduct(product, productStyles, productImageUrl);
+
+                bool addFlag = mainProductRepository.AddProduct(product, productStyles, productImageUrl);
+
+                //失敗的話就刪除檔案
+                if (!addFlag)
+                {
+                    for (int i = 0; i < productImageUrl.Count; i++)
+                    {
+                        string absoluteImagePath = appDirectory + productImageUrl[i];
+                        if (File.Exists(absoluteImagePath))
+                        {
+                            File.Delete(absoluteImagePath);
+                        }
+                    }
+
+                    for (int i = 0; i < productStyles.Count; i++)
+                    {
+                        string absoluteImagePath = appDirectory + productStyles[i].ImageUrl;
+                        if (File.Exists(absoluteImagePath))
+                        {
+                            File.Delete(absoluteImagePath);
+                        }
+                    }
+                }
+
+                return addFlag;
             }
             catch (Exception e)
             {
                 logger.Error(e);
                 throw e;
             }
-            return false;
+        }
+
+        public bool DeleteProduct(string productId)
+        {
+            try
+            {
+                return mainProductRepository.DeleteProduct(int.Parse(productId));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
     }
 }

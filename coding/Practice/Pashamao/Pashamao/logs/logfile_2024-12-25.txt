@@ -1,0 +1,223 @@
+2024-12-25 10:47:23.2833 Info Application Start
+2024-12-25 10:49:04.8581 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 上午 10:49:04.
+2024-12-25 10:49:12.1150 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 10:53:16.5877 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:15:41.5635 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\貓砂\undefined' 的一部分。
+2024-12-25 11:15:43.1918 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\貓砂\undefined' 的一部分。
+2024-12-25 11:15:45.3259 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:20:32.6983 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\貓砂\1735096708699-三合一貓砂.webp' 的一部分。
+2024-12-25 11:20:34.1480 Error System.IO.DirectoryNotFoundException: 找不到路徑 'D:\SecretPlace\coding\Practice\Pashamao\Pashamao\images\productImage\貓砂\1735096708699-三合一貓砂.webp' 的一部分。
+2024-12-25 11:20:36.0230 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:34:18.4456 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-25 11:34:19.5952 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-25 11:34:21.0713 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:45:47.6462 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:48:45.6908 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:52:59.8322 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 11:53:46.7097 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 13:08:09.3264 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 13:09:02.8385 Info Application Start
+2024-12-25 13:09:14.8667 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 01:09:14.
+2024-12-25 13:09:19.8931 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 13:16:59.9007 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 13:29:58.7432 Error System.InvalidOperationException: String[5]: Size 屬性的大小 0 無效。
+2024-12-25 13:29:58.8655 Error System.InvalidOperationException: String[5]: Size 屬性的大小 0 無效。
+2024-12-25 13:30:47.4335 Error System.InvalidOperationException: String[5]: Size 屬性的大小 0 無效。
+2024-12-25 13:31:42.4738 Error System.InvalidCastException: 無法將類型 'System.DBNull' 的物件轉換為類型 'System.String'。
+2024-12-25 13:31:42.4968 Error System.InvalidCastException: 無法將類型 'System.DBNull' 的物件轉換為類型 'System.String'。
+2024-12-25 13:31:43.1189 Error System.InvalidCastException: 無法將類型 'System.DBNull' 的物件轉換為類型 'System.String'。
+2024-12-25 13:35:48.0496 Error System.Data.SqlClient.SqlException: 將 varchar 值 'Error, repeatName:' 轉換成資料類型 tinyint 時，轉換失敗。
+2024-12-25 13:35:48.1166 Error System.Data.SqlClient.SqlException: 將 varchar 值 'Error, repeatName:' 轉換成資料類型 tinyint 時，轉換失敗。
+2024-12-25 13:35:49.6142 Error System.Data.SqlClient.SqlException: 將 varchar 值 'Error, repeatName:' 轉換成資料類型 tinyint 時，轉換失敗。
+2024-12-25 14:01:48.2049 Error System.InvalidOperationException: 找不到檢視 'GetAllProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/GetAllProduct.aspx
+~/Views/MainProduct/GetAllProduct.ascx
+~/Views/Shared/GetAllProduct.aspx
+~/Views/Shared/GetAllProduct.ascx
+~/Views/MainProduct/GetAllProduct.cshtml
+~/Views/MainProduct/GetAllProduct.vbhtml
+~/Views/Shared/GetAllProduct.cshtml
+~/Views/Shared/GetAllProduct.vbhtml
+2024-12-25 14:22:15.8017 Info Application Start
+2024-12-25 14:22:28.5265 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 02:22:28.
+2024-12-25 14:28:14.3789 Error System.ArgumentException: 資料行 'f_price' 不屬於資料表 。
+2024-12-25 14:28:14.3978 Error System.ArgumentException: 資料行 'f_price' 不屬於資料表 。
+2024-12-25 14:28:14.3978 Error System.ArgumentException: 資料行 'f_price' 不屬於資料表 。
+2024-12-25 14:28:14.4058 Error System.ArgumentException: 資料行 'f_price' 不屬於資料表 。
+2024-12-25 14:37:50.1089 Info Application End
+2024-12-25 14:37:56.1724 Info Application Start
+2024-12-25 14:47:49.7378 Info Application End
+2024-12-25 14:47:53.0236 Info Application Start
+2024-12-25 14:58:04.5565 Info Application Start
+2024-12-25 14:58:13.5282 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 02:58:13.
+2024-12-25 15:23:57.4459 Error System.InvalidOperationException: 找不到檢視 'DeleteProduct' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainProduct/DeleteProduct.aspx
+~/Views/MainProduct/DeleteProduct.ascx
+~/Views/Shared/DeleteProduct.aspx
+~/Views/Shared/DeleteProduct.ascx
+~/Views/MainProduct/DeleteProduct.cshtml
+~/Views/MainProduct/DeleteProduct.vbhtml
+~/Views/Shared/DeleteProduct.cshtml
+~/Views/Shared/DeleteProduct.vbhtml
+2024-12-25 15:24:23.1115 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:26:49.0041 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:27:29.0023 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:28:54.4131 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:29:32.7301 Info Application Start
+2024-12-25 15:30:02.0632 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 03:30:02.
+2024-12-25 15:46:01.9308 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:46:52.5152 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-25 15:47:09.9968 Info Application Start
+2024-12-25 15:47:26.2672 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 03:47:26.
+2024-12-25 15:51:13.3902 Info Application Start
+2024-12-25 15:51:24.2681 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 03:51:24.
+2024-12-25 16:54:14.2345 Info Application End
+2024-12-25 16:54:18.7404 Info Application Start
+2024-12-25 16:54:32.8787 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:54:32.8877 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:54:32.8877 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:04.7679 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:04.7679 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:04.7679 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:06.9343 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:06.9343 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:06.9343 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:10.4550 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:10.4550 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:10.4550 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:59.2954 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:59.2954 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:55:59.2954 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:01.4223 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:01.4223 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:01.4223 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:24.8719 Info Application Start
+2024-12-25 16:57:40.3919 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 04:57:40.
+2024-12-25 16:57:51.3098 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:57.1677 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:57:59.1000 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:13.0150 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:13.0670 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:14.4251 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:35.0716 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:35.1185 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 16:59:35.7815 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:00:04.9970 Info Application Start
+2024-12-25 17:00:23.3967 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 05:00:23.
+2024-12-25 17:00:28.4093 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:00:28.4681 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:00:31.4975 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:00:57.9565 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:00:57.9944 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:01:01.6715 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:01:17.4036 Info Application Start
+2024-12-25 17:01:24.5308 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 05:01:24.
+2024-12-25 17:01:29.6094 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:01:29.6633 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:01:32.1645 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:03:29.8342 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:03:29.8728 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:03:31.1828 Error System.FormatException: 輸入字串格式不正確。
+2024-12-25 17:05:57.2171 Info Application Start
+2024-12-25 17:06:08.7582 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 05:06:08.
+2024-12-25 17:23:57.6953 Info Application Start
+2024-12-25 17:24:05.8916 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 05:24:05.
+2024-12-25 18:17:04.4104 Info Application Start
+2024-12-25 18:17:09.5410 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/25 下午 06:17:09.
+2024-12-25 19:11:31.4749 Info Application Start

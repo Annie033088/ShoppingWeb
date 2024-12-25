@@ -2,6 +2,7 @@
 tbody button {
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     border: none;
     padding: 10px;
     cursor: pointer;

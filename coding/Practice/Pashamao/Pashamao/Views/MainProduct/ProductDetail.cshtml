@@ -1,13 +1,12 @@
 ﻿
 @{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 @{
-    ViewBag.Title = "商品信息";
+    ViewBag.Title = "修改商品";
 }
-
 
 <body>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="~/css/ProductDetail.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/CreateProduct.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <div class="d-flex">
@@ -21,19 +20,20 @@
         <div class="">
 
             <div id="productDetailBox" class="d-flex" style="height: 100%; width: 100%; ">
-                <div class=" col-5 card">
+                <div class=" col-6 card">
                     <div class="card-header text-center">
                         商品主要內容：
                     </div>
 
 
-                    <div id="imageBox" class="mt-3 " style="flex-wrap: wrap; ">
-                        <div id="navImageBox" class="navImageBox ms-5" style="width: 50%; overflow: hidden; display: flex; position: relative">
-                            <div id="navImageContainer" class="navImageContainer">
-                                <img id="navImage1" src="#" class="me-2 navImage" style="width: 25%; height:100%" />
+                    <div id="imageBox" class="mt-3 h-50" style="flex-wrap: wrap; ">
+                        <div id="displayImageBox" class="navImageBox ms-5 w-50" style=" overflow: hidden; display: flex; position: relative">
+                            <button id="btnPrevious" class="btn btn-dark btnNav" style="position: absolute; width: 5%; height: 100%" onclick="imagePrevious()"></button>
+                            <div id="displayImageContainer" class="displayImageContainer d-flex">
                             </div>
+                            <button id="btnNext" class="btn btn-dark btnNav" style="position: absolute; right: 0; width: 5%; height: 100%" onclick="imageNext()"></button>
                         </div>
-                        <button id="btnEditImage" class="btn btn-dark mt-1 ms-5" style=" width: 50%; opacity:0.9" onclick="">修改圖片</button>
+                        <button id="btnEditImage" class="btn btn-dark mt-1 ms-5" style=" width: 50%; opacity:0.9" onclick="getImageAndEdit()">上傳/修改展示圖片</button>
                     </div>
 
                     <div id="productNameBox" class="input-group mt-3">
@@ -46,43 +46,46 @@
                         <input id="txbDescription" type="text" class="form-control" style="">
                     </div>
 
-                    <div class="input-group mt-3 d-flex flex-wrap w-75">
+                    <div class="input-group mt-3 d-flex flex-wrap ">
                         <span class="input-group-text w-25">分類</span>
-                        <div style="width: 15%; height:100% ;text-align: center;" class="me-1">
-                            <span id="txtCategory" class="form-control " style=" height:100%;"></span>
+                        <div style=" height:100% ;text-align: center;" class="me-1">
+                            <select id="dropdownCategory" class="form-select form-select-sm" name="category">
+                                <option value="1">新品</option>
+                                <option value="2">特價</option>
+                                <option value="3">用品</option>
+                                <option value="4">飼料</option>
+                                <option value="5">罐頭</option>
+                                <option value="6">零食</option>
+                                <option value="7">貓砂</option>
+                                <option value="8">保健</option>
+                                <option value="9">生活</option>
+                                <option value="10">品牌</option>
+                                <option value="11" selected>其他</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div id="productCategoryBox" class="input-group mt-1 d-flex flex-wrap w-75">
-
-                    </div>
-
                     <div id="productIntroduceBox" class="mt-3 d-flex" style="">
-                        <span id="" class="input-group-text ">商品介紹：</span>
-                        <textarea class="form-control " id="productIntroduce" style="resize:none" placeholder="在此輸入內容..."></textarea>
+                        <span id="" class="input-group-text ">商品介紹</span>
+                        <textarea class="form-control " id="productIntroduce" style=" resize:none" placeholder="在此輸入內容..."></textarea>
 
                     </div>
 
                     <div id="productStatusBox" class="mt-3" style="display:flex">
-                        <span id="txtProductStatus" class="input-group-text">商品狀態：上架；</span>
-                        <button id="btnProductStatusOn" class="btn btn-dark" type="button" disabled>上架</button>
-                        <button id="btnProductStatusOff" class="btn btn-dark">下架</button>
-                    </div>
-
-                    <div class="d-flex mt-3">
-                        <button class="btn btn-success" style="" onclick="editProduct()"> 確認修改</button>
+                        <span id="txtProductStatus" class="input-group-text">上/下架</span>
+                        <button id="btnProductStatusOn" class="" type="button" onclick="setProductStatusOn()">上架</button>
+                        <button id="btnProductStatusOff" class="" onclick="setProductStatusOff()">下架</button>
                     </div>
 
 
                 </div>
-                <div class=" col-7 card">
+                <div class=" col-6 card">
                     <div class="card-header text-center mb-1">
                         細分項目：
                     </div>
-                    <table id="memberTable" class="table " style="table-layout:fixed" border="1">
+                    <table id="styleTable" class="table " style="table-layout:fixed" border="1">
                         <thead>
-                            <tr class="table-secondary ">
-                                <th scope="col">#</th>
+                            <tr class="table-success">
                                 <th scope="col">項目名<button id="sortByEmail" class="btn btnSort"></button></th>
                                 <th scope="col">圖片<button id="sortById" class="btn btnSort"></button></th>
                                 <th scope="col">數量<button id="sortByPhone" class="btn btnSort"></button></th>
@@ -92,14 +95,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- 用來插入用戶資料的行將在這裡 -->
                         </tbody>
                     </table>
-
+                    <div class="card-footer d-flex justify-content-center">
+                        <button class="btn btnAdd" style="" onclick="addStyle()"> </button>
+                    </div>
                 </div>
-
             </div>
-
+            <div class="d-flex mt-3 w-100 justify-content-center">
+                <button class="btn btn-success w-25" style="" onclick="submitEditProduct()"> 修改商品</button>
+            </div>
         </div>
     </main>
+    <script>var jsonData = @Html.Raw(ViewBag.JsonData);</script>
+    <script src="~/js/editProductDetail.js"></script>
 </body>

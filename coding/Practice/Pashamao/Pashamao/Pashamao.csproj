@@ -201,6 +201,7 @@
     <Content Include="css\CreateProduct.css" />
     <Content Include="css\MainHomeLayout.css" />
     <Content Include="css\MainMember.css" />
+    <Content Include="css\MainProduct.css" />
     <Content Include="css\MainUser.css" />
     <Content Include="css\Product.css" />
     <Content Include="css\ProductDetail.css" />
@@ -211,6 +212,7 @@
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
     <Content Include="js\createProduct.js" />
+    <Content Include="js\editProductDetail.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

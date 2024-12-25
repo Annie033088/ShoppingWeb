@@ -182,16 +182,10 @@
 
             function populateTable(users) {
                 const tableBody = document.getElementById("userTable").getElementsByTagName('tbody')[0];
-
-                // 清空表格（如果之前有數據）
                 tableBody.innerHTML = '';
 
-                // 遍歷所有用戶，並創建相應的表格行
                 users.forEach((user, index) => {
-                    const row = document.createElement('tr');  // 創建一行
-                    //不想顯示可以用
-
-                    // 創建並填充表格單元格
+                    const row = document.createElement('tr');  
                     const rowSort = document.createElement('th');
                     rowSort.textContent = index + 1;
                     rowSort.scope = "row";
