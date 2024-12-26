@@ -4,7 +4,7 @@ namespace Pashamao.Models
 {
     public class ProductDetail
     {
-        public int ProductId { get; set; }
+        public Guid ProductId { get; set; }
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

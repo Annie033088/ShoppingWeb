@@ -7,19 +7,19 @@ let currentImageIndex = 0;
 let showNavImageCnt = 4;
 let imageTotal = 0;
 //刪除的圖片
-let delImageIdList = [];
+let delImageList = [];
 
 //刪除的細項
-let delStyleIdList = [];
+let delStyleList = [];
 
 //舊的細項id跟圖片連結
-let oldStyleImageUrl = []; 
+let oldStyleImageUrl = [];
 
 console.log(product, styles, images);
 
 populateImage();
 populateProduct();
-populateStyle()
+populateStyle();
 
 function populateImage() {
     images.forEach(image => {
@@ -37,7 +37,9 @@ function populateImage() {
         ProductImage.src = imageUrl;
         ProductImageBox.appendChild(ProductImage);
         displayImageContainer.appendChild(ProductImageBox);
+        imageTotal++
     })
+    updateImageDisplay();
 }
 
 function populateProduct() {
@@ -78,7 +80,7 @@ function populateStyle() {
 
         oldStyleImage = {
             ProductStyleId: style.ProductStyleId,
-            ImageUrl: imgElements[imgElements.length-1].src
+            ImageUrl: imgElements[imgElements.length - 1].src
         }
         oldStyleImageUrl.push(oldStyleImage);
     })
@@ -88,12 +90,12 @@ function getImageAndEdit() {
     let imgHtml = "";
     let addImageList = [];
     let delOldImageList = []
-    let images = document.querySelectorAll(".displayImage");
+    let imagesElement = document.querySelectorAll(".displayImage");
     let imagesHtmlStrings = [];
     let imageCount = 0;
 
-    if (images.length > 0) {
-        images.forEach((image, index) => {
+    if (imagesElement.length > 0) {
+        imagesElement.forEach((image, index) => {
             let html = `
                     <div id="" class="imageContainer me-2 col-6" style=" position: relative; ">
                         <img id="${image.id}" src="${image.src}" class="img-fluid" />
@@ -248,7 +250,14 @@ function getImageAndEdit() {
             if (result.value.delOldImageList.length > 0) {
                 result.value.delOldImageList.forEach(imgId => {
                     const image = document.getElementById(imgId);
-                    delImageIdList.push(image.dataset.id);
+                    var machingImage = images.filter(img => img.ProductImageId == image.dataset.id);
+                    if (machingImage.length >0) {
+                        var delImage = {
+                            ProductImageId: machingImage[0].ProductImageId,
+                            ImageUrl: machingImage[0].ImageUrl
+                        }
+                        delImageList.push(delImage);
+                    }
                     const parentDiv = image.parentElement;
                     parentDiv.remove();
                     imageTotal--;
@@ -293,7 +302,6 @@ function updateImageDisplay() {
         prevBtn.style.opacity = "0.8";
         prevBtn.disabled = false;
     }
-
     if (currentImageIndex >= imageTotal - showNavImageCnt) {
         nextBtn.style.opacity = "0";
         nextBtn.disabled = true;
@@ -448,7 +456,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
         html: `
        <div class="addStyleBox">
             <div id="addStyleImageBox" class="position-relative" style="border:solid">
-                <img id="addStyleImage" class="img-fluid styleImage" src="${imageSrc}" alt="" data-id="${oldImageName}">
+                <img id="addStyleImage" class="img-fluid styleImage" src="${imageSrc}" alt="" data-name="${oldImageName}">
                 <input type="file" id="txbAddImage" accept="image/*" style="display: none;">
                 <p>點擊圖片修改</p>
             </div>
@@ -482,12 +490,16 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             txbAddImage.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 const reader = new FileReader();
+
+                if (file) {
+                    const timestamp = new Date().getTime();
+                    addStyleImage.dataset.name = `${timestamp}-${file.name}`;
+                }
+
                 reader.onload = function (event) {
                     addStyleImage.src = event.target.result;
                     addImage = true;
                 };
-                const timestamp = new Date().getTime();
-                addStyleImage.dataset.id = `${timestamp}-${file.name}`;
                 reader.readAsDataURL(file);
             });
 
@@ -507,7 +519,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
-            let imageName = document.getElementById("addStyleImage").dataset.id;
+            let imageName = document.getElementById("addStyleImage").dataset.name;
 
             if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
             else { styleStatus = false; }
@@ -624,7 +636,7 @@ function addStyleRow(styleData, imageSrc, imageName) {
             Status: status,
         }
         newImageSrc = imageInRow.src;
-        newImageName = imageInRow.dataset.id;
+        newImageName = imageInRow.dataset.name;
         editStyle(newStyleData, newImageSrc, newImageName, row.id);
     });
     const cellDelDataBtn = document.createElement("button");
@@ -659,16 +671,19 @@ function editStyleRow(styleData, imageSrc, imageName, id) {
 function delStyle(id) {
     Swal.fire({
         title: '確定要刪除這個項目嗎？',
-        text: "這個操作無法恢復！",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: '刪除',
         cancelButtonText: '取消'
     }).then((result) => {
-        console.log(id);
         if (result.isConfirmed) {
             const row = document.getElementById(id);
-            delStyleIdList.push(row.dataset.id);
+            var matchStyle = styles.filter(style => style.ProductStyleId == row.dataset.id);
+            style = {
+                ProductStyleId: row.dataset.id,
+                ImageUrl: matchStyle[0].ImageUrl
+            }
+            delStyleList.push(style);
             row.remove();
         }
     })
@@ -699,7 +714,7 @@ function submitEditProduct() {
                 imageList.push(image);
             }
         }
-    } 
+    }
 
     let productStatus = false;
     let productName = document.getElementById("txbName").value;
@@ -743,7 +758,8 @@ function submitEditProduct() {
 
     const tableBody = document.querySelector("tbody");
     const styleRows = tableBody.querySelectorAll("tr");
-    let styleList = [];
+    let addStyleList = [];
+    let editStyleList = [];
 
     if (styleRows.length < 1) {
         Swal.fire("請至少新增一個細項");
@@ -760,12 +776,19 @@ function submitEditProduct() {
         //styleId = 0 代表是新增的
         let styleId = 0;
         let status = false;
-        let imageSrc = "";
+        let imageSrc = " ";
+        let oldImageSrc = " ";
 
         if (statusInRow == "上架") {
             status = true;
         } else {
             status = false;
+        }
+
+        if (imageInRow.dataset.name == " " || null) {
+            imageSrc = " ";
+        } else {
+            imageSrc = imageInRow.src;
         }
 
         //判斷是不是舊的細項
@@ -774,77 +797,148 @@ function submitEditProduct() {
             if (`${oldStyle.ProductStyleId}` == row.dataset.id) {
                 let matchingStylesImage = oldStyleImageUrl.filter(oldStyleImage => oldStyleImage.ProductStyleId == oldStyle.ProductStyleId);
                 let oldImageUrl = matchingStylesImage[0].ImageUrl;
+
                 //有沒有修改過!
                 if (nameInRow == oldStyle.Style && imageInRow.src == oldImageUrl && quantityInRow == `${oldStyle.StockQuantity}`
                     && priceInRow == `${oldStyle.Price}` && status == oldStyle.Status) {
-                    styleId = -1;
                     //沒有修改過
-                    return;
+                    styleId = -1;
                 } else {
+                    //沒有修改過
                     styleId = oldStyle.ProductStyleId;
+                    oldImageSrc = oldStyle.ImageUrl;
                 }
             }
-        }) 
+        })
 
         //代表這行細項資料沒有異動過
-        if (styleId ==-1) {
+        if (styleId == -1)
+        {
             return;
-        }
+        }//代表是舊的style被修改
+        else if (styleId != 0)
+        {
+            let style = {
+                ProductStyleId: styleId,
+                Style: nameInRow,
+                Price: priceInRow,
+                StockQuantity: quantityInRow,
+                Status: status,
+                NewImageUrl: imageSrc,
+                OldImageUrl: oldImageSrc,
+                ImageName: imageInRow.dataset.name
+            }
+            editStyleList.push(style);
+        }//代表新增style
+        else
+        {
 
-        if (imageInRow.dataset.name == " ") {
-            imageSrc = " ";
-        } else {
-            imageSrc = imageInRow.src;
+            let style = {
+                ProductStyleId: styleId,
+                Style: nameInRow,
+                Price: priceInRow,
+                StockQuantity: quantityInRow,
+                Status: status,
+                ImageUrl: imageSrc,
+                ImageName: imageInRow.dataset.name
+            }
+            addStyleList.push(style);
         }
-
-        let style = {
-            ProductStyleId: styleId,
-            Style: nameInRow,
-            Price: priceInRow,
-            StockQuantity: quantityInRow,
-            Status: status,
-            ImageUrl: imageSrc,
-            ImageName: imageInRow.dataset.name
-        }
-        styleList.push(style);
     })
 
     //產品沒有修改
     if (newProduct.Name == product.Name && newProduct.CategoryId == product.CategoryId && newProduct.Description == product.Description
-        && newProduct.Introduction == product.Introduction && newProduct.Status == product.Status)
-    {
-        if (styleList.length == 0 && imageList.length == 0 && delImageIdList.length == 0 && delStyleIdList.length==0) {
+        && newProduct.Introduction == product.Introduction && newProduct.Status == product.Status) {
+        if (addStyleList.length == 0 && editStyleList.length == 0 && imageList.length == 0 && delImageList.length == 0 && delStyleList.length == 0) {
             Swal.fire("請修改商品內容");
             return;
         }
     }
 
-    console.log(newProduct, styleList, delStyleIdList, imageList, delImageIdList);
-    
+    console.log(newProduct, addStyleList, editStyleList, delStyleList, imageList, delImageList);
 
-   /* axios.post("/MainProduct/SubmitEditProduct", {
-        ProductDetail: product,
-        StyleList: styleList,
-        ImageList: imageList
+    //styleList 包括修改的style以及新增的style(由後端去處理)
+    /* axios.post("/MainProduct/SubmitEditProduct", {
+         ProductDetail: newProduct,
+         AddStyleList: addStyleList,
+         EditStyleList: editStyleList,
+         DelStyleList: delStyleList,
+         ImageList: imageList,
+         DelImageList:delImageList
+     })
+         .then(response => {
+             if (response.data == true) {
+                 Swal.fire("新增成功!")
+                     .then((result) => {
+                         if (result.isConfirmed) {
+                             window.location.href = `/MainProduct/Index`;
+                         }
+                     })
+             } else {
+                 Swal.fire("新增失敗!")
+                     .then((result) => {
+                         if (result.isConfirmed) {
+                             window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                         }
+                     })
+             }
+         })
+         .catch(error => {
+             console.error("fail", error);
+         })*/
+}
+
+function submitEditImage() {
+    const displayImageContainer = document.getElementById("displayImageContainer");
+    const imageElements = displayImageContainer.querySelectorAll("img");
+    let imageList = [];
+
+    if (imageElements.length != 0) {
+        for (var i = 0; i < imageElements.length; i++) {
+            if (imageElements[i].dataset.id == " ") {
+                let image = {
+                    ImageName: imageElements[i].id,
+                    ImageUrl: imageElements[i].src
+                }
+                imageList.push(image);
+            }
+        }
+    }
+
+    const formData = new FormData();
+
+    formData.append('ProductId', product.ProductId);
+    formData.append('ProductName', product.Name);
+    formData.append('DelImageList', JSON.stringify(delImageList));
+
+    imageList.forEach(img => {
+        const imgBlob = dataURItoBlob(img.ImageUrl);
+        formData.append('images[]', imgBlob, `${img.ImageName}`);
+        console.log(imgBlob)
+    });
+
+   /* axios.post("/Product/EditProductImage", formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
     })
         .then(response => {
-            if (response.data == true) {
-                Swal.fire("新增成功!")
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/Index`;
-                        }
-                    })
-            } else {
-                Swal.fire("新增失敗!")
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/CreateProduct`;
-                        }
-                    })
-            }
+            window.location.href = `/Product/GetProductDetail?ProductId=${product.ProductId}`
         })
         .catch(error => {
             console.error("fail", error);
         })*/
+}
+
+
+function dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var arrayBuffer = new ArrayBuffer(byteString.length);
+    var uintArray = new Uint8Array(arrayBuffer);
+
+    for (var i = 0; i < byteString.length; i++) {
+        uintArray[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([uintArray], { type: 'image/jpeg' });
 }

@@ -71,10 +71,10 @@
 
             document.getElementById("btnSelectByProductId").addEventListener('click', function () {
                 const selectId = document.getElementById("txbSelectProductId").value;
-                const regexId = /^[\d]{1,8}$/;
+                const regexId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
 
                 if (!regexId.test(selectId)) {
-                    Swal.fire("請輸入8位以內數字!");
+                    Swal.fire("請輸入正確的id!");
                     return;
                 }
 
@@ -232,10 +232,11 @@
 
                 axios.post("/MainProduct/GetProductById", { LastSelectProductId: lastSelectProductId, Page: page })
                     .then(response => {
-                        if (response.data != "noProduct") {
+                        if (response.data) {
                             populateTable(response.data.Item1);
                             document.getElementById("lastPage").innerHTML = response.data.Item2;
                         } else {
+                            
                             document.getElementById("productTable").getElementsByTagName('tbody')[0].innerHTML = "";
                             document.getElementById("lastPage").innerHTML = 1;
                         }
@@ -244,7 +245,6 @@
                         console.error("fail", error);
                     })
             }
-
 
             function getProductByName(lastSelectProductName, page) {
 

@@ -226,7 +226,7 @@ namespace Pashamao.Service
         /// <returns></returns>
         public (ProductDetail, List<ProductStyle>, List<ProductImage>, List<ProductCategory>) GetProductDetail(string productId)
         {
-            (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productRepository.GetProductDetail(int.Parse(productId));
+            (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = productRepository.GetProductDetail(Guid.Parse(productId));
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string filePath = appDirectory + "/tableText/categoryTable.txt";
             List<ProductCategory> categories = new List<ProductCategory>();

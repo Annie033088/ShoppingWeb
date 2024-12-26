@@ -28,37 +28,6 @@ namespace Pashamao.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 取得商品的介紹、圖片跟樣式等等
-        /// </summary>
-        /// <param name="ProductId"></param>
-        /// <returns></returns>
-        public ActionResult ProductDetail(string ProductId)
-        {
-            try
-            {
-                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(ProductId);
-
-                if (images == null)
-                {
-                    string jsonData = JsonConvert.SerializeObject((product, styles, "noImage"));
-                    ViewBag.JsonData = jsonData;
-                }
-                else
-                {
-                    string jsonData = JsonConvert.SerializeObject((product, styles, images));
-                    ViewBag.JsonData = jsonData;
-                }
-
-                return View();
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
-
         [HttpPost]
         public ActionResult GetAllProduct(string Page)
         {
@@ -164,7 +133,6 @@ namespace Pashamao.Controllers
         {
             try
             {
-
                 bool successFlag = mainProductService.CreateProduct(productDetail, StyleList, ImageList);
                 return Json(successFlag);
             }
@@ -192,6 +160,45 @@ namespace Pashamao.Controllers
                 logger.Error(e);
                 throw e;
             }
+        }
+
+        /// <summary>
+        /// 取得商品的介紹、圖片跟樣式等等
+        /// </summary>
+        /// <param name="ProductId"></param>
+        /// <returns></returns>
+        public ActionResult ProductDetail(string ProductId)
+        {
+            try
+            {
+                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(ProductId);
+
+                if (images == null)
+                {
+                    string jsonData = JsonConvert.SerializeObject((product, styles, "noImage"));
+                    ViewBag.JsonData = jsonData;
+                }
+                else
+                {
+                    string jsonData = JsonConvert.SerializeObject((product, styles, images));
+                    ViewBag.JsonData = jsonData;
+                }
+
+                return View();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SubmitEditProduct(ProductDetail newProduct, List<CreateProductStyleViewModel> AddStyleList, List<EditProductStyleViewModel> EditStyleList, List<ProductStyle> DelStyleList, List<CreateProductImageViewModel> ImageList, List<ProductImage> DelImageList)
+        {
+
+            //newProduct, StyleList, DelStyleList, ImageList, DelImageList
+            return Json(true);
         }
 
     }

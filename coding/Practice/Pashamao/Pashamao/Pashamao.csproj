@@ -135,14 +135,12 @@
     <Compile Include="Controllers\MainMemberController.cs" />
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
-    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Models\CreateProductStyleViewModel.cs" />
     <Compile Include="Models\CreateProductImageViewModel.cs" />
     <Compile Include="Models\EditProductStyleViewModel.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
-    <Compile Include="Controllers\WarmUpController.cs" />
     <Compile Include="Filters\UserKickOutFilter.cs" />
     <Compile Include="Filters\UserRoleAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -165,14 +163,12 @@
     <Compile Include="Repositories\MainProductRepository.cs" />
     <Compile Include="Repositories\MemberAddressRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Service\MainMemberService.cs" />
     <Compile Include="Service\MainProductService.cs" />
     <Compile Include="Service\MainUserService.cs" />
     <Compile Include="Service\MemberAddressService.cs" />
-    <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Service\UserRoleService.cs" />
     <Compile Include="Utility\HashUtility.cs" />
@@ -256,9 +252,6 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\MainMember\CreateMember.cshtml" />
     <Content Include="Views\MemberAddress\Index.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\GetProductDetail.cshtml" />
-    <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\MainProduct\Index.cshtml" />
     <Content Include="Views\MainProduct\ProductDetail.cshtml" />
     <Content Include="Views\MainProduct\CreateProduct.cshtml" />
@@ -266,7 +259,6 @@
   <ItemGroup>
     <Folder Include="logs\" />
     <Folder Include="tableText\" />
-    <Folder Include="Views\WarmUp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

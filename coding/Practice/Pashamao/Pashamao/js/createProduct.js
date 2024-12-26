@@ -75,7 +75,6 @@ function getImageAndEdit() {
                 const file = e.target.files[0];
 
                 if (file) {
-
                     if (file.name.length > 20) {
                         alert("圖片名過長");
                         return;
@@ -271,6 +270,20 @@ function addStyle() {
 
                 if (!file) {
                     return;
+                }
+                else
+                {
+                    if (file.name.length > 20) {
+                        alert("圖片名過長");
+                        return;
+                    }
+
+                    const maxSize = 1024 * 1024;//最大1mb
+
+                    if (file.size > maxSize) {
+                        alert("圖片檔案過大");
+                        return;
+                    }
                 }
 
                 const timestamp = new Date().getTime();

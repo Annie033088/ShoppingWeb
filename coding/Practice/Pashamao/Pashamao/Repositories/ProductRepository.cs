@@ -151,7 +151,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        internal (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(int productId)
+        internal (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(Guid productId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -165,7 +165,7 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductDetail @productId";
 
-                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
 
                 cmd.Connection.Open();
 

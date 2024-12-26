@@ -1,0 +1,53 @@
+2024-12-26 11:06:36.5098 Info Application Start
+2024-12-26 11:07:03.0150 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/26 上午 11:07:03.
+2024-12-26 11:11:41.6182 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:11:41.6347 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:12:26.0833 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:12:26.0833 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:34.5899 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:34.5899 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:38.6043 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:38.6043 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:49.2800 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:13:49.2800 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:14:06.4876 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:14:06.4876 Error System.FormatException: GUID 必須包含具有 4 個虛線的 32 個數字 (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)。
+2024-12-26 11:24:29.1300 Info Application End
+2024-12-26 11:24:36.9919 Info Application Start
+2024-12-26 11:24:51.6127 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:51.6227 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:51.6227 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:51.6227 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:52.6049 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:52.6049 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:52.6049 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:24:52.6049 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:25:25.1416 Info Application Start
+2024-12-26 11:28:51.5117 Info Application Start
+2024-12-26 11:30:26.1416 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:30:26.1564 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:30:26.1564 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:30:26.1564 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:30:58.6155 Info Application Start
+2024-12-26 11:31:32.4023 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/26 上午 11:31:32.
+2024-12-26 11:32:40.7056 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:32:56.5380 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:32:56.7798 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:32:58.6127 Error System.Data.SqlClient.SqlException: 嘗試用 1 個資料行傳遞資料表值參數，但對應的使用者定義資料表類型需要 2 個資料行。
+2024-12-26 11:37:40.9632 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:37:41.0129 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:38:41.5034 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:39:02.6334 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:39:02.8678 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:39:04.0574 Error System.Data.SqlClient.SqlException: 運算元類型衝突: uniqueidentifier 與 int 不相容
+2024-12-26 11:49:44.0049 Info Application Start
+2024-12-26 11:50:13.4992 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/26 上午 11:50:13.
+2024-12-26 13:44:49.2579 Info Application End
+2024-12-26 13:45:14.7933 Info Application Start
+2024-12-26 13:45:44.6032 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/26 下午 01:45:44.
+2024-12-26 15:00:27.5420 Info Application Start
+2024-12-26 15:00:50.0327 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/26 下午 03:00:50.
+2024-12-26 17:57:50.8763 Info Application End
+2024-12-26 17:57:54.6907 Info Application Start
+2024-12-26 18:05:21.2947 Info Application End
+2024-12-26 18:05:26.5190 Info Application Start

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Net.NetworkInformation;
+using System.Web.Optimization;
 
 namespace Pashamao.Repositories
 {
@@ -53,7 +54,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         ProductDetail product = new ProductDetail();
-                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? 0 : dt.Rows[i].Field<int>("f_productId");
+                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? Guid.Empty : dt.Rows[i].Field<Guid>("f_productId");
                         product.CategoryId = dt.Rows[i].IsNull("f_categoryId") ? 0 : dt.Rows[i].Field<int>("f_categoryId");
                         product.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -118,7 +119,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         ProductDetail product = new ProductDetail();
-                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? 0 : dt.Rows[i].Field<int>("f_productId");
+                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? Guid.Empty : dt.Rows[i].Field<Guid>("f_productId");
                         product.CategoryId = dt.Rows[i].IsNull("f_categoryId") ? 0 : dt.Rows[i].Field<int>("f_categoryId");
                         product.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -150,7 +151,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="page"></param>
         /// <returns></returns>
-        internal (List<ProductDetail>, int) GetProductById(int productId, int page)
+        internal (List<ProductDetail>, int) GetProductById(Guid productId, int page)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -162,7 +163,7 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductById @productId, @page, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
                 cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
@@ -183,7 +184,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         ProductDetail product = new ProductDetail();
-                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? 0 : dt.Rows[i].Field<int>("f_productId");
+                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? Guid.Empty : dt.Rows[i].Field<Guid>("f_productId");
                         product.CategoryId = dt.Rows[i].IsNull("f_categoryId") ? 0 : dt.Rows[i].Field<int>("f_categoryId");
                         product.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -248,7 +249,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         ProductDetail product = new ProductDetail();
-                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? 0 : dt.Rows[i].Field<int>("f_productId");
+                        product.ProductId = dt.Rows[i].IsNull("f_productId") ? Guid.Empty : dt.Rows[i].Field<Guid>("f_productId");
                         product.CategoryId = dt.Rows[i].IsNull("f_categoryId") ? 0 : dt.Rows[i].Field<int>("f_categoryId");
                         product.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -280,7 +281,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        internal (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(int productId)
+        internal (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(Guid productId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -294,7 +295,7 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductDetail @productId";
 
-                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
 
                 cmd.Connection.Open();
 
@@ -365,7 +366,8 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addProduct @categoryId, @productName, @description, @introduction, @productStatus, @styles, @images";
+                cmd.CommandText = "EXEC pro_pashamao_addProduct @productId, @categoryId, @productName, @description, @introduction, @productStatus, @styles, @images";
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = product.ProductId;
                 cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
                 cmd.Parameters.Add("@productName", SqlDbType.NVarChar).Value = product.Name;
                 cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
@@ -436,7 +438,7 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        internal bool DeleteProduct(int productId)
+        internal bool DeleteProduct(Guid productId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -444,7 +446,142 @@ namespace Pashamao.Repositories
             try
             {
                 cmd.CommandText = "EXEC pro_pashamao_delProduct @productId";
-                cmd.Parameters.Add("@productId", SqlDbType.Int).Value = productId;
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+
+        }
+
+        /// <summary>
+        /// 修改商品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        internal bool EditProduct(ProductDetail product, List<ProductStyle> addStyles, List<ProductStyle> editStyles, List<int> delStyleId, List<string> images, List<int> delImageId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editProduct @productId, @categoryId, @productName, @description, @introduction, @productStatus, @addStyles, @editStyles, @delStyleId, @images, @delImageId";
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = product.ProductId;
+                cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
+                cmd.Parameters.Add("@productName", SqlDbType.NVarChar).Value = product.Name;
+                cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
+                cmd.Parameters.Add("@introduction", SqlDbType.NVarChar).Value = product.Introduction;
+                cmd.Parameters.Add("@productStatus", SqlDbType.Bit).Value = product.Status;
+
+                //加入新增style的table
+                DataTable addStyleTable = new DataTable();
+                addStyleTable.Columns.Add("f_imageUrl", typeof(string));
+                addStyleTable.Columns.Add("f_style", typeof(string));
+                addStyleTable.Columns.Add("f_price", typeof(decimal));
+                addStyleTable.Columns.Add("f_stockQuantity", typeof(int));
+                addStyleTable.Columns.Add("f_status", typeof(bool));
+
+                foreach (ProductStyle style in addStyles)
+                {
+                    addStyleTable.Rows.Add(style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
+                }
+
+                var addStylesParam = new SqlParameter("@styles", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_addProductStyle",
+                    Value = addStyleTable
+                };
+                cmd.Parameters.Add(addStylesParam);
+
+                //加入修改style的table
+                DataTable editStyleTable = new DataTable();
+                editStyleTable.Columns.Add("f_productStyleId", typeof(int));
+                editStyleTable.Columns.Add("f_imageUrl", typeof(string));
+                editStyleTable.Columns.Add("f_style", typeof(string));
+                editStyleTable.Columns.Add("f_price", typeof(decimal));
+                editStyleTable.Columns.Add("f_stockQuantity", typeof(int));
+                editStyleTable.Columns.Add("f_status", typeof(bool));
+
+                foreach (ProductStyle style in editStyles)
+                {
+                    editStyleTable.Rows.Add(style.ProductStyleId, style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
+                }
+
+                var editStylesParam = new SqlParameter("@styles", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_editProductStyle",
+                    Value = editStyleTable
+                };
+                cmd.Parameters.Add(editStylesParam);
+
+                //加入刪除style的table
+                DataTable delStyleTable = new DataTable();
+                delStyleTable.Columns.Add("f_productStyleId", typeof(int));
+
+                foreach (int style in delStyleId)
+                {
+                    delStyleTable.Rows.Add(style);
+                }
+
+                var delStylesParam = new SqlParameter("@styles", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_delProductStyle",
+                    Value = delStyleTable
+                };
+                cmd.Parameters.Add(delStylesParam);
+
+                //加入新增image的table
+                DataTable addImageTable = new DataTable();
+                addImageTable.Columns.Add("f_imageUrl", typeof(string));
+
+                foreach (string image in images)
+                {
+                    addImageTable.Rows.Add(image);
+                }
+
+                var addImagesParam = new SqlParameter("@images", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_addProductImage",
+                    Value = addImageTable
+                };
+                cmd.Parameters.Add(addImagesParam);
+
+                //加入刪除image的tab;e
+                DataTable delImageTable = new DataTable();
+                delImageTable.Columns.Add("f_productImageId", typeof(int));
+
+                foreach (int image in delImageId)
+                {
+                    delImageTable.Rows.Add(image);
+                }
+
+                var delImagesParam = new SqlParameter("@images", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_delProductImage",
+                    Value = delImageTable
+                };
+                cmd.Parameters.Add(delImagesParam);
 
                 cmd.Connection.Open();
 
