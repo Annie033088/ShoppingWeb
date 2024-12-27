@@ -1,5 +1,4 @@
-﻿
-let currentImageIndex = 0;
+﻿let currentImageIndex = 0;
 let showNavImageCnt = 4;
 let imageTotal = 0;
 
@@ -627,10 +626,11 @@ function submitCreatProduct() {
     }
 
     let productStatus = false;
-    let productName = document.getElementById("txbName").value;
-    let productDescription = document.getElementById("txbDescription").value;
-    let productCategory = document.getElementById("dropdownCategory").value;
-    let productIntroduce = document.getElementById("productIntroduce").value;
+    let productName = document.getElementById("txbName").value.trim();
+    let productDescription = document.getElementById("txbDescription").value.trim();
+    let productCategory = document.getElementById("dropdownCategory").value.trim();
+    let productIntroduce = document.getElementById("productIntroduce").value.trim();
+    console.log(productName)
     const regexName = /^[^\s].{0,29}$/;
     const regexDescription = /^[\s\S]{0,40}$/;
     const regexIntroduction = /^[\s\S]{0,1500}$/;
@@ -649,6 +649,8 @@ function submitCreatProduct() {
         Swal.fire("請輸入1500字以內的介紹");
         return;
     }
+
+
 
     if (productDescription == "") productDescription = " ";
     if (productIntroduce == "") productIntroduce = " ";
@@ -705,7 +707,6 @@ function submitCreatProduct() {
         }
         styleList.push(style);
     })
-
      axios.post("/MainProduct/SubmitCreateProduct", {
           ProductDetail: product,
           StyleList: styleList,

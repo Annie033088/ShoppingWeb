@@ -1,0 +1,104 @@
+2024-12-27 10:03:12.3558 Info Application Start
+2024-12-27 10:05:17.4796 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 上午 10:05:17.
+2024-12-27 10:06:14.0152 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 10:06:14.8796 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 10:06:49.1162 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:07:09.4127 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:09:28.9586 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:09:30.1288 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:12:54.7876 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:13:01.6777 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:13:42.1895 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:13:42.8694 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:14:42.2233 Info Application Start
+2024-12-27 10:16:10.8792 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 上午 10:16:10.
+2024-12-27 10:20:12.6633 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:20:13.4661 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:22:05.4936 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:22:06.6261 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:23:00.6637 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:23:01.9077 Error System.FormatException: 輸入字串格式不正確。
+2024-12-27 10:26:10.7261 Error System.InvalidCastException: 將參數值從 String 轉換成 Guid 失敗。
+2024-12-27 10:26:10.8597 Error System.InvalidCastException: 將參數值從 String 轉換成 Guid 失敗。
+2024-12-27 10:26:11.6985 Error System.InvalidCastException: 將參數值從 String 轉換成 Guid 失敗。
+2024-12-27 10:50:42.7531 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:51:37.2614 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:52:00.8603 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:52:41.3261 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:53:26.9079 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:55:15.2920 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:55:24.3690 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:56:53.3623 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 10:58:24.8285 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 11:00:38.9913 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 11:01:28.7199 Info Application Start
+2024-12-27 11:01:44.2520 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 上午 11:01:44.
+2024-12-27 13:14:43.1694 Info Application End
+2024-12-27 13:14:54.2220 Info Application Start
+2024-12-27 13:23:25.2322 Info Application End
+2024-12-27 13:23:32.8646 Info Application Start
+2024-12-27 15:17:55.0903 Info Application End
+2024-12-27 15:18:31.7509 Info Application Start
+2024-12-27 15:21:43.5457 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 03:21:43.
+2024-12-27 15:23:10.6088 Info Application Start
+2024-12-27 15:23:28.5260 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 03:23:28.
+2024-12-27 15:24:14.3571 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-27 15:27:43.5864 Info Application Start
+2024-12-27 15:27:53.5923 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 03:27:53.
+2024-12-27 15:47:25.0999 Info Application Start
+2024-12-27 15:47:41.1299 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 03:47:41.
+2024-12-27 16:35:53.3666 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/27 下午 04:35:53.
+2024-12-27 16:37:00.6293 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 04:37:00.
+2024-12-27 16:37:25.6155 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/27 下午 04:37:25.
+2024-12-27 17:02:45.3834 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainProductController' 上找不到公用動作方法 'GetAllProduct'。
+2024-12-27 17:27:58.8109 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 17:27:58.8109 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 17:30:24.9941 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 17:30:24.9941 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 17:33:35.7255 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 05:33:35.
+2024-12-27 17:56:17.7163 Info Application Start
+2024-12-27 17:56:32.1658 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 05:56:32.
+2024-12-27 18:00:42.2074 Info Application Start
+2024-12-27 18:00:50.6936 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:00:50.
+2024-12-27 18:02:11.6204 Info Application Start
+2024-12-27 18:02:46.0394 Info Application Start
+2024-12-27 18:02:52.5087 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:02:52.
+2024-12-27 18:04:32.3126 Info Application Start
+2024-12-27 18:04:40.0118 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:04:40.
+2024-12-27 18:05:33.5382 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 18:06:12.7535 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 18:13:18.1174 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 18:13:18.8161 Error System.NotSupportedException: 不支援指定的路徑格式。
+2024-12-27 18:26:28.4866 Info Application Start
+2024-12-27 18:26:45.1408 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:26:45.
+2024-12-27 18:27:50.6338 Info Application Start
+2024-12-27 18:28:01.0792 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:28:01.
+2024-12-27 18:32:30.0474 Info Application Start
+2024-12-27 18:34:04.6824 Info Application Start
+2024-12-27 18:34:16.5512 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 06:34:16.
+2024-12-27 19:21:12.6430 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:21:27.2467 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:23:34.2574 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:23:35.1861 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:27:45.6796 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_style'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:27:48.5360 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_style'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:30:14.0043 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:30:25.2514 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:34:04.1358 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 19:34:10.3751 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_imageUrl'，資料表 'ShopWeb.dbo.t_productStyles'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2024-12-27 20:00:16.0908 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 20:01:30.5457 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2024-12-27 20:02:47.5081 Info Application Start
+2024-12-27 20:03:31.6736 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/27 下午 08:03:31.
+2024-12-27 20:04:13.8770 Info Application End
+2024-12-27 20:04:18.0758 Info Application Start

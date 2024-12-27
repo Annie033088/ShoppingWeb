@@ -37,7 +37,7 @@
                             <button id="btnEditImage" class="btn btn-dark mt-1 ms-5" style=" width: 50%; opacity:0.9" onclick="getImageAndEdit()">上傳/修改展示圖片</button>
                             <button id="btnSubmitEditImage" class="btn btn-success  mt-1 ms-1" style=" width: 18%; opacity:0.9" onclick="submitEditImage()">確認修改</button>
                         </div>
-                         </div>
+                    </div>
 
                     <div id="productNameBox" class="input-group mt-3">
                         <span class="input-group-text w-25">商品名稱</span>
@@ -53,8 +53,6 @@
                         <span class="input-group-text w-25">分類</span>
                         <div style=" height:100% ;text-align: center;" class="me-1">
                             <select id="dropdownCategory" class="form-select form-select-sm" name="category">
-                                <option value="1">新品</option>
-                                <option value="2">特價</option>
                                 <option value="3">用品</option>
                                 <option value="4">飼料</option>
                                 <option value="5">罐頭</option>
@@ -78,7 +76,7 @@
                         <span id="txtProductStatus" class="input-group-text">上/下架</span>
                         <button id="btnProductStatusOn" class="" type="button" onclick="setProductStatusOn()">上架</button>
                         <button id="btnProductStatusOff" class="" onclick="setProductStatusOff()">下架</button>
-                        <button id="btnSubmitEditImage" class="btn btn-success" style=" width: 15%; opacity:0.9; margin-left:170px" onclick="submitEditProduct()">確認修改</button>
+                        <button id="btnSubmitEditProduct" class="btn btn-success" style=" width: 15%; opacity:0.9; margin-left:170px" onclick="submitEditProduct()">確認修改</button>
                     </div>
 
 
@@ -101,9 +99,13 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <div class="card-footer d-flex justify-content-center">
+                    <div class="card-footer d-flex justify-content-center ">
                         <button class="btn btnAdd" style="" onclick="addStyle()"> </button>
+                    </div> 
+                    <div class="w-100 d-flex justify-content-end" >
+                        <button id="btnSubmitEditStyle" class="btn btn-success mt-1 me-1"  style=" width: 25%; opacity:0.9; " onclick="submitEditStyle()">確認修改</button>
                     </div>
+                   
                 </div>
             </div>
         </div>

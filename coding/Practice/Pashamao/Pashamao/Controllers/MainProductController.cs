@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using NLog;
 using Pashamao.Filters;
@@ -144,9 +145,6 @@ namespace Pashamao.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct() { return View(); }
-
-        [HttpPost]
         public ActionResult DeleteProduct(string ProductId)
         {
             try
@@ -194,12 +192,38 @@ namespace Pashamao.Controllers
         }
 
         [HttpPost]
-        public ActionResult SubmitEditProduct(ProductDetail newProduct, List<CreateProductStyleViewModel> AddStyleList, List<EditProductStyleViewModel> EditStyleList, List<ProductStyle> DelStyleList, List<CreateProductImageViewModel> ImageList, List<ProductImage> DelImageList)
+        public ActionResult SubmitEditProduct(ProductDetail Product)
         {
-
-            //newProduct, StyleList, DelStyleList, ImageList, DelImageList
-            return Json(true);
+            bool successFlag = mainProductService.EditProduct(Product);
+            return Json(successFlag);
         }
 
+        /// <summary>
+        /// 修改商品圖片
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditProductImage()
+        {
+            var files = Request.Files;
+            string productId = Request.Form["ProductId"];
+            List<ProductImage> delOldImageList = JsonConvert.DeserializeObject<List<ProductImage>>(Request.Form["DelImageList"]);
+            bool successFlag = mainProductService.EditProductImage(productId, delOldImageList, files);
+
+            return Json(successFlag);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitEditStyle(string ProductId, 
+            List<CreateProductStyleViewModel> AddStyleList, 
+            List<EditProductStyleViewModel> EditStyleWithImageList, 
+            List<EditProductStyleViewModel> EditStyleWithoutImageList, 
+            List<string> DelStyleList)
+        {
+            //bool successFlag = mainProductService.EditProductStyleTest(ProductId, AddStyleList, EditStyleWithImageList);
+            bool successFlag = mainProductService.EditProductStyle(ProductId, AddStyleList, EditStyleWithImageList, EditStyleWithoutImageList, DelStyleList);
+
+            return Json(successFlag);
+        }
     }
 }
