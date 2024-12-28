@@ -12,6 +12,9 @@ using System.Web.Optimization;
 using System.Web.Helpers;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
+using System.IO;
+using System.Web.UI;
+using System.Diagnostics;
 
 namespace Pashamao.Repositories
 {
@@ -313,8 +316,6 @@ namespace Pashamao.Repositories
                 product.Description = ds.Tables[0].Rows[0].IsNull("f_description") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_description");
                 product.Introduction = ds.Tables[0].Rows[0].IsNull("f_introduction") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_introduction");
                 product.Status = ds.Tables[0].Rows[0].IsNull("f_status") ? false : ds.Tables[0].Rows[0].Field<bool>("f_status");
-                product.CreateTime = ds.Tables[0].Rows[0].IsNull("f_createTime") ? DateTime.Now : ds.Tables[0].Rows[0].Field<DateTime>("f_createTime");
-                product.LastShelveEditTime = ds.Tables[0].Rows[0].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[0].Rows[0].Field<DateTime>("f_lastShelveEditTime");
 
                 for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
                 {
@@ -325,8 +326,6 @@ namespace Pashamao.Repositories
                     style.StockQuantity = ds.Tables[1].Rows[i].IsNull("f_stockQuantity") ? 0 : ds.Tables[1].Rows[i].Field<int>("f_stockQuantity");
                     style.ImageUrl = ds.Tables[1].Rows[i].IsNull("f_imageUrl") ? string.Empty : ds.Tables[1].Rows[i].Field<string>("f_imageUrl");
                     style.Status = ds.Tables[1].Rows[i].IsNull("f_status") ? false : ds.Tables[1].Rows[i].Field<bool>("f_status");
-                    style.CreateTime = ds.Tables[1].Rows[i].IsNull("f_createTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_createTime");
-                    style.LastShelveEditTime = ds.Tables[1].Rows[i].IsNull("f_lastShelveEditTime") ? DateTime.Now : ds.Tables[1].Rows[i].Field<DateTime>("f_lastShelveEditTime");
 
                     styles.Add(style);
                 }
@@ -567,103 +566,43 @@ namespace Pashamao.Repositories
             }
         }
 
-        internal (List<string>, bool) EditProductStyle(Guid productId, List<ProductStyle> addStyles, List<ProductStyle> editStyleWithImage, List<ProductStyle> editStyleWithoutImage, List<string> delStyleId)
+       
+        internal (string, bool) EditProductStyle(ProductStyle productStyle)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editProductStyle @productId, @addStyles, @editStyleWithImage, @editStyleWithoutImage, @delStyleId";
-                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
-                if (delStyleId == null)
-                {
-                    cmd.Parameters.Add("@delStyleId", SqlDbType.NVarChar).Value = JsonConvert.SerializeObject(" ");
-                }
-                else
-                {
-                    cmd.Parameters.Add("@delStyleId", SqlDbType.NVarChar).Value = JsonConvert.SerializeObject(delStyleId);
-                }
+                cmd.CommandText = "EXEC pro_pashamao_editProductStyle @productStyleId, @imageUrl, @style, @price, @stockQuantity, @status, @delImageUrl OUTPUT";
 
-                //加入新增style的table
-                DataTable addStyleTable = new DataTable();
-                addStyleTable.Columns.Add("f_imageUrl", typeof(string));
-                addStyleTable.Columns.Add("f_style", typeof(string));
-                addStyleTable.Columns.Add("f_price", typeof(decimal));
-                addStyleTable.Columns.Add("f_stockQuantity", typeof(int));
-                addStyleTable.Columns.Add("f_status", typeof(bool));
-
-                foreach (ProductStyle style in addStyles)
+                cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyle.ProductStyleId;
+                cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
+                cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = productStyle.Style;
+                cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
+                cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = productStyle.Status;
+                SqlParameter delImageUrlOutput = new SqlParameter("@delImageUrl", SqlDbType.NVarChar)
                 {
-                    addStyleTable.Rows.Add(style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
-                }
-
-                var addStylesParam = new SqlParameter("@addStyles", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_addProductStyle",
-                    Value = addStyleTable
+                    Direction = ParameterDirection.Output,
+                    Size = 100
                 };
-                cmd.Parameters.Add(addStylesParam);
-
-                //加入修改style的table(有改圖片)
-                DataTable editStyleWithImageTable = new DataTable();
-                editStyleWithImageTable.Columns.Add("f_productStyleId", typeof(int));
-                editStyleWithImageTable.Columns.Add("f_imageUrl", typeof(string));
-                editStyleWithImageTable.Columns.Add("f_style", typeof(string));
-                editStyleWithImageTable.Columns.Add("f_price", typeof(decimal));
-                editStyleWithImageTable.Columns.Add("f_stockQuantity", typeof(int));
-                editStyleWithImageTable.Columns.Add("f_status", typeof(bool));
-
-                foreach (ProductStyle style in editStyleWithImage)
-                {
-                    editStyleWithImageTable.Rows.Add(style.ProductStyleId, style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
-                }
-
-                var editStylesWithImageParam = new SqlParameter("@editStyleWithImage", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_editProductStyle",
-                    Value = editStyleWithImageTable
-                };
-                cmd.Parameters.Add(editStylesWithImageParam);
-
-                //加入修改style的table(沒改圖片)
-                DataTable editStyleWithoutImageTable = new DataTable();
-                editStyleWithoutImageTable.Columns.Add("f_productStyleId", typeof(int));
-                editStyleWithoutImageTable.Columns.Add("f_imageUrl", typeof(string));
-                editStyleWithoutImageTable.Columns.Add("f_style", typeof(string));
-                editStyleWithoutImageTable.Columns.Add("f_price", typeof(decimal));
-                editStyleWithoutImageTable.Columns.Add("f_stockQuantity", typeof(int));
-                editStyleWithoutImageTable.Columns.Add("f_status", typeof(bool));
-
-                foreach (ProductStyle style in editStyleWithoutImage)
-                {
-                    editStyleWithoutImageTable.Rows.Add(style.ProductStyleId, style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
-                }
-
-                var editStylesWithoutImageParam = new SqlParameter("@editStyleWithoutImage", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_editProductStyle",
-                    Value = editStyleWithoutImageTable
-                };
-                cmd.Parameters.Add(editStylesWithoutImageParam);
+                cmd.Parameters.Add(delImageUrlOutput);
 
                 cmd.Connection.Open();
 
-                da.SelectCommand = cmd;
-                da.Fill(dt);
+                int ExeCnt = cmd.ExecuteNonQuery();
 
-                List<string> delImageUrls = new List<string>();
-                if (dt.Rows.Count > 0)
+                string delImageUrl = delImageUrlOutput.Value == DBNull.Value ? null : delImageUrlOutput.Value.ToString();
+
+                if (ExeCnt > 0)
                 {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        string delImageUrl = dt.Rows[i].IsNull("f_imageUrl") ? string.Empty : dt.Rows[i].Field<string>("f_imageUrl");
-                        delImageUrls.Add(delImageUrl);
-                    }
+                    return (delImageUrl, true);
                 }
-                return (delImageUrls, true);
+                else
+                {
+                    return (delImageUrl, false);
+                }
+
             }
             catch (Exception e)
             {
@@ -677,60 +616,26 @@ namespace Pashamao.Repositories
             }
         }
 
-        internal  bool EditProductStyleTest(Guid productId, List<ProductStyle> addStyles, List<ProductStyle> editStyleWithImage)
+        internal bool AddProductStyle(ProductStyle productStyle)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
-
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editProductStyleTest2 @productId, @addStyles, @editStyleWithImage";
-                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
+                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status"; 
 
-                //加入新增style的table
-                DataTable addStyleTable = new DataTable();
-                addStyleTable.Columns.Add("f_imageUrl", typeof(string));
-                addStyleTable.Columns.Add("f_style", typeof(string));
-                addStyleTable.Columns.Add("f_price", typeof(decimal));
-                addStyleTable.Columns.Add("f_stockQuantity", typeof(int));
-                addStyleTable.Columns.Add("f_status", typeof(bool));
-
-                foreach (ProductStyle style in addStyles)
-                {
-                    addStyleTable.Rows.Add(style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
-                }
-
-                var addStylesParam = new SqlParameter("@addStyles", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_addProductStyle",
-                    Value = addStyleTable
-                };
-                cmd.Parameters.Add(addStylesParam);
-
-                //加入修改style的table(有改圖片)
-                DataTable editStyleWithImageTable = new DataTable();
-                editStyleWithImageTable.Columns.Add("f_productStyleId", typeof(int));
-                editStyleWithImageTable.Columns.Add("f_imageUrl", typeof(string));
-                editStyleWithImageTable.Columns.Add("f_style", typeof(string));
-                editStyleWithImageTable.Columns.Add("f_price", typeof(decimal));
-                editStyleWithImageTable.Columns.Add("f_stockQuantity", typeof(int));
-                editStyleWithImageTable.Columns.Add("f_status", typeof(bool));
-
-                foreach (ProductStyle style in editStyleWithImage)
-                {
-                    editStyleWithImageTable.Rows.Add(style.ProductStyleId, style.ImageUrl, style.Style, style.Price, style.StockQuantity, style.Status);
-                }
-
-                var editStylesWithImageParam = new SqlParameter("@editStyleWithImage", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_editProductStyle",
-                    Value = editStyleWithImageTable
-                };
-                cmd.Parameters.Add(editStylesWithImageParam);
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productStyle.ProductId;
+                cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
+                cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = productStyle.Style;
+                cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
+                cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
+                cmd.Parameters.Add("@status", SqlDbType.Int).Value = productStyle.Status;
 
                 cmd.Connection.Open();
 
                 int ExeCnt = cmd.ExecuteNonQuery();
+
+                cmd.Connection.Close();
 
                 if (ExeCnt > 0)
                 {
@@ -739,6 +644,56 @@ namespace Pashamao.Repositories
                 else
                 {
                     return false;
+                }
+
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 刪除商品細項
+        /// </summary>
+        /// <param name="productStyleId"></param>
+        /// <returns></returns>
+        internal (string, bool) DeleteProductStyle(int productStyleId)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_delProductStyle @productStyleId, @delImageUrl OUTPUT";
+                cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyleId;
+                SqlParameter delImageUrlOutput = new SqlParameter("@delImageUrl", SqlDbType.NVarChar)
+                {
+                    Direction = ParameterDirection.Output,
+                    Size = 100
+                };
+                cmd.Parameters.Add(delImageUrlOutput);
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                string delImageUrl = delImageUrlOutput.Value == DBNull.Value ? null : delImageUrlOutput.Value.ToString();
+
+                if (ExeCnt > 0)
+                {
+                    return (delImageUrl, true);
+                }
+                else
+                {
+                    return (delImageUrl, false);
                 }
             }
             catch (Exception e)
@@ -751,6 +706,7 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Clear();
                 cmd.Connection.Close();
             }
+
         }
 
     }

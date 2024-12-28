@@ -213,17 +213,42 @@ namespace Pashamao.Controllers
             return Json(successFlag);
         }
 
+        /// <summary>
+        /// 修改商品的細項
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitEditStyle(string ProductId, 
-            List<CreateProductStyleViewModel> AddStyleList, 
-            List<EditProductStyleViewModel> EditStyleWithImageList, 
-            List<EditProductStyleViewModel> EditStyleWithoutImageList, 
-            List<string> DelStyleList)
+        public ActionResult EditProductStyle()
         {
-            //bool successFlag = mainProductService.EditProductStyleTest(ProductId, AddStyleList, EditStyleWithImageList);
-            bool successFlag = mainProductService.EditProductStyle(ProductId, AddStyleList, EditStyleWithImageList, EditStyleWithoutImageList, DelStyleList);
+            var files = Request.Files;
+            ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
+            bool success = mainProductService.EditProductStyle(EditStyle, files);
+            return Json(success);
+        }
 
-            return Json(successFlag);
+        /// <summary>
+        /// 新增商品細項
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult AddProductStyle()
+        {
+            var files = Request.Files;
+            ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
+            bool success = mainProductService.AddProductStyle(AddStyle, files);
+            return Json(success);
+        }
+
+        /// <summary>
+        /// 新增商品細項
+        /// </summary>
+        /// <param name="ProductStyleId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult DeleteProductStyle(int ProductStyleId)
+        {
+            bool success = mainProductService.DeleteProductStyle(ProductStyleId);
+            return Json(success);
         }
     }
 }

@@ -237,7 +237,7 @@ function addStyle() {
                 <p>點擊圖片修改</p>
             </div>
             <div id="addStyleNameBox" class="input-group mt-3">
-                <span class="input-group-text">分類名</span>
+                <span class="input-group-text">細項名</span>
                 <input id="txbAddStyleName" type="text" class="form-control" value="">
             </div>
 
@@ -382,7 +382,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 <p>點擊圖片修改</p>
             </div>
             <div id="addStyleNameBox" class="input-group mt-3">
-                <span class="input-group-text">分類名</span>
+                <span class="input-group-text">細項名</span>
                 <input id="txbAddStyleName" type="text" class="form-control" value="${styleData.Style}">
             </div>
 

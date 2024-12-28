@@ -11,12 +11,6 @@ let imageTotal = 0;
 //刪除的圖片
 let delImageList = [];
 
-//刪除的細項
-let delStyleList = [];
-
-//修改過的細項並且修改過圖片
-let editWithImageStyleId = [];
-
 console.log(product, styles, images);
 
 populateImage();
@@ -64,9 +58,8 @@ function populateStyle() {
         let imageSrc = "";
         let imageName = "";
 
-        if (style.ImageUrl == " ") {
+        if (style.ImageUrl == " " || style.ImageUrl == "") {
             imageSrc = "/images/productImage/noImage.jpg";
-            const timestamp = new Date().getTime();
             imageName = ` `;
         } else {
             let imageUrl = style.ImageUrl;
@@ -323,7 +316,7 @@ function addStyle() {
                 <p>點擊圖片修改</p>
             </div>
             <div id="addStyleNameBox" class="input-group mt-3">
-                <span class="input-group-text">分類名</span>
+                <span class="input-group-text">細項名</span>
                 <input id="txbAddStyleName" type="text" class="form-control" value="">
             </div>
 
@@ -357,9 +350,6 @@ function addStyle() {
                     return;
                 }
 
-                const timestamp = new Date().getTime();
-                addStyleImage.dataset.name = `${timestamp}-${file.name}`;
-
                 reader.onload = function (event) {
                     addStyleImage.src = event.target.result;
                     addImage = true;
@@ -387,13 +377,12 @@ function addStyle() {
             else { styleStatus = false; }
 
             let addStyle = {
+                ProductId: product.ProductId,
                 Style: styleName,
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
             }
-
-            let imageName = document.getElementById("addStyleImage").dataset.name;
 
             //驗證輸入符合訊息
             const nameRegex = /^.{1,25}$/;
@@ -414,17 +403,50 @@ function addStyle() {
                 return false;
             }
 
-            return { addStyle: addStyle, imageName: imageName };
+            return { addStyle: addStyle };
         }
     }).then((result) => {
         if (result.isConfirmed) {
+            const formData = new FormData();
+            formData.append('AddStyle', JSON.stringify(result.value.addStyle));
+
             const imgFile = document.getElementById("addStyleImage");
-            addStyleRow(result.value.addStyle, imgFile.src, result.value.imageName);
+
+            if (addImage) {
+                const imgBlob = dataURItoBlob(imgFile.src);
+                formData.append('images[]', imgBlob);
+            }
+
+            axios.post("/MainProduct/AddProductStyle", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(response => {
+                    if (response.data == true) {
+                        Swal.fire("新增成功!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    } else {
+                        Swal.fire("新增失敗!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
         }
     });
 }
 
-function editStyle(styleData, imageSrc, oldImageName, id) {
+function editStyle(styleData, imageSrc, id) {
     let addImage = false;
     let htmlStatus = "";
     let editImage = false;
@@ -451,12 +473,12 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
         html: `
        <div class="addStyleBox">
             <div id="addStyleImageBox" class="position-relative" style="border:solid">
-                <img id="addStyleImage" class="img-fluid styleImage" src="${imageSrc}" alt="" data-name="${oldImageName}">
+                <img id="addStyleImage" class="img-fluid styleImage" src="${imageSrc}" alt="" >
                 <input type="file" id="txbAddImage" accept="image/*" style="display: none;">
-                <p>點擊圖片修改</p>
+                <p id = "textEditImage">點擊圖片修改</p>
             </div>
             <div id="addStyleNameBox" class="input-group mt-3">
-                <span class="input-group-text">分類名</span>
+                <span class="input-group-text">細項名</span>
                 <input id="txbAddStyleName" type="text" class="form-control" value="${styleData.Style}">
             </div>
 
@@ -480,6 +502,8 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             let txbAddImage = document.getElementById("txbAddImage");
             let btnStatusOn = document.getElementById("btnStatusOn");
             let btnStatusOff = document.getElementById("btnStatusOff");
+            let textEditImage = document.getElementById("textEditImage");
+            textEditImage.addEventListener('click', () => { txbAddImage.click(); });
             addStyleImage.addEventListener('click', () => { txbAddImage.click(); });
 
             txbAddImage.addEventListener('change', (e) => {
@@ -487,8 +511,6 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 const reader = new FileReader();
 
                 if (file) {
-                    const timestamp = new Date().getTime();
-                    addStyleImage.dataset.name = `${timestamp}-${file.name}`;
                     editImage = true;
                 }
 
@@ -515,7 +537,6 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
-            let imageName = document.getElementById("addStyleImage").dataset.name;
 
             if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
             else { styleStatus = false; }
@@ -525,20 +546,9 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 return false;
             }
 
-            if (editImage && styleData.ProductStyleId) {
-                let alreadyAddInList = false;
-
-                for (var i = 0; i < editWithImageStyleId.length; i++) {
-                    if (editWithImageStyleId[i] == styleData.ProductStyleId) {
-                        alreadyAddInList = true;
-                    }
-                }
-                if (!alreadyAddInList) {
-                    editWithImageStyleId.push(styleData.ProductStyleId);
-                }
-            }
-
             let editStyle = {
+                ProductId: product.ProductId,
+                ProductStyleId: styleData.ProductStyleId,
                 Style: styleName,
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
@@ -565,12 +575,45 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 return false;
             }
 
-            return { editStyle: editStyle, imageName: imageName };
+            return { editStyle: editStyle };
         }
     }).then((result) => {
         if (result.isConfirmed) {
+            const formData = new FormData();
+            formData.append('EditStyle', JSON.stringify(result.value.editStyle));
+
             const imgFile = document.getElementById("addStyleImage");
-            editStyleRow(result.value.editStyle, imgFile.src, result.value.imageName, id);
+
+            if (editImage) {
+                const imgBlob = dataURItoBlob(imgFile.src);
+                formData.append('images[]', imgBlob);
+            }
+
+            axios.post("/MainProduct/EditProductStyle", formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+                .then(response => {
+                    if (response.data == true) {
+                        Swal.fire("修改成功!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    } else {
+                        Swal.fire("修改失敗!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
         }
     });
 
@@ -627,34 +670,12 @@ function addStyleRow(styleData, imageSrc, imageName) {
     const cellEditDataBtn = document.createElement("button");
     cellEditDataBtn.className = "btnEditStyleData btnEdit";
     cellEditDataBtn.addEventListener("click", function () {
-
-        const nameInRow = row.querySelector(".styleName");
-        const imageInRow = row.querySelector("img");
-        const quantityInRow = row.querySelector(".styleQuantity");
-        const priceInRow = row.querySelector(".stylePrice");
-        const statusInRow = row.querySelector(".styleStatus");
-        let status = true;
-
-        if (statusInRow.textContent == "上架") {
-            status = true;
-        } else {
-            status = false;
-        }
-        newStyleData = {
-            ProductStyleId: styleData.ProductStyleId,
-            Style: nameInRow.textContent,
-            Price: priceInRow.textContent,
-            StockQuantity: quantityInRow.textContent,
-            Status: status,
-        }
-        newImageSrc = imageInRow.src;
-        newImageName = imageInRow.dataset.name;
-        editStyle(newStyleData, imageSrc, imageName, row.id);
+        editStyle(styleData, styleImage.src, row.id);
     });
     const cellDelDataBtn = document.createElement("button");
     cellDelDataBtn.className = "btnDelStyleData btnDel";
     cellDelDataBtn.addEventListener("click", function () {
-        delStyle(row.id);
+        delStyle(row.dataset.id);
     });
     cellEditData.appendChild(cellEditDataBtn);
     cellEditData.appendChild(cellDelDataBtn);
@@ -663,41 +684,48 @@ function addStyleRow(styleData, imageSrc, imageName) {
     tableBody.appendChild(row);
 }
 
-function editStyleRow(styleData, imageSrc, imageName, id) {
-    const row = document.getElementById(id);
-    const nameInRow = row.querySelector(".styleName");
-    const imageInRow = row.querySelector("img");
-    const quantityInRow = row.querySelector(".styleQuantity");
-    const priceInRow = row.querySelector(".stylePrice");
-    const statusInRow = row.querySelector(".styleStatus");
-    nameInRow.textContent = styleData.Style;
-    imageInRow.dataset.name = imageName;
-    imageInRow.src = imageSrc;
-    if (styleData.StockQuantity <= 3) {
-        quantityInRow.textContent = styleData.StockQuantity;
-    } else {
-        quantityInRow.textContent = styleData.StockQuantity;
-    }
-    quantityInRow.textContent = styleData.StockQuantity;
-    priceInRow.textContent = styleData.Price;
-    statusInRow.textContent = styleData.Status == true ? "上架" : "下架";
-}
+function delStyle(styleId) {
+    const tableBody = document.getElementById("styleTable").getElementsByTagName('tbody')[0];
+    const styleCnt = tableBody.querySelectorAll('tr').length;
 
-function delStyle(id) {
+    if (styleCnt < 2)
+    {
+        Swal.fire({
+            title: '商品至少有一個細項'
+        })
+        return
+    }
+
     Swal.fire({
         title: '確定要刪除這個項目嗎？',
+        text: "這個操作無法恢復！",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: '刪除',
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            const row = document.getElementById(id);
-
-            if (row && row.dataset.id.trim() !== "") {
-                delStyleList.push(row.dataset.id);
-            }
-            row.remove();
+            axios.post("/MainProduct/DeleteProductStyle", { ProductStyleId: styleId })
+                .then(response => {
+                    if (response.data == true) {
+                        Swal.fire("刪除成功!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    } else {
+                        Swal.fire("刪除失敗!")
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                }
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                })
         }
     })
 }
@@ -710,143 +738,6 @@ function setProductStatusOn() {
 function setProductStatusOff() {
     document.getElementById("btnProductStatusOn").className = "btn btn-outline-dark opacity-50";
     document.getElementById("btnProductStatusOff").className = "opacity-100 btn btn-dark";
-}
-
-function submitEditStyle() {
-    const tableBody = document.querySelector("tbody");
-    const styleRows = tableBody.querySelectorAll("tr");
-    let addStyleList = [];
-    let editStyleWithImageList = [];
-    let editStyleWithoutImageList = [];
-
-    if (styleRows.length < 1) {
-        Swal.fire("請至少新增一個細項");
-        return;
-    }
-
-    styleRows.forEach(row => {
-        const nameInRow = row.querySelector(".styleName").textContent;
-        const imageInRow = row.querySelector("img");
-        const quantityInRow = row.querySelector(".styleQuantity").textContent;
-        const priceInRow = row.querySelector(".stylePrice").textContent;
-        const statusInRow = row.querySelector(".styleStatus").textContent;
-
-        //styleId = 0 代表是新增的
-        let styleId = 0;
-        let status = false;
-        let imageSrc = " ";
-        let oldImageSrc = " ";
-
-        if (statusInRow == "上架") {
-            status = true;
-        } else {
-            status = false;
-        }
-
-        if (imageInRow.dataset.name == " " || null) {
-            imageSrc = " ";
-        } else {
-            imageSrc = imageInRow.src;
-        }
-
-        //判斷是不是舊的細項
-        styles.forEach(oldStyle => {
-            //是
-            if (`${oldStyle.ProductStyleId}` == row.dataset.id) {
-                let editImageFlag = false;
-                //判斷圖片有沒有修改過
-                for (var i = 0; i < editWithImageStyleId.length; i++) {
-                    if (editWithImageStyleId[i] == row.dataset.id)  editImageFlag = true;
-                }
-
-                //細項有沒有修改過!
-                if (nameInRow == oldStyle.Style && !editImageFlag && quantityInRow == `${oldStyle.StockQuantity}`
-                    && priceInRow == `${oldStyle.Price}` && status == oldStyle.Status) {
-                    //沒有修改過
-                    styleId = -1;
-                } else {
-                    //在判斷有沒有修改過圖片
-                    if (editImageFlag) {
-                        styleId = oldStyle.ProductStyleId;
-                        oldImageSrc = oldStyle.ImageUrl;
-
-                        let style = {
-                            ProductStyleId: styleId,
-                            Style: nameInRow,
-                            Price: priceInRow,
-                            StockQuantity: quantityInRow,
-                            Status: status,
-                            ImageUrl: imageSrc,
-                            ImageName: imageInRow.dataset.name
-                        }
-                        editStyleWithImageList.push(style);
-                    } else {
-                        styleId = oldStyle.ProductStyleId;
-                        let style = {
-                            ProductStyleId: styleId,
-                            Style: nameInRow,
-                            Price: priceInRow,
-                            StockQuantity: quantityInRow,
-                            Status: status
-                        }
-                        editStyleWithoutImageList.push(style);
-                    }
-                }
-            }
-        })
-
-        //代表這行細項資料沒有異動過
-        if (styleId == -1) {
-            return;
-        }//代表是新增的style
-        else if (styleId == 0) { 
-            let style = {
-                ProductStyleId: styleId,
-                Style: nameInRow,
-                Price: priceInRow,
-                StockQuantity: quantityInRow,
-                Status: status,
-                ImageUrl: imageSrc,
-                ImageName: imageInRow.dataset.name
-            }
-            addStyleList.push(style);
-        }
-    })
-
-    console.log(product.ProductId, addStyleList, editStyleWithImageList, editStyleWithoutImageList, delStyleList);
-
-    if (addStyleList.length == 0 && editStyleWithImageList.length == 0 && editStyleWithoutImageList.length == 0 && delStyleList.length == 0) {
-        Swal.fire("請修改細項!");
-        return;
-    }
-
-    axios.post("/MainProduct/SubmitEditStyle", {
-         ProductId: product.ProductId,
-         AddStyleList: addStyleList,
-         EditStyleWithImageList: editStyleWithImageList,
-         EditStyleWithoutImageList: editStyleWithoutImageList,
-         DelStyleList: delStyleList
-     })
-         .then(response => {
-             if (response.data == true) {
-                 Swal.fire("修改成功!")
-                     .then((result) => {
-                         if (result.isConfirmed) {
-                             window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
-                         }
-                     })
-             } else {
-                 Swal.fire("修改失敗!")
-                     .then((result) => {
-                         if (result.isConfirmed) {
-                             window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
-                         }
-                     })
-             }
-         })
-         .catch(error => {
-             console.error("fail", error);
-         })
 }
 
 function submitEditProduct() {

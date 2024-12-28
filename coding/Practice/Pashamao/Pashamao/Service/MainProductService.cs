@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Newtonsoft.Json;
+using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
+using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 
@@ -323,201 +325,159 @@ namespace Pashamao.Service
             }
         }
 
-        public bool EditProductStyle(string productId,
-            List<CreateProductStyleViewModel> addStyles,
-            List<EditProductStyleViewModel> editStyleWithImageList,
-            List<EditProductStyleViewModel> editStyleWithoutImageList,
-            List<string> delStyles)
+        /// <summary>
+        /// 修改商品細項
+        /// </summary>
+        /// <param name="afterEditStyle"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files)
         {
-            List<ProductStyle> addProductStyles = new List<ProductStyle>();
-            List<ProductStyle> editStyleWithImage = new List<ProductStyle>();
-            List<ProductStyle> editStyleWithoutImage = new List<ProductStyle>();
-
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = appDirectory + @"images\productImage\" + productId;
+            string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
+            string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
 
-            if (addStyles != null)
+            if (files.Count > 0)
             {
-                //設定新增style時, image的路徑
-                for (int i = 0; i < addStyles.Count; i++)
+                string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName ;
+                productStyle.ImageUrl = relativePath;
+                //下載檔案
+                if (Directory.Exists(folderPath))
                 {
-                    ProductStyle productStyle = new ProductStyle();
-
-                    if (addStyles[i].ImageUrl == " ")
-                    {
-                        productStyle.ImageUrl = " ";
-                    }
-                    else
-                    {
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                        //新增圖片檔案
-                        string base64String = addStyles[i].ImageUrl.Substring(addStyles[i].ImageUrl.IndexOf(",") + 1);
-                        byte[] imageBytes = Convert.FromBase64String(base64String);
-                        string fileName = Path.GetFileName(addStyles[i].ImageName);
-                        string addImagePath = folderPath + @"\" + fileName;
-                        File.WriteAllBytes(addImagePath, imageBytes);
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
-                        productStyle.ImageUrl = relativePath;
-
-                    }
-
-                    productStyle.Price = addStyles[i].Price;
-                    productStyle.Style = addStyles[i].Style;
-                    productStyle.StockQuantity = addStyles[i].StockQuantity;
-                    productStyle.Status = addStyles[i].Status;
-                    addProductStyles.Add(productStyle);
+                    string filePath = folderPath + @"\" + fileName;
+                    files[0].SaveAs(filePath);
+                }
+                else
+                {
+                    Directory.CreateDirectory(folderPath);
+                    string filePath = folderPath + @"\" + fileName;
+                    files[0].SaveAs(filePath);
                 }
             }
-            
-
-            if (editStyleWithImageList != null)
+            else
             {
-                //設定修改style時, image的路徑
-                for (int i = 0; i < editStyleWithImageList.Count; i++)
+                productStyle.ImageUrl = string.Empty;
+            }
+
+            (string delImageUrl, bool editSuccessFlag) = mainProductRepository.EditProductStyle(productStyle);
+
+            //刪除舊的檔案
+            if (delImageUrl != string.Empty)
+            {
+                string filePath = appDirectory + delImageUrl;
+
+                if (File.Exists(filePath))
                 {
-                    ProductStyle productStyle = new ProductStyle();
-
-                    if (editStyleWithImageList[i].ImageUrl == " ")
-                    {
-                        productStyle.ImageUrl = " ";
-                    }
-                    else
-                    {
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                        //新增圖片檔案
-                        string base64String = editStyleWithImageList[i].ImageUrl.Substring(editStyleWithImageList[i].ImageUrl.IndexOf(",") + 1);
-                        byte[] imageBytes = Convert.FromBase64String(base64String);
-                        string fileName = Path.GetFileName(editStyleWithImageList[i].ImageName);
-                        string editImagePath = folderPath + @"\" + fileName;
-                        File.WriteAllBytes(editImagePath, imageBytes);
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
-                        productStyle.ImageUrl = relativePath;
-
-                    }
-
-                    productStyle.ProductStyleId = editStyleWithImageList[i].ProductStyleId;
-                    productStyle.Price = editStyleWithImageList[i].Price;
-                    productStyle.Style = editStyleWithImageList[i].Style;
-                    productStyle.StockQuantity = editStyleWithImageList[i].StockQuantity;
-                    productStyle.Status = editStyleWithImageList[i].Status;
-                    editStyleWithImage.Add(productStyle);
+                    File.Delete(filePath);
                 }
             }
 
-            if (editStyleWithoutImageList != null)
+            //失敗就刪除新增的檔案
+            if (!editSuccessFlag)
             {
-                for (int i = 0; i < editStyleWithoutImageList.Count; i++)
-                {
-                    ProductStyle productStyle = new ProductStyle();
-                    productStyle.ImageUrl = " ";
-                    productStyle.ProductStyleId = editStyleWithoutImageList[i].ProductStyleId;
-                    productStyle.Price = editStyleWithoutImageList[i].Price;
-                    productStyle.Style = editStyleWithoutImageList[i].Style;
-                    productStyle.StockQuantity = editStyleWithoutImageList[i].StockQuantity;
-                    productStyle.Status = editStyleWithoutImageList[i].Status;
-                    editStyleWithoutImage.Add(productStyle);
-                }
+                string filePath = folderPath + @"\" + fileName;
+                File.Delete(filePath);
             }
 
-            (List<string> delImageUrl, bool editSuccessFlag) = mainProductRepository.EditProductStyle(Guid.Parse(productId), addProductStyles, editStyleWithImage, editStyleWithoutImage, delStyles);
-
-            //資料庫修改成功
-            if (editSuccessFlag)
-            {
-                //刪除圖片
-                for (int i = 0; i < delImageUrl.Count; i++)
-                {
-                    string absoluteImagePath = appDirectory + delImageUrl[i];
-
-                    if (File.Exists(absoluteImagePath))
-                    {
-                        File.Delete(absoluteImagePath);
-                    }
-                }
-            }
             return editSuccessFlag;
         }
 
-        public bool EditProductStyleTest(string productId,
-            List<CreateProductStyleViewModel> addStyles, List<EditProductStyleViewModel> editStyleWithImageList)
+        /// <summary>
+        /// 新增商品細項
+        /// </summary>
+        /// <param name="productStyle"></param>
+        /// <param name="productName"></param>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files)
         {
-            List<ProductStyle> addProductStyles = new List<ProductStyle>();
-            List<ProductStyle> editStyleWithImage = new List<ProductStyle>();
-            List<ProductStyle> editStyleWithoutImage = new List<ProductStyle>();
-
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = appDirectory + @"images\productImage\" + productId;
-            if (addStyles != null)
+            try
             {
-                //設定新增style時, image的路徑
-                for (int i = 0; i < addStyles.Count; i++)
-                {
-                    ProductStyle productStyle = new ProductStyle();
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
+                string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
+                string filePath = folderPath + @"\" + fileName;
 
-                    if (addStyles[i].ImageUrl == " ")
+                if (files.Count > 0)
+                {
+                    string mimeType = files[0].ContentType.ToLower();
+                    string fileExtension = string.Empty;
+
+                    Console.WriteLine(mimeType);
+
+                    switch (mimeType)
                     {
-                        productStyle.ImageUrl = " ";
+                        case "image/jpeg":
+                            fileExtension = ".jpg";
+                            break;
+                        case "image/png":
+                            fileExtension = ".png";
+                            break;
+                        case "image/webp":
+                            fileExtension = ".webp";
+                            break;
+                        default:
+                            fileExtension = string.Empty;
+                            break;
+                    }
+
+                    filePath = filePath + fileExtension;
+                    string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + fileExtension;
+                    //下載檔案
+                    if (Directory.Exists(folderPath))
+                    {
+                        files[0].SaveAs(filePath);
                     }
                     else
                     {
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                        //新增圖片檔案
-                        string base64String = addStyles[i].ImageUrl.Substring(addStyles[i].ImageUrl.IndexOf(",") + 1);
-                        byte[] imageBytes = Convert.FromBase64String(base64String);
-                        string fileName = Path.GetFileName(addStyles[i].ImageName);
-                        string addImagePath = folderPath + @"\" + fileName;
-                        File.WriteAllBytes(addImagePath, imageBytes);
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
-                        productStyle.ImageUrl = relativePath;
-
+                        Directory.CreateDirectory(folderPath);
+                        files[0].SaveAs(filePath);
                     }
-
-                    productStyle.Price = addStyles[i].Price;
-                    productStyle.Style = addStyles[i].Style;
-                    productStyle.StockQuantity = addStyles[i].StockQuantity;
-                    productStyle.Status = addStyles[i].Status;
-                    addProductStyles.Add(productStyle);
+                    productStyle.ImageUrl = relativePath;
                 }
-            }
-
-
-            if (editStyleWithImageList != null)
-            {
-                //設定修改style時, image的路徑
-                for (int i = 0; i < editStyleWithImageList.Count; i++)
+                else
                 {
-                    ProductStyle productStyle = new ProductStyle();
+                    productStyle.ImageUrl = string.Empty;
+                }
 
-                    if (editStyleWithImageList[i].ImageUrl == " ")
-                    {
-                        productStyle.ImageUrl = " ";
-                    }
-                    else
-                    {
-                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+                bool addSuccessFlag = mainProductRepository.AddProductStyle(productStyle);
 
-                        //新增圖片檔案
-                        string base64String = editStyleWithImageList[i].ImageUrl.Substring(editStyleWithImageList[i].ImageUrl.IndexOf(",") + 1);
-                        byte[] imageBytes = Convert.FromBase64String(base64String);
-                        string fileName = Path.GetFileName(editStyleWithImageList[i].ImageName);
-                        string editImagePath = folderPath + @"\" + fileName;
-                        File.WriteAllBytes(editImagePath, imageBytes);
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
-                        productStyle.ImageUrl = relativePath;
-                    }
+                //刪除剛剛下載的檔案
+                if (!addSuccessFlag)
+                {
+                    File.Delete(filePath);
+                }
 
-                    productStyle.ProductStyleId = editStyleWithImageList[i].ProductStyleId;
-                    productStyle.Price = editStyleWithImageList[i].Price;
-                    productStyle.Style = editStyleWithImageList[i].Style;
-                    productStyle.StockQuantity = editStyleWithImageList[i].StockQuantity;
-                    productStyle.Status = editStyleWithImageList[i].Status;
-                    editStyleWithImage.Add(productStyle);
+                return addSuccessFlag;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 刪除商品細項
+        /// </summary>
+        /// <param name="productStyleId"></param>
+        /// <returns></returns>
+        public bool DeleteProductStyle(int productStyleId)
+        {
+            (string delImageUrl, bool delSuccessFlag) = mainProductRepository.DeleteProductStyle(productStyleId);
+
+            if (delImageUrl != null)
+            {
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string filePath = appDirectory + delImageUrl;
+
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
                 }
             }
-            return mainProductRepository.EditProductStyleTest(Guid.Parse(productId), addProductStyles, editStyleWithImage);
+
+            return delSuccessFlag;
         }
     }
 }

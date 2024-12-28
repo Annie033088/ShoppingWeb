@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\repositories\\mainproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\service\\mainproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\service\\mainproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\service\\mainproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\controllers\\mainproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\controllers\\mainproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\mainproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\js\\editproductdetail.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\js\\editproductdetail.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\mainproduct\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\mainproduct\\productdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,32 +26,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "editProductDetail.js",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\editProductDetail.js",
-              "RelativeDocumentMoniker": "Pashamao\\js\\editProductDetail.js",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\editProductDetail.js",
-              "RelativeToolTip": "Pashamao\\js\\editProductDetail.js",
-              "ViewState": "AgIAAJkCAAAAAAAAAAAowLYCAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-27T10:17:14.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainProductRepository.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\MainProductRepository.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Repositories\\MainProductRepository.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\MainProductRepository.cs",
-              "RelativeToolTip": "Pashamao\\Repositories\\MainProductRepository.cs",
-              "ViewState": "AgIAAD0CAAAAAAAAAIA0wEUCAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T10:22:16.127Z",
+              "Title": "ProductDetail.cshtml",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainProduct\\ProductDetail.cshtml",
+              "RelativeDocumentMoniker": "Pashamao\\Views\\MainProduct\\ProductDetail.cshtml",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainProduct\\ProductDetail.cshtml",
+              "RelativeToolTip": "Pashamao\\Views\\MainProduct\\ProductDetail.cshtml",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-28T08:35:57.746Z",
               "EditorCaption": ""
             },
             {
@@ -62,9 +49,22 @@
               "RelativeDocumentMoniker": "Pashamao\\Service\\MainProductService.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Service\\MainProductService.cs",
               "RelativeToolTip": "Pashamao\\Service\\MainProductService.cs",
-              "ViewState": "AgIAAEQBAAAAAAAAAAAIwEkBAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAK4BAAAAAAAAAAAYwLwBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-27T08:27:48.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainProductRepository.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\MainProductRepository.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Repositories\\MainProductRepository.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\MainProductRepository.cs",
+              "RelativeToolTip": "Pashamao\\Repositories\\MainProductRepository.cs",
+              "ViewState": "AgIAAI4CAAAAAAAAAAAYwJwCAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T10:22:16.127Z",
               "EditorCaption": ""
             },
             {
@@ -75,7 +75,7 @@
               "RelativeDocumentMoniker": "Pashamao\\Controllers\\MainProductController.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\MainProductController.cs",
               "RelativeToolTip": "Pashamao\\Controllers\\MainProductController.cs",
-              "ViewState": "AgIAAM0AAAAAAAAAAABCwNwAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAYwPgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-27T10:35:46.311Z",
               "EditorCaption": ""

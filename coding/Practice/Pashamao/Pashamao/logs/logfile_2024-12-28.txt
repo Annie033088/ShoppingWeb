@@ -1,0 +1,74 @@
+2024-12-28 13:17:44.1947 Info Application Start
+2024-12-28 13:18:30.8105 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 01:18:30.
+2024-12-28 16:11:53.9817 Info Application End
+2024-12-28 16:12:18.1763 Info Application Start
+2024-12-28 16:34:43.0244 Info Application End
+2024-12-28 16:34:56.9489 Info Application Start
+2024-12-28 16:35:30.3258 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:38:05.6016 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:47:21.5814 Info Application End
+2024-12-28 16:47:24.6468 Info Application Start
+2024-12-28 16:48:05.3441 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-28 16:49:24.8017 Info Application End
+2024-12-28 16:49:54.8929 Info Application Start
+2024-12-28 16:50:22.7567 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 04:50:22.
+2024-12-28 16:50:41.2324 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:51:49.3073 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:52:18.0704 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:54:21.5159 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:54:48.5622 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-28 16:57:22.0081 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:57:48.5170 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-28 16:58:10.7450 Info Application Start
+2024-12-28 16:58:29.7378 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 04:58:29.
+2024-12-28 16:58:40.5304 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 16:59:14.3049 Info Application Start
+2024-12-28 16:59:21.7932 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 04:59:21.
+2024-12-28 16:59:35.4023 Error System.Web.HttpException: 找不到路徑 '/Product/AddProductStyle' 的控制器或是未實作 IController。
+2024-12-28 17:01:09.1018 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:01:09.1018 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:01:20.6138 Info Application Start
+2024-12-28 17:01:39.4864 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 05:01:39.
+2024-12-28 17:03:54.7357 Error System.Data.SqlClient.SqlException: 變數名稱 '@style' 已經宣告。變數名稱在一個查詢批次或預存程序內必須是唯一的。
+必須宣告純量變數 "@price"。
+2024-12-28 17:03:55.3413 Error System.Data.SqlClient.SqlException: 變數名稱 '@style' 已經宣告。變數名稱在一個查詢批次或預存程序內必須是唯一的。
+必須宣告純量變數 "@price"。
+2024-12-28 17:05:07.7701 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:05:10.1283 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:07:58.8240 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:08:01.0066 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productId uniqueidentifier,@imageUrl nvarchar(4000),@style nva' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 17:21:53.4319 Error System.Web.HttpException: SaveAs 方法設定為需要根路徑，而路徑 'filePath' 不是根目錄。
+2024-12-28 17:22:35.5417 Info Application Start
+2024-12-28 17:22:44.5629 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 05:22:44.
+2024-12-28 17:31:43.1815 Info Application End
+2024-12-28 17:31:46.1174 Info Application Start
+2024-12-28 17:31:55.4920 Error System.ArgumentException: 對 'Pashamao.Controllers.MainProductController' 的方法 'System.Web.Mvc.ActionResult DeleteProductStyle(Int32)' 中不可為 null 型別 'System.Int32' 的參數 'ProductStyleId' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-28 17:32:03.9934 Info Application Start
+2024-12-28 17:32:30.3474 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 05:32:30.
+2024-12-28 17:32:39.1013 Error System.ArgumentException: 對 'Pashamao.Controllers.MainProductController' 的方法 'System.Web.Mvc.ActionResult DeleteProductStyle(Int32)' 中不可為 null 型別 'System.Int32' 的參數 'ProductStyleId' 而言，參數字典含有 null 項目。選擇性參數必須是參考型別、可為 null 的型別，或必須宣告為選擇性參數。
+參數名稱: parameters
+2024-12-28 17:34:43.1404 Info Application Start
+2024-12-28 17:34:51.7275 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 05:34:51.
+2024-12-28 17:38:07.1915 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:38:07.9951 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:38:21.3009 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:38:22.4234 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:43:04.2828 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:43:04.9976 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:43:50.4442 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:43:51.9565 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:47:24.5936 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:47:26.3381 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:48:28.2367 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:48:30.0660 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:51:58.8021 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 17:52:00.3424 Error System.InvalidOperationException: String[1]: Size 屬性的大小 0 無效。
+2024-12-28 18:02:26.0813 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-28 18:03:40.7812 Error System.InvalidOperationException: String[6]: Size 屬性的大小 0 無效。
+2024-12-28 18:03:41.7144 Error System.InvalidOperationException: String[6]: Size 屬性的大小 0 無效。
+2024-12-28 18:05:03.8940 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productStyleId int,@imageUrl nvarchar(4000),@style nvarchar(1)' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 18:05:05.1604 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@productStyleId int,@imageUrl nvarchar(4000),@style nvarchar(1)' 必須有參數 '@imageUrl'，但未提供。
+2024-12-28 18:16:02.9535 Info Application Start
+2024-12-28 18:16:16.1545 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/28 下午 06:16:16.
+2024-12-28 18:16:52.2768 Error System.NotSupportedException: 不支援指定的路徑格式。
