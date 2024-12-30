@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
+using Pashamao.Models.Dto.Product;
 using Pashamao.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
@@ -19,29 +18,43 @@ namespace Pashamao.Controllers
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         MainProductService mainProductService;
 
+        /// <summary>
+        /// 初始化參數
+        /// </summary>
         public MainProductController()
         {
             mainProductService = new MainProductService();
         }
+
+        /// <summary>
+        /// 主頁
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-
             return View();
         }
 
+        /// <summary>
+        /// 取得所有商品
+        /// </summary>
+        /// <param name="Page"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetAllProduct(string Page)
         {
             try
             {
                 (List<ProductDetail> products, int totalPage) = mainProductService.GetAllProduct(Page);
+                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+
                 if (products == null)
                 {
                     return Json("noProduct", JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json((products, totalPage), JsonRequestBehavior.AllowGet);
+                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception e)
@@ -52,12 +65,19 @@ namespace Pashamao.Controllers
 
         }
 
+        /// <summary>
+        /// 根據分類取得商品
+        /// </summary>
+        /// <param name="LastSelectCategoryId"></param>
+        /// <param name="Page"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductByCategory(string LastSelectCategoryId, string Page)
         {
             try
             {
                 (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByCategory(LastSelectCategoryId, Page);
+                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
 
                 if (products == null)
                 {
@@ -65,7 +85,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    return Json((products, totalPage), JsonRequestBehavior.AllowGet);
+                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception e)
@@ -76,12 +96,19 @@ namespace Pashamao.Controllers
 
         }
 
+        /// <summary>
+        /// 根據商品id取得商品
+        /// </summary>
+        /// <param name="LastSelectProductId"></param>
+        /// <param name="Page"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductById(string LastSelectProductId, string Page)
         {
             try
             {
                 (List<ProductDetail> products, int totalPage) = mainProductService.GetProductById(LastSelectProductId, Page);
+                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
 
                 if (products == null)
                 {
@@ -89,7 +116,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    return Json((products, totalPage), JsonRequestBehavior.AllowGet);
+                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception e)
@@ -100,12 +127,19 @@ namespace Pashamao.Controllers
 
         }
 
+        /// <summary>
+        /// 根據名稱取得商品
+        /// </summary>
+        /// <param name="LastSelectProductName"></param>
+        /// <param name="Page"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductByName(string LastSelectProductName, string Page)
         {
             try
             {
                 (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByName(LastSelectProductName, Page);
+                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
 
                 if (products == null)
                 {
@@ -113,7 +147,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    return Json((products, totalPage), JsonRequestBehavior.AllowGet);
+                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception e)
@@ -124,13 +158,24 @@ namespace Pashamao.Controllers
 
         }
 
-        public ActionResult CreateProduct(ProductDetail productDetail, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
+        /// <summary>
+        /// 轉到創建商品頁面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CreateProduct()
         {
             return View();
         }
 
+        /// <summary>
+        /// 提交創建商品
+        /// </summary>
+        /// <param name="productDetail"></param>
+        /// <param name="StyleList"></param>
+        /// <param name="ImageList"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult SubmitCreateProduct(ProductDetail productDetail, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
+        public ActionResult SubmitCreateProduct(ProductDetail productDetail, List<ProductStyle> StyleList, List<string> ImageList)
         {
             try
             {
@@ -144,6 +189,11 @@ namespace Pashamao.Controllers
             }
         }
 
+        /// <summary>
+        /// 刪除商品
+        /// </summary>
+        /// <param name="ProductId"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult DeleteProduct(string ProductId)
         {
@@ -170,15 +220,17 @@ namespace Pashamao.Controllers
             try
             {
                 (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(ProductId);
+                ProductDetailDto productDetail = new ProductDetailDto(product);
+                List<ProductStyleDto> productStyle = styles.Select(style => (new ProductStyleDto(style))).ToList();
 
                 if (images == null)
                 {
-                    string jsonData = JsonConvert.SerializeObject((product, styles, "noImage"));
+                    string jsonData = JsonConvert.SerializeObject((productDetail, productStyle, "noImage"));
                     ViewBag.JsonData = jsonData;
                 }
                 else
                 {
-                    string jsonData = JsonConvert.SerializeObject((product, styles, images));
+                    string jsonData = JsonConvert.SerializeObject((productDetail, productStyle, images));
                     ViewBag.JsonData = jsonData;
                 }
 
@@ -191,6 +243,11 @@ namespace Pashamao.Controllers
             }
         }
 
+        /// <summary>
+        /// 提交修改商品
+        /// </summary>
+        /// <param name="Product"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SubmitEditProduct(ProductDetail Product)
         {
@@ -222,7 +279,8 @@ namespace Pashamao.Controllers
         {
             var files = Request.Files;
             ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
-            bool success = mainProductService.EditProductStyle(EditStyle, files);
+            string ImageType = Request.Form["ImageType"];
+            bool success = mainProductService.EditProductStyle(EditStyle, files, ImageType);
             return Json(success);
         }
 
@@ -235,12 +293,13 @@ namespace Pashamao.Controllers
         {
             var files = Request.Files;
             ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
-            bool success = mainProductService.AddProductStyle(AddStyle, files);
+            string ImageType = Request.Form["ImageType"];
+            bool success = mainProductService.AddProductStyle(AddStyle, files, ImageType);
             return Json(success);
         }
 
         /// <summary>
-        /// 新增商品細項
+        /// 刪除商品細項
         /// </summary>
         /// <param name="ProductStyleId"></param>
         /// <returns></returns>
@@ -250,5 +309,6 @@ namespace Pashamao.Controllers
             bool success = mainProductService.DeleteProductStyle(ProductStyleId);
             return Json(success);
         }
+
     }
 }

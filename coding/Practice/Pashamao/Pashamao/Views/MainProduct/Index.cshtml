@@ -190,6 +190,7 @@
                 axios.post("/MainProduct/GetAllProduct", { Page: page })
                     .then(response => {
                         if (response.data.Item1 != "noProduct") {
+                            console.log(response.data.Item1);
                             populateTable(response.data.Item1);
                             document.getElementById("lastPage").innerHTML = response.data.Item2;
                         }
@@ -200,8 +201,10 @@
             }
 
             function getProductByCategory(lastSelectCategoryId, page) {
+                if (lastCategoryId == 0) {
+                    document.getElementById("currentPage").innerHTML = 1;
+                }
 
-                document.getElementById("currentPage").innerHTML = 1;
                 lastGetProductName = " ";
                 lastGetProductId = 0;
                 lastCategoryId = lastSelectCategoryId;
@@ -222,8 +225,10 @@
             }
 
             function getProductById(lastSelectProductId, page) {
+                if (lastGetProductId == 0) {
+                    document.getElementById("currentPage").innerHTML = 1;
+                }
 
-                document.getElementById("currentPage").innerHTML = 1;
                 lastGetProductName = " ";
                 lastGetProductId = lastSelectProductId;
                 lastCategoryId = 0;
@@ -246,14 +251,16 @@
 
             function getProductByName(lastSelectProductName, page) {
 
-                document.getElementById("currentPage").innerHTML = 1;
+                if (lastGetProductName == " " ) {
+                    document.getElementById("currentPage").innerHTML = 1;
+                }
+
                 lastGetProductName = lastSelectProductName;
                 lastGetProductId = 0;
                 lastCategoryId = 0;
 
               axios.post("/MainProduct/GetProductByName", { LastSelectProductName: lastSelectProductName, Page: page })
                     .then(response => {
-                        console.log(response.data);
                         if (response.data != "noProduct") {
                             populateTable(response.data.Item1);
                             document.getElementById("lastPage").innerHTML = response.data.Item2;

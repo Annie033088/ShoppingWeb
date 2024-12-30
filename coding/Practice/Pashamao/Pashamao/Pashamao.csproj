@@ -135,9 +135,9 @@
     <Compile Include="Controllers\MainMemberController.cs" />
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
-    <Compile Include="Models\CreateProductStyleViewModel.cs" />
-    <Compile Include="Models\CreateProductImageViewModel.cs" />
-    <Compile Include="Models\EditProductStyleViewModel.cs" />
+    <Compile Include="Models\Dto\Product\MainProductDto.cs" />
+    <Compile Include="Models\Dto\Product\ProductDetailDto.cs" />
+    <Compile Include="Models\Dto\Product\ProductStyleDto.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -149,10 +149,8 @@
     <Compile Include="Models\CreateMemberViewModel.cs" />
     <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\Member.cs" />
-    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
-    <Compile Include="Models\ProductSimple.cs" />
     <Compile Include="Models\ProductStyle.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\UserPermission.cs" />

@@ -73,7 +73,10 @@ function getImageAndEdit() {
 
                 const file = e.target.files[0];
 
-                if (file) {
+                if (!file) {
+                    return;
+                }
+                else {
                     if (file.name.length > 20) {
                         alert("圖片名過長");
                         return;
@@ -85,6 +88,24 @@ function getImageAndEdit() {
                         alert("圖片檔案過大");
                         return;
                     }
+                }
+
+                const mimeType = file.type.toLowerCase();
+
+                switch (mimeType) {
+                    case 'image/jpeg':
+                        imageType = '.jpg';
+                        break;
+                    case 'image/png':
+                        imageType = '.png';
+                        break;
+                    case 'image/webp':
+                        imageType = '.webp';
+                        break;
+                    default:
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
+                        return;
+                        break;
                 }
 
                 const reader = new FileReader();
@@ -158,7 +179,6 @@ function getImageAndEdit() {
                     displayImageContainer.appendChild(ProductImageBox);
                     imageTotal++;
                 });
-                updateImageDisplay();
             }
 
             if (result.value.delOldImageList.length > 0) {
@@ -169,6 +189,8 @@ function getImageAndEdit() {
                     imageTotal--;
                 })
             }
+
+            updateImageDisplay();
         }
     });
 }
@@ -232,7 +254,7 @@ function addStyle() {
         html: `
        <div class="addStyleBox">
             <div id="addStyleImageBox" class="position-relative" style="border:solid">
-                <img id="addStyleImage" class="img-fluid styleImage" src="/images/productImage/noImage.jpg" alt="" data-id="noImage.jpg">
+                <img id="addStyleImage" class="img-fluid styleImage" src="/images/productImage/noImage.jpg" alt="" data-id="">
                 <input type="file" id="txbAddImage" accept="image/*" style="display: none;">
                 <p>點擊圖片修改</p>
             </div>
@@ -270,8 +292,7 @@ function addStyle() {
                 if (!file) {
                     return;
                 }
-                else
-                {
+                else {
                     if (file.name.length > 20) {
                         alert("圖片名過長");
                         return;
@@ -281,6 +302,14 @@ function addStyle() {
 
                     if (file.size > maxSize) {
                         alert("圖片檔案過大");
+                        return;
+                    }
+
+                    const mimeType = file.type.toLowerCase();
+                    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+                    if (!allowedMimeTypes.includes(mimeType)) {
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
                         return;
                     }
                 }
@@ -307,7 +336,7 @@ function addStyle() {
         },
         preConfirm: () => {
             let styleStatus = "";
-            let styleName = document.getElementById("txbAddStyleName").value;
+            let styleName = document.getElementById("txbAddStyleName").value.trim();
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
@@ -355,6 +384,7 @@ function addStyle() {
 function editStyle(styleData, imageSrc, oldImageName, id) {
     let addImage = false;
     let htmlStatus = "";
+
     if (styleData.Status == true) {
         htmlStatus = `
                       <div id="addStyleStatusBox" class="input-group mt-3">
@@ -411,6 +441,32 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             txbAddImage.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 const reader = new FileReader();
+
+                if (!file) {
+                    return;
+                }
+                else {
+                    if (file.name.length > 20) {
+                        alert("圖片名過長");
+                        return;
+                    }
+
+                    const maxSize = 1024 * 1024;//最大1mb
+
+                    if (file.size > maxSize) {
+                        alert("圖片檔案過大");
+                        return;
+                    }
+
+                    const mimeType = file.type.toLowerCase();
+                    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+                    if (!allowedMimeTypes.includes(mimeType)) {
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
+                        return;
+                    }
+                }
+
                 reader.onload = function (event) {
                     addStyleImage.src = event.target.result;
                     addImage = true;
@@ -432,7 +488,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
         },
         preConfirm: () => {
             let styleStatus = "";
-            let styleName = document.getElementById("txbAddStyleName").value;
+            let styleName = document.getElementById("txbAddStyleName").value.trim();
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
@@ -608,20 +664,9 @@ function submitCreatProduct() {
     const imageElements = displayImageContainer.querySelectorAll("img");
     let imageList = [];
 
-    if (imageElements.length == 0) {
-        let image = {
-            ImageName: " ",
-            ImageUrl: " "
-        }
-        imageList.push(image);
-    } else
-    {
+    if (imageElements.length != 0) {
         for (var i = 0; i < imageElements.length; i++) {
-            let image = {
-                ImageName: imageElements[i].id,
-                ImageUrl: imageElements[i].src
-            }
-            imageList.push(image);
+            imageList.push(imageElements[i].src);
         }
     }
 
@@ -630,7 +675,6 @@ function submitCreatProduct() {
     let productDescription = document.getElementById("txbDescription").value.trim();
     let productCategory = document.getElementById("dropdownCategory").value.trim();
     let productIntroduce = document.getElementById("productIntroduce").value.trim();
-    console.log(productName)
     const regexName = /^[^\s].{0,29}$/;
     const regexDescription = /^[\s\S]{0,40}$/;
     const regexIntroduction = /^[\s\S]{0,1500}$/;
@@ -691,9 +735,7 @@ function submitCreatProduct() {
             status = false;
         }
 
-        if (imageInRow.dataset.name == "noImage.jpg") {
-            imageSrc = " ";
-        } else {
+        if (imageInRow.dataset.name != "" && imageInRow.dataset.name != null) {
             imageSrc = imageInRow.src;
         }
 
@@ -702,34 +744,33 @@ function submitCreatProduct() {
             Price: priceInRow,
             StockQuantity: quantityInRow,
             Status: status,
-            ImageUrl: imageSrc,
-            ImageName: imageInRow.dataset.name
+            ImageUrl: imageSrc
         }
         styleList.push(style);
     })
-     axios.post("/MainProduct/SubmitCreateProduct", {
-          ProductDetail: product,
-          StyleList: styleList,
-          ImageList: imageList
-      } )
-         .then(response => {
-             if (response.data == true) {
-                 Swal.fire("新增成功!")
-                     .then((result) => {
-                         if (result.isConfirmed) {
-                             window.location.href = `/MainProduct/Index`;
-                         }
-                 })
-             } else {
-                 Swal.fire("新增失敗!")
-                     .then((result) => {
-                         if (result.isConfirmed) {
-                             window.location.href = `/MainProduct/CreateProduct`;
-                         }
-                     })
-             }
-          })
-          .catch(error => {
-              console.error("fail", error);
-          })
+    axios.post("/MainProduct/SubmitCreateProduct", {
+        ProductDetail: product,
+        StyleList: styleList,
+        ImageList: imageList
+    })
+        .then(response => {
+            if (response.data == true) {
+                Swal.fire("新增成功!")
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `/MainProduct/Index`;
+                        }
+                    })
+            } else {
+                Swal.fire("新增失敗!")
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `/MainProduct/CreateProduct`;
+                        }
+                    })
+            }
+        })
+        .catch(error => {
+            console.error("fail", error);
+        })
 }

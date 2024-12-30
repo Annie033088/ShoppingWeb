@@ -1,20 +1,11 @@
-﻿using NLog;
+﻿using Newtonsoft.Json;
+using NLog;
 using Pashamao.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Configuration;
-using System.Net.NetworkInformation;
-using System.Web.Optimization;
-using System.Web.Helpers;
-using Microsoft.Ajax.Utilities;
-using Newtonsoft.Json;
-using System.IO;
-using System.Web.UI;
-using System.Diagnostics;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Pashamao.Repositories
 {
@@ -368,13 +359,14 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addProduct @productId, @categoryId, @productName, @description, @introduction, @productStatus, @styles, @images";
+                cmd.CommandText = "EXEC pro_pashamao_addProduct @productId, @categoryId, @productName, @description, @introduction, @productStatus, @styles, @addImageUrl";
                 cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = product.ProductId;
                 cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
                 cmd.Parameters.Add("@productName", SqlDbType.NVarChar).Value = product.Name;
                 cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
                 cmd.Parameters.Add("@introduction", SqlDbType.NVarChar).Value = product.Introduction;
                 cmd.Parameters.Add("@productStatus", SqlDbType.Bit).Value = product.Status;
+                cmd.Parameters.Add("@addImageUrl", SqlDbType.NVarChar).Value = JsonConvert.SerializeObject(images);
 
                 DataTable styleTable = new DataTable();
                 styleTable.Columns.Add("f_imageUrl", typeof(string));
@@ -394,21 +386,6 @@ namespace Pashamao.Repositories
                     Value = styleTable
                 };
                 cmd.Parameters.Add(stylesParam);
-
-                DataTable imageTable = new DataTable();
-                imageTable.Columns.Add("f_imageUrl", typeof(string));
-
-                foreach (string image in images)
-                {
-                    imageTable.Rows.Add(image);
-                }
-
-                var imagesParam = new SqlParameter("@images", SqlDbType.Structured)
-                {
-                    TypeName = "dbo.type_pashamao_addProductImage",
-                    Value = imageTable
-                };
-                cmd.Parameters.Add(imagesParam);
 
                 cmd.Connection.Open();
 
@@ -566,7 +543,11 @@ namespace Pashamao.Repositories
             }
         }
 
-       
+        /// <summary>
+        /// 修改商品細項
+        /// </summary>
+        /// <param name="productStyle"></param>
+        /// <returns></returns>
         internal (string, bool) EditProductStyle(ProductStyle productStyle)
         {
             SqlCommand cmd = new SqlCommand();
@@ -616,13 +597,18 @@ namespace Pashamao.Repositories
             }
         }
 
+        /// <summary>
+        /// 新增商品細項
+        /// </summary>
+        /// <param name="productStyle"></param>
+        /// <returns></returns>
         internal bool AddProductStyle(ProductStyle productStyle)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status"; 
+                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status";
 
                 cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productStyle.ProductId;
                 cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;

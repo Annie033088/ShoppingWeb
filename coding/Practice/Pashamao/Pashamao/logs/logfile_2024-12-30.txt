@@ -1,0 +1,132 @@
+2024-12-30 08:59:58.8718 Info Application Start
+2024-12-30 09:00:27.8329 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 09:00:27.
+2024-12-30 09:24:44.9386 Info Application Start
+2024-12-30 09:25:06.7762 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 09:25:06.
+2024-12-30 09:26:40.9080 Info Application End
+2024-12-30 09:29:19.4218 Info Application Start
+2024-12-30 09:36:54.9069 Info Application End
+2024-12-30 09:37:07.4880 Info Application Start
+2024-12-30 09:39:24.0505 Info Application End
+2024-12-30 09:39:31.7083 Info Application Start
+2024-12-30 09:47:12.1697 Info Application End
+2024-12-30 10:00:48.4393 Info Application Start
+2024-12-30 10:01:15.7285 Info Application Start
+2024-12-30 10:01:26.1848 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 10:01:26.
+2024-12-30 10:26:07.2638 Info Application Start
+2024-12-30 10:26:14.9116 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 10:26:14.
+2024-12-30 10:27:56.2650 Info Application End
+2024-12-30 10:28:17.1037 Info Application Start
+2024-12-30 10:28:58.4326 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:28:58.4326 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:28:58.4466 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:31:21.9831 Info Application End
+2024-12-30 10:31:29.0652 Info Application Start
+2024-12-30 10:31:50.3621 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 10:31:50.
+2024-12-30 10:32:20.3670 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:32:20.9980 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:32:22.5884 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:35:04.6509 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:35:04.9281 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:35:05.3274 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:36:03.6222 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:36:03.8786 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:36:05.1011 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:38:41.9839 Info Application Start
+2024-12-30 10:38:53.2317 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 10:38:53.
+2024-12-30 10:41:21.2696 Info Application Start
+2024-12-30 10:43:03.6787 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 10:43:03.
+2024-12-30 10:44:12.2835 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:44:13.0948 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:44:14.4735 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:46:00.0663 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:46:01.2573 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:46:02.8110 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2024-12-30 10:54:10.9189 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 10:54:10.9538 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 10:54:10.9867 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 10:54:19.0474 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 10:54:31.6455 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:54:31.6725 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:54:33.3995 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:55:44.9887 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:55:45.0246 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:55:46.4075 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:57:36.7873 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:57:36.8189 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:57:37.5745 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:58:28.1006 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:58:28.6458 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 10:58:31.0031 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 11:01:51.5119 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 11:01:51.5418 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 11:01:51.8437 Error System.ArgumentOutOfRangeException: 長度不可以小於零。
+參數名稱: length
+2024-12-30 11:02:32.5800 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:02:32.6229 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:02:32.6684 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:02:35.3380 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:03:35.1779 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:03:40.7646 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:03:40.8092 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:03:42.4969 Error System.Data.SqlClient.SqlException: 字串或二進位資料會被截斷。
+陳述式已經結束。
+2024-12-30 11:18:20.2350 Info Application Start
+2024-12-30 11:18:29.4857 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 11:18:29.
+2024-12-30 11:29:08.4005 Info Application Start
+2024-12-30 11:29:52.8134 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 11:29:52.
+2024-12-30 11:31:20.9353 Info Application End
+2024-12-30 11:37:19.5464 Info Application Start
+2024-12-30 11:37:44.8763 Info Application End
+2024-12-30 11:37:53.1286 Info Application Start
+2024-12-30 11:38:03.5123 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 11:38:03.
+2024-12-30 11:49:49.4374 Info Application Start
+2024-12-30 11:49:57.9130 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 上午 11:49:57.
+2024-12-30 12:00:58.1803 Info Application End
+2024-12-30 12:01:03.4546 Info Application Start
+2024-12-30 13:18:33.4508 Info Application End
+2024-12-30 13:18:40.4240 Info Application Start
+2024-12-30 13:19:40.1078 Info Application End
+2024-12-30 13:19:59.7647 Info Application Start
+2024-12-30 13:22:20.5654 Info Application End
+2024-12-30 13:24:27.4550 Info Application Start
+2024-12-30 13:24:35.4073 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 下午 01:24:35.
+2024-12-30 13:32:59.3387 Info Application Start
+2024-12-30 13:33:55.2821 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 下午 01:33:55.
+2024-12-30 14:56:52.7249 Info Application End
+2024-12-30 14:57:27.7243 Info Application Start
+2024-12-30 15:00:37.2268 Info Application End
+2024-12-30 15:00:50.1963 Info Application Start
+2024-12-30 15:16:33.5057 Info Application End
+2024-12-30 15:16:49.1538 Info Application Start
+2024-12-30 16:49:11.0056 Info Application End
+2024-12-30 16:49:22.3072 Info Application Start
+2024-12-30 17:14:36.7257 Info Application End
+2024-12-30 17:14:44.6778 Info Application Start
+2024-12-30 18:10:13.0353 Info Application End
+2024-12-30 18:11:25.8286 Info Application Start
+2024-12-30 18:11:57.9380 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/30 下午 06:11:57.

@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using NLog;
+﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.Helpers;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace Pashamao.Service
 {
@@ -18,11 +12,20 @@ namespace Pashamao.Service
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         MainProductRepository mainProductRepository;
+
+        /// <summary>
+        /// 初始化參數
+        /// </summary>
         public MainProductService()
         {
             mainProductRepository = new MainProductRepository();
         }
 
+        /// <summary>
+        /// 取得所有商品
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public (List<ProductDetail>, int) GetAllProduct(string page)
         {
             try
@@ -35,6 +38,13 @@ namespace Pashamao.Service
                 throw e;
             }
         }
+
+        /// <summary>
+        /// 根據分類取得商品
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductByCategory(string categoryId, string page)
         {
             try
@@ -48,6 +58,12 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 根據搜尋ID取得商品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductById(string productId, string page)
         {
             try
@@ -70,7 +86,12 @@ namespace Pashamao.Service
             }
         }
 
-
+        /// <summary>
+        /// 根據搜尋名取得商品
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductByName(string productName, string page)
         {
             try
@@ -94,6 +115,7 @@ namespace Pashamao.Service
             try
             {
                 (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductRepository.GetProductDetail(Guid.Parse(productId));
+
                 return (product, styles, images);
             }
             catch (Exception e)
@@ -103,12 +125,19 @@ namespace Pashamao.Service
             }
         }
 
-        public bool CreateProduct(ProductDetail product, List<CreateProductStyleViewModel> StyleList, List<CreateProductImageViewModel> ImageList)
+        /// <summary>
+        /// 創建商品
+        /// </summary>
+        /// <param name="product"></param>
+        /// <param name="StyleList"></param>
+        /// <param name="ImageList"></param>
+        /// <returns></returns>
+        public bool CreateProduct(ProductDetail product, List<ProductStyle> StyleList, List<string> ImageList)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             Directory.SetCurrentDirectory(appDirectory);
-            List<ProductStyle> productStyles = new List<ProductStyle>();
-            List<string> productImageUrl = new List<string>();
+            //把新增的檔案路徑加進來, 如果失敗就可以根據路徑刪除
+            List<string> addImageUrlList = new List<string>();
 
             try
             {
@@ -116,76 +145,99 @@ namespace Pashamao.Service
                 product.ProductId = newGuid;
                 string folderPath = appDirectory + @"images\productImage\" + product.ProductId;
 
-                //把style新增到對應的model
-                for (int i = 0; i < StyleList.Count; i++)
-                {
-                    ProductStyle productStyle = new ProductStyle();
-
-                    if (StyleList[i].ImageUrl == " ")
-                    {
-                        productStyle.ImageUrl = " ";
-                    }
-                    else
-                    {
-                        string fileName = Path.GetFileName(StyleList[i].ImageName);
-                        string relativePath = @"\images\productImage\" + product.ProductId + @"\" + fileName;
-                        productStyle.ImageUrl = relativePath;
-                    }
-
-                    productStyle.Price = StyleList[i].Price;
-                    productStyle.Style = StyleList[i].Style;
-                    productStyle.StockQuantity = StyleList[i].StockQuantity;
-                    productStyle.Status = StyleList[i].Status;
-                    productStyles.Add(productStyle);
-                }
-
-                //把圖片新增到對應model
-                if (ImageList[0].ImageUrl == " ")
-                {
-                    productImageUrl.Add(" ");
-                }
-                else
+                if (ImageList != null)
                 {
                     for (int i = 0; i < ImageList.Count; i++)
                     {
-                        string fileName = Path.GetFileName(ImageList[i].ImageName);
-                        string relativePath = @"\images\productImage\" + product.ProductId + @"\" + fileName;
-                        productImageUrl.Add(relativePath);
+                        string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + i;
+
+                        string mimeType = ImageList[i].Substring(5, ImageList[i].IndexOf(";") - 5);
+                        string imageType = "";
+                        string base64String = ImageList[i].Substring(ImageList[i].IndexOf(",") + 1);
+                        byte[] imageBytes = Convert.FromBase64String(base64String);
+
+                        switch (mimeType)
+                        {
+                            case "image/jpeg":
+                                imageType = ".jpg";
+                                break;
+                            case "image/png":
+                                imageType = ".png";
+                                break;
+                            case "image/webp":
+                                imageType = ".webp";
+                                break;
+                            default:
+                                return false;
+                        }
+
+                        string filePath = folderPath + @"\" + fileName + imageType;
+
+                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                        File.WriteAllBytes(filePath, imageBytes);
+                        ImageList[i] = @"\images\productImage\" + product.ProductId + @"\" + fileName + imageType;
+                        addImageUrlList.Add(filePath);
+                    }
+                }
+                else
+                {
+                    ImageList = new List<string>();
+                }
+
+                //新增style圖片
+                for (int i = 0; i < StyleList.Count; i++)
+                {
+                    string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + (i + 10);
+                    string a = StyleList[i].ImageUrl;
+
+                    if (StyleList[i].ImageUrl != null)
+                    {
+                        string mimeType = StyleList[i].ImageUrl.Substring(5, StyleList[i].ImageUrl.IndexOf(";") - 5);
+                        string imageType = "";
+                        string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
+                        byte[] imageBytes = Convert.FromBase64String(base64String);
+
+                        switch (mimeType)
+                        {
+                            case "image/jpeg":
+                                imageType = ".jpg";
+                                break;
+                            case "image/png":
+                                imageType = ".png";
+                                break;
+                            case "image/webp":
+                                imageType = ".webp";
+                                break;
+                            default:
+                                return false;
+                        }
+
+                        string filePath = folderPath + @"\" + fileName + imageType;
+
+                        if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                        File.WriteAllBytes(filePath, imageBytes);
+                        StyleList[i].ImageUrl = @"\images\productImage\" + product.ProductId + @"\" + fileName + imageType;
+                        addImageUrlList.Add(filePath);
+                    }
+                    else
+                    {
+                        StyleList[i].ImageUrl = string.Empty;
                     }
                 }
 
-                bool addFlag = mainProductRepository.AddProduct(product, productStyles, productImageUrl);
+                bool addFlag = mainProductRepository.AddProduct(product, StyleList, ImageList);
 
-                //成功的話就新建圖片檔案
-                if (addFlag)
+                //失敗的話就刪除圖片檔案
+
+                if (!addFlag)
                 {
-                    for (int i = 0; i < productStyles.Count; i++)
+                    for (int i = 0; i < addImageUrlList.Count; i++)
                     {
-                        if (productStyles[i].ImageUrl != " ")
+                        if (File.Exists(addImageUrlList[i]))
                         {
-                            string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
-                            byte[] imageBytes = Convert.FromBase64String(base64String);
-                            string fileName = Path.GetFileName(StyleList[i].ImageName);
-                            string filePath = folderPath + @"\" + fileName;
-
-                            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                            File.WriteAllBytes(filePath, imageBytes);
-                        }
-                    }
-
-                    if (productImageUrl[0] != " ")
-                    {
-                        for (int i = 0; i < ImageList.Count; i++)
-                        {
-                            string base64String = ImageList[i].ImageUrl.Substring(ImageList[i].ImageUrl.IndexOf(",") + 1);
-                            byte[] imageBytes = Convert.FromBase64String(base64String);
-                            string fileName = Path.GetFileName(ImageList[i].ImageName);
-                            string filePath = folderPath + @"\" + fileName;
-
-                            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-                            File.WriteAllBytes(filePath, imageBytes);
+                            File.Delete(addImageUrlList[i]);
                         }
                     }
                 }
@@ -199,6 +251,11 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 刪除商品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public bool DeleteProduct(string productId)
         {
             try
@@ -223,6 +280,11 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 修改商品
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public bool EditProduct(ProductDetail product)
         {
             try
@@ -259,21 +321,22 @@ namespace Pashamao.Service
                 //下載圖片檔案
                 for (int i = 0; i < files.Count; i++)
                 {
-                    string fileName = Path.GetFileName(files[i].FileName);
+                    string fileExtension = Path.GetExtension(files[i].FileName).ToLower();
+                    string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + i;
                     string folderPath = appDirectory + @"images\productImage\" + productId;
 
                     if (Directory.Exists(folderPath))
                     {
-                        string filePath = folderPath + @"\" + fileName;
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
+                        string filePath = folderPath + @"\" + fileName + fileExtension;
+                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName + fileExtension;
                         files[i].SaveAs(filePath);
                         addImageUrl.Add(relativePath);
                     }
                     else
                     {
                         Directory.CreateDirectory(folderPath);
-                        string filePath = folderPath + @"\" + fileName;
-                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName;
+                        string filePath = folderPath + @"\" + fileName + fileExtension;
+                        string relativePath = @"\images\productImage\" + productId + @"\" + fileName + fileExtension;
                         files[i].SaveAs(filePath);
                         addImageUrl.Add(relativePath);
                     }
@@ -331,7 +394,7 @@ namespace Pashamao.Service
         /// <param name="afterEditStyle"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files)
+        public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
@@ -339,18 +402,18 @@ namespace Pashamao.Service
 
             if (files.Count > 0)
             {
-                string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName ;
+                string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + imageType;
                 productStyle.ImageUrl = relativePath;
                 //下載檔案
                 if (Directory.Exists(folderPath))
                 {
-                    string filePath = folderPath + @"\" + fileName;
+                    string filePath = folderPath + @"\" + fileName + imageType;
                     files[0].SaveAs(filePath);
                 }
                 else
                 {
                     Directory.CreateDirectory(folderPath);
-                    string filePath = folderPath + @"\" + fileName;
+                    string filePath = folderPath + @"\" + fileName + imageType;
                     files[0].SaveAs(filePath);
                 }
             }
@@ -375,7 +438,7 @@ namespace Pashamao.Service
             //失敗就刪除新增的檔案
             if (!editSuccessFlag)
             {
-                string filePath = folderPath + @"\" + fileName;
+                string filePath = folderPath + @"\" + fileName + imageType;
                 File.Delete(filePath);
             }
 
@@ -389,40 +452,18 @@ namespace Pashamao.Service
         /// <param name="productName"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files)
+        public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType)
         {
             try
             {
                 string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
                 string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
-                string filePath = folderPath + @"\" + fileName;
+                string filePath = folderPath + @"\" + fileName + imageType;
 
                 if (files.Count > 0)
                 {
-                    string mimeType = files[0].ContentType.ToLower();
-                    string fileExtension = string.Empty;
-
-                    Console.WriteLine(mimeType);
-
-                    switch (mimeType)
-                    {
-                        case "image/jpeg":
-                            fileExtension = ".jpg";
-                            break;
-                        case "image/png":
-                            fileExtension = ".png";
-                            break;
-                        case "image/webp":
-                            fileExtension = ".webp";
-                            break;
-                        default:
-                            fileExtension = string.Empty;
-                            break;
-                    }
-
-                    filePath = filePath + fileExtension;
-                    string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + fileExtension;
+                    string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + imageType;
                     //下載檔案
                     if (Directory.Exists(folderPath))
                     {

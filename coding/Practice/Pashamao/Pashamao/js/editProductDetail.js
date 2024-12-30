@@ -73,7 +73,6 @@ function populateStyle() {
 }
 
 function getImageAndEdit() {
-    let imgHtml = "";
     let addImageList = [];
     let delOldImageList = []
     let imagesElement = document.querySelectorAll(".displayImage");
@@ -143,8 +142,10 @@ function getImageAndEdit() {
 
                 const file = e.target.files[0];
 
-                if (file) {
-
+                if (!file) {
+                    return;
+                }
+                else {
                     if (file.name.length > 20) {
                         alert("圖片名過長");
                         return;
@@ -156,6 +157,24 @@ function getImageAndEdit() {
                         alert("圖片檔案過大");
                         return;
                     }
+                }
+
+                const mimeType = file.type.toLowerCase();
+
+                switch (mimeType) {
+                    case 'image/jpeg':
+                        imageType = '.jpg';
+                        break;
+                    case 'image/png':
+                        imageType = '.png';
+                        break;
+                    case 'image/webp':
+                        imageType = '.webp';
+                        break;
+                    default:
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
+                        return;
+                        break;
                 }
 
                 const reader = new FileReader();
@@ -230,7 +249,6 @@ function getImageAndEdit() {
                     displayImageContainer.appendChild(ProductImageBox);
                     imageTotal++;
                 });
-                updateImageDisplay();
             }
 
             if (result.value.delOldImageList.length > 0) {
@@ -249,6 +267,8 @@ function getImageAndEdit() {
                     imageTotal--;
                 })
             }
+            currentImageIndex = 0;
+            updateImageDisplay();
         }
     });
 }
@@ -299,6 +319,7 @@ function updateImageDisplay() {
 
 function addStyle() {
     let addImage = false;
+    let imageType = "";
     let htmlStatus = `
                         <div id="addStyleStatusBox" class="input-group mt-3">
                             <span id="txtStatus" class="input-group-text">上/下架</span>
@@ -313,7 +334,7 @@ function addStyle() {
             <div id="addStyleImageBox" class="position-relative" style="border:solid">
                 <img id="addStyleImage" class="img-fluid styleImage" src="/images/productImage/noImage.jpg" alt="" data-name=" ">
                 <input type="file" id="txbAddImage" accept="image/*" style="display: none;">
-                <p>點擊圖片修改</p>
+                <p id="textEditImage">點擊圖片修改</p>
             </div>
             <div id="addStyleNameBox" class="input-group mt-3">
                 <span class="input-group-text">細項名</span>
@@ -340,6 +361,8 @@ function addStyle() {
             let txbAddImage = document.getElementById("txbAddImage");
             let btnStatusOn = document.getElementById("btnStatusOn");
             let btnStatusOff = document.getElementById("btnStatusOff");
+            let textEditImage = document.getElementById("textEditImage");
+            textEditImage.addEventListener('click', () => { txbAddImage.click(); });
             addStyleImage.addEventListener('click', () => { txbAddImage.click(); });
 
             txbAddImage.addEventListener('change', (e) => {
@@ -348,6 +371,37 @@ function addStyle() {
 
                 if (!file) {
                     return;
+                }
+                else {
+                    if (file.name.length > 20) {
+                        alert("圖片名過長");
+                        return;
+                    }
+
+                    const maxSize = 1024 * 1024;//最大1mb
+
+                    if (file.size > maxSize) {
+                        alert("圖片檔案過大");
+                        return;
+                    }
+                }
+
+                const mimeType = file.type.toLowerCase();
+
+                switch (mimeType) {
+                    case 'image/jpeg':
+                        imageType = '.jpg';
+                        break;
+                    case 'image/png':
+                        imageType = '.png';
+                        break;
+                    case 'image/webp':
+                        imageType = '.webp';
+                        break;
+                    default:
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
+                        return;
+                        break;
                 }
 
                 reader.onload = function (event) {
@@ -369,7 +423,7 @@ function addStyle() {
         },
         preConfirm: () => {
             let styleStatus = "";
-            let styleName = document.getElementById("txbAddStyleName").value;
+            let styleName = document.getElementById("txbAddStyleName").value.trim();
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
@@ -413,6 +467,7 @@ function addStyle() {
             const imgFile = document.getElementById("addStyleImage");
 
             if (addImage) {
+                formData.append("ImageType", imageType);
                 const imgBlob = dataURItoBlob(imgFile.src);
                 formData.append('images[]', imgBlob);
             }
@@ -447,9 +502,9 @@ function addStyle() {
 }
 
 function editStyle(styleData, imageSrc, id) {
-    let addImage = false;
     let htmlStatus = "";
     let editImage = false;
+    let imageType = "";
 
     if (styleData.Status == true) {
         htmlStatus = `
@@ -510,13 +565,44 @@ function editStyle(styleData, imageSrc, id) {
                 const file = e.target.files[0];
                 const reader = new FileReader();
 
-                if (file) {
-                    editImage = true;
+                if (!file) {
+                    return;
+                }
+                else {
+                    if (file.name.length > 20) {
+                        alert("圖片名過長");
+                        return;
+                    }
+
+                    const maxSize = 1024 * 1024;//最大1mb
+
+                    if (file.size > maxSize) {
+                        alert("圖片檔案過大");
+                        return;
+                    }
+                }
+
+                const mimeType = file.type.toLowerCase();
+
+                switch (mimeType) {
+                    case 'image/jpeg':
+                        imageType = '.jpg';
+                        break;
+                    case 'image/png':
+                        imageType = '.png';
+                        break;
+                    case 'image/webp':
+                        imageType = '.webp';
+                        break;
+                    default:
+                        alert('請上傳 JPEG(JPG)、PNG 或 WebP 格式的圖片');
+                        return;
+                        break;
                 }
 
                 reader.onload = function (event) {
                     addStyleImage.src = event.target.result;
-                    addImage = true;
+                    editImage = true;
                 };
                 reader.readAsDataURL(file);
             });
@@ -529,11 +615,10 @@ function editStyle(styleData, imageSrc, id) {
                 btnStatusOn.className = "btn btn-outline-dark opacity-50";
                 btnStatusOff.className = "opacity-100 btn btn-dark";
             })
-
         },
         preConfirm: () => {
             let styleStatus = "";
-            let styleName = document.getElementById("txbAddStyleName").value;
+            let styleName = document.getElementById("txbAddStyleName").value.trim();
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
@@ -541,7 +626,7 @@ function editStyle(styleData, imageSrc, id) {
             if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
             else { styleStatus = false; }
 
-            if (styleName == styleData.Style && stylePrice == styleData.Price && styleQuantity == styleData.StockQuantity && styleStatus == styleData.Status && !addImage) {
+            if (styleName == styleData.Style && stylePrice == styleData.Price && styleQuantity == styleData.StockQuantity && styleStatus == styleData.Status && !editImage) {
                 Swal.showValidationMessage('請修改資料');
                 return false;
             }
@@ -585,6 +670,7 @@ function editStyle(styleData, imageSrc, id) {
             const imgFile = document.getElementById("addStyleImage");
 
             if (editImage) {
+                formData.append("ImageType", imageType);
                 const imgBlob = dataURItoBlob(imgFile.src);
                 formData.append('images[]', imgBlob);
             }
@@ -647,13 +733,18 @@ function addStyleRow(styleData, imageSrc, imageName) {
     row.appendChild(cellStyleImage);
 
     const cellStockQuantity = document.createElement('td');
-    if (styleData.StockQuantity <= 3) {
-        cellStockQuantity.textContent = styleData.StockQuantity;
-    } else {
-        cellStockQuantity.textContent = styleData.StockQuantity;
-    }
+    cellStockQuantity.textContent = styleData.StockQuantity;
     cellStockQuantity.className = "styleQuantity";
-    row.appendChild(cellStockQuantity);
+    if (styleData.StockQuantity <= 10) {
+        const cellStockWarning = document.createElement('img');
+        cellStockWarning.src = "/images/warn-removebg-preview.png";
+        cellStockWarning.className = "stockWarning";
+        cellStockWarning.style = " position: relative; background-size: contain;background-position: center; background-repeat: no-repeat;width: 25px;  height: 25px; ";
+        cellStockQuantity.appendChild(cellStockWarning);
+        row.appendChild(cellStockQuantity);
+    } else {
+        row.appendChild(cellStockQuantity);
+    }
 
     const cellStylePrice = document.createElement('td');
     cellStylePrice.textContent = styleData.Price;
@@ -688,8 +779,7 @@ function delStyle(styleId) {
     const tableBody = document.getElementById("styleTable").getElementsByTagName('tbody')[0];
     const styleCnt = tableBody.querySelectorAll('tr').length;
 
-    if (styleCnt < 2)
-    {
+    if (styleCnt < 2) {
         Swal.fire({
             title: '商品至少有一個細項'
         })
@@ -742,10 +832,10 @@ function setProductStatusOff() {
 
 function submitEditProduct() {
     let productStatus = false;
-    let productName = document.getElementById("txbName").value;
-    let productDescription = document.getElementById("txbDescription").value;
-    let productCategory = document.getElementById("dropdownCategory").value;
-    let productIntroduce = document.getElementById("productIntroduce").value;
+    let productName = document.getElementById("txbName").value.trim();
+    let productDescription = document.getElementById("txbDescription").value.trim();
+    let productCategory = document.getElementById("dropdownCategory").value.trim();
+    let productIntroduce = document.getElementById("productIntroduce").value.trim();
     const regexName = /^[^\s].{0,29}$/;
     const regexDescription = /^[\s\S]{0,40}$/;
     const regexIntroduction = /^[\s\S]{0,1500}$/;
