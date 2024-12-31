@@ -1,0 +1,59 @@
+﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
+@{
+    ViewBag.Title = "商品管理";
+}
+
+
+<body>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="~/css/MainProduct.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <main>
+        <h2 class="text-center mb-3">@ViewBag.Title</h2>
+        <div class="d-flex justify-content-center mb-1">
+            <button type="button" id="btnAdd" class="btn btn-outline-dark me-2" onclick='location.href="/MainOrder/CreateOrder"'>新增</button>
+            <button type="button" id="btnGetAllProduct" class="btn btn-outline-dark me-5" onclick='getAll()'>查詢全部</button>
+            <label class="me-1 align-content-center">輸入搜尋ID：</label>
+            <input type="text" class="form-control me-1" id="txbSelectProductId" style="max-width: 200px;" required />
+            <button type="button" id="btnSelectByProductId" class="btn btn-outline-dark me-2">搜尋</button>
+
+            <label class="me-1  align-content-center">輸入搜尋會員名：</label>
+            <input type="text" class="form-control me-1" id="txbSelectProductName" style="max-width: 200px;" required />
+            <button type="button" id="btnSelectByProductName" class="btn btn-outline-dark me-1">搜尋</button>
+
+            <label class="me-1  align-content-center">輸入搜尋日期：</label>
+            <input type="datetime" class="form-control me-1" id="" style="max-width: 200px;" required />
+            <input type="datetime" class="form-control me-1" id="" style="max-width: 200px;" required />
+            <button type="button" id="btnSelectByProductName" class="btn btn-outline-dark me-1">搜尋</button>
+        </div>
+
+        <table id="orderTable" class="table" style="table-layout:fixed" border="1">
+            <thead>
+                <tr class="bg-gradient text-bg-dark ">
+                    <th scope="col">#</th>
+                    <th scope="col">訂單Id<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">日期<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">收件人<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">狀態<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">會員信箱<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">金額<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">操作選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 用來插入用戶資料的行將在這裡 -->
+            </tbody>
+        </table>
+        <nav aria-label="Data navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><button class="page-link" id="previousPage" onclick="previousPage()">Previous</button></li>
+                <li class="page-item"><button class="page-link" id="firstPage" onclick="firstPage()">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="currentPage">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="lastPage" onclick="lastPage()">9</button></li>
+                <li class="page-item"><button class="page-link" id="nextPage" onclick="nextPage()">Next</button></li>
+            </ul>
+        </nav>
+    </main>
+</body>

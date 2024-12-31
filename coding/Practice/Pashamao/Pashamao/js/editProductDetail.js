@@ -362,8 +362,8 @@ function addStyle() {
             let btnStatusOn = document.getElementById("btnStatusOn");
             let btnStatusOff = document.getElementById("btnStatusOff");
             let textEditImage = document.getElementById("textEditImage");
-            textEditImage.addEventListener('click', () => { txbAddImage.click(); });
             addStyleImage.addEventListener('click', () => { txbAddImage.click(); });
+            textEditImage.addEventListener('click', () => { txbAddImage.click(); });
 
             txbAddImage.addEventListener('change', (e) => {
                 const file = e.target.files[0];
@@ -440,6 +440,7 @@ function addStyle() {
 
             //驗證輸入符合訊息
             const nameRegex = /^.{1,25}$/;
+
             if (!nameRegex.test(styleName)) {
                 Swal.showValidationMessage('請輸入項目名');
                 return false;
@@ -462,6 +463,7 @@ function addStyle() {
     }).then((result) => {
         if (result.isConfirmed) {
             const formData = new FormData();
+            formData.append('LastEditTime', product.LastEditTime);
             formData.append('AddStyle', JSON.stringify(result.value.addStyle));
 
             const imgFile = document.getElementById("addStyleImage");
@@ -486,7 +488,7 @@ function addStyle() {
                                 }
                             })
                     } else {
-                        Swal.fire("新增失敗!")
+                        Swal.fire("新增失敗! 商品已被異動!")
                             .then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
@@ -665,6 +667,7 @@ function editStyle(styleData, imageSrc, id) {
     }).then((result) => {
         if (result.isConfirmed) {
             const formData = new FormData();
+            formData.append('LastEditTime', product.LastEditTime);
             formData.append('EditStyle', JSON.stringify(result.value.editStyle));
 
             const imgFile = document.getElementById("addStyleImage");
@@ -689,7 +692,7 @@ function editStyle(styleData, imageSrc, id) {
                                 }
                             })
                     } else {
-                        Swal.fire("修改失敗!")
+                        Swal.fire("修改失敗! 商品已被異動")
                             .then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
@@ -795,7 +798,11 @@ function delStyle(styleId) {
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.post("/MainProduct/DeleteProductStyle", { ProductStyleId: styleId })
+            axios.post("/MainProduct/DeleteProductStyle", {
+                ProductStyleId: styleId,
+                ProductId: product.ProductId,
+                LastEditTime: product.LastEditTime
+            })
                 .then(response => {
                     if (response.data == true) {
                         Swal.fire("刪除成功!")
@@ -805,7 +812,7 @@ function delStyle(styleId) {
                                 }
                             })
                     } else {
-                        Swal.fire("刪除失敗!")
+                        Swal.fire("刪除失敗! 商品已被異動!")
                             .then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
@@ -870,6 +877,7 @@ function submitEditProduct() {
         CategoryId: productCategory,
         Introduction: productIntroduce,
         Status: productStatus,
+        LastEditTime: product.LastEditTime
     }
 
     if (newProduct.Name == product.Name && newProduct.CategoryId == product.CategoryId && newProduct.Description == product.Description
@@ -877,7 +885,6 @@ function submitEditProduct() {
         Swal.fire("請修改商品內容");
         return;
     }
-    console.log(newProduct);
 
     axios.post("/MainProduct/SubmitEditProduct", { Product: newProduct })
         .then(response => {
@@ -890,7 +897,7 @@ function submitEditProduct() {
                         }
                     })
             } else {
-                Swal.fire("修改失敗!")
+                Swal.fire("修改失敗! 商品已被異動!")
                     .then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
@@ -929,6 +936,7 @@ function submitEditImage() {
     const formData = new FormData();
 
     formData.append('ProductId', product.ProductId);
+    formData.append('LastEditTime', product.LastEditTime);
     formData.append('DelImageList', JSON.stringify(delImageList));
 
     imageList.forEach(img => {
@@ -950,7 +958,7 @@ function submitEditImage() {
                         }
                     })
             } else {
-                Swal.fire("修改失敗!")
+                Swal.fire("修改失敗! 商品已被異動")
                     .then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;

@@ -27,6 +27,7 @@ namespace Pashamao.Repositories
             DataTable dt = new DataTable();
             List<ProductDetail> products = new List<ProductDetail>();
             int totalPages = 0;
+
             try
             {
                 cmd.CommandText = "EXEC pro_pashamao_getAllProduct @page, @totalPages OUTPUT";
@@ -73,6 +74,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -91,6 +93,7 @@ namespace Pashamao.Repositories
             DataTable dt = new DataTable();
             List<ProductDetail> products = new List<ProductDetail>();
             int totalPages = 0;
+
             try
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductByCategory @categoryId, @page, @totalPages OUTPUT";
@@ -138,6 +141,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -156,6 +160,7 @@ namespace Pashamao.Repositories
             DataTable dt = new DataTable();
             List<ProductDetail> products = new List<ProductDetail>();
             int totalPages = 0;
+
             try
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductById @productId, @page, @totalPages OUTPUT";
@@ -203,6 +208,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -221,6 +227,7 @@ namespace Pashamao.Repositories
             DataTable dt = new DataTable();
             List<ProductDetail> products = new List<ProductDetail>();
             int totalPages = 0;
+
             try
             {
                 cmd.CommandText = "EXEC pro_pashamao_getProductByName @name, @page, @totalPages OUTPUT";
@@ -268,6 +275,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -307,6 +315,7 @@ namespace Pashamao.Repositories
                 product.Description = ds.Tables[0].Rows[0].IsNull("f_description") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_description");
                 product.Introduction = ds.Tables[0].Rows[0].IsNull("f_introduction") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_introduction");
                 product.Status = ds.Tables[0].Rows[0].IsNull("f_status") ? false : ds.Tables[0].Rows[0].Field<bool>("f_status");
+                product.LastEditTime = ds.Tables[0].Rows[0].IsNull("f_lastEditTime") ? DateTime.MinValue : ds.Tables[0].Rows[0].Field<DateTime>("f_lastEditTime");
 
                 for (int i = 0; i < ds.Tables[1].Rows.Count; i++)
                 {
@@ -340,6 +349,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -465,13 +475,14 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editProduct @productId, @categoryId, @name, @description, @introduction, @status";
+                cmd.CommandText = "EXEC pro_pashamao_editProduct @productId, @categoryId, @name, @description, @introduction, @status, @lastEditTime";
                 cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = product.ProductId;
                 cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = product.CategoryId;
                 cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = product.Name;
                 cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = product.Description;
                 cmd.Parameters.Add("@introduction", SqlDbType.NVarChar).Value = product.Introduction;
                 cmd.Parameters.Add("@status", SqlDbType.Bit).Value = product.Status;
+                cmd.Parameters.Add("@lastEditTime", SqlDbType.DateTime).Value = product.LastEditTime;
 
                 cmd.Connection.Open();
 
@@ -505,17 +516,18 @@ namespace Pashamao.Repositories
         /// <param name="productId"></param>
         /// <param name="addImageUrl"></param>
         /// <returns></returns>
-        internal bool EditProductImage(List<int> delImageId, Guid productId, List<string> addImageUrl)
+        internal bool EditProductImage(Guid productId, DateTime lastEditTime, List<int> delImageId, List<string> addImageUrl)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_delAndAddProductImage @delImageId, @productId, @addImageUrl";
+                cmd.CommandText = "EXEC pro_pashamao_delAndAddProductImage @productId, @lastEditTime, @delImageId, @addImageUrl";
 
-                cmd.Parameters.Add("@delImageId", SqlDbType.VarChar).Value = JsonConvert.SerializeObject(delImageId);
                 cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
+                cmd.Parameters.Add("@lastEditTime", SqlDbType.DateTime).Value = lastEditTime;
+                cmd.Parameters.Add("@delImageId", SqlDbType.VarChar).Value = JsonConvert.SerializeObject(delImageId);
                 cmd.Parameters.Add("@addImageUrl", SqlDbType.NVarChar).Value = JsonConvert.SerializeObject(addImageUrl);
 
                 cmd.Connection.Open();
@@ -548,20 +560,23 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productStyle"></param>
         /// <returns></returns>
-        internal (string, bool) EditProductStyle(ProductStyle productStyle)
+        internal (string, bool) EditProductStyle(ProductStyle productStyle, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
+
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editProductStyle @productStyleId, @imageUrl, @style, @price, @stockQuantity, @status, @delImageUrl OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_editProductStyle @productId, @productStyleId, @imageUrl, @style, @price, @stockQuantity, @status, @lastEditTime, @delImageUrl OUTPUT";
 
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productStyle.ProductId;
                 cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyle.ProductStyleId;
                 cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
                 cmd.Parameters.Add("@style", SqlDbType.NVarChar).Value = productStyle.Style;
                 cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
                 cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
                 cmd.Parameters.Add("@status", SqlDbType.Bit).Value = productStyle.Status;
+                cmd.Parameters.Add("@lastEditTime", SqlDbType.DateTime).Value = lastEditTime;
                 SqlParameter delImageUrlOutput = new SqlParameter("@delImageUrl", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Output,
@@ -602,13 +617,14 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productStyle"></param>
         /// <returns></returns>
-        internal bool AddProductStyle(ProductStyle productStyle)
+        internal bool AddProductStyle(ProductStyle productStyle, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
+
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status";
+                cmd.CommandText = "EXEC pro_pashamao_addProductStyle @productId, @imageUrl, @style, @price, @stockQuantity, @status, @lastEditTime";
 
                 cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productStyle.ProductId;
                 cmd.Parameters.Add("@imageUrl", SqlDbType.NVarChar).Value = productStyle.ImageUrl;
@@ -616,6 +632,7 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Add("@price", SqlDbType.Decimal).Value = productStyle.Price;
                 cmd.Parameters.Add("@stockQuantity", SqlDbType.Int).Value = productStyle.StockQuantity;
                 cmd.Parameters.Add("@status", SqlDbType.Int).Value = productStyle.Status;
+                cmd.Parameters.Add("@lastEditTime", SqlDbType.DateTime).Value = lastEditTime;
 
                 cmd.Connection.Open();
 
@@ -641,6 +658,7 @@ namespace Pashamao.Repositories
             finally
             {
                 cmd.Parameters.Clear();
+
                 if (cmd.Connection.State != ConnectionState.Closed)
                     cmd.Connection.Close();
             }
@@ -651,15 +669,17 @@ namespace Pashamao.Repositories
         /// </summary>
         /// <param name="productStyleId"></param>
         /// <returns></returns>
-        internal (string, bool) DeleteProductStyle(int productStyleId)
+        internal (string, bool) DeleteProductStyle(int productStyleId, Guid productId, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_delProductStyle @productStyleId, @delImageUrl OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_delProductStyle @productStyleId, @productId, @lastEditTime, @delImageUrl OUTPUT";
                 cmd.Parameters.Add("@productStyleId", SqlDbType.Int).Value = productStyleId;
+                cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = productId;
+                cmd.Parameters.Add("@lastEditTime", SqlDbType.DateTime).Value = lastEditTime;
                 SqlParameter delImageUrlOutput = new SqlParameter("@delImageUrl", SqlDbType.NVarChar)
                 {
                     Direction = ParameterDirection.Output,

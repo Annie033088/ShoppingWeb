@@ -261,6 +261,7 @@ namespace Pashamao.Service
             try
             {
                 bool delSuccess = mainProductRepository.DeleteProduct(Guid.Parse(productId));
+
                 if (delSuccess)
                 {
                     string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -306,9 +307,9 @@ namespace Pashamao.Service
         /// <param name="productName"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public bool EditProductImage(string productId, List<ProductImage> delOldImageList, HttpFileCollectionBase files)
+        public bool EditProductImage(string productId, DateTime lastEditTime, List<ProductImage> delOldImageList, HttpFileCollectionBase files)
         {
-            //設置增加的檔案數跟刪除的檔案
+            //設置增加的檔案路徑跟刪除的檔案
             List<string> addImageUrl = new List<string>();
             List<int> delImageId = new List<int>();
 
@@ -346,13 +347,14 @@ namespace Pashamao.Service
                 for (int i = 0; i < delOldImageList.Count; i++)
                 {
                     string absoluteImagePath = appDirectory + delOldImageList[i].ImageUrl;
+
                     if (File.Exists(absoluteImagePath))
                     {
                         delImageId.Add(delOldImageList[i].ProductImageId);
                     }
                 }
 
-                bool EditFlag = mainProductRepository.EditProductImage(delImageId, Guid.Parse(productId), addImageUrl);
+                bool EditFlag = mainProductRepository.EditProductImage(Guid.Parse(productId), lastEditTime, delImageId, addImageUrl);
 
                 if (EditFlag)
                 {
@@ -360,6 +362,7 @@ namespace Pashamao.Service
                     for (int i = 0; i < delOldImageList.Count; i++)
                     {
                         string absoluteImagePath = appDirectory + delOldImageList[i].ImageUrl;
+
                         if (File.Exists(absoluteImagePath))
                         {
                             File.Delete(absoluteImagePath);
@@ -372,6 +375,7 @@ namespace Pashamao.Service
                     for (int i = 0; i < addImageUrl.Count; i++)
                     {
                         string absoluteImagePath = appDirectory + addImageUrl[i];
+
                         if (File.Exists(absoluteImagePath))
                         {
                             File.Delete(absoluteImagePath);
@@ -394,55 +398,63 @@ namespace Pashamao.Service
         /// <param name="afterEditStyle"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType)
+        public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType, DateTime lastEditTime)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
             string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
 
-            if (files.Count > 0)
+            try
             {
-                string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + imageType;
-                productStyle.ImageUrl = relativePath;
-                //下載檔案
-                if (Directory.Exists(folderPath))
+                if (files.Count > 0)
                 {
-                    string filePath = folderPath + @"\" + fileName + imageType;
-                    files[0].SaveAs(filePath);
+                    string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + imageType;
+                    productStyle.ImageUrl = relativePath;
+                    //下載檔案
+                    if (Directory.Exists(folderPath))
+                    {
+                        string filePath = folderPath + @"\" + fileName + imageType;
+                        files[0].SaveAs(filePath);
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(folderPath);
+                        string filePath = folderPath + @"\" + fileName + imageType;
+                        files[0].SaveAs(filePath);
+                    }
                 }
                 else
                 {
-                    Directory.CreateDirectory(folderPath);
-                    string filePath = folderPath + @"\" + fileName + imageType;
-                    files[0].SaveAs(filePath);
+                    productStyle.ImageUrl = string.Empty;
                 }
-            }
-            else
-            {
-                productStyle.ImageUrl = string.Empty;
-            }
 
-            (string delImageUrl, bool editSuccessFlag) = mainProductRepository.EditProductStyle(productStyle);
+                (string delImageUrl, bool editSuccessFlag) = mainProductRepository.EditProductStyle(productStyle, lastEditTime);
 
-            //刪除舊的檔案
-            if (delImageUrl != string.Empty)
-            {
-                string filePath = appDirectory + delImageUrl;
-
-                if (File.Exists(filePath))
+                //刪除舊的檔案
+                if (delImageUrl != string.Empty)
                 {
+                    string filePath = appDirectory + delImageUrl;
+
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+
+                //失敗就刪除新增的檔案
+                if (!editSuccessFlag)
+                {
+                    string filePath = folderPath + @"\" + fileName + imageType;
                     File.Delete(filePath);
                 }
-            }
 
-            //失敗就刪除新增的檔案
-            if (!editSuccessFlag)
+                return editSuccessFlag;
+            }
+            catch (Exception e)
             {
-                string filePath = folderPath + @"\" + fileName + imageType;
-                File.Delete(filePath);
+                logger.Error(e);
+                throw;
             }
-
-            return editSuccessFlag;
         }
 
         /// <summary>
@@ -452,7 +464,7 @@ namespace Pashamao.Service
         /// <param name="productName"></param>
         /// <param name="files"></param>
         /// <returns></returns>
-        public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType)
+        public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType, DateTime lastEditTime)
         {
             try
             {
@@ -481,7 +493,7 @@ namespace Pashamao.Service
                     productStyle.ImageUrl = string.Empty;
                 }
 
-                bool addSuccessFlag = mainProductRepository.AddProductStyle(productStyle);
+                bool addSuccessFlag = mainProductRepository.AddProductStyle(productStyle, lastEditTime);
 
                 //刪除剛剛下載的檔案
                 if (!addSuccessFlag)
@@ -503,22 +515,30 @@ namespace Pashamao.Service
         /// </summary>
         /// <param name="productStyleId"></param>
         /// <returns></returns>
-        public bool DeleteProductStyle(int productStyleId)
+        public bool DeleteProductStyle(int productStyleId, Guid productId, DateTime lastEditTime)
         {
-            (string delImageUrl, bool delSuccessFlag) = mainProductRepository.DeleteProductStyle(productStyleId);
-
-            if (delImageUrl != null)
+            try
             {
-                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string filePath = appDirectory + delImageUrl;
+                (string delImageUrl, bool delSuccessFlag) = mainProductRepository.DeleteProductStyle(productStyleId, productId, lastEditTime);
 
-                if (File.Exists(filePath))
+                if (delImageUrl != null)
                 {
-                    File.Delete(filePath);
-                }
-            }
+                    string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                    string filePath = appDirectory + delImageUrl;
 
-            return delSuccessFlag;
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+
+                return delSuccessFlag;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
     }
 }

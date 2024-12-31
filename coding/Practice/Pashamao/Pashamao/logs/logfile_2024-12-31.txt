@@ -1,0 +1,21 @@
+2024-12-31 09:18:20.0142 Info Application Start
+2024-12-31 09:18:31.9459 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 上午 09:18:31.
+2024-12-31 09:18:39.9430 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/31 上午 09:18:39.
+2024-12-31 10:30:49.4422 Info Application End
+2024-12-31 10:31:19.5652 Info Application Start
+2024-12-31 10:33:54.9180 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 上午 10:33:54.
+2024-12-31 10:37:07.0277 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/31 上午 10:37:07.
+2024-12-31 10:43:33.4565 Info Application Start
+2024-12-31 10:43:43.6947 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/31 上午 10:43:43.
+2024-12-31 10:44:15.0221 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 上午 10:44:15.
+2024-12-31 10:44:30.5210 Error System.ArgumentNullException: 沒有將 String 參考設定為 String 的執行個體。
+參數名稱: s
+2024-12-31 10:57:14.0775 Info Application End
+2024-12-31 10:57:16.7067 Info Application Start
+2024-12-31 10:57:40.0117 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 上午 10:57:40.
+2024-12-31 11:06:54.5221 Info Application End
+2024-12-31 11:07:03.1423 Info Application Start
+2024-12-31 11:07:20.4185 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 上午 11:07:20.
+2024-12-31 11:07:29.5787 Info User 'LHevHdd3Pab' logged in successfully at 2024/12/31 上午 11:07:29.
+2024-12-31 13:58:15.7749 Info Application Start
+2024-12-31 13:58:29.2441 Info User 'BG6nNMVFp34q' logged in successfully at 2024/12/31 下午 01:58:29.

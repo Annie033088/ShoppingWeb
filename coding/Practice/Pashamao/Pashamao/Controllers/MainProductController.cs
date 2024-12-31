@@ -199,7 +199,6 @@ namespace Pashamao.Controllers
         {
             try
             {
-
                 bool successFlag = mainProductService.DeleteProduct(ProductId);
                 return Json(successFlag, JsonRequestBehavior.AllowGet);
             }
@@ -251,8 +250,16 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult SubmitEditProduct(ProductDetail Product)
         {
-            bool successFlag = mainProductService.EditProduct(Product);
-            return Json(successFlag);
+            try
+            {
+                bool successFlag = mainProductService.EditProduct(Product);
+                return Json(successFlag);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -262,12 +269,21 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult EditProductImage()
         {
-            var files = Request.Files;
-            string productId = Request.Form["ProductId"];
-            List<ProductImage> delOldImageList = JsonConvert.DeserializeObject<List<ProductImage>>(Request.Form["DelImageList"]);
-            bool successFlag = mainProductService.EditProductImage(productId, delOldImageList, files);
+            try
+            {
+                var files = Request.Files;
+                string productId = Request.Form["ProductId"];
+                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
+                List<ProductImage> delOldImageList = JsonConvert.DeserializeObject<List<ProductImage>>(Request.Form["DelImageList"]);
+                bool successFlag = mainProductService.EditProductImage(productId, lastEditTime, delOldImageList, files);
 
-            return Json(successFlag);
+                return Json(successFlag);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -277,11 +293,20 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult EditProductStyle()
         {
-            var files = Request.Files;
-            ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
-            string ImageType = Request.Form["ImageType"];
-            bool success = mainProductService.EditProductStyle(EditStyle, files, ImageType);
-            return Json(success);
+            try
+            {
+                var files = Request.Files;
+                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
+                ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
+                string ImageType = Request.Form["ImageType"];
+                bool success = mainProductService.EditProductStyle(EditStyle, files, ImageType, lastEditTime);
+                return Json(success);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -291,11 +316,20 @@ namespace Pashamao.Controllers
         [HttpPost]
         public ActionResult AddProductStyle()
         {
-            var files = Request.Files;
-            ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
-            string ImageType = Request.Form["ImageType"];
-            bool success = mainProductService.AddProductStyle(AddStyle, files, ImageType);
-            return Json(success);
+            try
+            {
+                var files = Request.Files;
+                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
+                ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
+                string ImageType = Request.Form["ImageType"];
+                bool success = mainProductService.AddProductStyle(AddStyle, files, ImageType, lastEditTime);
+                return Json(success);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
         /// <summary>
@@ -304,10 +338,18 @@ namespace Pashamao.Controllers
         /// <param name="ProductStyleId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DeleteProductStyle(int ProductStyleId)
+        public ActionResult DeleteProductStyle(int ProductStyleId, Guid ProductId, DateTime LastEditTime)
         {
-            bool success = mainProductService.DeleteProductStyle(ProductStyleId);
-            return Json(success);
+            try
+            {
+                bool success = mainProductService.DeleteProductStyle(ProductStyleId, ProductId, LastEditTime);
+                return Json(success);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
 
     }

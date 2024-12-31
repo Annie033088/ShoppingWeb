@@ -133,6 +133,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainHomeController.cs" />
     <Compile Include="Controllers\MainMemberController.cs" />
+    <Compile Include="Controllers\MainOrderController.cs" />
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Models\Dto\Product\MainProductDto.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Views\MainProduct\Index.cshtml" />
     <Content Include="Views\MainProduct\ProductDetail.cshtml" />
     <Content Include="Views\MainProduct\CreateProduct.cshtml" />
+    <Content Include="Views\MainOrder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

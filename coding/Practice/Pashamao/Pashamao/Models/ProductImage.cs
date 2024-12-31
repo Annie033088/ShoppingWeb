@@ -1,4 +1,6 @@
-﻿namespace Pashamao.Models
+﻿using System;
+
+namespace Pashamao.Models
 {
     public class ProductImage
     {

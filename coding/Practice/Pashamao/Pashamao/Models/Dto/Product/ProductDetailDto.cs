@@ -12,6 +12,7 @@ namespace Pashamao.Models.Dto.Product
             Description = productDetail.Description;
             Introduction = productDetail.Introduction;
             Status = productDetail.Status;
+            LastEditTime = productDetail.LastEditTime;
         }
 
         public Guid ProductId { get; set; }
@@ -20,5 +21,7 @@ namespace Pashamao.Models.Dto.Product
         public string Description { get; set; }
         public string Introduction { get; set; }
         public bool Status { get; set; }
+        public DateTime LastEditTime
+        { get; set; }
     }
 }
