@@ -10,6 +10,7 @@ namespace Pashamao.Filters
     public class UserKickOutFilter : ActionFilterAttribute
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private UserRepository userRepository = new UserRepository();
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -23,34 +24,38 @@ namespace Pashamao.Filters
                 else
                 {
                     //取得DB的sessionId
-                    UserRepository userRepository = new UserRepository();
-                    bool DBStatus;
-                    string DBSessionId;
-                    long DBPermissions;
-                    (DBStatus, DBSessionId, DBPermissions) = userRepository.GetAtEveryRequest(userSessionModel);
+                    bool UserStatus;
+                    string UserSessionId;
+                    long UserPermissions;
+                    (UserStatus, UserSessionId, UserPermissions) = userRepository.GetAtEveryRequest(userSessionModel);
 
-                    if (DBSessionId == null)
-                    {
-                        filterContext.Result = new RedirectResult("/Login/Index");
-                    }
-
-                    if (DBStatus == false)
+                    if (UserStatus == false)
                     {
                         filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被禁止使用";
                         filterContext.Result = new RedirectResult("/Login/Index");
+                        base.OnActionExecuting(filterContext);
+                        return;
                     }
 
                     //判斷現sessionId與資料庫的sessionId是否相同, 不同的話清除session並且重定向到Login
-                    if (DBSessionId != HttpContext.Current.Session.SessionID)
+                    if (UserSessionId != HttpContext.Current.Session.SessionID)
                     {
                         filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被他人踢出";
                         filterContext.Result = new RedirectResult("/Login/Index");
+                        base.OnActionExecuting(filterContext);
+                        return;
                     }
 
                     //隨時更新角色權限
-                    userSessionModel.UserPermission = DBPermissions;
-                    HttpContext.Current.Session["UserSession"] = userSessionModel;
+                    if (userSessionModel.UserPermission != UserPermissions)
+                    {
+                        filterContext.Controller.TempData["KickOutMessage"] = "您的權限已被更動, 請重新登入";
+                        filterContext.Result = new RedirectResult("/Login/Index");
+                        base.OnActionExecuting(filterContext);
+                        return;
+                    }
                 }
+
                 base.OnActionExecuting(filterContext);
             }
             catch (Exception e)
@@ -58,7 +63,6 @@ namespace Pashamao.Filters
                 logger.Error(e);
                 throw e;
             }
-
         }
     }
 }

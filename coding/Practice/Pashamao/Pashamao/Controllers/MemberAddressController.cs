@@ -25,10 +25,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得地址(無搜尋狀態)
         /// </summary>
-        /// <param name="Column"></param>
-        /// <param name="Page"></param>
-        /// <param name="SortOrder"></param>
-        /// <returns></returns>
         public ActionResult GetSortedAddress(string Column, string Page, string SortOrder)
         {
             try

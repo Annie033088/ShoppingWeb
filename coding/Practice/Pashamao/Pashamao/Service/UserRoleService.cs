@@ -19,7 +19,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得所有角色
         /// </summary>
-        /// <returns></returns>
         public List<Role> GetAllRole()
         {
             try
@@ -36,10 +35,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 新增角色
         /// </summary>
-        /// <param name="strPermissions"></param>
-        /// <param name="roleName"></param>
-        /// <param name="roleDiscript"></param>
-        /// <returns></returns>
         public bool AddRole(List<string> strPermissions, string roleName, string roleDiscript)
         {
             List<UserPermission> permissions = new List<UserPermission>();
@@ -69,8 +64,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得對應角色權限
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public List<string> GetRolePermissions(string roleId)
         {
             try
@@ -100,11 +93,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改角色
         /// </summary>
-        /// <param name="strPermissions"></param>
-        /// <param name="roleId"></param>
-        /// <param name="roleName"></param>
-        /// <param name="roleDiscript"></param>
-        /// <returns></returns>
         public bool EditRole(List<string> strPermissions, string roleId, string roleName, string roleDiscript)
         {
             List<UserPermission> permissions = new List<UserPermission>();
@@ -135,8 +123,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除角色
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public bool DeleteRole(string roleId)
         {
             try
@@ -154,8 +140,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得角色
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public Role GetRole(string roleId)
         {
             try

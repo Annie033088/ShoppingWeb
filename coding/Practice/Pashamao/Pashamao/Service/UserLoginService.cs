@@ -22,8 +22,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 驗證密碼是否正確,並取得user
         /// </summary>
-        /// <param name="pwd"></param>
-        /// <returns></returns>
         internal bool VerifyAndGetUser(string loginAcct, string loginPwd)
         {
             try
@@ -55,7 +53,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 是不是禁用帳號
         /// </summary>
-        /// <returns></returns>
         internal bool AcctSuspended()
         {
             return !(user.Status);
@@ -64,7 +61,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得user的暱稱或帳號
         /// </summary>
-        /// <returns></returns>
         internal string GetUserName()
         {
             return user.Name == "null" ? user.Account : user.Name;

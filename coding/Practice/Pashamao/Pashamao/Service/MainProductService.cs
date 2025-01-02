@@ -24,8 +24,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得所有商品
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
         public (List<ProductDetail>, int) GetAllProduct(string page)
         {
             try
@@ -42,9 +40,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據分類取得商品
         /// </summary>
-        /// <param name="categoryId"></param>
-        /// <param name="page"></param>
-        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductByCategory(string categoryId, string page)
         {
             try
@@ -61,9 +56,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據搜尋ID取得商品
         /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="page"></param>
-        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductById(string productId, string page)
         {
             try
@@ -89,9 +81,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據搜尋名取得商品
         /// </summary>
-        /// <param name="productName"></param>
-        /// <param name="page"></param>
-        /// <returns></returns>
         public (List<ProductDetail>, int) GetProductByName(string productName, string page)
         {
             try
@@ -108,8 +97,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得商品詳細資訊
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         public (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(string productId)
         {
             try
@@ -128,10 +115,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 創建商品
         /// </summary>
-        /// <param name="product"></param>
-        /// <param name="StyleList"></param>
-        /// <param name="ImageList"></param>
-        /// <returns></returns>
         public bool CreateProduct(ProductDetail product, List<ProductStyle> StyleList, List<string> ImageList)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -151,8 +134,13 @@ namespace Pashamao.Service
                     {
                         string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + i;
 
+                        //mimeType的取得方式是根據前端傳遞過來的 base64 string進行擷取 (data:image/jpeg;base64, ~) => (image/jpeg)
                         string mimeType = ImageList[i].Substring(5, ImageList[i].IndexOf(";") - 5);
+
+                        //副檔名
                         string imageType = "";
+
+                        //取得圖片的base64跟byte
                         string base64String = ImageList[i].Substring(ImageList[i].IndexOf(",") + 1);
                         byte[] imageBytes = Convert.FromBase64String(base64String);
 
@@ -193,8 +181,13 @@ namespace Pashamao.Service
 
                     if (StyleList[i].ImageUrl != null)
                     {
+                        //mimeType的取得方式是根據前端傳遞過來的 base64 string進行擷取 (data:image/jpeg;base64, ~) => (image/jpeg)
                         string mimeType = StyleList[i].ImageUrl.Substring(5, StyleList[i].ImageUrl.IndexOf(";") - 5);
+
+                        //副檔名
                         string imageType = "";
+
+                        //取得圖片的base64跟byte
                         string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
                         byte[] imageBytes = Convert.FromBase64String(base64String);
 
@@ -254,8 +247,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除商品
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         public bool DeleteProduct(string productId)
         {
             try
@@ -284,8 +275,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改商品
         /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
         public bool EditProduct(ProductDetail product)
         {
             try
@@ -302,11 +291,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改商品圖片(包括刪除跟新增)
         /// </summary>
-        /// <param name="productId"></param>
-        /// <param name="delOldImageList"></param>
-        /// <param name="productName"></param>
-        /// <param name="files"></param>
-        /// <returns></returns>
         public bool EditProductImage(string productId, DateTime lastEditTime, List<ProductImage> delOldImageList, HttpFileCollectionBase files)
         {
             //設置增加的檔案路徑跟刪除的檔案
@@ -395,9 +379,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改商品細項
         /// </summary>
-        /// <param name="afterEditStyle"></param>
-        /// <param name="files"></param>
-        /// <returns></returns>
         public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType, DateTime lastEditTime)
         {
             string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -460,10 +441,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 新增商品細項
         /// </summary>
-        /// <param name="productStyle"></param>
-        /// <param name="productName"></param>
-        /// <param name="files"></param>
-        /// <returns></returns>
         public bool AddProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType, DateTime lastEditTime)
         {
             try
@@ -513,8 +490,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除商品細項
         /// </summary>
-        /// <param name="productStyleId"></param>
-        /// <returns></returns>
         public bool DeleteProductStyle(int productStyleId, Guid productId, DateTime lastEditTime)
         {
             try

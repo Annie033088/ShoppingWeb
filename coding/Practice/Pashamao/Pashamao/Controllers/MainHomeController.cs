@@ -9,7 +9,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 主頁
         /// </summary>
-        /// <returns></returns>
         public ActionResult Index()
         {
             ViewBag.EditPwdMessage = TempData["Message"];
@@ -20,7 +19,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 登出
         /// </summary>
-        /// <returns></returns>
         public ActionResult Logout()
         {
             Session.Clear();

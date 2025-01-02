@@ -748,6 +748,7 @@ function submitCreatProduct() {
         }
         styleList.push(style);
     })
+
     axios.post("/MainProduct/SubmitCreateProduct", {
         ProductDetail: product,
         StyleList: styleList,

@@ -19,10 +19,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 返回排序後的會員
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         internal (List<Member>, int) GetSortedMember(string column, string page, string sortOrder)
         {
             try
@@ -46,8 +42,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 創建會員
         /// </summary>
-        /// <param name="createMemberViewModel"></param>
-        /// <returns></returns>
         public bool CreateMember(CreateMemberViewModel createMemberViewModel)
         {
             try
@@ -93,12 +87,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 搜尋會員
         /// </summary>
-        /// <param name="selectColumn"></param>
-        /// <param name="value"></param>
-        /// <param name="sortColumn"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         public (List<Member>, int) SelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
         {
             try
@@ -130,6 +118,9 @@ namespace Pashamao.Service
             }
         }
 
+        /// <summary>
+        /// 修改會員等級及狀態
+        /// </summary>
         public bool EditMemberlevel(string memberId, string level, string status)
         {
             Member member = new Member();

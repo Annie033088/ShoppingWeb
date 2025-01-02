@@ -16,7 +16,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得所有角色
         /// </summary>
-        /// <returns></returns>
         public IEnumerable<Role> GetAllRole()
         {
             SqlCommand cmd = new SqlCommand();
@@ -71,10 +70,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增角色
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="rolePermission"></param>
-        /// <returns></returns>
         public bool AddRole(Role role)
         {
             SqlCommand cmd = new SqlCommand();
@@ -118,8 +113,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得角色權限
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public string GetRolePermissions(int roleId)
         {
             SqlCommand cmd = new SqlCommand();
@@ -150,8 +143,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 修改角色
         /// </summary>
-        /// <param name="role"></param>
-        /// <returns></returns>
         public bool EditRole(Role role)
         {
             SqlCommand cmd = new SqlCommand();
@@ -196,8 +187,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 刪除角色
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public bool DeleteRole(int roleId)
         {
             SqlCommand cmd = new SqlCommand();
@@ -239,8 +228,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得角色
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
         public Role GetRole(int roleId)
         {
             SqlCommand cmd = new SqlCommand();

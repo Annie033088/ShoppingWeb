@@ -1,0 +1,174 @@
+2025-01-02 09:38:35.1250 Info Application Start
+2025-01-02 09:40:01.6131 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 上午 09:40:01.
+2025-01-02 10:17:30.6377 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 上午 10:17:30.
+2025-01-02 10:18:31.2088 Info User 'qwp59felp48401' logged in successfully at 2025/1/2 上午 10:18:31.
+2025-01-02 10:44:42.3433 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 上午 10:44:42.
+2025-01-02 11:17:06.8378 Info User 'qwp59felp48401' logged in successfully at 2025/1/2 上午 11:17:06.
+2025-01-02 13:02:08.5417 Info Application End
+2025-01-02 13:02:17.0257 Info Application Start
+2025-01-02 13:02:52.2524 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 13:02:52.2621 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 13:02:52.2621 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 15:41:00.6846 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 15:41:00.7086 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 15:41:00.7086 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理者)。
+陳述式已經結束。
+2025-01-02 15:41:37.1672 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:37.1672 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:40.7419 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:40.7419 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:45.0414 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:45.0414 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:48.5663 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:48.5663 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:49.8653 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:49.8653 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:50.7765 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:50.7765 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:51.2807 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:51.2807 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:53.2002 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:53.2002 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:54.6842 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:54.6842 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:55.6215 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:41:55.6215 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:42:05.8143 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:42:05.8143 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:46:10.2956 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 15:46:10.2956 Error System.ArgumentNullException: 值不能為 null。
+參數名稱: source
+2025-01-02 16:47:30.3724 Info Application End
+2025-01-02 16:47:56.2655 Info Application Start
+2025-01-02 16:50:56.7309 Info User 'qwp59felp48401' logged in successfully at 2025/1/2 下午 04:50:56.
+2025-01-02 17:15:34.3987 Info Application End
+2025-01-02 17:34:35.1658 Info Application Start
+2025-01-02 17:34:43.6386 Info Application End
+2025-01-02 17:35:01.5338 Info Application Start
+2025-01-02 17:43:37.9999 Info Application End
+2025-01-02 17:43:42.9962 Info Application Start
+2025-01-02 17:43:47.4442 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 17:43:51.2426 Error System.InvalidOperationException: 找不到檢視 'GetCreateUserView' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainUser/GetCreateUserView.aspx
+~/Views/MainUser/GetCreateUserView.ascx
+~/Views/Shared/GetCreateUserView.aspx
+~/Views/Shared/GetCreateUserView.ascx
+~/Views/MainUser/GetCreateUserView.cshtml
+~/Views/MainUser/GetCreateUserView.vbhtml
+~/Views/Shared/GetCreateUserView.cshtml
+~/Views/Shared/GetCreateUserView.vbhtml
+2025-01-02 17:44:06.2349 Error System.InvalidOperationException: 找不到檢視 'GetCreateUserView' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainUser/GetCreateUserView.aspx
+~/Views/MainUser/GetCreateUserView.ascx
+~/Views/Shared/GetCreateUserView.aspx
+~/Views/Shared/GetCreateUserView.ascx
+~/Views/MainUser/GetCreateUserView.cshtml
+~/Views/MainUser/GetCreateUserView.vbhtml
+~/Views/Shared/GetCreateUserView.cshtml
+~/Views/Shared/GetCreateUserView.vbhtml
+2025-01-02 17:46:47.6967 Info Application End
+2025-01-02 17:46:50.4765 Info Application Start
+2025-01-02 17:51:24.3034 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:51:24.3034 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:51:24.3034 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:52:18.6333 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:52:18.6333 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:52:18.6333 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:54:55.5330 Info Application End
+2025-01-02 17:55:49.9945 Info Application Start
+2025-01-02 17:56:24.9384 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 05:56:24.
+2025-01-02 17:57:06.3967 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:57:06.5054 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:57:06.5573 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-02 17:57:06.5743 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 18:25:19.5284 Info Application Start
+2025-01-02 18:25:38.3791 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:25:38.
+2025-01-02 18:25:45.2509 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:25:54.2332 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:26:06.4485 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:27:59.6211 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:29:46.7112 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:30:59.2865 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:31:44.4574 Info Application Start
+2025-01-02 18:32:27.6184 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:32:27.
+2025-01-02 18:32:33.7168 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:34:38.0909 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:35:27.7682 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'EditUserRole'。
+2025-01-02 18:37:36.6136 Info Application Start
+2025-01-02 18:37:48.9507 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:37:48.
+2025-01-02 18:43:32.2657 Info Application Start
+2025-01-02 18:43:53.5074 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:43:53.
+2025-01-02 18:45:50.6988 Info Application Start
+2025-01-02 18:45:59.5567 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:45:59.
+2025-01-02 18:50:52.0704 Info Application Start
+2025-01-02 18:51:02.0614 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:51:02.
+2025-01-02 18:53:17.3594 Info Application Start
+2025-01-02 18:53:25.3711 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:53:25.
+2025-01-02 18:54:03.0147 Info Application Start
+2025-01-02 18:54:13.5118 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:54:13.
+2025-01-02 18:56:26.3173 Info Application Start
+2025-01-02 18:58:35.3883 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 06:58:35.
+2025-01-02 19:00:39.8736 Info Application Start
+2025-01-02 19:00:52.4394 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 07:00:52.
+2025-01-02 19:02:34.6445 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 19:19:23.0631 Info Application Start
+2025-01-02 19:19:29.1942 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 19:19:32.1259 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 07:19:32.
+2025-01-02 19:19:35.9373 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:19:35.9373 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:19:35.9373 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:19:40.3572 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:19:40.3572 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:19:40.3572 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:20:06.5626 Info Application Start
+2025-01-02 19:20:27.8613 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 07:20:27.
+2025-01-02 19:20:46.7550 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:20:46.8120 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:20:46.8569 Error System.InvalidCastException: 指定的轉換無效。
+2025-01-02 19:34:07.3900 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 19:38:29.3938 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 19:38:53.0662 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-02 19:41:43.1960 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.User.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-02 19:41:53.6354 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.User.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-02 19:42:07.5268 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.User.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-02 19:43:31.2314 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.User.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-02 20:06:50.8265 Info Application Start
+2025-01-02 20:06:58.1575 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/2 下午 08:06:58.
+2025-01-02 20:07:10.6472 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'GetSortedUser'。

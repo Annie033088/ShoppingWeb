@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    [UserRoleAuthFilter(UserPermission.SelectProduct | UserPermission.CreateProduct | UserPermission.EditProductName | UserPermission.EditProductDescription | UserPermission.EditProductPrice | UserPermission.EditProductQuantity | UserPermission.EditProductCategory | UserPermission.EditProductStatus | UserPermission.DelProduct)]
+    [UserRoleAuthFilter(UserPermission.SelectProduct | UserPermission.CreateProduct | UserPermission.EditProduct | UserPermission.DelProduct)]
     public class MainProductController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -29,7 +29,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 主頁
         /// </summary>
-        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -38,8 +37,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得所有商品
         /// </summary>
-        /// <param name="Page"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult GetAllProduct(string Page)
         {
@@ -68,16 +65,12 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 根據分類取得商品
         /// </summary>
-        /// <param name="LastSelectCategoryId"></param>
-        /// <param name="Page"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductByCategory(string LastSelectCategoryId, string Page)
         {
             try
             {
                 (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByCategory(LastSelectCategoryId, Page);
-                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
 
                 if (products == null)
                 {
@@ -85,6 +78,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
+                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
                     return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
                 }
             }
@@ -99,9 +93,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 根據商品id取得商品
         /// </summary>
-        /// <param name="LastSelectProductId"></param>
-        /// <param name="Page"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductById(string LastSelectProductId, string Page)
         {
@@ -124,15 +115,11 @@ namespace Pashamao.Controllers
                 logger.Error(e);
                 throw e;
             }
-
         }
 
         /// <summary>
         /// 根據名稱取得商品
         /// </summary>
-        /// <param name="LastSelectProductName"></param>
-        /// <param name="Page"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult GetProductByName(string LastSelectProductName, string Page)
         {
@@ -161,7 +148,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 轉到創建商品頁面
         /// </summary>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.CreateProduct)]
         public ActionResult CreateProduct()
         {
             return View();
@@ -170,10 +157,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 提交創建商品
         /// </summary>
-        /// <param name="productDetail"></param>
-        /// <param name="StyleList"></param>
-        /// <param name="ImageList"></param>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.CreateProduct)]
         [HttpPost]
         public ActionResult SubmitCreateProduct(ProductDetail productDetail, List<ProductStyle> StyleList, List<string> ImageList)
         {
@@ -192,8 +176,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 刪除商品
         /// </summary>
-        /// <param name="ProductId"></param>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.DelProduct)]
         [HttpPost]
         public ActionResult DeleteProduct(string ProductId)
         {
@@ -212,8 +195,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得商品的介紹、圖片跟樣式等等
         /// </summary>
-        /// <param name="ProductId"></param>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         public ActionResult ProductDetail(string ProductId)
         {
             try
@@ -245,8 +227,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 提交修改商品
         /// </summary>
-        /// <param name="Product"></param>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
         public ActionResult SubmitEditProduct(ProductDetail Product)
         {
@@ -265,7 +246,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 修改商品圖片
         /// </summary>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
         public ActionResult EditProductImage()
         {
@@ -289,7 +270,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 修改商品的細項
         /// </summary>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
         public ActionResult EditProductStyle()
         {
@@ -312,7 +293,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 新增商品細項
         /// </summary>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
         public ActionResult AddProductStyle()
         {
@@ -335,8 +316,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 刪除商品細項
         /// </summary>
-        /// <param name="ProductStyleId"></param>
-        /// <returns></returns>
+        [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
         public ActionResult DeleteProductStyle(int ProductStyleId, Guid ProductId, DateTime LastEditTime)
         {

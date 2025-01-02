@@ -23,7 +23,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 主頁
         /// </summary>
-        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
@@ -32,10 +31,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得會員(無搜尋狀態)
         /// </summary>
-        /// <param name="Column"></param>
-        /// <param name="Page"></param>
-        /// <param name="SortOrder"></param>
-        /// <returns></returns>
         public ActionResult GetSortedMember(string Column, string Page, string SortOrder)
         {
             try
@@ -62,12 +57,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 搜尋會員並取得會員
         /// </summary>
-        /// <param name="SelectColumn"></param>
-        /// <param name="Value"></param>
-        /// <param name="SortColumn"></param>
-        /// <param name="Page"></param>
-        /// <param name="SortOrder"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult SelectMember(string SelectColumn, string Value, string SortColumn, string Page, string SortOrder)
         {
@@ -95,7 +84,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 創建會員頁面
         /// </summary>
-        /// <returns></returns>
         [UserRoleAuthFilter(UserPermission.CreateMember)]
         public ActionResult CreateMember()
         {
@@ -105,8 +93,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 提交創建會員表單
         /// </summary>
-        /// <param name="createMemberViewModel"></param>
-        /// <returns></returns>
         [UserRoleAuthFilter(UserPermission.CreateMember)]
         [HttpPost]
         public ActionResult SubmitCreateMember(CreateMemberViewModel createMemberViewModel)
@@ -164,10 +150,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 修改會員等級跟狀態
         /// </summary>
-        /// <param name="MemberId"></param>
-        /// <param name="Level"></param>
-        /// <param name="Status"></param>
-        /// <returns></returns>
         [UserRoleAuthFilter(UserPermission.EditMemberLevel)]
         [HttpPost]
         public ActionResult SubmitEditMemberlevel(string MemberId, string Level, string Status)

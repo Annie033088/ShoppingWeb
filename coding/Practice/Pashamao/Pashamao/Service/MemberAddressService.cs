@@ -20,10 +20,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 返回排序後的地址
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         internal (List<MemberAddress>, int) GetSortedAddress(string column, string page, string sortOrder)
         {
             try

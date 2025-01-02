@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.User;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,8 +17,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得使用者登入資料
         /// </summary>
-        /// <param name="acct"></param>
-        /// <returns></returns>
         internal (User, long) VerifyAndGetUser(string acct, string pwd, string sessionId)
         {
             SqlCommand cmd = new SqlCommand();
@@ -43,7 +42,7 @@ namespace Pashamao.Repositories
                 {
                     User user = new User();
                     DataRow dr = dt.Rows[0];
-                    user.UserId = dr.IsNull("f_uId") ? 0 : dr.Field<int>("f_uId");
+                    user.UserId = dr.IsNull("f_userId") ? 0 : dr.Field<int>("f_userId");
                     user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
                     user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
                     user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
@@ -74,8 +73,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得 sessionId, status 跟權限
         /// </summary>
-        /// <param name="userSession"></param>
-        /// <returns></returns>
         internal (bool, string, long) GetAtEveryRequest(UserSessionModel userSession)
         {
             SqlCommand cmd = new SqlCommand();
@@ -85,8 +82,8 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAtEveryRequest @uId";
-                cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userSession.UserId;
+                cmd.CommandText = "EXEC pro_pashamao_getAtEveryRequest @userId";
+                cmd.Parameters.Add("@userId", SqlDbType.Int).Value = userSession.UserId;
 
                 cmd.Connection.Open();
 
@@ -121,11 +118,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 排序搜尋之前的使用者資料並傳回
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
-        internal (List<User>, int) GetSortedUser(string column, int page, string sortOrder)
+        internal (List<User> user, int totalPage) GetSortedUser(RequestGetSortedUserDto sortedUserDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -137,9 +130,9 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getSortedUser @column, @page, @sortOrder, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
-                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = sortedUserDto.SortColumn;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = sortedUserDto.Page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortedUserDto.SortOrder;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output
@@ -159,7 +152,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         User user = new User();
-                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.UserId = dt.Rows[i].IsNull("f_userId") ? 0 : dt.Rows[i].Field<int>("f_userId");
                         user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
                         user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -191,8 +184,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得查詢的使用者
         /// </summary>
-        /// <param name="primaryId"></param>
-        /// <returns></returns>
         internal (List<User>, int) GetSelectUser(string selectColumn, string value, string sortColumn, string page, string sortOrder)
         {
             SqlCommand cmd = new SqlCommand();
@@ -201,9 +192,10 @@ namespace Pashamao.Repositories
             DataTable dt = new DataTable();
             List<User> users = new List<User>();
             int totalPages = 0;
+
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getSelectedUser @selectColumn, @value, @sortColumn, @page, @sortOrder, @totalPages OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_getSelectUser @selectColumn, @value, @sortColumn, @page, @sortOrder, @totalPages OUTPUT";
 
                 cmd.Parameters.Add("@selectColumn", SqlDbType.VarChar).Value = selectColumn;
                 cmd.Parameters.Add("@value", SqlDbType.VarChar).Value = value;
@@ -229,7 +221,7 @@ namespace Pashamao.Repositories
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         User user = new User();
-                        user.UserId = dt.Rows[i].IsNull("f_uid") ? 0 : dt.Rows[i].Field<int>("f_uid");
+                        user.UserId = dt.Rows[i].IsNull("f_userId") ? 0 : dt.Rows[i].Field<int>("f_userId");
                         user.Account = dt.Rows[i].IsNull("f_account") ? string.Empty : dt.Rows[i].Field<string>("f_account");
                         user.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
                         user.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
@@ -261,8 +253,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增使用者
         /// </summary>
-        /// <param name="user"></param>
-        internal bool Create(User user)
+        internal bool Create(RequestCreateUserDto user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -272,9 +263,9 @@ namespace Pashamao.Repositories
                 cmd.CommandText = "EXEC pro_pashamao_addUser @acct, @pwd, @name, @role";
 
                 cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = user.Account;
-                cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = user.Pwd;
+                cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = user.Password;
                 cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = user.Name;
-                cmd.Parameters.Add("@role", SqlDbType.VarChar).Value = user.RoleName;
+                cmd.Parameters.Add("@role", SqlDbType.VarChar).Value = user.DropDownRole;
 
                 cmd.Connection.Open();
 
@@ -306,21 +297,22 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 刪除使用者
         /// </summary>
-        /// <param name="user"></param>
-        internal void Delete(User user)
+        internal bool DeleteUser(int userId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_delUser @uId";
+                cmd.CommandText = "EXEC pro_pashamao_delUser @userId";
 
-                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
+                cmd.Parameters.Add("@userId", SqlDbType.VarChar).Value = userId;
 
                 cmd.Connection.Open();
 
                 int ExeCnt = cmd.ExecuteNonQuery();
+
+                return ExeCnt > 0;
             }
             catch (Exception e)
             {
@@ -337,17 +329,16 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得角色名
         /// </summary>
-        /// <returns></returns>
-        internal List<string> GetAllRoleName()
+        internal List<Role> GetRoleIdAndName()
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
-            List<string> rolesName = new List<string>();
+            List<Role> roles = new List<Role>();
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAllRole";
+                cmd.CommandText = "EXEC pro_pashamao_getRoleIdAndName";
 
                 cmd.Connection.Open();
 
@@ -360,10 +351,13 @@ namespace Pashamao.Repositories
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        string roleName = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
-                        rolesName.Add(roleName);
+                        Role role = new Role();
+                        role.RoleId = dt.Rows[i].IsNull("f_roleId") ? 0 : dt.Rows[i].Field<byte>("f_roleId");
+                        role.Name = dt.Rows[i].IsNull("f_name") ? string.Empty : dt.Rows[i].Field<string>("f_name");
+                        roles.Add(role);
                     }
-                    return rolesName;
+
+                    return roles;
                 }
                 else
                 {
@@ -386,25 +380,25 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 更改使用者角色跟權限
+        /// 更改使用者角色跟狀態
         /// </summary>
-        /// <param name="user"></param>
-        internal void UpdateRole(User user)
+        internal bool EditUserRoleAndStatus(RequestEditUserRoleAndStatusDto editUserRoleAndStatus)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUser @uId, @roleId, @status";
+                cmd.CommandText = "EXEC pro_pashamao_editUser @userId, @roleId, @status";
 
-                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = user.UserId;
-                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = user.RoleId;
-                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = user.Status;
+                cmd.Parameters.Add("@userId", SqlDbType.VarChar).Value = editUserRoleAndStatus.UserId;
+                cmd.Parameters.Add("@roleId", SqlDbType.TinyInt).Value = editUserRoleAndStatus.RoleId;
+                cmd.Parameters.Add("@status", SqlDbType.Bit).Value = editUserRoleAndStatus.Status;
 
                 cmd.Connection.Open();
 
                 int ExeCnt = cmd.ExecuteNonQuery();
+                return ExeCnt > 0;
             }
             catch (Exception e)
             {
@@ -418,13 +412,9 @@ namespace Pashamao.Repositories
             }
         }
 
-
         /// <summary>
         /// 修改使用者密碼
         /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="oldPwd"></param>
-        /// <param name="newPwd"></param>
         internal bool UpdatePwd(int userId, string oldPwd, string newPwd)
         {
             SqlCommand cmd = new SqlCommand();
@@ -432,9 +422,9 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @uId, @oldPwd, @newPwd";
+                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @userId, @oldPwd, @newPwd";
 
-                cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userId;
+                cmd.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
                 cmd.Parameters.Add("@oldPwd", SqlDbType.VarChar).Value = oldPwd;
                 cmd.Parameters.Add("@newPwd", SqlDbType.VarChar).Value = newPwd;
 

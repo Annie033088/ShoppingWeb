@@ -211,6 +211,7 @@
 
                 axios.post("/MainProduct/GetProductByCategory", { LastSelectCategoryId: lastSelectCategoryId, Page: page })
                     .then(response => {
+                        console.log(response.data);
                         if (response.data != "noProduct") {
                             populateTable(response.data.Item1);
                             document.getElementById("lastPage").innerHTML = response.data.Item2;

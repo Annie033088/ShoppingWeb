@@ -139,6 +139,9 @@
     <Compile Include="Models\Dto\Product\MainProductDto.cs" />
     <Compile Include="Models\Dto\Product\ProductDetailDto.cs" />
     <Compile Include="Models\Dto\Product\ProductStyleDto.cs" />
+    <Compile Include="Models\Dto\User\RequestEditUserRoleAndStatusDto.cs" />
+    <Compile Include="Models\Dto\User\RequestGetSortedUserDto.cs" />
+    <Compile Include="Models\Dto\User\ResponseRoleIdAndNameDto.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -148,7 +151,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateMemberViewModel.cs" />
-    <Compile Include="Models\CreateUserViewModel.cs" />
+    <Compile Include="Models\Dto\User\RequestCreateUserDto.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
@@ -207,7 +210,8 @@
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
     <Content Include="js\createProduct.js" />
-    <Content Include="js\editProductDetail.js" />
+    <Content Include="js\mainUserIndex.js" />
+    <Content Include="js\productDetail.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

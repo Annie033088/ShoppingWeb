@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.User;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -16,31 +17,54 @@ namespace Pashamao.Service
             userRepository = new UserRepository();
         }
 
-
-
         /// <summary>
         /// 取得搜尋之前的使用者資料
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
-        internal (List<User>, int) GetSortedUser(string column, string page, string sortOrder)
+        internal (List<User> user, int totalPage) GetSortedUser(RequestGetSortedUserDto sortedUserDto)
         {
-            if (column == "UserId") column = "f_uid";
-            if (column == "Account") column = "f_account";
-            if (column == "Name") column = "f_name";
-            if (column == "Status") column = "f_status";
-            if (column == "RoleId") column = "f_roleId";
+            bool haveThisColumn = false;
 
-            return userRepository.GetSortedUser(column, int.Parse(page), sortOrder);
+            if (sortedUserDto.SortColumn == "UserId")
+            {
+                sortedUserDto.SortColumn = "f_userId";
+                haveThisColumn = true;
+            }
+
+            if (sortedUserDto.SortColumn == "Account")
+            {
+                sortedUserDto.SortColumn = "f_account";
+                haveThisColumn = true;
+            }
+
+            if (sortedUserDto.SortColumn == "Name")
+            {
+                sortedUserDto.SortColumn = "f_name";
+                haveThisColumn = true;
+            }
+
+            if (sortedUserDto.SortColumn == "Status")
+            {
+                sortedUserDto.SortColumn = "f_status";
+                haveThisColumn = true;
+            }
+
+            if (sortedUserDto.SortColumn == "RoleId")
+            {
+                sortedUserDto.SortColumn = "f_roleId";
+                haveThisColumn = true;
+            }
+
+            if (haveThisColumn)
+            {
+                return userRepository.GetSortedUser(sortedUserDto);
+            }
+
+            return (null, 0);
         }
 
         /// <summary>
         /// 取得指定用戶資料(並排序)
         /// </summary>
-        /// <param name="UID"></param>
-        /// <returns></returns>
         internal (List<User>, int) SelectUser(string selectColumn, string value, string sortColumn, string page, string sortOrder)
         {
             try
@@ -48,11 +72,11 @@ namespace Pashamao.Service
                 //以下是目前有的搜尋欄位, 如果要擴充, 需要注意先把欄位level跟status進行轉換判斷, 可以轉換成byte(tinyint)或者bool(bit)
                 if (selectColumn == "UserId")
                 {
-                    selectColumn = "f_uid";
+                    selectColumn = "f_userId";
                 }
 
                 //根據甚麼欄位進行排序
-                if (sortColumn == "UserId") sortColumn = "f_uid";
+                if (sortColumn == "UserId") sortColumn = "f_userId";
                 if (sortColumn == "Account") sortColumn = "f_account";
                 if (sortColumn == "Name") sortColumn = "f_name";
                 if (sortColumn == "Status") sortColumn = "f_status";
@@ -69,19 +93,13 @@ namespace Pashamao.Service
         /// <summary>
         /// 新增用戶
         /// </summary>
-        /// <param name="createUserViewModel"></param>
-        internal bool CreateUser(CreateUserViewModel createUserViewModel)
+        internal bool CreateUser(RequestCreateUserDto createUserDto)
         {
-            User user = new User();
             try
             {
-                user.Account = createUserViewModel.CreateAcct;
-                user.Pwd = createUserViewModel.CreatePwd;
-                user.Name = createUserViewModel.CreateName == null ? string.Empty : createUserViewModel.CreateName;
-                user.RoleName = createUserViewModel.DropDownRole;
-
+                createUserDto.Name = createUserDto.Name == null ? string.Empty : createUserDto.Name;
                 logger.Trace("CreateUser");
-                return userRepository.Create(user);
+                return userRepository.Create(createUserDto);
             }
             catch (Exception e)
             {
@@ -93,14 +111,12 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除用戶
         /// </summary>
-        /// <param name="UID"></param>
-        internal void DeleteUser(string UserId)
+        internal bool DeleteUser(int userId)
         {
             try
             {
-                User user = new User();
-                user.UserId = int.Parse(UserId);
-                userRepository.Delete(user);
+                logger.Trace("DeleteUser");
+                return userRepository.DeleteUser(userId);
             }
             catch (Exception e)
             {
@@ -112,12 +128,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得角色名
         /// </summary>
-        /// <returns></returns>
-        internal List<string> GetAllRoleName()
+        internal List<Role> GetRoleIdAndName()
         {
             try
             {
-                return userRepository.GetAllRoleName();
+                return userRepository.GetRoleIdAndName();
             }
             catch (Exception e)
             {
@@ -129,19 +144,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改用戶角色跟狀態
         /// </summary>
-        /// <param name="UID"></param>
-        /// <param name="Name"></param>
-        /// <param name="Status"></param>
-        internal void EditUserRole(string UserId, string RoleId, string Status)
+        internal bool EditUserRoleAndStatus(RequestEditUserRoleAndStatusDto editUserRoleAndStatus)
         {
             try
             {
-                User user = new User();
-
-                user.UserId = int.Parse(UserId);
-                user.RoleId = int.Parse(RoleId);
-                user.Status = Status == "1" ? true : false;
-                userRepository.UpdateRole(user);
+                return userRepository.EditUserRoleAndStatus(editUserRoleAndStatus);
             }
             catch (Exception e)
             {
@@ -154,9 +161,6 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改密碼
         /// </summary>
-        /// <param name="OldPwd"></param>
-        /// <param name="NewPwd"></param>
-        /// <returns></returns>
         internal bool EditUserPwd(string OldPwd, string NewPwd)
         {
             try

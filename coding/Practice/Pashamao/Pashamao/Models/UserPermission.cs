@@ -18,14 +18,7 @@
         EditOrderStatus = 4096,
         SelectProduct = 8192,
         CreateProduct = 16384,
-        EditProductName = 32768,
-        EditProductDescription = 65536,
-        EditProductPrice = 131072,
-        EditProductQuantity = 262144,
-        EditProductCategory = 524288,
-        EditProductStatus = 1048576,
-        DelProduct = 2097152,
-        SelectCategory = 4194304,
-        EditCategory = 8388608 //此為第24個 最大64
+        EditProduct = 32768,
+        DelProduct = 65536,//此為第16個 最大64
     }
 }

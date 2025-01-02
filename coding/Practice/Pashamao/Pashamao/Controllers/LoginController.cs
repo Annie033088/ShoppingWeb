@@ -14,7 +14,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 登入主頁
         /// </summary>
-        /// <returns></returns>
         public ActionResult Index()
         {
             try
@@ -47,8 +46,6 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 提交登入表單
         /// </summary>
-        /// <param name="userViewModel"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult Submit(LoginUserViewModel userViewModel)
         {

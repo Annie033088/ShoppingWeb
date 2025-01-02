@@ -74,7 +74,7 @@ function populateStyle() {
 
 function getImageAndEdit() {
     let addImageList = [];
-    let delOldImageList = []
+    let delOldImageList = [];
     let imagesElement = document.querySelectorAll(".displayImage");
     let imagesHtmlStrings = [];
     let imageCount = 0;
@@ -126,11 +126,11 @@ function getImageAndEdit() {
             imgUploadBox.appendChild(inputElement);
             addImageBox.appendChild(imgUploadBox);
 
-
             const imagePreviews = document.getElementById('imagePreviews');
             const txbImage = document.getElementById('txbImage');
             const btnUploadImage = document.getElementById('btnUploadImage');
             btnUploadImage.addEventListener('click', () => {
+                //呼叫input更換圖片
                 txbImage.click();
             });
 
@@ -142,25 +142,21 @@ function getImageAndEdit() {
 
                 const file = e.target.files[0];
 
-                if (!file) {
+                if (!file) return;
+                
+                if (file.name.length > 20) {
+                    alert("圖片名過長");
                     return;
                 }
-                else {
-                    if (file.name.length > 20) {
-                        alert("圖片名過長");
-                        return;
-                    }
 
-                    const maxSize = 1024 * 1024;//最大1mb
-
-                    if (file.size > maxSize) {
-                        alert("圖片檔案過大");
-                        return;
-                    }
+                //驗證檔案最大1mb
+                const maxSize = 1024 * 1024; 
+                if (file.size > maxSize) {
+                    alert("圖片檔案過大");
+                    return;
                 }
-
+                
                 const mimeType = file.type.toLowerCase();
-
                 switch (mimeType) {
                     case 'image/jpeg':
                         imageType = '.jpg';
@@ -262,6 +258,7 @@ function getImageAndEdit() {
                         }
                         delImageList.push(delImage);
                     }
+
                     const parentDiv = image.parentElement;
                     parentDiv.remove();
                     imageTotal--;

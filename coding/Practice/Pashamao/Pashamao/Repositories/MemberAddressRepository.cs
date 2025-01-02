@@ -17,10 +17,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 排序地址並傳回
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         internal (List<MemberAddress>, int) GetSortedAddress(string column, int page, string sortOrder)
         {
             SqlCommand cmd = new SqlCommand();

@@ -16,7 +16,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增會員
         /// </summary>
-        /// <param name="user"></param>
         internal bool Create(Member member)
         {
             SqlCommand cmd = new SqlCommand();
@@ -62,10 +61,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 排序會員並傳回
         /// </summary>
-        /// <param name="column"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         internal (List<Member>, int) GetSortedMember(string column, int page, string sortOrder)
         {
             SqlCommand cmd = new SqlCommand();
@@ -133,12 +128,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得搜尋且排序後的會員資料
         /// </summary>
-        /// <param name="selectColumn"></param>
-        /// <param name="value"></param>
-        /// <param name="sortColumn"></param>
-        /// <param name="page"></param>
-        /// <param name="sortOrder"></param>
-        /// <returns></returns>
         internal (List<Member>, int) GetSelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
         {
             SqlCommand cmd = new SqlCommand();
@@ -207,7 +196,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 更改會員等級跟狀態
         /// </summary>
-        /// <param name="user"></param>
         internal bool UpdateMemberLevel(Member member)
         {
             SqlCommand cmd = new SqlCommand();
@@ -246,108 +234,5 @@ namespace Pashamao.Repositories
                 cmd.Connection.Close();
             }
         }
-
-        /// <summary>
-        /// 取得1個User
-        /// </summary>
-        /// <param name="primaryId"></param>
-        /// <returns></returns>
-        internal User Get(int primaryId)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr);
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataTable dt = new DataTable();
-            User user = new User();
-
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_getUser @uId";
-                cmd.Parameters.Add("@uId", SqlDbType.VarChar).Value = primaryId;
-
-                cmd.Connection.Open();
-
-                da.SelectCommand = cmd;
-                da.Fill(dt);
-
-                cmd.Connection.Close();
-
-                if (dt.Rows.Count > 0)
-                {
-                    DataRow dr = dt.Rows[0];
-                    user.UserId = dr.IsNull("f_uid") ? 0 : dr.Field<int>("f_uid");
-                    user.Account = dr.IsNull("f_account") ? string.Empty : dr.Field<string>("f_account");
-                    user.Name = dr.IsNull("f_name") ? string.Empty : dr.Field<string>("f_name");
-                    user.Status = dr.IsNull("f_status") ? false : dr.Field<bool>("f_status");
-                    user.RoleId = dr.IsNull("f_roleId") ? 0 : dr.Field<byte>("f_roleId");
-
-                    Console.WriteLine(user.Name);
-                    return user;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                //判斷是否已關閉
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
-            }
-        }
-
-        /// <summary>
-        /// 修改user密碼
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="oldPwd"></param>
-        /// <param name="newPwd"></param>
-        internal bool UpdatePwd(int userId, string oldPwd, string newPwd)
-        {
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = new SqlConnection(this.ConnStr);
-
-            try
-            {
-                cmd.CommandText = "EXEC pro_pashamao_editUserPwd @uId, @oldPwd, @newPwd";
-
-                cmd.Parameters.Add("@uId", SqlDbType.Int).Value = userId;
-                cmd.Parameters.Add("@oldPwd", SqlDbType.VarChar).Value = oldPwd;
-                cmd.Parameters.Add("@newPwd", SqlDbType.VarChar).Value = newPwd;
-
-                cmd.Connection.Open();
-
-                int exeCnt = cmd.ExecuteNonQuery();
-
-                if (exeCnt == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-            finally
-            {
-                cmd.Parameters.Clear();
-                cmd.Connection.Close();
-            }
-        }
-
-
     }
 }

@@ -17,8 +17,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得所有商品
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
         internal (List<ProductDetail>, int) GetAllProduct(int page)
         {
             SqlCommand cmd = new SqlCommand();
@@ -83,8 +81,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得分類下的商品
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
         internal (List<ProductDetail>, int) GetProductByCategory(int categoryId, int page)
         {
             SqlCommand cmd = new SqlCommand();
@@ -107,7 +103,7 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Add(totalPagesOutput);
 
                 cmd.Connection.Open();
-
+                
                 da.SelectCommand = cmd;
                 da.Fill(dt);
                 totalPages = (int)totalPagesOutput.Value;
@@ -125,13 +121,13 @@ namespace Pashamao.Repositories
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
                         products.Add(product);
                     }
+
                     return (products, totalPages);
                 }
                 else
                 {
                     return (null, 0);
                 }
-
             }
             catch (Exception e)
             {
@@ -142,16 +138,13 @@ namespace Pashamao.Repositories
             {
                 cmd.Parameters.Clear();
 
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
+                if (cmd.Connection.State != ConnectionState.Closed) cmd.Connection.Close();
             }
         }
 
         /// <summary>
         /// 取得id對應的商品
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
         internal (List<ProductDetail>, int) GetProductById(Guid productId, int page)
         {
             SqlCommand cmd = new SqlCommand();
@@ -192,13 +185,13 @@ namespace Pashamao.Repositories
                         product.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
                         products.Add(product);
                     }
+
                     return (products, totalPages);
                 }
                 else
                 {
                     return (null, 0);
                 }
-
             }
             catch (Exception e)
             {
@@ -209,16 +202,13 @@ namespace Pashamao.Repositories
             {
                 cmd.Parameters.Clear();
 
-                if (cmd.Connection.State != ConnectionState.Closed)
-                    cmd.Connection.Close();
+                if (cmd.Connection.State != ConnectionState.Closed) cmd.Connection.Close();
             }
         }
 
         /// <summary>
         /// 取得對應名稱的商品
         /// </summary>
-        /// <param name="page"></param>
-        /// <returns></returns>
         internal (List<ProductDetail>, int) GetProductByName(string productName, int page)
         {
             SqlCommand cmd = new SqlCommand();
@@ -284,8 +274,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得商品的細節
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         internal (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(Guid productId)
         {
             SqlCommand cmd = new SqlCommand();
@@ -358,10 +346,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增商品
         /// </summary>
-        /// <param name="product"></param>
-        /// <param name="styles"></param>
-        /// <param name="images"></param>
-        /// <returns></returns>
         internal bool AddProduct(ProductDetail product, List<ProductStyle> styles, List<string> images)
         {
             SqlCommand cmd = new SqlCommand();
@@ -425,8 +409,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 刪除商品
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         internal bool DeleteProduct(Guid productId)
         {
             SqlCommand cmd = new SqlCommand();
@@ -466,8 +448,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 修改商品
         /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
         internal bool EditProduct(ProductDetail product)
         {
             SqlCommand cmd = new SqlCommand();
@@ -512,10 +492,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 修改商品圖片(包含新增及刪除)
         /// </summary>
-        /// <param name="delImageId"></param>
-        /// <param name="productId"></param>
-        /// <param name="addImageUrl"></param>
-        /// <returns></returns>
         internal bool EditProductImage(Guid productId, DateTime lastEditTime, List<int> delImageId, List<string> addImageUrl)
         {
             SqlCommand cmd = new SqlCommand();
@@ -558,8 +534,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 修改商品細項
         /// </summary>
-        /// <param name="productStyle"></param>
-        /// <returns></returns>
         internal (string, bool) EditProductStyle(ProductStyle productStyle, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
@@ -615,8 +589,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增商品細項
         /// </summary>
-        /// <param name="productStyle"></param>
-        /// <returns></returns>
         internal bool AddProductStyle(ProductStyle productStyle, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
@@ -667,8 +639,6 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 刪除商品細項
         /// </summary>
-        /// <param name="productStyleId"></param>
-        /// <returns></returns>
         internal (string, bool) DeleteProductStyle(int productStyleId, Guid productId, DateTime lastEditTime)
         {
             SqlCommand cmd = new SqlCommand();
