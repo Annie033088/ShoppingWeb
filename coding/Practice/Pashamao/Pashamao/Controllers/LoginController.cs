@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.UserLoginDto;
 using Pashamao.Service;
 using System;
 using System.Web;
@@ -47,7 +48,7 @@ namespace Pashamao.Controllers
         /// 提交登入表單
         /// </summary>
         [HttpPost]
-        public ActionResult Submit(LoginUserViewModel userViewModel)
+        public ActionResult SubmitUserLogin(RequestLoginUserDto loginUserDto)
         {
 
             try
@@ -59,7 +60,7 @@ namespace Pashamao.Controllers
 
                 UserLoginService userLogin = new UserLoginService();
 
-                if (userLogin.VerifyAndGetUser(userViewModel.LoginAcct, userViewModel.LoginPwd))
+                if (userLogin.VerifyAndGetUser(loginUserDto))
                 {
                     //禁用的帳號?
                     if (userLogin.AcctSuspended())
@@ -73,8 +74,9 @@ namespace Pashamao.Controllers
                     {
                         Secure = true
                     };
+
                     Response.Cookies.Add(cookie);
-                    logger.Info($"User '{userViewModel.LoginAcct}' logged in successfully at {DateTime.Now}.");
+                    logger.Info($"User '{loginUserDto.Account}' logged in successfully at {DateTime.Now}.");
                     return RedirectToAction("Index", "MainHome");
                 }
                 else
@@ -87,6 +89,7 @@ namespace Pashamao.Controllers
             catch (Exception e)
             {
                 ViewBag.Message = $"登入失敗, 再試一次";
+                logger.Error(e);
                 return View("Index");
                 throw e;
             }

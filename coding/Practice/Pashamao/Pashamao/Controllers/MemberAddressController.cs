@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.AddressDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
@@ -25,25 +26,27 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得地址(無搜尋狀態)
         /// </summary>
-        public ActionResult GetSortedAddress(string Column, string Page, string SortOrder)
+        public ActionResult GetSortedAddress(RequestGetSortedAddressDto getSortedAddressDto)
         {
             try
             {
-                (List<MemberAddress> addresses, int totalPages) = MemberAddressService.GetSortedAddress(Column, Page, SortOrder);
+                (List<MemberAddress> addresses, int totalPage) = MemberAddressService.GetSortedAddress(getSortedAddressDto);
 
                 if (addresses == null)
                 {
-                    string noAddress = "noAddress";
-                    return Json(noAddress, JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒有地址";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((addresses, totalPages), JsonRequestBehavior.AllowGet);
+                    return Json((new { addresses, totalPage}), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }

@@ -1,8 +1,12 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.AddressDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace Pashamao.Service
 {
@@ -20,16 +24,39 @@ namespace Pashamao.Service
         /// <summary>
         /// 返回排序後的地址
         /// </summary>
-        internal (List<MemberAddress>, int) GetSortedAddress(string column, string page, string sortOrder)
+        internal (List<MemberAddress> addresses, int totalPage) GetSortedAddress(RequestGetSortedAddressDto getSortedAddressDto)
         {
             try
             {
-                if (column == "AddressId") column = "f_addressId";
-                else if (column == "MemberId") column = "f_memberId";
-                else if (column == "MemberAddress") column = "f_city";
-                else if (column == "PostalCode") column = "f_postalCode";
+                bool haveThisColumn = false;
 
-                return memberAddressRepository.GetSortedAddress(column, int.Parse(page), sortOrder);
+                if (getSortedAddressDto.SortColumn == "AddressId")
+                {
+                    getSortedAddressDto.SortColumn = "f_addressId";
+                    haveThisColumn = true;
+                }
+                else if (getSortedAddressDto.SortColumn == "MemberId")
+                {
+                    getSortedAddressDto.SortColumn = "f_memberId";
+                    haveThisColumn = true;
+                }
+                else if (getSortedAddressDto.SortColumn == "MemberAddress")
+                {
+                    getSortedAddressDto.SortColumn = "f_city";
+                    haveThisColumn = true;
+                }
+                else if (getSortedAddressDto.SortColumn == "PostalCode")
+                {
+                    getSortedAddressDto.SortColumn = "f_postalCode";
+                    haveThisColumn = true;
+                }
+
+                if (haveThisColumn)
+                {
+                    return memberAddressRepository.GetSortedAddress(getSortedAddressDto);
+                }
+
+                return (null, 0);
             }
             catch (Exception e)
             {

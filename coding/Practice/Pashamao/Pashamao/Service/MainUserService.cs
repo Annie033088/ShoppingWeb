@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
-using Pashamao.Models.Dto.User;
+using Pashamao.Models.Dto.UserDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得搜尋之前的使用者資料
         /// </summary>
-        internal (List<User> user, int totalPage) GetSortedUser(RequestGetSortedUserDto sortedUserDto)
+        internal (List<User> users, int totalPage) GetSortedUser(RequestGetSortedUserDto sortedUserDto)
         {
             bool haveThisColumn = false;
 
@@ -65,27 +65,54 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得指定用戶資料(並排序)
         /// </summary>
-        internal (List<User>, int) SelectUser(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        internal (List<User> users, int totalPage) SelectUser(RequestSelectUserDto selectUserDto)
         {
             try
             {
+                bool haveThisColumn = false;
+
                 //以下是目前有的搜尋欄位, 如果要擴充, 需要注意先把欄位level跟status進行轉換判斷, 可以轉換成byte(tinyint)或者bool(bit)
-                if (selectColumn == "UserId")
+                if (selectUserDto.SelectColumn == "UserId")
                 {
-                    selectColumn = "f_userId";
+                    selectUserDto.SelectColumn = "f_userId";
+                    haveThisColumn = true;
                 }
 
                 //根據甚麼欄位進行排序
-                if (sortColumn == "UserId") sortColumn = "f_userId";
-                if (sortColumn == "Account") sortColumn = "f_account";
-                if (sortColumn == "Name") sortColumn = "f_name";
-                if (sortColumn == "Status") sortColumn = "f_status";
-                if (sortColumn == "RoleId") sortColumn = "f_roleId";
-                return userRepository.GetSelectUser(selectColumn, value, sortColumn, page, sortOrder);
+                if (selectUserDto.SortColumn == "UserId")
+                {
+                    selectUserDto.SortColumn = "f_userId";
+                    haveThisColumn = true;
+                }
+                else if (selectUserDto.SortColumn == "Account")
+                {
+                    selectUserDto.SortColumn = "f_account"; haveThisColumn = true;
+                }
+                else if (selectUserDto.SortColumn == "Name")
+                {
+                    selectUserDto.SortColumn = "f_name";
+                    haveThisColumn = true;
+                }
+                else if (selectUserDto.SortColumn == "Status")
+                {
+                    selectUserDto.SortColumn = "f_status";
+                    haveThisColumn = true;
+                }
+                else if (selectUserDto.SortColumn == "RoleId")
+                {
+                    selectUserDto.SortColumn = "f_roleId";
+                    haveThisColumn = true;
+                }
+
+                if (haveThisColumn)
+                {
+                    return userRepository.GetSelectUser(selectUserDto);
+                }
+
+                return (null, 0);
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -97,9 +124,15 @@ namespace Pashamao.Service
         {
             try
             {
-                createUserDto.Name = createUserDto.Name == null ? string.Empty : createUserDto.Name;
+                User user = new User
+                {
+                    Account = createUserDto.Account,
+                    Pwd = createUserDto.Pwd,
+                    Name = createUserDto.Name == null ? string.Empty : createUserDto.Name,
+                    RoleId = int.Parse(createUserDto.DropDownRole)
+                };
                 logger.Trace("CreateUser");
-                return userRepository.Create(createUserDto);
+                return userRepository.CreateUser(user);
             }
             catch (Exception e)
             {
@@ -161,12 +194,12 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改密碼
         /// </summary>
-        internal bool EditUserPwd(string OldPwd, string NewPwd)
+        internal bool EditUserPwd(RequestEditUserPwdDto editUserPwdDto)
         {
             try
             {
                 UserSessionModel userModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
-                return userRepository.UpdatePwd(userModel.UserId, OldPwd, NewPwd);
+                return userRepository.UpdatePwd(userModel.UserId, editUserPwdDto);
             }
             catch (Exception e)
             {

@@ -4,7 +4,7 @@ let lastSelectTxbId = "";
 let lastSelectColumn = "";
 let lastSelectValue = "";
 
-getAll(); //第一次
+getAll();
 
 function getAll() {
     let btns = document.querySelectorAll(`.btnSort`);
@@ -93,8 +93,12 @@ function getUser(column, page, sortOrder) {
 
     axios.post("/MainUser/GetSortedUser", { sortedUserDto })
         .then(response => {
-            populateTable(response.data.Item1);
-            document.getElementById("lastPage").innerHTML = response.data.Item2;
+            if (response.data.users != "" && response.data.users != null) {
+                populateTable(response.data.users);
+                document.getElementById("lastPage").innerHTML = response.data.totalPage;
+            } else {
+                Swal.fire(response.data.errorMessage);
+            }
         })
         .catch(error => {
             console.error("fail", error);
@@ -163,8 +167,7 @@ function populateTable(users) {
         const cellEditBtn = document.createElement("button");
         cellEditBtn.className = "btnEditUser";
         cellEditBtn.addEventListener("click", function () {
-            let NameOrAcct = document.getElementById("boxPersonalName").innerText;
-            editUserRoleAndStatus(user.UserId, NameOrAcct, user.RoleId, user.Status);
+            editUserRoleAndStatus(user.UserId, user.RoleId, user.Status);
         });
         cellEdit.appendChild(cellEditBtn);
 
@@ -178,7 +181,6 @@ function populateTable(users) {
         if (user.RoleId != "1") {
             row.appendChild(cellEdit);
         }
-
 
         // 把這一行加到表格中
         tableBody.appendChild(row);
@@ -197,7 +199,7 @@ function delUser(userId) {
         if (result.isConfirmed) {
             axios.post("/MainUser/DeleteUser", { userId: userId })
                 .then(response => {
-                    if (response.data == true) {
+                    if (response.data.successFlag == true) {
                         Swal.fire("刪除成功")
                             .then(result => {
                                 if (result.isConfirmed) {
@@ -205,13 +207,9 @@ function delUser(userId) {
                                 }
                             });
                     } else {
-                        Swal.fire("刪除失敗")
-                            .then(result => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '/MainUser/Index';
-                                }
-                            });
+                        Swal.fire(response.data.errorMessage);
                     }
+
                 })
                 .catch(error => { console.error(error); });
         }
@@ -239,18 +237,23 @@ function selectUser(txbSelectElementId, selectColumn, value, sortColumn, page, s
     }
 
     document.getElementById("searchWarning").innerText = " ";
-
-    axios.post("/MainUser/SelectUser", { SelectColumn: selectColumn, Value: value, SortColumn: sortColumn, Page: page, SortOrder: sortOrder })
+    let selectUserModel = {
+        SelectColumn: selectColumn,
+        Value: value,
+        SortColumn: sortColumn,
+        Page: page,
+        SortOrder: sortOrder
+    };
+    axios.post("/MainUser/SelectUser", { selectUserDto: selectUserModel })
         .then(response => {
-            let users = response.data.Item1;
-            if (!(users == "noUser")) {
-                if (!Array.isArray(users)) users = [users];
-                populateTable(users);
-                document.getElementById("lastPage").innerHTML = response.data.Item2;
+            if (response.data.users != "" && response.data.users != null) {
+                populateTable(response.data.users);
+                document.getElementById("lastPage").innerHTML = response.data.totalPage;
             }
             else {
                 document.getElementById("lastPage").innerHTML = 1;
                 document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                Swal.fire(response.data.errorMessage);
             }
         })
         .catch(error => {
@@ -258,7 +261,7 @@ function selectUser(txbSelectElementId, selectColumn, value, sortColumn, page, s
         });
 }
 
-function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
+function editUserRoleAndStatus(userId, userRoleId, userStatus) {
     let roleSelectOptions;
     let statusSelectOptions;
 
@@ -270,7 +273,7 @@ function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
 
     axios.post("/UserRole/GetAllRole")
         .then(response => {
-            roleSelectOptions = populateRoleOptionData(response.data, userRoleId);
+            roleSelectOptions = populateRoleOptionData(response.data.roles, userRoleId);
             Swal.fire({
                 title: '修改使用者',
                 html: `
@@ -307,7 +310,7 @@ function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
                         editUserRoleAndStatus: result.value.editUserRoleAndStatus
                     })
                         .then(response => {
-                            if (response.data == true) {
+                            if (response.data.successFlag == true) {
                                 Swal.fire("修改成功")
                                     .then(result => {
                                         if (result.isConfirmed) {
@@ -315,12 +318,7 @@ function editUserRoleAndStatus(userId, nameOrAcct, userRoleId, userStatus) {
                                         }
                                     });
                             } else {
-                                Swal.fire("修改失敗")
-                                    .then(result => {
-                                        if (result.isConfirmed) {
-                                            window.location.href = '/MainUser/Index';
-                                        }
-                                    });
+                                Swal.fire(response.data.errorMessage);
                             }
                         })
                         .catch(error => {

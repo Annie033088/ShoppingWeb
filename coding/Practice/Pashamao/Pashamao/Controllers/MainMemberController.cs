@@ -1,9 +1,12 @@
 ﻿using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
+using Pashamao.Models.Dto.MemberDto;
+using Pashamao.Models.Dto.UserDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Pashamao.Controllers
@@ -31,25 +34,34 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得會員(無搜尋狀態)
         /// </summary>
-        public ActionResult GetSortedMember(string Column, string Page, string SortOrder)
+        public ActionResult GetSortedMember(RequestGetSortedMemberDto getSortedMemberDto)
         {
             try
             {
-                (List<Member> members, int totalPages) = mainMemberService.GetSortedMember(Column, Page, SortOrder);
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                (List<Member> members, int totalPage) = mainMemberService.GetSortedMember(getSortedMemberDto);
 
                 if (members == null)
                 {
-                    string noMember = "noMember";
-                    return Json(noMember, JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒有會員";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((members, totalPages), JsonRequestBehavior.AllowGet);
+                    List<ResponseMainMemberDto> memberDtos = members.Select(member => (new ResponseMainMemberDto(member))).ToList();
+                    return Json((new { members = memberDtos, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -58,25 +70,34 @@ namespace Pashamao.Controllers
         /// 搜尋會員並取得會員
         /// </summary>
         [HttpPost]
-        public ActionResult SelectMember(string SelectColumn, string Value, string SortColumn, string Page, string SortOrder)
+        public ActionResult SelectMember(RequestGetSelectMemberDto getSelectMemberDto)
         {
             try
             {
-                (List<Member> members, int totalPages) = mainMemberService.SelectMember(SelectColumn, Value, SortColumn, Page, SortOrder);
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                (List<Member> members, int totalPage) = mainMemberService.SelectMember(getSelectMemberDto);
 
                 if (members == null)
                 {
-                    string noMember = "noMember";
-                    return Json(noMember, JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒有此會員";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((members, totalPages), JsonRequestBehavior.AllowGet);
+                    List<ResponseMainMemberDto> memberDtos = members.Select(member => (new ResponseMainMemberDto(member))).ToList();
+                    return Json((new { members = memberDtos, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -95,7 +116,7 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.CreateMember)]
         [HttpPost]
-        public ActionResult SubmitCreateMember(CreateMemberViewModel createMemberViewModel)
+        public ActionResult SubmitCreateMember(RequestCreateMemberDto createMemberDto)
         {
             try
             {
@@ -119,18 +140,18 @@ namespace Pashamao.Controllers
                     return View("CreateMember");
                 }
 
-                if (createMemberViewModel.CountryCode != null)
+                if (createMemberDto.CountryCode != null)
                 {
-                    if (createMemberViewModel.Phone == null)
+                    if (createMemberDto.Phone == null)
                     {
                         ViewBag.Message = "無效的電話號碼, 請再試一次";
                         return View("CreateMember");
                     }
                 }
 
-                bool createSuccessFlag = mainMemberService.CreateMember(createMemberViewModel);
+                bool successFlag = mainMemberService.CreateMember(createMemberDto);
 
-                if (createSuccessFlag)
+                if (successFlag)
                 {
                     return View("Index");
                 }
@@ -142,7 +163,9 @@ namespace Pashamao.Controllers
             }
             catch (Exception e)
             {
+                ViewBag.Message = "創建失敗, 請再試一次";
                 logger.Error(e);
+                return View("CreateMember");
                 throw e;
             }
         }
@@ -152,10 +175,36 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.EditMemberLevel)]
         [HttpPost]
-        public ActionResult SubmitEditMemberlevel(string MemberId, string Level, string Status)
+        public ActionResult SubmitEditMemberlevel(RequestEditMemberLevelAndStatusDto editMemberLevelAndStatusDto)
         {
-            Console.WriteLine(MemberId, Level, Status);
-            return Json(mainMemberService.EditMemberlevel(MemberId, Level, Status), JsonRequestBehavior.AllowGet);
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = mainMemberService.EditMemberLevelAndStatus(editMemberLevelAndStatusDto);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "刪除失敗";
+                    return Json(new { errorMessage });
+                }
+            }
+            catch (Exception e)
+            {
+                string errorMessage = "發生錯誤，請再試一次";
+                logger.Error(e);
+                return Json(new { errorMessage });
+                throw e;
+                throw;
+            }
         }
     }
 }

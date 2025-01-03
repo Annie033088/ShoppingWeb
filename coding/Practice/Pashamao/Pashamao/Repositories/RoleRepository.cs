@@ -228,7 +228,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得角色
         /// </summary>
-        public Role GetRole(int roleId)
+        public Role GetRoleById(int roleId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);

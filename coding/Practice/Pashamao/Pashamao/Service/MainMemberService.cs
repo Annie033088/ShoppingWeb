@@ -1,9 +1,13 @@
 ﻿
 using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.MemberDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace Pashamao.Service
 {
@@ -19,18 +23,49 @@ namespace Pashamao.Service
         /// <summary>
         /// 返回排序後的會員
         /// </summary>
-        internal (List<Member>, int) GetSortedMember(string column, string page, string sortOrder)
+        internal (List<Member> members, int totalPage) GetSortedMember(RequestGetSortedMemberDto getSortedMemberDto)
         {
             try
             {
-                if (column == "MemberId") column = "f_memberId";
-                else if (column == "Email") column = "f_email";
-                else if (column == "Phone") column = "f_phone";
-                else if (column == "MemberName") column = "f_memberName";
-                else if (column == "Status") column = "f_status";
-                else if (column == "Level") column = "f_level";
+                bool haveThisColumn = false;
 
-                return memberRepository.GetSortedMember(column, int.Parse(page), sortOrder);
+                if (getSortedMemberDto.SortColumn == "MemberId")
+                {
+                    getSortedMemberDto.SortColumn = "f_memberId";
+                    haveThisColumn = true;
+                }
+                else if (getSortedMemberDto.SortColumn == "Email")
+                {
+                    getSortedMemberDto.SortColumn = "f_email";
+                    haveThisColumn = true;
+                }
+                else if (getSortedMemberDto.SortColumn == "Phone")
+                {
+                    getSortedMemberDto.SortColumn = "f_phone";
+                    haveThisColumn = true;
+                }
+                else if (getSortedMemberDto.SortColumn == "MemberName")
+                {
+                    getSortedMemberDto.SortColumn = "f_memberName";
+                    haveThisColumn = true;
+                }
+                else if (getSortedMemberDto.SortColumn == "Status")
+                {
+                    getSortedMemberDto.SortColumn = "f_status";
+                    haveThisColumn = true;
+                }
+                else if (getSortedMemberDto.SortColumn == "Level")
+                {
+                    getSortedMemberDto.SortColumn = "f_level";
+                    haveThisColumn = true;
+                }
+
+                if (haveThisColumn)
+                {
+                    return memberRepository.GetSortedMember(getSortedMemberDto);
+                }
+
+                return (null, 0);
             }
             catch (Exception e)
             {
@@ -42,36 +77,35 @@ namespace Pashamao.Service
         /// <summary>
         /// 創建會員
         /// </summary>
-        public bool CreateMember(CreateMemberViewModel createMemberViewModel)
+        public bool CreateMember(RequestCreateMemberDto createMemberDto)
         {
             try
             {
                 Member member = new Member()
                 {
-                    Acct = createMemberViewModel.Acct,
-                    Pwd = createMemberViewModel.Pwd,
-                    Email = createMemberViewModel.Email,
-                    MemberName = createMemberViewModel.MemberName,
-                    Nickname = createMemberViewModel.Nickname == null ? string.Empty : createMemberViewModel.Nickname
+                    Account = createMemberDto.Account,
+                    Pwd = createMemberDto.Pwd,
+                    Email = createMemberDto.Email,
+                    MemberName = createMemberDto.MemberName,
+                    Nickname = createMemberDto.Nickname == null ? string.Empty : createMemberDto.Nickname
                 };
 
-
-                if (createMemberViewModel.CountryCode == null)
+                if (createMemberDto.CountryCode == null)
                 {
-                    if (createMemberViewModel.Phone == null)
+                    if (createMemberDto.Phone == null)
                     {
                         member.Phone = string.Empty;
                     }
                     else
                     {
-                        member.Phone = "886" + " " + createMemberViewModel.Phone;
+                        member.Phone = "886" + " " + createMemberDto.Phone;
                     }
                 }
                 else
                 {
-                    if (createMemberViewModel.Phone != null)
+                    if (createMemberDto.Phone != null)
                     {
-                        member.Phone = createMemberViewModel.CountryCode + " " + createMemberViewModel.Phone;
+                        member.Phone = createMemberDto.CountryCode + " " + createMemberDto.Phone;
                     }
                 }
 
@@ -87,29 +121,47 @@ namespace Pashamao.Service
         /// <summary>
         /// 搜尋會員
         /// </summary>
-        public (List<Member>, int) SelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        public (List<Member> members, int totalPage) SelectMember(RequestGetSelectMemberDto getSelectMemberDto)
         {
             try
             {
                 //以下是目前有的搜尋欄位, 如果要擴充, 需要注意先把欄位level跟status進行轉換判斷, 可以轉換成byte(tinyint)或者bool(bit)
-                if (selectColumn == "MemberId")
+                if (getSelectMemberDto.SelectColumn == "MemberId")
                 {
-                    selectColumn = "f_memberId";
+                    getSelectMemberDto.SelectColumn = "f_memberId";
                 }
-                else if (selectColumn == "MemberName")
+                else if (getSelectMemberDto.SelectColumn == "MemberName")
                 {
-                    selectColumn = "f_memberName";
+                    getSelectMemberDto.SelectColumn = "f_memberName";
                 }
 
                 //根據甚麼欄位進行排序
-                if (sortColumn == "MemberId") sortColumn = "f_memberId";
-                else if (sortColumn == "Email") sortColumn = "f_email";
-                else if (sortColumn == "Phone") sortColumn = "f_phone";
-                else if (sortColumn == "MemberName") sortColumn = "f_memberName";
-                else if (sortColumn == "Status") sortColumn = "f_status";
-                else if (sortColumn == "Level") sortColumn = "f_level";
+                if (getSelectMemberDto.SortColumn == "MemberId")
+                {
+                    getSelectMemberDto.SortColumn = "f_memberId";
+                }
+                else if (getSelectMemberDto.SortColumn == "Email")
+                {
+                    getSelectMemberDto.SortColumn = "f_email";
+                }
+                else if (getSelectMemberDto.SortColumn == "Phone")
+                {
+                    getSelectMemberDto.SortColumn = "f_phone";
+                }
+                else if (getSelectMemberDto.SortColumn == "MemberName")
+                {
+                    getSelectMemberDto.SortColumn = "f_memberName";
+                }
+                else if (getSelectMemberDto.SortColumn == "Status")
+                {
+                    getSelectMemberDto.SortColumn = "f_status";
+                }
+                else if (getSelectMemberDto.SortColumn == "Level")
+                {
+                    getSelectMemberDto.SortColumn = "f_level";
+                }
 
-                return memberRepository.GetSelectMember(selectColumn, value, sortColumn, page, sortOrder);
+                return memberRepository.GetSelectMember(getSelectMemberDto);
             }
             catch (Exception e)
             {
@@ -121,27 +173,17 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改會員等級及狀態
         /// </summary>
-        public bool EditMemberlevel(string memberId, string level, string status)
+        public bool EditMemberLevelAndStatus(RequestEditMemberLevelAndStatusDto editMemberLevelAndStatusDto)
         {
             Member member = new Member();
-            member.MemberId = int.Parse(memberId);
+            member.MemberId = editMemberLevelAndStatusDto.MemberId;
+            member.Status = editMemberLevelAndStatusDto.Status;
+            member.Level = editMemberLevelAndStatusDto.Level;
+            if (member.Level == 1) member.Points = 0;
+            if (member.Level == 2) member.Points = 3000;
+            if (member.Level == 3) member.Points = 12000;
 
-            if (status == "0")
-            {
-                member.Status = false;
-            }
-
-            else if (status == "1")
-            {
-                member.Status = true;
-            }
-
-            member.Level = int.Parse(level);
-            if (level == "1") member.Points = 0;
-            if (level == "2") member.Points = 3000;
-            if (level == "3") member.Points = 12000;
-
-            return memberRepository.UpdateMemberLevel(member);
+            return memberRepository.EditMemberLevelAndStatus(member);
         }
     }
 }

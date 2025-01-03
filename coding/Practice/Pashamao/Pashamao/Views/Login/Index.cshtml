@@ -1,15 +1,15 @@
 ﻿@{ Layout = "~/Views/Shared/LoginLayout.cshtml"; }
 
 <body>
-    <form method="post" action="/Login/Submit">
+    <form method="post" action="/Login/SubmitUserLogin">
         <div asp-controller="Login" class="container col-3">
             <div class="mb-3 ">
                 <label class="fs-6 control-form-label ">帳號</label>
-                <input type="text" name="LoginAcct" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                <input type="text" name="Account" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
             <div class="mb-3 ">
                 <label class="fs-6 ">密碼</label>
-                <input type="password" name="LoginPwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+                <input type="password" name="Pwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
             </div>
             <button type="submit" class="btn btn-dark">確認</button>
         </div>

@@ -1,11 +1,13 @@
 ﻿using Newtonsoft.Json;
 using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.Product;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 
 namespace Pashamao.Repositories
 {
@@ -17,7 +19,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得所有商品
         /// </summary>
-        internal (List<ProductDetail>, int) GetAllProduct(int page)
+        internal (List<ProductDetail>, int) GetProduct(RequestGetSelectProductDto getSelectProductDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -28,9 +30,27 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAllProduct @page, @totalPages OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_getProduct @categoryId, @productId, @name, @page, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
+                if (getSelectProductDto.CategoryId == null)
+                {
+                    cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("@categoryId", SqlDbType.Int).Value = getSelectProductDto.CategoryId.Value;
+                }
+
+                if (getSelectProductDto.ProductId == null)
+                {
+                    cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = DBNull.Value;
+                }
+                else {
+                    cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = Guid.Parse(getSelectProductDto.ProductId);
+                }
+
+                cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = getSelectProductDto.Name;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = getSelectProductDto.Page;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output

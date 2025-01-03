@@ -2,7 +2,7 @@
 using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
-using Pashamao.Models.Dto.User;
+using Pashamao.Models.Dto.UserDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
@@ -39,11 +39,22 @@ namespace Pashamao.Controllers
         {
             try
             {
-                return Json(mainUserService.GetSortedUser(sortedUserDto), JsonRequestBehavior.AllowGet);
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                (List<User> users, int totalPage) = mainUserService.GetSortedUser(sortedUserDto);
+                List<ResponseMainUserDto> mainUserDto = users.Select(user => (new ResponseMainUserDto(user))).ToList();
+                return Json((new { users = mainUserDto, totalPage }));
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -51,26 +62,35 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 根據欄位查詢排序後使用者
         /// </summary>
-        public ActionResult SelectUser(string SelectColumn, string Value, string SortColumn, string Page, string SortOrder)
+        [HttpPost]
+        public ActionResult SelectUser(RequestSelectUserDto selectUserDto)
         {
             try
             {
-                (List<User> users, int totalPages) = mainUserService.SelectUser(SelectColumn, Value, SortColumn, Page, SortOrder);
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                (List<User> users, int totalPage) = mainUserService.SelectUser(selectUserDto);
 
                 if (users == null)
                 {
-                    string noUser = "noUser";
-                    return Json(noUser, JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒找到使用者";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((users, totalPages), JsonRequestBehavior.AllowGet);
+                    List<ResponseMainUserDto> mainUserDto = users.Select(user => (new ResponseMainUserDto(user))).ToList();
+                    return Json((new { users = mainUserDto, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(errorMessage);
                 throw e;
             }
         }
@@ -109,19 +129,21 @@ namespace Pashamao.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-
-                    foreach (var error in errors)
-                    {
-                        TempData["Message"] = error.ErrorMessage;
-                    }
-
+                    TempData["Message"] = "無效的輸入格式";
                     return RedirectToAction("GetCreateUserView");
                 }
 
-                bool success = mainUserService.CreateUser(createUserDto);
+                //檢查roleId是否符合規範
+                int roleId = 0;
+                if (!int.TryParse(createUserDto.DropDownRole, out roleId))
+                {
+                    TempData["Message"] = "無效的輸入格式";
+                    return RedirectToAction("GetCreateUserView");
+                }
+                
+                bool successFlag = mainUserService.CreateUser(createUserDto);
 
-                if (success)
+                if (successFlag)
                 {
                     return View("Index");
                 }
@@ -133,7 +155,7 @@ namespace Pashamao.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.Message = "創建失敗";
+                TempData["Message"] = "發生錯誤，請再試一次";
                 logger.Error(e);
                 return RedirectToAction("GetCreateUserView");
                 throw e;
@@ -149,18 +171,30 @@ namespace Pashamao.Controllers
         {
             try
             {
+
                 if (!ModelState.IsValid)
                 {
-                    return Json(false);
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
                 }
 
                 bool successFlag = mainUserService.EditUserRoleAndStatus(editUserRoleAndStatus);
-                return Json(successFlag);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -173,13 +207,30 @@ namespace Pashamao.Controllers
         {
             try
             {
+                //負數就return
+                if (UserId < 0)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
                 bool successFlag = mainUserService.DeleteUser(UserId);
-                return Json(successFlag);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "刪除失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return Json(false);
+                return Json(errorMessage);
                 throw e;
             }
         }
@@ -189,24 +240,24 @@ namespace Pashamao.Controllers
         /// </summary>
         public ActionResult GetEditUserPwdView()
         {
-            return View();
+            return View("EditUserPwd");
         }
 
         /// <summary>
         /// 提交修改密碼
         /// </summary>
         [HttpPost]
-        public ActionResult SubmitEditUserPwd(string OldPwd, string NewPwd)
+        public ActionResult SubmitEditUserPwd(RequestEditUserPwdDto editUserPwdDto)
         {
             try
             {
-                if (OldPwd == NewPwd)
+                if (editUserPwdDto.OldPwd == editUserPwdDto.NewPwd)
                 {
                     ViewBag.Message = "密碼輸入重複";
                     return View("EditUserPwd");
                 }
 
-                if (mainUserService.EditUserPwd(OldPwd, NewPwd))
+                if (mainUserService.EditUserPwd(editUserPwdDto))
                 {
                     TempData["Message"] = "修改密碼成功";
                     return RedirectToAction("Index", "MainHome");

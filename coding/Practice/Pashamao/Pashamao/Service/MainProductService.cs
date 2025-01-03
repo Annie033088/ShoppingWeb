@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.Product;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得所有商品
         /// </summary>
-        public (List<ProductDetail>, int) GetAllProduct(string page)
+        public (List<ProductDetail> products, int totalPage) GetProduct(RequestGetSelectProductDto getSelectProductDto)
         {
             try
             {
-                return mainProductRepository.GetAllProduct(int.Parse(page));
+                return mainProductRepository.GetProduct(getSelectProductDto);
             }
             catch (Exception e)
             {
@@ -40,11 +41,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據分類取得商品
         /// </summary>
-        public (List<ProductDetail>, int) GetProductByCategory(string categoryId, string page)
+        public (List<ProductDetail> products, int totalPage) GetProductByCategory(int categoryId, int page)
         {
             try
             {
-                return mainProductRepository.GetProductByCategory(int.Parse(categoryId), int.Parse(page));
+                return mainProductRepository.GetProductByCategory(categoryId, page);
             }
             catch (Exception e)
             {
@@ -56,20 +57,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據搜尋ID取得商品
         /// </summary>
-        public (List<ProductDetail>, int) GetProductById(string productId, string page)
+        public (List<ProductDetail> products, int totalPage) GetProductById(Guid productId, int page)
         {
             try
             {
-                Guid id = new Guid();
-                bool success = Guid.TryParse(productId, out id);
-                if (success)
-                {
-                    return mainProductRepository.GetProductById(id, int.Parse(page));
-                }
-                else
-                {
-                    return (null, 0);
-                }
+                return mainProductRepository.GetProductById(productId, page);
             }
             catch (Exception e)
             {
@@ -81,11 +73,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 根據搜尋名取得商品
         /// </summary>
-        public (List<ProductDetail>, int) GetProductByName(string productName, string page)
+        public (List<ProductDetail> products, int totalPage) GetProductByName(string productName, int page)
         {
             try
             {
-                return mainProductRepository.GetProductByName(productName, int.Parse(page));
+                return mainProductRepository.GetProductByName(productName, page);
             }
             catch (Exception e)
             {
@@ -97,7 +89,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得商品詳細資訊
         /// </summary>
-        public (ProductDetail, List<ProductStyle>, List<ProductImage>) GetProductDetail(string productId)
+        public (ProductDetail productDetail, List<ProductStyle> productStyles, List<ProductImage> productImages) GetProductDetail(string productId)
         {
             try
             {

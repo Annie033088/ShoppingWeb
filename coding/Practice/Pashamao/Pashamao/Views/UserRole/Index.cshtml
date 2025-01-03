@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th>
-                        <button type="button" id="btnShowAddRoleCkb" class="btn btn-outline-dark">新增</button>
+                        <button type="button" id="btnShowAddRoleCkb" class="btn btn-outline-dark" onclick="showAddRoleCkb()">新增</button>
                         <button type="button" id="btnGetAllRole" class="btn btn-outline-dark " onclick='getAllRole()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
@@ -45,7 +45,7 @@
         <div id="overlay"></div>
         <div id="ckbPopUp" class="popUp ">
             <div class="popUpContent ms-3">
-                <button id="btnCloseCkb" class="btn btn-light mt-1 ">&times;</button>
+                <button id="btnCloseCkb" class="btn btn-light mt-1" onclick="closePopUpCkb()">&times;</button>
                 <h3>選擇各權限</h3>
                 <input type="checkbox" id="ckbMain1"> 使用者管理
                 <div style="padding-left: 20px;">
@@ -79,7 +79,7 @@
                 <div class="d-flex">
                     <label id="labelRoleName"> 輸入名稱：<input type="text" name="name" id="txbRoleName" value="" required /></label>
                     <label id="labelRoleDiscript"> 描述角色：<input type="text" name="name" id="txbRoleDiscript" value="" required /></label>
-                    <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
+                    <button id="btnSubmitAddRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block" onclick="addRole()">提交</button>
                     <button id="btnSubmitEditRole" class="btnSubmitRole btn btn-outline-dark ms-2" style="display:block">提交</button>
                 </div>
             </div>
@@ -87,16 +87,20 @@
 
 
         <script>
-
             getAllRole();
+
             function getAllRole() {
                 axios.post("/UserRole/GetAllRole")
                     .then(response => {
-                        populateTable(response.data);
+                        if (response.data.roles != "" && response.data.roles != null) {
+                            populateTable(response.data.roles);
+                        } else {
+                            Swal.fire(response.data.errorMessage);
+                        }
                     })
                     .catch(error => {
                         console.error("fail", error);
-                    })
+                    });
             }
 
             function populateTable(roles) {
@@ -126,17 +130,21 @@
                     const cellEdit = document.createElement('td');
 
                     const cellEditBtn = document.createElement("button");
-                    document.getElementById('ckbPopUp')
+                    document.getElementById('ckbPopUp');
                     cellEditBtn.className = "btnEditRole";
                     cellEditBtn.id = "btnShowEditRoleCkb";
                     cellEditBtn.addEventListener("click", function () {
                         axios.post("/UserRole/GetRolePermissions", { RoleId: role.RoleId })
                             .then(response => {
-                                checkPermission(response.data);
+                                if (response.data.rolePermissions != "" && response.data.rolePermissions != null) {
+                                    checkPermission(response.data.rolePermissions);
+                                } else {
+                                    Swal.fire(response.data.errorMessage);
+                                }
                             })
                             .catch(error => {
                                 console.error("fail", error);
-                            })
+                            });
                         document.getElementById("overlay").style.display = "block";
                         document.getElementById("ckbPopUp").style.display = "block";
                         document.getElementById("btnSubmitEditRole").style.display = "block";
@@ -144,9 +152,9 @@
                         document.getElementById("txbRoleName").value = role.Name;
                         document.getElementById("txbRoleDiscript").value = role.Description;
                         document.getElementById("btnSubmitEditRole").addEventListener("click", function () {
-                            EditRole(role.RoleId)
+                            editRole(role.RoleId);
                         });
-                    })
+                    });
                     cellEdit.appendChild(cellEditBtn);
 
                     const cellDeleteBtn = document.createElement("button");
@@ -175,29 +183,25 @@
                     cancelButtonText: '取消'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        axios.post("/UserRole/DeleteRole", { RoleId: roleId })
+                        axios.post("/UserRole/DeleteRole", { RoleId: roleId }, {
+                            headers: {
+                                "Content-Type": "application/json"
+                            }
+                        })
                             .then(response => {
-
-                                if (response.data == "刪除失敗") {
-                                    Swal.fire({
-                                        title: '刪除失敗',
-                                        text: "有使用者持有此角色！",
-                                        icon: 'warning',
-                                        confirmButtonText: '確認'
-                                    })
-                                }
-
-                                if (response.data == "刪除成功") {
+                                if (response.data.successFlag == true) {
                                     Swal.fire({
                                         title: '刪除成功！',
                                         icon: 'warning',
                                         confirmButtonText: '確認'
-                                    }).then((result) => { window.location.href = "/UserRole/Index" })
+                                    }).then((result) => { window.location.href = "/UserRole/Index"; });
+                                } else {
+                                    Swal.fire(response.data.errorMessage);
                                 }
                             })
-                            .catch(error => { console.error(error) })
+                            .catch(error => { console.error(error); });
                     }
-                })
+                });
             }
 
             function selectRole() {
@@ -215,29 +219,26 @@
 
                 axios.post("/UserRole/SelectRole", { RoleId: selectRoleId })
                     .then(response => {
-                        let roles = response.data;
+                        let role = response.data.role;
 
-                        if (!(roles == "noRole")) {
-
-                            if (!Array.isArray(roles)) {
-                                roles = [roles];
-                            }
-
-                            populateTable(roles);
+                        if (role != "" && role != null) {
+                            role = [role];
+                            populateTable(role);
                         }
                         else {
                             document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            Swal.fire(response.data.errorMessage);
                         }
                     })
                     .catch(error => {
                         console.error("fail", error);
-                    })
+                    });
             }
 
             function checkPermission(permissions) {
                 const subCkbs = document.querySelectorAll('.subCkb');
                 const mainCkbs = document.querySelectorAll('input[type="checkbox"][id^="ckbMain"]');
-                let havePermissionFlag = new Array(subCkbs.length)
+                let havePermissionFlag = new Array(subCkbs.length);
 
                 //設定flag為真(flag為擁有的權限)
                 permissions.forEach((permission) => {
@@ -246,7 +247,7 @@
                             havePermissionFlag[i] = true;
                         }
                     }
-                })
+                });
 
                 //勾選擁有的權限
                 for (var i = 0; i < subCkbs.length; i++) {
@@ -262,10 +263,14 @@
                     let mainCheckFlag = true;
                     let subCkbsForMain = document.querySelectorAll(`.subCkb[data-Parent="${parentId}"]`);
                     subCkbsForMain.forEach(function (subCkb) {
-                        if (!subCkb.checked) { mainCheckFlag = false }
+                        if (!subCkb.checked) { mainCheckFlag = false; }
                     });
 
-                    if (mainCheckFlag) mainCkb.checked = true;
+                    if (mainCheckFlag) {
+                        mainCkb.checked = true;
+                    } else {
+                        mainCkb.checked = false;
+                    }
                 });
             }
         </script>
@@ -283,13 +288,13 @@
             const mainCkbs = document.querySelectorAll('input[type="checkbox"][id^="ckbMain"]');
             const subCkbs = document.querySelectorAll('.subCkb');
 
-            btnShowAddRoleCkb.addEventListener("click", function () {
+            function showAddRoleCkb() {
                 subCkbs.forEach(function (subCkb) {
                     subCkb.checked = false;
-                })
+                });
                 mainCkbs.forEach(function (mainCkb) {
                     mainCkb.checked = false;
-                })
+                });
                 popUp.style.display = "block";
                 btnSubmitAddRole.style.display = "block";
                 btnSubmitEditRole.style.display = "none";
@@ -297,13 +302,12 @@
                 document.getElementById("btnSubmitAddRole").style.display = "block";
                 roleName.value = "";
                 roleDiscript.value = "";
-            })
+            }
 
-
-            btnCloseCkb.addEventListener("click", function () {
+            function closePopUpCkb() {
                 document.getElementById("overlay").style.display = "none";
                 popUp.style.display = "none";
-            });
+            }
 
             mainCkbs.forEach(function (mainCkb) {
                 mainCkb.addEventListener("change", function () {
@@ -315,7 +319,7 @@
                 });
             });
 
-            btnSubmitAddRole.addEventListener("click", function () {
+            function addRole() {
                 const selectedCkbs = [];
 
                 subCkbs.forEach(function (subCkb) {
@@ -332,20 +336,35 @@
                         title: '名稱及敘述請勿填空！',
                         icon: 'warning',
                         confirmButtonText: '確認'
-                    })
+                    });
                     return;
                 }
 
-                axios.post("/UserRole/AddRole", { selectedCkbs, roleName: roleName.value, roleDiscript: roleDiscript.value })
+                let addRoleDto = {
+                    PermissionCkbs: selectedCkbs,
+                    Name: roleName.value,
+                    Description: roleDiscript.value
+                };
+                axios.post("/UserRole/AddRole", { addRoleDto })
                     .then(response => {
                         popUp.style.display = "none";
-                        window.location.href = "/UserRole/Index";
+
+                        if (response.data.successFlag == true) {
+                            Swal.fire("創建成功!")
+                                .then(result => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = "/UserRole/Index";
+                                    }
+                                });
+                        } else {
+                            Swal.fire(response.data.errorMessage);
+                        }
                     })
                     .catch(error => {
                     });
-            });
+            }
 
-            function EditRole(roleId) {
+            function editRole(roleId) {
                 const selectedCkbs = [];
 
                 subCkbs.forEach(function (subCkb) {
@@ -359,15 +378,27 @@
                         title: '名稱及敘述請勿填空！',
                         icon: 'warning',
                         confirmButtonText: '確認'
-                    })
+                    });
                     return;
                 }
 
-                axios.post("/UserRole/EditRole", { selectedCkbs, roleId: roleId, roleName: roleName.value, roleDiscript: roleDiscript.value })
+                const editRoleDto = {
+                    RoleId: roleId,
+                    PermissionCkbs: selectedCkbs,
+                    Name: roleName.value,
+                    Description: roleDiscript.value
+                };
+
+                axios.post("/UserRole/EditRole", { editRoleDto })
                     .then(response => {
                         document.getElementById("overlay").style.display = "none";
                         popUp.style.display = "none";
-                        window.location.href = "/UserRole/Index";
+
+                        if (response.data.successFlag == true) {
+                            window.location.href = "/UserRole/Index";
+                        } else {
+                            Swal.fire(response.data.errorMessage);
+                        }
                     })
                     .catch(error => {
                     });

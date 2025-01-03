@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.RoleDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 新增角色
         /// </summary>
-        public bool AddRole(List<string> strPermissions, string roleName, string roleDiscript)
+        public bool AddRole(RequestAddRoleDto addRoleDto)
         {
             List<UserPermission> permissions = new List<UserPermission>();
             Role role = new Role();
@@ -43,14 +44,14 @@ namespace Pashamao.Service
 
             try
             {
-                foreach (string strPermission in strPermissions)
+                foreach (string strPermission in addRoleDto.PermissionCkbs)
                 {
                     UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
                     allPermission += (long)permission;
                 }
 
-                role.Name = roleName;
-                role.Description = roleDiscript;
+                role.Name = addRoleDto.Name;
+                role.Description = addRoleDto.Description;
                 role.Permissions = allPermission;
                 return roleRepository.AddRole(role);
             }
@@ -64,11 +65,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得對應角色權限
         /// </summary>
-        public List<string> GetRolePermissions(string roleId)
+        public List<string> GetRolePermissions(int roleId)
         {
             try
             {
-                string permissionString = roleRepository.GetRolePermissions(int.Parse(roleId));
+                string permissionString = roleRepository.GetRolePermissions(roleId);
 
                 long permissionValue = long.Parse(permissionString);
                 List<string> permissions = new List<string>();
@@ -93,7 +94,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改角色
         /// </summary>
-        public bool EditRole(List<string> strPermissions, string roleId, string roleName, string roleDiscript)
+        public bool EditRole(RequestEditRoleDto editRoleDto)
         {
             List<UserPermission> permissions = new List<UserPermission>();
             Role role = new Role();
@@ -101,15 +102,15 @@ namespace Pashamao.Service
 
             try
             {
-                foreach (string strPermission in strPermissions)
+                foreach (string strPermission in editRoleDto.PermissionCkbs)
                 {
                     UserPermission permission = (UserPermission)Enum.Parse(typeof(UserPermission), strPermission);
                     allPermission += (long)permission;
                 }
 
-                role.RoleId = int.Parse(roleId);
-                role.Name = roleName;
-                role.Description = roleDiscript;
+                role.RoleId = editRoleDto.RoleId;
+                role.Name = editRoleDto.Name;
+                role.Description = editRoleDto.Description;
                 role.Permissions = allPermission;
                 return roleRepository.EditRole(role);
             }
@@ -123,12 +124,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除角色
         /// </summary>
-        public bool DeleteRole(string roleId)
+        public bool DeleteRole(int roleId)
         {
             try
             {
-                int intRoleId = int.Parse(roleId);
-                return roleRepository.DeleteRole(intRoleId);
+                return roleRepository.DeleteRole(roleId);
             }
             catch (Exception e)
             {
@@ -140,11 +140,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得角色
         /// </summary>
-        public Role GetRole(string roleId)
+        public Role GetRoleById(int roleId)
         {
             try
             {
-                return roleRepository.GetRole(int.Parse(roleId));
+                return roleRepository.GetRoleById(roleId);
             }
             catch (Exception e)
             {

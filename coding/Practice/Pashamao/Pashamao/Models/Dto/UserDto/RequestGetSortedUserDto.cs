@@ -4,25 +4,26 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Pashamao.Models.Dto.User
+namespace Pashamao.Models.Dto.UserDto
 {
-    public class RequestEditUserRoleAndStatusDto
+    public class RequestGetSortedUserDto
     {
         /// <summary>
-        /// 使用者Id
+        /// 排序的欄位
         /// </summary>
         [Required]
-        public int UserId {  get; set; }
+        public string SortColumn { get; set; }
 
         /// <summary>
-        /// 腳色id
+        /// 第多少頁面
         /// </summary>
         [Required]
-        public int RoleId { get; set; }
+        public int Page { get; set; }
 
         /// <summary>
-        /// 狀態
+        /// 升序或降序
         /// </summary>
-        public bool Status {  get; set; }
+        [Required]
+        public string SortOrder { get; set; }
     }
 }

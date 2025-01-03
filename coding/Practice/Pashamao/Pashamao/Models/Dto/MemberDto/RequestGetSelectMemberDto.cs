@@ -4,10 +4,22 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Pashamao.Models.Dto.User
+namespace Pashamao.Models.Dto.MemberDto
 {
-    public class RequestGetSortedUserDto
+    public class RequestGetSelectMemberDto
     {
+        /// <summary>
+        /// 搜尋的欄位
+        /// </summary>
+        [Required]
+        public string SelectColumn { get; set; }
+
+        /// <summary>
+        /// 搜尋的值
+        /// </summary>
+        [Required]
+        public string Value { get; set; }
+
         /// <summary>
         /// 排序的欄位
         /// </summary>

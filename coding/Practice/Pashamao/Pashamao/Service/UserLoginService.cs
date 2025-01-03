@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.UserLoginDto;
 using Pashamao.Repositories;
 using System;
 using System.Web;
@@ -22,12 +23,12 @@ namespace Pashamao.Service
         /// <summary>
         /// 驗證密碼是否正確,並取得user
         /// </summary>
-        internal bool VerifyAndGetUser(string loginAcct, string loginPwd)
+        internal bool VerifyAndGetUser(RequestLoginUserDto loginUserDto)
         {
             try
             {
-                long userPermission;
-                (user, userPermission) = userRepository.VerifyAndGetUser(loginAcct, loginPwd, HttpContext.Current.Session.SessionID);
+                
+                (User user, long userPermission) = userRepository.VerifyAndGetUser(loginUserDto, HttpContext.Current.Session.SessionID);
 
                 //帳號匹配成功與否
                 if (user == null)
@@ -65,6 +66,5 @@ namespace Pashamao.Service
         {
             return user.Name == "null" ? user.Account : user.Name;
         }
-
     }
 }

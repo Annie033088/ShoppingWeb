@@ -1,10 +1,13 @@
 ﻿using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
+using Pashamao.Models.Dto.RoleDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Pashamao.Controllers
 {
@@ -36,11 +39,15 @@ namespace Pashamao.Controllers
         {
             try
             {
-                return Json(userRoleService.GetAllRole(), JsonRequestBehavior.AllowGet);
+                List<Role> roles = userRoleService.GetAllRole();
+                List<ResponseMainRoleDto> mainRoleDtos = roles.Select(role => (new ResponseMainRoleDto(role))).ToList();
+                return Json(new { roles = mainRoleDtos });
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -49,18 +56,34 @@ namespace Pashamao.Controllers
         /// 新增用戶
         /// </summary>
         [HttpPost]
-        public ActionResult AddRole(List<string> selectedCkbs, string roleName, string roleDiscript)
+        public ActionResult AddRole(RequestAddRoleDto addRoleDto)
         {
             try
             {
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
 
-                userRoleService.AddRole(selectedCkbs, roleName, roleDiscript);
-                return View("Index");
+                bool successFlag = userRoleService.AddRole(addRoleDto);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "新增失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -69,16 +92,17 @@ namespace Pashamao.Controllers
         /// 取得選擇角色的權限(內容)
         /// </summary>
         [HttpPost]
-        public ActionResult GetRolePermissions(string RoleId)
+        public ActionResult GetRolePermissions(int RoleId)
         {
             try
             {
-                return Json(userRoleService.GetRolePermissions(RoleId), JsonRequestBehavior.AllowGet);
+                return Json(new { rolePermissions = userRoleService.GetRolePermissions(RoleId) });
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -87,17 +111,34 @@ namespace Pashamao.Controllers
         /// 修改角色權限
         /// </summary>
         [HttpPost]
-        public ActionResult EditRole(List<string> selectedCkbs, string roleId, string roleName, string roleDiscript)
+        public ActionResult EditRole(RequestEditRoleDto editRoleDto)
         {
             try
             {
-                userRoleService.EditRole(selectedCkbs, roleId, roleName, roleDiscript);
-                return View("Index");
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = userRoleService.EditRole(editRoleDto);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -106,26 +147,28 @@ namespace Pashamao.Controllers
         /// 刪除角色
         /// </summary>
         [HttpPost]
-        public ActionResult DeleteRole(string RoleId)
+        public ActionResult DeleteRole(int RoleId)
         {
             try
             {
-                if (userRoleService.DeleteRole(RoleId))
+                bool successFlag = userRoleService.DeleteRole(RoleId);
+
+                if (successFlag)
                 {
-                    string message = "刪除成功";
-                    return Json(message);
+                    return Json(new { successFlag });
                 }
                 else
                 {
-                    string message = "刪除失敗";
-                    return Json(message);
+                    string errorMessage = "刪除失敗，請再試一次";
+                    return Json(new { errorMessage });
                 }
 
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -133,27 +176,29 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 搜尋角色
         /// </summary>
-        public ActionResult SelectRole(string RoleId)
+        [HttpPost]
+        public ActionResult SelectRole(int RoleId)
         {
             try
             {
-                Role role = userRoleService.GetRole(RoleId);
+                Role role = userRoleService.GetRoleById(RoleId);
 
                 if (role == null)
                 {
-                    string noRole = "noRole";
-                    return Json(noRole, JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒有這個角色";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json(role, JsonRequestBehavior.AllowGet);
-
+                    ResponseMainRoleDto mainRoleDtos = new ResponseMainRoleDto(role);
+                    return Json(new { role = mainRoleDtos });
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
-                return View("Index");
+                return Json(new { errorMessage });
                 throw e;
             }
         }

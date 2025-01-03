@@ -3,9 +3,7 @@
     ViewBag.Title = "會員地址管理";
 }
 <body>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/MainMember.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h1 class="text-center mb-3">@ViewBag.Title</h1>
         <table id="addressTable" class="table" style="table-layout:fixed" border="1">
@@ -53,7 +51,7 @@
                 let btns = document.querySelectorAll(`.btnSort`);
                 btns.forEach(btn => {
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
-                })
+                });
                 lastSelectTxbId = "";
                 lastSelectColumn = "";
                 lastSelectValue = "";
@@ -77,7 +75,7 @@
                     document.getElementById("currentPage").innerHTML = newCurrentPage;
                 }
                 else {
-                    newCurrentPage = 1
+                    newCurrentPage = 1;
                 }
 
                 if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
@@ -87,8 +85,8 @@
 
             function nextPage() {
                 let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
-                let maxPage = parseInt(document.getElementById("lastPage").innerHTML)
-                let newCurrentPage = oldCurrentPage
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
 
                 if (oldCurrentPage < maxPage) {
                     newCurrentPage = oldCurrentPage + 1;
@@ -115,16 +113,27 @@
             function getAddress(column, page, sortOrder) {
                 lastSortBtnColumn = column;
                 lastSortOrder = sortOrder;
-                axios.post("/MemberAddress/GetSortedAddress", { Column: column, Page: page, SortOrder: sortOrder })
+
+                let getSortedAddressDto = {
+                    SortColumn: column,
+                    Page: page,
+                    SortOrder: sortOrder
+                };
+
+                axios.post("/MemberAddress/GetSortedAddress", { getSortedAddressDto })
                     .then(response => {
-                        if (response.data != "noAddress") {
-                            populateTable(response.data.Item1);
-                            document.getElementById("lastPage").innerHTML = response.data.Item2;
+                        let addresses = response.data.addresses;
+
+                        if (addresses != "" && addresses != null) {
+                            populateTable(addresses);
+                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
+                        } else {
+                            Swal.fire(response.data.errorMessage);
                         }
                     })
                     .catch(error => {
                         console.error("fail", error);
-                    })
+                    });
             }
 
             function getSortedAddress(btnId, column) {
@@ -168,7 +177,7 @@
                     row.appendChild(cellAddressId);
 
                     const cellMemberId = document.createElement('td');
-                    cellMemberId.textContent = address.MemberId
+                    cellMemberId.textContent = address.MemberId;
                     row.appendChild(cellMemberId);
 
                     const cellAddress = document.createElement('td');

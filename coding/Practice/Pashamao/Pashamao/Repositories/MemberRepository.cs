@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.MemberDto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,7 +26,7 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_addMember @acct, @pwd, @email, @phone, @memberName, @nickname";
 
-                cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = member.Acct;
+                cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = member.Account;
                 cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = member.Pwd;
                 cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = member.Email;
                 cmd.Parameters.Add("@phone", SqlDbType.Char).Value = member.Phone;
@@ -61,7 +62,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 排序會員並傳回
         /// </summary>
-        internal (List<Member>, int) GetSortedMember(string column, int page, string sortOrder)
+        internal (List<Member> members, int totalPage) GetSortedMember(RequestGetSortedMemberDto getSortedMemberDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -73,9 +74,9 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getSortedMember @column, @page, @sortOrder, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
-                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = getSortedMemberDto.SortColumn;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = getSortedMemberDto.Page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = getSortedMemberDto.SortOrder;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output
@@ -128,7 +129,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得搜尋且排序後的會員資料
         /// </summary>
-        internal (List<Member>, int) GetSelectMember(string selectColumn, string value, string sortColumn, string page, string sortOrder)
+        internal (List<Member> members, int totalPage) GetSelectMember(RequestGetSelectMemberDto getSelectMemberDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -140,11 +141,11 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getSelectMember @selectColumn, @value, @sortColumn, @page, @sortOrder, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@selectColumn", SqlDbType.VarChar).Value = selectColumn;
-                cmd.Parameters.Add("@value", SqlDbType.VarChar).Value = value;
-                cmd.Parameters.Add("@sortColumn", SqlDbType.VarChar).Value = sortColumn;
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
-                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                cmd.Parameters.Add("@selectColumn", SqlDbType.VarChar).Value = getSelectMemberDto.SelectColumn;
+                cmd.Parameters.Add("@value", SqlDbType.VarChar).Value = getSelectMemberDto.Value;
+                cmd.Parameters.Add("@sortColumn", SqlDbType.VarChar).Value = getSelectMemberDto.SortColumn;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = getSelectMemberDto.Page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = getSelectMemberDto.SortOrder;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output
@@ -196,7 +197,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 更改會員等級跟狀態
         /// </summary>
-        internal bool UpdateMemberLevel(Member member)
+        internal bool EditMemberLevelAndStatus(Member member)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);

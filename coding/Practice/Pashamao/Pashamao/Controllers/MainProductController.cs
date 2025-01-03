@@ -38,81 +38,118 @@ namespace Pashamao.Controllers
         /// 取得所有商品
         /// </summary>
         [HttpPost]
-        public ActionResult GetAllProduct(string Page)
+        public ActionResult GetProduct(RequestGetSelectProductDto getSelectProductDto)
         {
             try
             {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetAllProduct(Page);
-                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                //檢查前端資料
+                if (getSelectProductDto.ProductId != null)
+                {
+                    Guid productId = Guid.NewGuid();
+                    if (!Guid.TryParse(getSelectProductDto.ProductId, out productId))
+                    {
+                        string errorMessage = "錯誤的產品Id";
+                        return Json(new { errorMessage });
+                    }
+                }
+
+                if (getSelectProductDto.ProductName != null)
+                {
+                    if (getSelectProductDto.ProductName.Length > 30)
+                    {
+                        string errorMessage = "錯誤的產品名稱";
+                        return Json(new { errorMessage });
+                    }
+                }
+
+                //呼叫服務
+                (List<ProductDetail> products, int totalPage) = mainProductService.GetProduct(getSelectProductDto);
 
                 if (products == null)
                 {
-                    return Json("noProduct", JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒有商品";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
+                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                    return Json((new { products = mainProducts, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
-
         }
 
         /// <summary>
         /// 根據分類取得商品
         /// </summary>
         [HttpPost]
-        public ActionResult GetProductByCategory(string LastSelectCategoryId, string Page)
+        public ActionResult GetProductByCategory(int CategoryId, int Page)
         {
             try
             {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByCategory(LastSelectCategoryId, Page);
+                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByCategory(CategoryId, Page);
 
                 if (products == null)
                 {
-                    return Json("noProduct", JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒找到商品";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
                     List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
-                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
+                    return Json((new { products = mainProducts, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
-
         }
 
         /// <summary>
         /// 根據商品id取得商品
         /// </summary>
         [HttpPost]
-        public ActionResult GetProductById(string LastSelectProductId, string Page)
+        public ActionResult GetProductById(string ProductId, int Page)
         {
             try
             {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductById(LastSelectProductId, Page);
-                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                Guid productId = new Guid();
+                bool successFlag = Guid.TryParse(ProductId, out productId);
+
+                if (!successFlag)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductById(productId, Page);
 
                 if (products == null)
                 {
-                    return Json("noProduct", JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒找到商品";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
+                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                    return Json((new { products = mainProducts, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -121,28 +158,30 @@ namespace Pashamao.Controllers
         /// 根據名稱取得商品
         /// </summary>
         [HttpPost]
-        public ActionResult GetProductByName(string LastSelectProductName, string Page)
+        public ActionResult GetProductByName(string ProductName, int Page)
         {
             try
             {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByName(LastSelectProductName, Page);
-                List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByName(ProductName, Page);
 
                 if (products == null)
                 {
-                    return Json("noProduct", JsonRequestBehavior.AllowGet);
+                    string errorMessage = "沒找到商品";
+                    return Json(new { errorMessage });
                 }
                 else
                 {
-                    return Json((mainProducts, totalPage), JsonRequestBehavior.AllowGet);
+                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                    return Json((new { products = mainProducts, totalPage }));
                 }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤，請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
-
         }
 
         /// <summary>

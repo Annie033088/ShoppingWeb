@@ -3,12 +3,12 @@
     public class Role
     {
         /// <summary>
-        /// id
+        /// 角色Id
         /// </summary>
         public int RoleId { get; set; }
 
         /// <summary>
-        /// 名
+        /// 角色名
         /// </summary>
         public string Name { get; set; }
 

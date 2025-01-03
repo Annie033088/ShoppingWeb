@@ -1,0 +1,105 @@
+2025-01-03 08:55:31.4205 Info Application Start
+2025-01-03 08:55:50.9170 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 08:55:50.
+2025-01-03 08:56:02.2923 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 08:56:02.3003 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 08:56:05.6804 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 08:56:05.6804 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 08:56:10.2462 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 08:56:10.2462 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:10:24.8272 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:10:24.8272 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:12:22.1883 Info Application End
+2025-01-03 09:12:33.6000 Info Application Start
+2025-01-03 09:12:47.2273 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 09:12:47.
+2025-01-03 09:12:59.5563 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:12:59.6521 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:15:29.3816 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:15:29.4880 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:16:02.7651 Info User 'qwp59felp48401' logged in successfully at 2025/1/3 上午 09:16:02.
+2025-01-03 09:16:05.1607 Error System.InvalidOperationException: 找不到檢視 'GetEditUserPwdView' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainUser/GetEditUserPwdView.aspx
+~/Views/MainUser/GetEditUserPwdView.ascx
+~/Views/Shared/GetEditUserPwdView.aspx
+~/Views/Shared/GetEditUserPwdView.ascx
+~/Views/MainUser/GetEditUserPwdView.cshtml
+~/Views/MainUser/GetEditUserPwdView.vbhtml
+~/Views/Shared/GetEditUserPwdView.cshtml
+~/Views/Shared/GetEditUserPwdView.vbhtml
+2025-01-03 09:16:17.1566 Error System.InvalidOperationException: 找不到檢視 'GetEditUserPwdView' 或其主版，或沒有任何檢視引擎支援搜尋的位置。已搜尋過下列位置: 
+~/Views/MainUser/GetEditUserPwdView.aspx
+~/Views/MainUser/GetEditUserPwdView.ascx
+~/Views/Shared/GetEditUserPwdView.aspx
+~/Views/Shared/GetEditUserPwdView.ascx
+~/Views/MainUser/GetEditUserPwdView.cshtml
+~/Views/MainUser/GetEditUserPwdView.vbhtml
+~/Views/Shared/GetEditUserPwdView.cshtml
+~/Views/Shared/GetEditUserPwdView.vbhtml
+2025-01-03 09:18:47.1073 Info User 'qwp59felp48401' logged in successfully at 2025/1/3 上午 09:18:47.
+2025-01-03 09:18:54.8507 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 09:18:54.
+2025-01-03 09:19:38.2118 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_getAllRole'。
+2025-01-03 09:19:38.2665 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_getAllRole'。
+2025-01-03 09:19:38.3161 Error System.Data.SqlClient.SqlException: 找不到預存程序 'pro_pashamao_getAllRole'。
+2025-01-03 09:23:58.6858 Info Application Start
+2025-01-03 09:24:15.9785 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 09:24:15.
+2025-01-03 09:24:57.6965 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理員)。
+陳述式已經結束。
+2025-01-03 09:24:57.7513 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理員)。
+陳述式已經結束。
+2025-01-03 09:24:57.7950 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (商品管理員)。
+陳述式已經結束。
+2025-01-03 09:30:55.5565 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:30:55.6768 Error System.Data.SqlClient.SqlException: 無效的資料行名稱 'UserId'。
+2025-01-03 09:41:48.2415 Info Application Start
+2025-01-03 09:45:51.8763 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 09:45:51.
+2025-01-03 10:04:16.5011 Info Application Start
+2025-01-03 10:04:26.2428 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 10:04:26.
+2025-01-03 10:04:51.0642 Info Application Start
+2025-01-03 10:04:57.0797 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 10:04:57.
+2025-01-03 10:29:39.4293 Info Application Start
+2025-01-03 10:29:48.5429 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 10:29:48.
+2025-01-03 10:30:03.4671 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-03 10:30:03.4671 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-03 10:32:07.6755 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-03 10:32:07.6755 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-03 10:55:16.1112 Info Application End
+2025-01-03 10:55:23.5823 Info Application Start
+2025-01-03 11:21:46.3208 Info Application End
+2025-01-03 11:21:53.6380 Info Application Start
+2025-01-03 11:22:27.2423 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:22:27.2513 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:22:27.2513 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:23:41.3036 Info Application Start
+2025-01-03 11:23:57.9150 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 11:23:57.
+2025-01-03 11:24:19.4104 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:24:19.4802 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:24:23.3121 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_roleId'，資料表 'ShopWeb.dbo.t_user'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-03 11:29:19.3656 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.UserDto.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-03 11:30:38.7451 Error System.MissingMethodException: 嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。
+2025-01-03 11:30:38.7882 Error System.MissingMethodException: 嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。
+2025-01-03 11:30:38.8340 Error System.MissingMethodException: 嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。
+2025-01-03 11:31:42.1498 Error System.Reflection.TargetInvocationException: 物件 'Pashamao.Models.Dto.UserDto.RequestCreateUserDto' 上的屬性存取子 'DropDownRole' 發生下列例外狀況:'嘗試叫用已刪除的方法實作。在應用程式執行時刪除方法或變更其名稱或簽章，便可能會發生此情況。'
+2025-01-03 11:39:45.9184 Info Application Start
+2025-01-03 11:40:11.5495 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 上午 11:40:11.
+2025-01-03 11:59:25.8828 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:01:53.5685 Info Application Start
+2025-01-03 13:02:05.4774 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 下午 01:02:05.
+2025-01-03 13:16:46.0375 Info Application Start
+2025-01-03 13:16:54.8319 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 下午 01:16:54.
+2025-01-03 13:28:09.5600 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:32:40.1372 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:33:05.1218 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:34:44.2763 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:37:50.9743 Error System.TypeLoadException: 無法從組件 'Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' 載入類型 'Invalid_Token.0x02000104'。
+2025-01-03 13:38:33.1273 Info Application Start
+2025-01-03 13:38:52.1732 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 下午 01:38:52.
+2025-01-03 13:43:09.1508 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-03 14:31:28.3409 Info Application Start
+2025-01-03 14:33:04.5546 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 下午 02:33:04.
+2025-01-03 14:58:20.6338 Info Application Start
+2025-01-03 14:58:36.8085 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/3 下午 02:58:36.

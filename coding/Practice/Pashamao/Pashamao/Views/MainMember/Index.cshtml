@@ -3,9 +3,7 @@
     ViewBag.Title = "會員管理";
 }
 <body>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/MainMember.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <main>
         <h1 class="text-center mb-3">@ViewBag.Title</h1>
         <table id="memberTable" class="table" style="table-layout:fixed" border="1">
@@ -78,7 +76,7 @@
                 let btns = document.querySelectorAll(`.btnSort`);
                 btns.forEach(btn => {
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
-                })
+                });
                 lastSelectTxbId = "";
                 lastSelectColumn = "";
                 lastSelectValue = "";
@@ -91,9 +89,8 @@
                 if (lastSelectColumn === "" || lastSelectValue === "" || lastSelectTxbId === "") {
                     getMember(lastSortBtnColumn, 1, lastSortOrder);
                 }
-                else
-                {
-                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, 1, lastSortOrder)
+                else {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, 1, lastSortOrder);
                 }
             }
 
@@ -105,25 +102,22 @@
                     newCurrentPage = oldCurrentPage - 1;
                     document.getElementById("currentPage").innerHTML = newCurrentPage;
                 }
-                else
-                {
-                    newCurrentPage = 1
+                else {
+                    newCurrentPage = 1;
                 }
 
-                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
-                {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
                     getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
-                else
-                {
-                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
+                else {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
             }
 
             function nextPage() {
                 let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
-                let maxPage = parseInt(document.getElementById("lastPage").innerHTML)
-                let newCurrentPage = oldCurrentPage
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
 
                 if (oldCurrentPage < maxPage) {
                     newCurrentPage = oldCurrentPage + 1;
@@ -137,7 +131,7 @@
                     getMember(lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
                 else {
-                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder)
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, newCurrentPage, lastSortOrder);
                 }
             }
 
@@ -145,29 +139,36 @@
                 let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
                 document.getElementById("currentPage").innerHTML = maxPage;
 
-                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
-                {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
                     getMember(lastSortBtnColumn, maxPage, lastSortOrder);
                 }
-                else
-                {
-                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, maxPage, lastSortOrder)
+                else {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, lastSortBtnColumn, maxPage, lastSortOrder);
                 }
             }
 
             function getMember(column, page, sortOrder) {
                 lastSortBtnColumn = column;
                 lastSortOrder = sortOrder;
-                axios.post("/MainMember/GetSortedMember", { Column: column, Page: page, SortOrder: sortOrder })
+                const getSortedMemberDto = {
+                    SortColumn: column,
+                    Page: page,
+                    SortOrder: sortOrder
+                };
+
+                axios.post("/MainMember/GetSortedMember", { getSortedMemberDto })
                     .then(response => {
-                        if (response.data != "noMember") {
-                            populateTable(response.data.Item1);
-                            document.getElementById("lastPage").innerHTML = response.data.Item2;
+                        let members = response.data.members;
+                        if (members != "" && members != null) {
+                            populateTable(members)
+                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
+                        } else {
+
                         }
                     })
                     .catch(error => {
                         console.error("fail", error);
-                    })
+                    });
             }
 
             function getSortedMember(btnId, column) {
@@ -177,25 +178,21 @@
                 let currentPage = document.getElementById("currentPage").innerHTML;
                 lastSortBtnColumn = column;
 
-                if (currentBackground.includes('arrowAscending.png'))
-                {
+                if (currentBackground.includes('arrowAscending.png')) {
                     sortOrder = 'Descending';
                     btn.style.backgroundImage = "url('../images/arrowDescending.png')";
                 }
-                else
-                {
+                else {
                     sortOrder = 'Ascending';
                     btn.style.backgroundImage = "url(../images/arrowAscending.png)";
                 }
                 lastSortOrder = sortOrder;
 
-                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "")
-                {
+                if (lastSelectColumn === "" | lastSelectValue === "" | lastSelectTxbId === "") {
                     getMember(column, currentPage, sortOrder);
                 }
-                else
-                {
-                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, column, currentPage, sortOrder)
+                else {
+                    selectMember(lastSelectTxbId, lastSelectColumn, lastSelectValue, column, currentPage, sortOrder);
                 }
             }
 
@@ -207,8 +204,7 @@
 
                 // 遍歷所有用戶，並創建相應的表格行
                 members.forEach((member, index) => {
-                    const row = document.createElement('tr');  // 創建一行
-                    //不想顯示可以用
+                    const row = document.createElement('tr');
 
                     // 創建並填充表格單元格
                     const rowSort = document.createElement('th');
@@ -263,7 +259,7 @@
                     const cellEditLevelBtn = document.createElement("button");
                     cellEditLevelBtn.className = "btnEditMemberLevel";
                     cellEditLevelBtn.style.backgroundImage = "url('../images/Pencel.jpg')";
-                    cellEditLevelBtn.addEventListener("click", function () { editMemberLevel(member.MemberId, member.Status, member.Level) });
+                    cellEditLevelBtn.addEventListener("click", function () { editMemberLevel(member.MemberId, member.Status, member.Level); });
                     cellEditLevel.appendChild(cellEditLevelBtn);
                     row.appendChild(cellEditLevel);
 
@@ -282,38 +278,42 @@
                 lastSelectColumn = selectColumn;
 
                 //如果說是第一次搜尋(分成找上次搜尋的資料或者新的搜尋)
-                if (value === "unknown")
-                {
+                if (value === "unknown") {
                     lastSelectValue = selectText;
                     value = selectText;
                 }
 
-                if (!regex.test(selectText))
-                {
+                if (!regex.test(selectText)) {
                     document.getElementById("searchWarning").innerText = "請輸入有效格式";
                     return;
                 }
 
                 document.getElementById("searchWarning").innerText = " ";
 
-                axios.post("/MainMember/SelectMember", { SelectColumn: selectColumn, Value: value, SortColumn: sortColumn, Page: page, SortOrder: sortOrder })
+                let getSelectMemberDto = {
+                    SelectColumn: selectColumn,
+                    Value: value,
+                    SortColumn: sortColumn,
+                    Page: page,
+                    SortOrder: sortOrder 
+                }
+
+                axios.post("/MainMember/SelectMember", { getSelectMemberDto })
                     .then(response => {
-                        if (response.data != "noMember") {
-                            let members = response.data.Item1;
-
-                            if (!Array.isArray(members)) members = [members];  // 如果是單一物件，將其包裝成陣列
-
+                        let members = response.data.members;
+                        if (members != "" && members != null) {
                             populateTable(members);
-                            document.getElementById("lastPage").innerHTML = response.data.Item2;
+                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
                         }
                         else {
                             document.getElementById("lastPage").innerHTML = 1;
                             document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            Swal.fire(response.data.errorMessage)
                         }
                     })
                     .catch(error => {
                         console.error("fail", error);
-                    })
+                    });
             }
 
             function editMemberData() {
@@ -323,14 +323,13 @@
                 let statusSelectOptions;
                 let levelSelectOptions;
                 if (status) {
-                    statusSelectOptions = `<option value="1" selected>啟用</option>` + `<option value="0" >禁用</option>`;
+                    statusSelectOptions = `<option value="true" selected>啟用</option>` + `<option value="false" >禁用</option>`;
                 } else {
-                    statusSelectOptions = `<option value="1">啟用</option>` + `<option value="0" selected>禁用</option>`;
+                    statusSelectOptions = `<option value="true">啟用</option>` + `<option value="false" selected>禁用</option>`;
                 }
                 if (level == 1) {
                     levelSelectOptions = `<option value="1" selected>普通會員</option>` + `<option value="2" >白金會員</option>` + `<option value = "3" > 鑽石會員</option > `;
-                } else if (level == 2)
-                {
+                } else if (level == 2) {
                     levelSelectOptions = `<option value="1">普通會員</option>` + `<option value="2" selected >白金會員</option>` + `<option value = "3" > 鑽石會員</option > `;
                 } else if (level == 3) {
                     levelSelectOptions = `<option value="1">普通會員</option>` + `<option value="2" >白金會員</option>` + `<option value = "3" selected > 鑽石會員</option > `;
@@ -338,15 +337,15 @@
                 Swal.fire({
                     title: '修改會員等級跟狀態',
                     html: `
-                     <label for="levelSelect">選擇等級:</label>
-                     <select id="levelSelect" class="swal-selectLevel">
-                        ${levelSelectOptions}
-                     </select>
-                     <br><br>
-                     <label for="statusSelect">選擇狀態:</label>
-                     <select id="statusSelect" class="swal-selectStatus">
-                        ${statusSelectOptions}
-                     </select>`
+                             <label for="levelSelect">選擇等級:</label>
+                             <select id="levelSelect" class="swal-selectLevel">
+                                ${levelSelectOptions}
+                             </select>
+                             <br><br>
+                             <label for="statusSelect">選擇狀態:</label>
+                             <select id="statusSelect" class="swal-selectStatus">
+                                ${statusSelectOptions}
+                             </select>`
                     ,
                     icon: 'question',
                     background: '#f0f0f0',
@@ -366,19 +365,20 @@
                             Status: result.value.statusSelect
                         })
                             .then(response => {
-                                if (response.data == "false") {
-                                    Swal.fire({ title : "修改失敗" })
+                                if (response.data.successFlag == true) {
+                                    Swal.fire("修改成功")
                                         .then((result) => {
-                                            window.location.href = "/MainMember/Index"
-                                        })
-                                } else
-                                {
-                                    window.location.href = "/MainMember/Index"
+                                            if (result.isConfirmed) {
+                                                window.location.href = "/MainMember/Index";
+                                            }
+                                        });
+                                } else {
+                                    Swal.fire(response.data.errorMessage);
                                 }
                             })
                             .catch(error => {
                                 console.error("fail", error);
-                            })
+                            });
                     }
                 });
             }

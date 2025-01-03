@@ -678,6 +678,7 @@ function submitCreatProduct() {
     const regexName = /^[^\s].{0,29}$/;
     const regexDescription = /^[\s\S]{0,40}$/;
     const regexIntroduction = /^[\s\S]{0,1500}$/;
+
     if (!regexName.test(productName)) {
         Swal.fire("請輸入30字以內商品名(第一個字不得為空)");
         return;

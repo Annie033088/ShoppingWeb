@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.AddressDto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,7 +18,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 排序地址並傳回
         /// </summary>
-        internal (List<MemberAddress>, int) GetSortedAddress(string column, int page, string sortOrder)
+        internal (List<MemberAddress> addresses, int totalPage) GetSortedAddress(RequestGetSortedAddressDto getSortedAddressDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -29,9 +30,9 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_getSortedMemberAddress @column, @page, @sortOrder, @totalPages OUTPUT";
 
-                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = column;
-                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
-                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = sortOrder;
+                cmd.Parameters.Add("@column", SqlDbType.VarChar).Value = getSortedAddressDto.SortColumn;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = getSortedAddressDto.Page;
+                cmd.Parameters.Add("@sortOrder", SqlDbType.VarChar).Value = getSortedAddressDto.SortOrder;
                 SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
                 {
                     Direction = ParameterDirection.Output

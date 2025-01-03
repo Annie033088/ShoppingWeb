@@ -1,21 +1,26 @@
-﻿namespace Pashamao.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Pashamao.Models.Dto.MemberDto
 {
-    public class Member
+    public class ResponseMainMemberDto
     {
+        public ResponseMainMemberDto(Member member)
+        {
+            MemberId = member.MemberId;
+            Email = member.Email;
+            Phone = member.Phone;
+            MemberName = member.MemberName;
+            Status = member.Status;
+            Level = member.Level;
+        }
+
         /// <summary>
         /// 會員Id
         /// </summary>
         public int MemberId { get; set; }
-
-        /// <summary>
-        /// 帳號
-        /// </summary>
-        public string Account { get; set; }
-
-        /// <summary>
-        /// 密碼
-        /// </summary>
-        public string Pwd { get; set; }
 
         /// <summary>
         /// 信箱
@@ -33,19 +38,9 @@
         public string MemberName { get; set; }
 
         /// <summary>
-        /// 錯號
-        /// </summary>
-        public string Nickname { get; set; }
-
-        /// <summary>
         /// 狀態
         /// </summary>
         public bool Status { get; set; }
-
-        /// <summary>
-        /// 累計點數
-        /// </summary>
-        public int Points { get; set; }
 
         /// <summary>
         /// 等級

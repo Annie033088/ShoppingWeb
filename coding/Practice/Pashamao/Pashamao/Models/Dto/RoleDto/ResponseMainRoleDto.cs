@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Pashamao.Models.Dto.User
+namespace Pashamao.Models.Dto.RoleDto
 {
-    public class ResponseRoleIdAndNameDto
+    public class ResponseMainRoleDto
     {
-        public ResponseRoleIdAndNameDto(Role role)
+        public ResponseMainRoleDto(Role role)
         {
             RoleId = role.RoleId;
             Name = role.Name;
+            Description = role.Description;
         }
 
         /// <summary>
-        /// roleId
+        /// 角色Id
         /// </summary>
         public int RoleId { get; set; }
 
         /// <summary>
-        /// 名
+        /// 角色名
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public string Description { get; set; }
     }
 }
