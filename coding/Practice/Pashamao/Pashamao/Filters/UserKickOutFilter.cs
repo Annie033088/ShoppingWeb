@@ -27,7 +27,7 @@ namespace Pashamao.Filters
                     bool UserStatus;
                     string UserSessionId;
                     long UserPermissions;
-                    (UserStatus, UserSessionId, UserPermissions) = userRepository.GetAtEveryRequest(userSessionModel);
+                    (UserStatus, UserSessionId, UserPermissions) = userRepository.GetUserStatusSessionIdPermissions(userSessionModel.UserId);
 
                     if (UserStatus == false)
                     {

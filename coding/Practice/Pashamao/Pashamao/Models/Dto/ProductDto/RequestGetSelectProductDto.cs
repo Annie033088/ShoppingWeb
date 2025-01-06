@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Pashamao.Models.Dto.Product
+namespace Pashamao.Models.Dto.ProductDto
 {
     public class RequestGetSelectProductDto
     {

@@ -203,18 +203,17 @@ namespace Pashamao.Controllers
         /// 刪除使用者
         /// </summary>
         [UserRoleAuthFilter(UserPermission.DelUser)]
-        public ActionResult DeleteUser(int UserId)
+        public ActionResult DeleteUser(RequestDeleteUserDto userId)
         {
             try
             {
-                //負數就return
-                if (UserId < 0)
+                if (!ModelState.IsValid || userId.UserId < 0)
                 {
                     string errorMessage = "無效的輸入格式";
                     return Json(new { errorMessage });
                 }
 
-                bool successFlag = mainUserService.DeleteUser(UserId);
+                bool successFlag = mainUserService.DeleteUser(userId.UserId);
 
                 if (successFlag)
                 {

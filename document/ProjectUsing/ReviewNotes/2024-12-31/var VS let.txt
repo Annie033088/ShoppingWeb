@@ -1,0 +1,37 @@
+var VS let
+
+1.首先最直接的差異是 var為函數作用域, 而let為區塊作用域
+
+function differenctTest() {
+  var foo = "Foo";
+  let bar = "Bar";
+
+  console.log(foo, bar); // Foo Bar
+
+  {
+    var moo = "Mooo"
+    let baz = "Bazz";
+    console.log(moo, baz); // Mooo Bazz
+  }
+
+  console.log(moo); // Mooo
+  console.log(baz); // ReferenceError
+}
+
+2.存儲函數時的 i：在 for 迴圈裡，每次創建的函數都會被保存在funcs陣列裡。但是這些函數不是立即執行，而是先被儲存起來等待後來的執行。因為每個函數在 for 迴圈中創建時，並沒有立刻捕捉 i 的當前值，它們都「記住」的是 i 這個變數，這樣它們都會在執行時拿到相同的 i 值，也就是 3。(因為i是全域的 看到的都是同個i的最終值)
+
+var funcs = [];
+// let's create 3 functions
+for (var i = 0; i < 3; i++) {
+  // and store them in funcs
+  funcs[i] = function() {
+    // each should log its value.
+    console.log("My value: " + i);
+  };
+}
+for (var j = 0; j < 3; j++) {
+  // and now let's run each one to see
+  funcs[j]();
+}
+
+3.var變數可以在聲明之前引用, 因為會先被初始化

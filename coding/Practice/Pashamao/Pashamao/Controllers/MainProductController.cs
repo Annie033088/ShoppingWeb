@@ -2,7 +2,7 @@
 using NLog;
 using Pashamao.Filters;
 using Pashamao.Models;
-using Pashamao.Models.Dto.Product;
+using Pashamao.Models.Dto.ProductDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
@@ -43,6 +43,12 @@ namespace Pashamao.Controllers
             try
             {
                 //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
                 if (getSelectProductDto.ProductId != null)
                 {
                     Guid productId = Guid.NewGuid();
@@ -53,9 +59,9 @@ namespace Pashamao.Controllers
                     }
                 }
 
-                if (getSelectProductDto.ProductName != null)
+                if (getSelectProductDto.Name != null)
                 {
-                    if (getSelectProductDto.ProductName.Length > 30)
+                    if (getSelectProductDto.Name.Length > 30)
                     {
                         string errorMessage = "錯誤的產品名稱";
                         return Json(new { errorMessage });
@@ -72,106 +78,7 @@ namespace Pashamao.Controllers
                 }
                 else
                 {
-                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
-                    return Json((new { products = mainProducts, totalPage }));
-                }
-            }
-            catch (Exception e)
-            {
-                string errorMessage = "發生錯誤，請再試一次";
-                logger.Error(e);
-                return Json(new { errorMessage });
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// 根據分類取得商品
-        /// </summary>
-        [HttpPost]
-        public ActionResult GetProductByCategory(int CategoryId, int Page)
-        {
-            try
-            {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByCategory(CategoryId, Page);
-
-                if (products == null)
-                {
-                    string errorMessage = "沒找到商品";
-                    return Json(new { errorMessage });
-                }
-                else
-                {
-                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
-                    return Json((new { products = mainProducts, totalPage }));
-                }
-            }
-            catch (Exception e)
-            {
-                string errorMessage = "發生錯誤，請再試一次";
-                logger.Error(e);
-                return Json(new { errorMessage });
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// 根據商品id取得商品
-        /// </summary>
-        [HttpPost]
-        public ActionResult GetProductById(string ProductId, int Page)
-        {
-            try
-            {
-                Guid productId = new Guid();
-                bool successFlag = Guid.TryParse(ProductId, out productId);
-
-                if (!successFlag)
-                {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
-                }
-
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductById(productId, Page);
-
-                if (products == null)
-                {
-                    string errorMessage = "沒找到商品";
-                    return Json(new { errorMessage });
-                }
-                else
-                {
-                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
-                    return Json((new { products = mainProducts, totalPage }));
-                }
-            }
-            catch (Exception e)
-            {
-                string errorMessage = "發生錯誤，請再試一次";
-                logger.Error(e);
-                return Json(new { errorMessage });
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// 根據名稱取得商品
-        /// </summary>
-        [HttpPost]
-        public ActionResult GetProductByName(string ProductName, int Page)
-        {
-            try
-            {
-                (List<ProductDetail> products, int totalPage) = mainProductService.GetProductByName(ProductName, Page);
-
-                if (products == null)
-                {
-                    string errorMessage = "沒找到商品";
-                    return Json(new { errorMessage });
-                }
-                else
-                {
-                    List<MainProductDto> mainProducts = products.Select(product => new MainProductDto(product)).ToList();
+                    List<ResponseMainProductDto> mainProducts = products.Select(product => new ResponseMainProductDto(product)).ToList();
                     return Json((new { products = mainProducts, totalPage }));
                 }
             }
@@ -188,9 +95,9 @@ namespace Pashamao.Controllers
         /// 轉到創建商品頁面
         /// </summary>
         [UserRoleAuthFilter(UserPermission.CreateProduct)]
-        public ActionResult CreateProduct()
+        public ActionResult GetCreateProductView()
         {
-            return View();
+            return View("CreateProduct");
         }
 
         /// <summary>
@@ -198,16 +105,33 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.CreateProduct)]
         [HttpPost]
-        public ActionResult SubmitCreateProduct(ProductDetail productDetail, List<ProductStyle> StyleList, List<string> ImageList)
+        public ActionResult CreateProduct(RequestCreateProductDto createProductDto)
         {
             try
             {
-                bool successFlag = mainProductService.CreateProduct(productDetail, StyleList, ImageList);
-                return Json(successFlag);
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = mainProductService.CreateProduct(createProductDto);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -217,16 +141,38 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.DelProduct)]
         [HttpPost]
-        public ActionResult DeleteProduct(string ProductId)
+        public ActionResult DeleteProduct(RequestDeleteProductDto productId)
         {
             try
             {
-                bool successFlag = mainProductService.DeleteProduct(ProductId);
-                return Json(successFlag, JsonRequestBehavior.AllowGet);
+                if (!ModelState.IsValid)
+                {
+                    // 輸出錯誤訊息，查看錯誤的詳細內容
+                    foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = mainProductService.DeleteProduct(productId.ProductId);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -235,30 +181,37 @@ namespace Pashamao.Controllers
         /// 取得商品的介紹、圖片跟樣式等等
         /// </summary>
         [UserRoleAuthFilter(UserPermission.EditProduct)]
-        public ActionResult ProductDetail(string ProductId)
+        public ActionResult ProductDetail(string productId)
         {
             try
             {
-                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(ProductId);
-                ProductDetailDto productDetail = new ProductDetailDto(product);
-                List<ProductStyleDto> productStyle = styles.Select(style => (new ProductStyleDto(style))).ToList();
+                //驗證前端資料
+                Guid productIdGuid = Guid.NewGuid();
 
-                if (images == null)
+                if (!Guid.TryParse(productId, out productIdGuid))
                 {
-                    string jsonData = JsonConvert.SerializeObject((productDetail, productStyle, "noImage"));
-                    ViewBag.JsonData = jsonData;
-                }
-                else
-                {
-                    string jsonData = JsonConvert.SerializeObject((productDetail, productStyle, images));
-                    ViewBag.JsonData = jsonData;
+                    string errorMessage = "錯誤的產品Id";
+                    return Json(new { errorMessage });
                 }
 
+                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(productIdGuid);
+
+                ResponseProductDetailDto productDetail = new ResponseProductDetailDto
+                {
+                    SelectProductDetailDto = new ResponseSelectProductDetailDto(product),
+                    SelectProductStyleDto = styles.Select(style => (new ResponseSelectProductStyleDto(style))).ToList(),
+                    SelectProductImages = images
+                };
+
+                string jsonData = JsonConvert.SerializeObject((new { productDetail }));
+                ViewBag.JsonData = jsonData;
                 return View();
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -268,16 +221,34 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
-        public ActionResult SubmitEditProduct(ProductDetail Product)
+        public ActionResult EditProduct(RequestEditProductDetailDto product)
         {
             try
             {
-                bool successFlag = mainProductService.EditProduct(Product);
-                return Json(successFlag);
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = mainProductService.EditProduct(product);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -291,17 +262,46 @@ namespace Pashamao.Controllers
         {
             try
             {
+                //驗證前端資料
                 var files = Request.Files;
-                string productId = Request.Form["ProductId"];
-                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
-                List<ProductImage> delOldImageList = JsonConvert.DeserializeObject<List<ProductImage>>(Request.Form["DelImageList"]);
-                bool successFlag = mainProductService.EditProductImage(productId, lastEditTime, delOldImageList, files);
 
-                return Json(successFlag);
+                Guid productId = new Guid();
+
+                if (!Guid.TryParse(Request.Form["ProductId"], out productId))
+                {
+                    string errorMessage = "錯誤的產品Id";
+                    return Json(new { errorMessage });
+                }
+
+                DateTime lastEditTime = new DateTime();
+
+                if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                List<int> delImageIdList = JsonConvert.DeserializeObject<List<int>>(Request.Form["DelImageList"]);
+
+                //先判斷圖片Id的陣列是否為空 再檢查id是不是小於0
+                if (delImageIdList.Count != 0)
+                {
+                    if(delImageIdList.All(id => id < 0))
+                    {
+                        string errorMessage = "無效的輸入";
+                        return Json(new { errorMessage });
+                    }
+                }
+
+                bool successFlag = mainProductService.EditProductImage(productId, lastEditTime, delImageIdList, files);
+
+                return Json(new { successFlag });
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -316,15 +316,38 @@ namespace Pashamao.Controllers
             try
             {
                 var files = Request.Files;
-                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
+                DateTime lastEditTime = new DateTime();
+
+                if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                if (Request.Form["EditStyle"] == null)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
                 ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
                 string ImageType = Request.Form["ImageType"];
-                bool success = mainProductService.EditProductStyle(EditStyle, files, ImageType, lastEditTime);
-                return Json(success);
+                bool successFlag = mainProductService.EditProductStyle(EditStyle, files, ImageType, lastEditTime);
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "修改失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -339,15 +362,39 @@ namespace Pashamao.Controllers
             try
             {
                 var files = Request.Files;
-                DateTime lastEditTime = DateTime.Parse(Request.Form["LastEditTime"]);
+                DateTime lastEditTime = new DateTime();
+
+                if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                if (Request.Form["AddStyle"] == null)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
                 ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
                 string ImageType = Request.Form["ImageType"];
-                bool success = mainProductService.AddProductStyle(AddStyle, files, ImageType, lastEditTime);
-                return Json(success);
+                bool successFlag = mainProductService.AddProductStyle(AddStyle, files, ImageType, lastEditTime);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "新增失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
@@ -357,19 +404,36 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.EditProduct)]
         [HttpPost]
-        public ActionResult DeleteProductStyle(int ProductStyleId, Guid ProductId, DateTime LastEditTime)
+        public ActionResult DeleteProductStyle(RequestDeleteProductStyleDto deleteProductStyleDto)
         {
             try
             {
-                bool success = mainProductService.DeleteProductStyle(ProductStyleId, ProductId, LastEditTime);
-                return Json(success);
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    string errorMessage = "無效的輸入格式";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = mainProductService.DeleteProductStyle(deleteProductStyleDto);
+
+                if (successFlag)
+                {
+                    return Json(new { successFlag });
+                }
+                else
+                {
+                    string errorMessage = "刪除失敗";
+                    return Json(new { errorMessage });
+                }
             }
             catch (Exception e)
             {
+                string errorMessage = "發生錯誤, 請再試一次";
                 logger.Error(e);
+                return Json(new { errorMessage });
                 throw e;
             }
         }
-
     }
 }

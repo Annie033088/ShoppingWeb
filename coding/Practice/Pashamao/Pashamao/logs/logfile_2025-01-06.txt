@@ -1,0 +1,481 @@
+2025-01-06 09:00:25.4378 Info Application Start
+2025-01-06 09:04:06.6972 Info Application Start
+2025-01-06 09:08:54.6977 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 上午 09:08:54.
+2025-01-06 09:09:02.6233 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:09:02.6862 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:09:02.7340 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:09:17.1054 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:09:17.1832 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:09:17.2639 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:10:31.3123 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:10:31.3705 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 09:10:31.4257 Error System.Data.SqlClient.SqlException: 參數化查詢 '(@categoryId int,@productId uniqueidentifier,@name nvarchar(4000' 必須有參數 '@name'，但未提供。
+2025-01-06 10:11:09.1632 Info Application End
+2025-01-06 10:11:15.2356 Info Application Start
+2025-01-06 10:20:41.5465 Info Application Start
+2025-01-06 10:20:53.8949 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 上午 10:20:53.
+2025-01-06 10:58:50.9694 Info Application End
+2025-01-06 10:59:04.9081 Info Application Start
+2025-01-06 11:01:56.5678 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 上午 11:01:56.
+2025-01-06 11:10:26.4064 Info Application Start
+2025-01-06 11:10:38.3210 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 上午 11:10:38.
+2025-01-06 11:11:09.5077 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-06 11:11:09.5157 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-06 11:40:41.4916 Info Application End
+2025-01-06 11:40:53.3118 Info Application Start
+2025-01-06 11:41:04.2813 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 上午 11:41:04.
+2025-01-06 13:57:22.1231 Info Application Start
+2025-01-06 13:58:52.6443 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 01:58:52.
+2025-01-06 13:59:51.0914 Error System.ArgumentException: 資料行 '_' 不屬於資料表 。
+2025-01-06 13:59:51.1582 Error System.ArgumentException: 資料行 '_' 不屬於資料表 。
+2025-01-06 13:59:51.1821 Error System.ArgumentException: 資料行 '_' 不屬於資料表 。
+2025-01-06 14:37:48.1854 Info Application Start
+2025-01-06 14:38:05.4611 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 02:38:05.
+2025-01-06 14:40:12.1582 Info Application Start
+2025-01-06 14:40:20.8843 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 02:40:20.
+2025-01-06 14:57:13.5692 Info Application End
+2025-01-06 14:57:23.2367 Info Application Start
+2025-01-06 14:57:38.3788 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 02:57:38.
+2025-01-06 14:57:38.5575 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:57:38.6193 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:57:53.2514 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:57:56.1220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:57:56.1848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:57:58.7058 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:01.7991 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:01.8539 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:04.2565 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:05.6970 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:05.7598 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.0260 Info Application Start
+2025-01-06 14:58:34.3581 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.3671 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.3671 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9306 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9306 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9306 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9515 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9515 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9515 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9615 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9615 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9615 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9705 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:34.9940 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0070 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0220 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0339 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0529 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:35.0658 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1323 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1323 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1323 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1473 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1603 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1802 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.1942 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.2211 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7517 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:36.7844 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8282 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8282 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8282 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8382 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8382 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8382 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8462 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8612 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8811 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.8961 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9120 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9260 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:41.9572 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5319 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5329 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5329 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5329 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5329 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5329 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5568 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5568 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:50.5568 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0848 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.0973 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1125 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1274 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1454 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1589 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1739 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1739 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1739 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.1921 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:51.2051 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2536 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2725 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2855 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.2984 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3194 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3353 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3353 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3353 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3554 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3554 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3554 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.3614 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8845 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.8969 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.9129 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.9129 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:52.9129 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3484 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3768 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.3935 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4100 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4240 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4400 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4549 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4549 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4549 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4549 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4732 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.4882 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.5071 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.5071 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:55.5071 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5559 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5559 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5559 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5749 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5749 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:56.5749 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.0896 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.0896 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.0896 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.1045 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.1045 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.1045 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6336 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6336 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6336 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6716 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6876 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6876 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.6876 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7055 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7356 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7356 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7356 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7416 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7416 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7416 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7548 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7548 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:57.7548 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:58.2707 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:58.2707 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:58:58.2707 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:09.1793 Info Application Start
+2025-01-06 14:59:17.7624 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 02:59:17.
+2025-01-06 14:59:17.8666 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:17.9436 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:20.0904 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:23.4379 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:23.5047 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 14:59:33.9602 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 15:01:02.7664 Info Application Start
+2025-01-06 15:02:15.8792 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 03:02:15.
+2025-01-06 15:02:18.8226 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 15:02:18.8918 Error System.Data.SqlClient.SqlException: 運算元類型衝突: int 與 uniqueidentifier 不相容
+2025-01-06 15:02:50.1306 Info Application Start
+2025-01-06 15:04:10.2693 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 03:04:10.
+2025-01-06 17:19:55.6041 Info Application Start
+2025-01-06 17:20:47.3728 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 05:20:47.
+2025-01-06 17:23:34.6966 Info Application Start
+2025-01-06 17:24:18.7877 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 05:24:18.
+2025-01-06 17:31:44.7166 Info Application Start
+2025-01-06 17:32:12.1699 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 05:32:12.
+2025-01-06 17:38:08.2585 Info Application Start
+2025-01-06 17:38:40.5703 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 05:38:40.
+2025-01-06 18:11:34.2160 Info Application Start
+2025-01-06 18:11:48.8131 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 06:11:48.
+2025-01-06 18:12:36.0869 Info User 'PB7m9JsNaRK0' logged in successfully at 2025/1/6 下午 06:12:36.
+2025-01-06 18:13:22.8765 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 06:13:22.
+2025-01-06 18:14:19.3316 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 06:14:19.
+2025-01-06 18:14:56.7443 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 06:14:56.
+2025-01-06 18:25:28.6484 Info Application End
+2025-01-06 18:25:36.4384 Info Application Start
+2025-01-06 18:25:58.1857 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/6 下午 06:25:58.
+2025-01-06 18:28:52.0666 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/6 下午 06:28:52.

@@ -5,7 +5,7 @@ let imageTotal = 0;
 function getImageAndEdit() {
     let imgHtml = "";
     let addImageList = [];
-    let delOldImageList = []
+    let delOldImageList = [];
     let images = document.querySelectorAll(".displayImage");
     let imagesHtmlStrings = [];
     let imageCount = 0;
@@ -17,7 +17,7 @@ function getImageAndEdit() {
                         <img id="${image.id}" src="${image.src}" class="img-fluid" />
                         <p class="imageName">${image.id}</p>
                         <button class = "btn btnDeleteImage" style=""  data-id="${image.id}">
-                    </div>`
+                    </div>`;
             imagesHtmlStrings.push(html);
             imageCount++;
         });
@@ -51,7 +51,7 @@ function getImageAndEdit() {
             inputElement.accept = "image/*";
             inputElement.style.display = "none";
             btnAddImage.id = "btnUploadImage";
-            btnAddImage.className = "btn btnAdd"
+            btnAddImage.className = "btn btnAdd";
 
             imgUploadBox.appendChild(btnAddImage);
             imgUploadBox.appendChild(inputElement);
@@ -147,11 +147,11 @@ function getImageAndEdit() {
                 reader.readAsDataURL(file);
             });
 
-            const buttons = document.querySelectorAll('.btnDeleteImage')
+            const buttons = document.querySelectorAll('.btnDeleteImage');
             buttons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const btn = event.target;
-                    delOldImageList.push(btn.dataset.id)
+                    delOldImageList.push(btn.dataset.id);
                     const parentDiv = btn.parentElement;
 
                     imageCount--;
@@ -187,7 +187,7 @@ function getImageAndEdit() {
                     const parentDiv = image.parentElement;
                     parentDiv.remove();
                     imageTotal--;
-                })
+                });
             }
 
             updateImageDisplay();
@@ -247,7 +247,7 @@ function addStyle() {
                             <span id="txtStatus" class="input-group-text">上/下架</span>
                             <button id="btnStatusOn" class="btn btn-outline-dark opacity-50">上架</button>
                             <button id="btnStatusOff" class="opacity-100 btn btn-dark" >下架</button>
-                        </div>`
+                        </div>`;
 
     Swal.fire({
         title: '新增細項',
@@ -327,11 +327,11 @@ function addStyle() {
             btnStatusOn.addEventListener("click", function () {
                 btnStatusOn.className = "opacity-100 btn btn-dark";
                 btnStatusOff.className = "btn btn-outline-dark opacity-50";
-            })
+            });
             btnStatusOff.addEventListener("click", function () {
                 btnStatusOn.className = "btn btn-outline-dark opacity-50";
                 btnStatusOff.className = "opacity-100 btn btn-dark";
-            })
+            });
 
         },
         preConfirm: () => {
@@ -348,7 +348,7 @@ function addStyle() {
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
-            }
+            };
 
             let imageName = document.getElementById("addStyleImage").dataset.id;
 
@@ -391,7 +391,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                           <span id="txtStatus" class="input-group-text">上/下架</span>
                           <button id="btnStatusOn" class="opacity-100 btn btn-dark">上架</button>
                           <button id="btnStatusOff" class="btn btn-outline-dark opacity-50" >下架</button>
-                      </div>`
+                      </div>`;
     }
     else {
         htmlStatus = `
@@ -399,7 +399,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                           <span id="txtStatus" class="input-group-text">上/下架</span>
                           <button id="btnStatusOn" class="btn btn-outline-dark opacity-50">上架</button>
                           <button id="btnStatusOff" class="opacity-100 btn btn-dark" >下架</button>
-                      </div>`
+                      </div>`;
     }
 
     Swal.fire({
@@ -479,11 +479,11 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             btnStatusOn.addEventListener("click", function () {
                 btnStatusOn.className = "opacity-100 btn btn-dark";
                 btnStatusOff.className = "btn btn-outline-dark opacity-50";
-            })
+            });
             btnStatusOff.addEventListener("click", function () {
                 btnStatusOn.className = "btn btn-outline-dark opacity-50";
                 btnStatusOff.className = "opacity-100 btn btn-dark";
-            })
+            });
 
         },
         preConfirm: () => {
@@ -507,7 +507,7 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
-            }
+            };
 
 
             //驗證輸入符合訊息
@@ -599,7 +599,7 @@ function addStyleRow(styleData, imageSrc, imageName) {
             Price: priceInRow.textContent,
             StockQuantity: quantityInRow.textContent,
             Status: status,
-        }
+        };
         newImageSrc = imageInRow.src;
         newImageName = imageInRow.dataset.id;
         editStyle(newStyleData, newImageSrc, newImageName, row.id);
@@ -646,7 +646,7 @@ function delStyle(id) {
             const row = document.getElementById(id);
             row.remove();
         }
-    })
+    });
 }
 
 function setProductStatusOn() {
@@ -710,7 +710,7 @@ function submitCreatProduct() {
         CategoryId: productCategory,
         Introduction: productIntroduce,
         Status: productStatus,
-    }
+    };
 
     const tableBody = document.querySelector("tbody");
     const styleRows = tableBody.querySelectorAll("tr");
@@ -746,33 +746,32 @@ function submitCreatProduct() {
             StockQuantity: quantityInRow,
             Status: status,
             ImageUrl: imageSrc
-        }
+        };
         styleList.push(style);
-    })
+    });
 
-    axios.post("/MainProduct/SubmitCreateProduct", {
-        ProductDetail: product,
-        StyleList: styleList,
-        ImageList: imageList
+    let createProductDto = {
+        ProductDetailDto: product,
+        ProductStyleDto: styleList,
+        DisplayImageUrl: imageList
+    };
+
+    axios.post("/MainProduct/CreateProduct", {
+        createProductDto
     })
         .then(response => {
-            if (response.data == true) {
+            if (response.data.successFlag == true) {
                 Swal.fire("新增成功!")
                     .then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = `/MainProduct/Index`;
                         }
-                    })
+                    });
             } else {
-                Swal.fire("新增失敗!")
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/CreateProduct`;
-                        }
-                    })
+                Swal.fire(response.data.errorMessage)
             }
         })
         .catch(error => {
             console.error("fail", error);
-        })
+        });
 }

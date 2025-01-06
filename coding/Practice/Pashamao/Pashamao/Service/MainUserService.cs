@@ -22,44 +22,52 @@ namespace Pashamao.Service
         /// </summary>
         internal (List<User> users, int totalPage) GetSortedUser(RequestGetSortedUserDto sortedUserDto)
         {
-            bool haveThisColumn = false;
-
-            if (sortedUserDto.SortColumn == "UserId")
+            try
             {
-                sortedUserDto.SortColumn = "f_userId";
-                haveThisColumn = true;
-            }
+                bool haveThisColumn = false;
 
-            if (sortedUserDto.SortColumn == "Account")
+                if (sortedUserDto.SortColumn == "UserId")
+                {
+                    sortedUserDto.SortColumn = "f_userId";
+                    haveThisColumn = true;
+                }
+
+                if (sortedUserDto.SortColumn == "Account")
+                {
+                    sortedUserDto.SortColumn = "f_account";
+                    haveThisColumn = true;
+                }
+
+                if (sortedUserDto.SortColumn == "Name")
+                {
+                    sortedUserDto.SortColumn = "f_name";
+                    haveThisColumn = true;
+                }
+
+                if (sortedUserDto.SortColumn == "Status")
+                {
+                    sortedUserDto.SortColumn = "f_status";
+                    haveThisColumn = true;
+                }
+
+                if (sortedUserDto.SortColumn == "RoleId")
+                {
+                    sortedUserDto.SortColumn = "f_roleId";
+                    haveThisColumn = true;
+                }
+
+                if (haveThisColumn)
+                {
+                    return userRepository.GetSortedUser(sortedUserDto);
+                }
+
+                return (null, 0);
+            }
+            catch (Exception e)
             {
-                sortedUserDto.SortColumn = "f_account";
-                haveThisColumn = true;
+                logger.Error(e);
+                throw e;
             }
-
-            if (sortedUserDto.SortColumn == "Name")
-            {
-                sortedUserDto.SortColumn = "f_name";
-                haveThisColumn = true;
-            }
-
-            if (sortedUserDto.SortColumn == "Status")
-            {
-                sortedUserDto.SortColumn = "f_status";
-                haveThisColumn = true;
-            }
-
-            if (sortedUserDto.SortColumn == "RoleId")
-            {
-                sortedUserDto.SortColumn = "f_roleId";
-                haveThisColumn = true;
-            }
-
-            if (haveThisColumn)
-            {
-                return userRepository.GetSortedUser(sortedUserDto);
-            }
-
-            return (null, 0);
         }
 
         /// <summary>
@@ -113,6 +121,7 @@ namespace Pashamao.Service
             }
             catch (Exception e)
             {
+                logger.Error(e);
                 throw e;
             }
         }

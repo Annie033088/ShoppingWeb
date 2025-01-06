@@ -1,48 +1,48 @@
 1.甚麼情況會需要升級套件的版本
 
-2.資料送到後端的時候需要進行篩選 為防止惡意攻擊的資料傳遞近來 (前端是防止無效輸入 無效請求
+2.資料送到後端的時候需要進行篩選 為防止惡意攻擊的資料傳遞近來 (前端是防止無效輸入 無效請求 ok
 
-3.js名稱要符合功能	ok
+3.js名稱要符合功能 ok
 
-6.權限設定需要調整 (權限要擴充需要想到解決方式)
+5.權限設定需要調整 (權限要擴充需要想到解決方式) ok
 
-7.程式碼複用檢查, 包括controller用的service也可以 (filter需要檢查, userRepository可以設定到外面進行複用, 會緩存起來 不會重新new物件
+6.程式碼複用檢查, 包括controller用的service也可以 (filter的userRepository) ok
 
-8.Serializable的用途
+7.Serializable(標註)的用途:序列化是將物件轉換成可儲存或傳輸的格式（如二進制格式或 JSON 格式）的過程 ok
 
-9.getAtEveryRequest要改名稱
+8.getAtEveryRequest要改名稱 ok
 
-10.filter要檢查流程
+9.filter要檢查流程 ok
 
-11.權限被異動 重新登入比較好 ok
+10.權限被異動 重新登入比較好 ok
 
-12.如果有兩個以上的重複程式碼 就可以做抽離重購
+11.如果有兩個以上的重複程式碼 就可以做抽離重構 ok
 
-13.避免魔術數字(db有魔術數字)
+12.避免魔術數字(db有魔術數字) ok
 
-14.action接收的變數不需要加上 lastselect
+13.action接收的變數不需要加上 lastselect ok
 
-15.設定轉導到商品頁面的action名稱
+14.設定轉導到商品頁面的action名稱 ok
 
-16.summary先不用設定param	ok
+15.summary先不用設定param ok
 
-17.呼叫service的時候try catch的 error 沒設定好
+16.呼叫service的時候try catch的 error 沒設定好 ok
 
-18.inuramble vs tolist
+17.inumerable vs tolist ok
 
-19.tuple 多種型別回傳的時候可以設定變數 比較好閱讀
+18.tuple 多種型別回傳的時候可以設定變數 比較好閱讀 ok
 
-20.createproduct可以把appdirectory放到try裡面
+19.createproduct可以把appdirectory放到try裡面 ok
 
-21.套件管理需要統一(方便維護的問題) ok
+20.套件管理需要統一(方便維護的問題) ok
 
-22.var vs let
+21.var vs let ok
 
-23.匿名涵式
-
-24.前端從後端拿到資料的名稱需要一眼看去可理解(item1, item2...) ok
+22.前端從後端拿到資料的名稱需要一眼看去可理解(item1, item2...) ok
 
 
 
 -----------------------擴充學習的部分
-4.vs 處理js的格式化工具
+.vs 處理js的格式化工具
+
+.匿名涵式 : 匿名function賦值給變數。然後可以通過變數來呼叫它

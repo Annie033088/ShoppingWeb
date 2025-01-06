@@ -1,7 +1,6 @@
-﻿
-let product = jsonData.Item1;
-let styles = jsonData.Item2;
-let images = jsonData.Item3;
+﻿let product = productData.productDetail.SelectProductDetailDto;
+let styles = productData.productDetail.SelectProductStyleDto;
+let images = productData.productDetail.SelectProductImages;
 
 //計算展示圖片的代數
 let currentImageIndex = 0;
@@ -252,11 +251,7 @@ function getImageAndEdit() {
                     const image = document.getElementById(imgId);
                     var machingImage = images.filter(img => img.ProductImageId == image.dataset.id);
                     if (machingImage.length > 0) {
-                        var delImage = {
-                            ProductImageId: machingImage[0].ProductImageId,
-                            ImageUrl: machingImage[0].ImageUrl
-                        }
-                        delImageList.push(delImage);
+                        delImageList.push(machingImage[0].ProductImageId);
                     }
 
                     const parentDiv = image.parentElement;
@@ -477,18 +472,18 @@ function addStyle() {
                 }
             })
                 .then(response => {
-                    if (response.data == true) {
+                    if (response.data.successFlag == true) {
                         Swal.fire("新增成功!")
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     } else {
-                        Swal.fire("新增失敗! 商品已被異動!")
+                        Swal.fire(response.data.errorMessage)
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     }
@@ -681,18 +676,18 @@ function editStyle(styleData, imageSrc, id) {
                 }
             })
                 .then(response => {
-                    if (response.data == true) {
+                    if (response.data.successFlag == true) {
                         Swal.fire("修改成功!")
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     } else {
-                        Swal.fire("修改失敗! 商品已被異動")
+                        Swal.fire(response.data.errorMessage)
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     }
@@ -801,18 +796,18 @@ function delStyle(styleId) {
                 LastEditTime: product.LastEditTime
             })
                 .then(response => {
-                    if (response.data == true) {
+                    if (response.data.successFlag == true) {
                         Swal.fire("刪除成功!")
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     } else {
-                        Swal.fire("刪除失敗! 商品已被異動!")
+                        Swal.fire(response.data.errorMessage)
                             .then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                                 }
                             })
                     }
@@ -883,21 +878,21 @@ function submitEditProduct() {
         return;
     }
 
-    axios.post("/MainProduct/SubmitEditProduct", { Product: newProduct })
+    axios.post("/MainProduct/EditProduct", { Product: newProduct })
         .then(response => {
             console.log(response)
-            if (response.data == true) {
+            if (response.data.successFlag == true) {
                 Swal.fire("修改成功!")
                     .then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                         }
                     })
             } else {
-                Swal.fire("修改失敗! 商品已被異動!")
+                Swal.fire(response.data.errorMessage)
                     .then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                         }
                     })
             }
@@ -947,18 +942,18 @@ function submitEditImage() {
         }
     })
         .then(response => {
-            if (response.data == true) {
+            if (response.data.successFlag == true) {
                 Swal.fire("修改成功!")
                     .then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                         }
                     })
             } else {
-                Swal.fire("修改失敗! 商品已被異動")
+                Swal.fire(response.data.errorMessage)
                     .then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?ProductId=${product.ProductId}`;
+                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                         }
                     })
             }

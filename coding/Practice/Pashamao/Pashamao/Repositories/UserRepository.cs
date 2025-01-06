@@ -74,7 +74,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得 sessionId, status 跟權限
         /// </summary>
-        internal (bool, string, long) GetAtEveryRequest(UserSessionModel userSession)
+        internal (bool status, string sessionId, long permissions) GetUserStatusSessionIdPermissions(int userId)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -83,8 +83,8 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAtEveryRequest @userId";
-                cmd.Parameters.Add("@userId", SqlDbType.Int).Value = userSession.UserId;
+                cmd.CommandText = "EXEC pro_pashamao_getStatusSessionIdPermissions @userId";
+                cmd.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
 
                 cmd.Connection.Open();
 

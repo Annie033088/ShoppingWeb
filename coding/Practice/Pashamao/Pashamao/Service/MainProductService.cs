@@ -1,6 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
-using Pashamao.Models.Dto.Product;
+using Pashamao.Models.Dto.ProductDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
@@ -39,61 +39,13 @@ namespace Pashamao.Service
         }
 
         /// <summary>
-        /// 根據分類取得商品
-        /// </summary>
-        public (List<ProductDetail> products, int totalPage) GetProductByCategory(int categoryId, int page)
-        {
-            try
-            {
-                return mainProductRepository.GetProductByCategory(categoryId, page);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 根據搜尋ID取得商品
-        /// </summary>
-        public (List<ProductDetail> products, int totalPage) GetProductById(Guid productId, int page)
-        {
-            try
-            {
-                return mainProductRepository.GetProductById(productId, page);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 根據搜尋名取得商品
-        /// </summary>
-        public (List<ProductDetail> products, int totalPage) GetProductByName(string productName, int page)
-        {
-            try
-            {
-                return mainProductRepository.GetProductByName(productName, page);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw;
-            }
-        }
-
-        /// <summary>
         /// 取得商品詳細資訊
         /// </summary>
-        public (ProductDetail productDetail, List<ProductStyle> productStyles, List<ProductImage> productImages) GetProductDetail(string productId)
+        public (ProductDetail productDetail, List<ProductStyle> productStyles, List<ProductImage> productImages) GetProductDetail(Guid productId)
         {
             try
             {
-                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductRepository.GetProductDetail(Guid.Parse(productId));
+                (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductRepository.GetProductDetail(productId);
 
                 return (product, styles, images);
             }
@@ -107,33 +59,33 @@ namespace Pashamao.Service
         /// <summary>
         /// 創建商品
         /// </summary>
-        public bool CreateProduct(ProductDetail product, List<ProductStyle> StyleList, List<string> ImageList)
+        public bool CreateProduct(RequestCreateProductDto createProductDto)
         {
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            Directory.SetCurrentDirectory(appDirectory);
             //把新增的檔案路徑加進來, 如果失敗就可以根據路徑刪除
             List<string> addImageUrlList = new List<string>();
 
             try
             {
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                Directory.SetCurrentDirectory(appDirectory);
                 Guid newGuid = Guid.NewGuid();
-                product.ProductId = newGuid;
-                string folderPath = appDirectory + @"images\productImage\" + product.ProductId;
+                createProductDto.ProductDetailDto.ProductId = newGuid;
+                string folderPath = appDirectory + @"images\productImage\" + createProductDto.ProductDetailDto.ProductId;
 
-                if (ImageList != null)
+                if (createProductDto.DisplayImageUrl != null)
                 {
-                    for (int i = 0; i < ImageList.Count; i++)
+                    for (int i = 0; i < createProductDto.DisplayImageUrl.Count; i++)
                     {
                         string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + i;
 
                         //mimeType的取得方式是根據前端傳遞過來的 base64 string進行擷取 (data:image/jpeg;base64, ~) => (image/jpeg)
-                        string mimeType = ImageList[i].Substring(5, ImageList[i].IndexOf(";") - 5);
+                        string mimeType = createProductDto.DisplayImageUrl[i].Substring(5, createProductDto.DisplayImageUrl[i].IndexOf(";") - 5);
 
                         //副檔名
                         string imageType = "";
 
                         //取得圖片的base64跟byte
-                        string base64String = ImageList[i].Substring(ImageList[i].IndexOf(",") + 1);
+                        string base64String = createProductDto.DisplayImageUrl[i].Substring(createProductDto.DisplayImageUrl[i].IndexOf(",") + 1);
                         byte[] imageBytes = Convert.FromBase64String(base64String);
 
                         switch (mimeType)
@@ -156,31 +108,31 @@ namespace Pashamao.Service
                         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
                         File.WriteAllBytes(filePath, imageBytes);
-                        ImageList[i] = @"\images\productImage\" + product.ProductId + @"\" + fileName + imageType;
+                        createProductDto.DisplayImageUrl[i] = @"\images\productImage\" + createProductDto.ProductDetailDto.ProductId + @"\" + fileName + imageType;
                         addImageUrlList.Add(filePath);
                     }
                 }
                 else
                 {
-                    ImageList = new List<string>();
+                    createProductDto.DisplayImageUrl = new List<string>();
                 }
 
                 //新增style圖片
-                for (int i = 0; i < StyleList.Count; i++)
+                for (int i = 0; i < createProductDto.ProductStyleDto.Count; i++)
                 {
                     string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + (i + 10);
-                    string a = StyleList[i].ImageUrl;
+                    string a = createProductDto.ProductStyleDto[i].ImageUrl;
 
-                    if (StyleList[i].ImageUrl != null)
+                    if (createProductDto.ProductStyleDto[i].ImageUrl != null)
                     {
                         //mimeType的取得方式是根據前端傳遞過來的 base64 string進行擷取 (data:image/jpeg;base64, ~) => (image/jpeg)
-                        string mimeType = StyleList[i].ImageUrl.Substring(5, StyleList[i].ImageUrl.IndexOf(";") - 5);
+                        string mimeType = createProductDto.ProductStyleDto[i].ImageUrl.Substring(5, createProductDto.ProductStyleDto[i].ImageUrl.IndexOf(";") - 5);
 
                         //副檔名
                         string imageType = "";
 
                         //取得圖片的base64跟byte
-                        string base64String = StyleList[i].ImageUrl.Substring(StyleList[i].ImageUrl.IndexOf(",") + 1);
+                        string base64String = createProductDto.ProductStyleDto[i].ImageUrl.Substring(createProductDto.ProductStyleDto[i].ImageUrl.IndexOf(",") + 1);
                         byte[] imageBytes = Convert.FromBase64String(base64String);
 
                         switch (mimeType)
@@ -203,16 +155,16 @@ namespace Pashamao.Service
                         if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
                         File.WriteAllBytes(filePath, imageBytes);
-                        StyleList[i].ImageUrl = @"\images\productImage\" + product.ProductId + @"\" + fileName + imageType;
+                        createProductDto.ProductStyleDto[i].ImageUrl = @"\images\productImage\" + createProductDto.ProductDetailDto.ProductId + @"\" + fileName + imageType;
                         addImageUrlList.Add(filePath);
                     }
                     else
                     {
-                        StyleList[i].ImageUrl = string.Empty;
+                        createProductDto.ProductStyleDto[i].ImageUrl = string.Empty;
                     }
                 }
 
-                bool addFlag = mainProductRepository.AddProduct(product, StyleList, ImageList);
+                bool addFlag = mainProductRepository.CreateProduct(createProductDto);
 
                 //失敗的話就刪除圖片檔案
 
@@ -239,11 +191,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除商品
         /// </summary>
-        public bool DeleteProduct(string productId)
+        public bool DeleteProduct(Guid productId)
         {
             try
             {
-                bool delSuccess = mainProductRepository.DeleteProduct(Guid.Parse(productId));
+                bool delSuccess = mainProductRepository.DeleteProduct(productId);
 
                 if (delSuccess)
                 {
@@ -255,6 +207,7 @@ namespace Pashamao.Service
                         Directory.Delete(absoluteImagePath, true);
                     }
                 }
+
                 return delSuccess;
             }
             catch (Exception e)
@@ -267,7 +220,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改商品
         /// </summary>
-        public bool EditProduct(ProductDetail product)
+        public bool EditProduct(RequestEditProductDetailDto product)
         {
             try
             {
@@ -283,18 +236,16 @@ namespace Pashamao.Service
         /// <summary>
         /// 修改商品圖片(包括刪除跟新增)
         /// </summary>
-        public bool EditProductImage(string productId, DateTime lastEditTime, List<ProductImage> delOldImageList, HttpFileCollectionBase files)
+        public bool EditProductImage(Guid productId, DateTime lastEditTime, List<int> delImageId, HttpFileCollectionBase files)
         {
             //設置增加的檔案路徑跟刪除的檔案
             List<string> addImageUrl = new List<string>();
-            List<int> delImageId = new List<int>();
-
-            //設置當前(檔案)位置
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            Directory.SetCurrentDirectory(appDirectory);
 
             try
             {
+                //設置當前(檔案)位置
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                Directory.SetCurrentDirectory(appDirectory);
                 //下載圖片檔案
                 for (int i = 0; i < files.Count; i++)
                 {
@@ -319,33 +270,20 @@ namespace Pashamao.Service
                     }
                 }
 
-                //紀錄刪除的圖片id
-                for (int i = 0; i < delOldImageList.Count; i++)
-                {
-                    string absoluteImagePath = appDirectory + delOldImageList[i].ImageUrl;
+                (List<string> delImageUrls, bool EditFlag) = mainProductRepository.EditProductImage(productId, lastEditTime, delImageId, addImageUrl);
 
-                    if (File.Exists(absoluteImagePath))
+                //刪除舊的檔案
+                for (int i = 0; i < delImageUrls.Count; i++)
+                {
+                    string filePath = appDirectory + delImageUrls[i];
+
+                    if (File.Exists(filePath))
                     {
-                        delImageId.Add(delOldImageList[i].ProductImageId);
+                        File.Delete(filePath);
                     }
                 }
 
-                bool EditFlag = mainProductRepository.EditProductImage(Guid.Parse(productId), lastEditTime, delImageId, addImageUrl);
-
-                if (EditFlag)
-                {
-                    //刪除圖片檔案
-                    for (int i = 0; i < delOldImageList.Count; i++)
-                    {
-                        string absoluteImagePath = appDirectory + delOldImageList[i].ImageUrl;
-
-                        if (File.Exists(absoluteImagePath))
-                        {
-                            File.Delete(absoluteImagePath);
-                        }
-                    }
-                }
-                else
+                if (!EditFlag)
                 {
                     //資料庫新增失敗的話, 刪除新增的檔案
                     for (int i = 0; i < addImageUrl.Count; i++)
@@ -373,12 +311,12 @@ namespace Pashamao.Service
         /// </summary>
         public bool EditProductStyle(ProductStyle productStyle, HttpFileCollectionBase files, string imageType, DateTime lastEditTime)
         {
-            string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
-            string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
-
             try
             {
+                string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string folderPath = appDirectory + @"images\productImage\" + productStyle.ProductId;
+                string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
+
                 if (files.Count > 0)
                 {
                     string relativePath = @"\images\productImage\" + productStyle.ProductId + @"\" + fileName + imageType;
@@ -482,11 +420,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除商品細項
         /// </summary>
-        public bool DeleteProductStyle(int productStyleId, Guid productId, DateTime lastEditTime)
+        public bool DeleteProductStyle(RequestDeleteProductStyleDto deleteProductStyleDto)
         {
             try
             {
-                (string delImageUrl, bool delSuccessFlag) = mainProductRepository.DeleteProductStyle(productStyleId, productId, lastEditTime);
+                (string delImageUrl, bool delSuccessFlag) = mainProductRepository.DeleteProductStyle(deleteProductStyleDto);
 
                 if (delImageUrl != null)
                 {

@@ -165,7 +165,7 @@ namespace Pashamao.Service
             }
             catch (Exception e)
             {
-
+                logger.Error(e);
                 throw e;
             }
         }
@@ -175,15 +175,23 @@ namespace Pashamao.Service
         /// </summary>
         public bool EditMemberLevelAndStatus(RequestEditMemberLevelAndStatusDto editMemberLevelAndStatusDto)
         {
-            Member member = new Member();
-            member.MemberId = editMemberLevelAndStatusDto.MemberId;
-            member.Status = editMemberLevelAndStatusDto.Status;
-            member.Level = editMemberLevelAndStatusDto.Level;
-            if (member.Level == 1) member.Points = 0;
-            if (member.Level == 2) member.Points = 3000;
-            if (member.Level == 3) member.Points = 12000;
+            try
+            {
+                Member member = new Member();
+                member.MemberId = editMemberLevelAndStatusDto.MemberId;
+                member.Status = editMemberLevelAndStatusDto.Status;
+                member.Level = editMemberLevelAndStatusDto.Level;
+                if (member.Level == 1) member.Points = 0;
+                if (member.Level == 2) member.Points = 3000;
+                if (member.Level == 3) member.Points = 12000;
 
-            return memberRepository.EditMemberLevelAndStatus(member);
+                return memberRepository.EditMemberLevelAndStatus(member);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            };
         }
     }
 }

@@ -141,14 +141,18 @@
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\ResponseMainMemberDto.cs" />
-    <Compile Include="Models\Dto\Product\RequestGetSelectProductDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\RequestCreateProductDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\RequestDeleteProductDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\RequestDeleteProductStyleDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\RequestEditProductDetailDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\RequestGetSelectProductDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\ResponseProductDetailDto.cs" />
     <Compile Include="Models\Dto\RoleDto\RequestAddRoleDto.cs" />
     <Compile Include="Models\Dto\RoleDto\RequestEditRoleDto.cs" />
     <Compile Include="Models\Dto\RoleDto\ResponseMainRoleDto.cs" />
+    <Compile Include="Models\Dto\UserDto\RequestDeleteUserDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestEditUserPwdDto.cs" />
-    <Compile Include="Models\Dto\Product\MainProductDto.cs" />
-    <Compile Include="Models\Dto\Product\ProductDetailDto.cs" />
-    <Compile Include="Models\Dto\Product\ProductStyleDto.cs" />
+    <Compile Include="Models\Dto\ProductDto\ResponseMainProductDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestEditUserRoleAndStatusDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestGetSortedUserDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestSelectUserDto.cs" />
@@ -274,7 +278,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
-    <Folder Include="tableText\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

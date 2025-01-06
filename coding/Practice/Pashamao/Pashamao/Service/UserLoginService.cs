@@ -27,8 +27,8 @@ namespace Pashamao.Service
         {
             try
             {
-                
-                (User user, long userPermission) = userRepository.VerifyAndGetUser(loginUserDto, HttpContext.Current.Session.SessionID);
+                long userPermission = 0;
+                (user, userPermission) = userRepository.VerifyAndGetUser(loginUserDto, HttpContext.Current.Session.SessionID);
 
                 //帳號匹配成功與否
                 if (user == null)
@@ -64,7 +64,15 @@ namespace Pashamao.Service
         /// </summary>
         internal string GetUserName()
         {
-            return user.Name == "null" ? user.Account : user.Name;
+            try
+            {
+                return user.Name == null ? user.Account : user.Name;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
         }
     }
 }

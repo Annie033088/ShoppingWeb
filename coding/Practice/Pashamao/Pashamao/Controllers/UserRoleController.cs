@@ -92,11 +92,17 @@ namespace Pashamao.Controllers
         /// 取得選擇角色的權限(內容)
         /// </summary>
         [HttpPost]
-        public ActionResult GetRolePermissions(int RoleId)
+        public ActionResult GetRolePermissions(int roleId)
         {
             try
             {
-                return Json(new { rolePermissions = userRoleService.GetRolePermissions(RoleId) });
+                if (roleId < 0)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                return Json(new { rolePermissions = userRoleService.GetRolePermissions(roleId) });
             }
             catch (Exception e)
             {
@@ -118,7 +124,7 @@ namespace Pashamao.Controllers
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
+                    string errorMessage = "無效的輸入";
                     return Json(new { errorMessage });
                 }
 
@@ -147,11 +153,17 @@ namespace Pashamao.Controllers
         /// 刪除角色
         /// </summary>
         [HttpPost]
-        public ActionResult DeleteRole(int RoleId)
+        public ActionResult DeleteRole(int roleId)
         {
             try
             {
-                bool successFlag = userRoleService.DeleteRole(RoleId);
+                if (roleId < 0)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                bool successFlag = userRoleService.DeleteRole(roleId);
 
                 if (successFlag)
                 {
@@ -177,11 +189,17 @@ namespace Pashamao.Controllers
         /// 搜尋角色
         /// </summary>
         [HttpPost]
-        public ActionResult SelectRole(int RoleId)
+        public ActionResult SelectRole(int roleId)
         {
             try
             {
-                Role role = userRoleService.GetRoleById(RoleId);
+                if (roleId < 0)
+                {
+                    string errorMessage = "無效的輸入";
+                    return Json(new { errorMessage });
+                }
+
+                Role role = userRoleService.GetRoleById(roleId);
 
                 if (role == null)
                 {

@@ -70,7 +70,6 @@ namespace Pashamao.Service
             try
             {
                 string permissionString = roleRepository.GetRolePermissions(roleId);
-
                 long permissionValue = long.Parse(permissionString);
                 List<string> permissions = new List<string>();
 

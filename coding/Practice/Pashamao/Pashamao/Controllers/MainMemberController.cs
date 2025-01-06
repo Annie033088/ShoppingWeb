@@ -12,7 +12,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberAddress | UserPermission.EditMemberPhone | UserPermission.EditMemberEmail | UserPermission.EditMemberLevel)]
+    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData |  UserPermission.EditMemberLevelAndStatus)]
     public class MainMemberController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -106,9 +106,9 @@ namespace Pashamao.Controllers
         /// 創建會員頁面
         /// </summary>
         [UserRoleAuthFilter(UserPermission.CreateMember)]
-        public ActionResult CreateMember()
+        public ActionResult GetCreateMemberView()
         {
-            return View();
+            return View("CreateMember");
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Pashamao.Controllers
         /// </summary>
         [UserRoleAuthFilter(UserPermission.CreateMember)]
         [HttpPost]
-        public ActionResult SubmitCreateMember(RequestCreateMemberDto createMemberDto)
+        public ActionResult CreateMember(RequestCreateMemberDto createMemberDto)
         {
             try
             {
@@ -173,7 +173,7 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 修改會員等級跟狀態
         /// </summary>
-        [UserRoleAuthFilter(UserPermission.EditMemberLevel)]
+        [UserRoleAuthFilter(UserPermission.EditMemberLevelAndStatus)]
         [HttpPost]
         public ActionResult SubmitEditMemberlevel(RequestEditMemberLevelAndStatusDto editMemberLevelAndStatusDto)
         {

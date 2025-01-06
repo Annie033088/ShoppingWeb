@@ -197,7 +197,7 @@ function delUser(userId) {
         cancelButtonText: '取消'
     }).then((result) => {
         if (result.isConfirmed) {
-            axios.post("/MainUser/DeleteUser", { userId: userId })
+            axios.post("/MainUser/DeleteUser", { userId })
                 .then(response => {
                     if (response.data.successFlag == true) {
                         Swal.fire("刪除成功")

@@ -9,16 +9,14 @@
         DelUser = 8,
         SelectMember = 16,
         CreateMember = 32,
-        EditMemberAddress = 64,
-        EditMemberPhone = 128,
-        EditMemberEmail = 256,
-        EditMemberLevel = 512,
-        SelectOrder = 1024,
-        EditOrderPrice = 2048,
-        EditOrderStatus = 4096,
-        SelectProduct = 8192,
-        CreateProduct = 16384,
-        EditProduct = 32768,
-        DelProduct = 65536,//此為第16個 最大64
+        EditMemberPersonalData = 64,
+        EditMemberLevelAndStatus = 128,
+        SelectOrder = 256,
+        EditOrderPrice = 512,
+        EditOrderStatus = 1024,
+        SelectProduct = 2048,
+        CreateProduct = 4096,
+        EditProduct = 8192,
+        DelProduct = 16384,//此為第16個 最大64
     }
 }
