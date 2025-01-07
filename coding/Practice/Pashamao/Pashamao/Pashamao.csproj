@@ -226,8 +226,9 @@
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
     <Content Include="js\createProduct.js" />
+    <Content Include="js\initialize.js" />
     <Content Include="js\mainUserIndex.js" />
-    <Content Include="js\productDetail.js" />
+    <Content Include="js\productDetailTool.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -257,7 +258,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
     <Content Include="Views\MainHome\Index.cshtml" />

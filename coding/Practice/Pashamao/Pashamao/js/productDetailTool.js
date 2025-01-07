@@ -1,4 +1,5 @@
-﻿let product = productData.productDetail.SelectProductDetailDto;
+﻿console.log(productData.productDetail);
+let product = productData.productDetail.SelectProductDetailDto;
 let styles = productData.productDetail.SelectProductStyleDto;
 let images = productData.productDetail.SelectProductImages;
 
@@ -9,8 +10,6 @@ let imageTotal = 0;
 
 //刪除的圖片
 let delImageList = [];
-
-console.log(product, styles, images);
 
 populateImage();
 populateProduct();

@@ -35,7 +35,7 @@ namespace Pashamao.Controllers
         }
 
         /// <summary>
-        /// 取得所有商品
+        /// 取得(搜尋)商品
         /// </summary>
         [HttpPost]
         public ActionResult GetProduct(RequestGetSelectProductDto getSelectProductDto)
@@ -147,11 +147,6 @@ namespace Pashamao.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    // 輸出錯誤訊息，查看錯誤的詳細內容
-                    foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                    {
-                        Console.WriteLine(error.ErrorMessage);
-                    }
                     string errorMessage = "無效的輸入格式";
                     return Json(new { errorMessage });
                 }

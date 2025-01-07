@@ -1,0 +1,16 @@
+1.ProductDetail.js=>processProductDetail or productDetailTool ok
+
+2.Serializable時 是取出還是寫入做序列化
+
+3.有問題的部分 如果其他地方有可能發生就要再檢查一次
+
+4.檢查前端post之後filter出錯 但是最後使用者被更動權限時, 還是可以查看當前頁面
+
+5.巡一遍有沒有需要抽離重構的程式碼
+
+6.資料欄位設計
+
+7.設計訂單編號以及新增訂單時 訂單編號創建的流程
+
+demo:
+訂單流程

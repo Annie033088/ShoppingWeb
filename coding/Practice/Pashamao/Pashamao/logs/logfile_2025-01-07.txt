@@ -1,0 +1,45 @@
+2025-01-07 08:58:59.9599 Info Application Start
+2025-01-07 08:59:30.5946 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 上午 08:59:30.
+2025-01-07 09:13:41.1265 Info Application End
+2025-01-07 11:10:26.8083 Info Application Start
+2025-01-07 11:10:38.2841 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 上午 11:10:38.
+2025-01-07 11:12:03.1127 Info Application Start
+2025-01-07 11:12:24.0096 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 上午 11:12:24.
+2025-01-07 11:13:43.8955 Info Application Start
+2025-01-07 11:13:50.6252 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 上午 11:13:50.
+2025-01-07 14:53:49.6152 Info Application Start
+2025-01-07 14:54:20.3943 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 下午 02:54:20.
+2025-01-07 14:57:26.0022 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 02:57:26.
+2025-01-07 14:57:54.3394 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 02:57:54.
+2025-01-07 15:01:41.1070 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:01:41.
+2025-01-07 15:07:23.8450 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:07:23.
+2025-01-07 15:10:29.5686 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:10:29.
+2025-01-07 15:10:47.3809 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:10:47.
+2025-01-07 15:32:26.9103 Info Application End
+2025-01-07 15:32:33.4519 Info Application Start
+2025-01-07 15:32:49.0419 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:32:49.
+2025-01-07 15:33:19.9715 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 下午 03:33:19.
+2025-01-07 15:34:56.0820 Info Application End
+2025-01-07 15:35:00.2867 Info Application Start
+2025-01-07 15:35:20.6314 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:35:20.
+2025-01-07 15:35:24.3176 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:35:24.
+2025-01-07 15:37:42.9807 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:37:42.
+2025-01-07 15:37:53.1989 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 下午 03:37:53.
+2025-01-07 15:38:31.9680 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (測試用)。
+陳述式已經結束。
+2025-01-07 15:38:31.9750 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (測試用)。
+陳述式已經結束。
+2025-01-07 15:38:31.9750 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (測試用)。
+陳述式已經結束。
+2025-01-07 15:40:11.3565 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:40:11.
+2025-01-07 15:40:56.6296 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:40:56.
+2025-01-07 15:41:18.5828 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:41:18.
+2025-01-07 15:44:02.3549 Info Application Start
+2025-01-07 15:44:53.0087 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 下午 03:44:53.
+2025-01-07 15:45:04.2127 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:45:04.
+2025-01-07 15:47:20.6954 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:47:20.
+2025-01-07 15:49:25.1140 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 03:49:25.
+2025-01-07 16:00:22.4978 Info Application Start
+2025-01-07 16:00:29.4162 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/7 下午 04:00:29.
+2025-01-07 16:42:50.4546 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/7 下午 04:42:50.
+2025-01-07 18:38:30.2807 Info Application End

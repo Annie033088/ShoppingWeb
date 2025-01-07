@@ -1,0 +1,8 @@
+
+點擊按鈕=>跳轉到新增訂單頁面
+=>前端需要填入:t_order的 f_memberId, f_recipientName, f_phone, f_address, f_remark(可不填), 
+		  t_orderProductStyle的 f_orderId, f_productStyleId, f_quantity, f_price
+  自動填入:f_orderId (流水號自動生成)
+		  f_orderNumber (取得EX:20250107-00002)
+		  f_totalPrice (在後端會將總金額加總, 當新增訂單時會填入)
+

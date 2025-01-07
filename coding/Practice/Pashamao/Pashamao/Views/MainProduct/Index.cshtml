@@ -149,7 +149,12 @@
                         } else {
                             document.getElementById("productTable").getElementsByTagName('tbody')[0].innerHTML = "";
                             document.getElementById("lastPage").innerHTML = 1;
-                            Swal.fire(response.data.errorMessage);
+
+                            if (response.data.errorMessage == null) {
+                                window.location.href = "/MainHome/Index";
+                            } else {
+                                Swal.fire(response.data.errorMessage);
+                            }
                         }
                     })
                     .catch(error => {
@@ -281,7 +286,7 @@
             function delProduct(productId) {
                 let delProductId = {
                     ProductId: productId
-                }
+                };
                 Swal.fire({
                     title: '確定要刪除這個項目嗎？',
                     text: "這個操作無法恢復！",
@@ -291,7 +296,7 @@
                     cancelButtonText: '取消'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        axios.post("/MainProduct/DeleteProduct", { productId:delProductId })
+                        axios.post("/MainProduct/DeleteProduct", { productId: delProductId })
                             .then(response => {
                                 if (response.data.successFlag == true) {
                                     Swal.fire("刪除成功")
@@ -300,7 +305,7 @@
                                         });
                                 } else {
                                     if (response.data.errorMessage == null) {
-                                        Swal.fire("您無此權限");
+                                        window.location.href = "/MainHome/Index";
                                     } else {
                                         Swal.fire(response.data.errorMessage);
                                     }

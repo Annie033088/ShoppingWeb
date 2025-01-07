@@ -20,6 +20,7 @@ namespace Pashamao.Filters
                 if (userSessionModel == null)
                 {
                     filterContext.Result = new RedirectResult("/Login/Index");
+                    return;
                 }
                 else
                 {
@@ -33,7 +34,6 @@ namespace Pashamao.Filters
                     {
                         filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被禁止使用";
                         filterContext.Result = new RedirectResult("/Login/Index");
-                        base.OnActionExecuting(filterContext);
                         return;
                     }
 
@@ -42,7 +42,6 @@ namespace Pashamao.Filters
                     {
                         filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被他人踢出";
                         filterContext.Result = new RedirectResult("/Login/Index");
-                        base.OnActionExecuting(filterContext);
                         return;
                     }
 
@@ -51,7 +50,6 @@ namespace Pashamao.Filters
                     {
                         filterContext.Controller.TempData["KickOutMessage"] = "您的權限已被更動, 請重新登入";
                         filterContext.Result = new RedirectResult("/Login/Index");
-                        base.OnActionExecuting(filterContext);
                         return;
                     }
                 }

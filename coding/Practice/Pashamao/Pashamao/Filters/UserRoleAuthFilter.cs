@@ -10,12 +10,16 @@ namespace Pashamao.Filters
     {
         private readonly long requiredPermissions;
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         /// <summary>
-        /// 權限限制
+        /// 初始化
         /// </summary>
         /// <param name="role"></param>
-        public UserRoleAuthFilter(UserPermission requiredPermission) { requiredPermissions = (long)requiredPermission; }
+        public UserRoleAuthFilter(UserPermission requiredPermission)
+        {
+            //傳進來是需要的權限相加(並非實質定義)
+            requiredPermissions = (long)requiredPermission;
+        }
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -25,7 +29,6 @@ namespace Pashamao.Filters
                 if (userSession == null)
                 {
                     filterContext.Result = new RedirectResult("/Login/Index");
-                    base.OnActionExecuting(filterContext);
                     return;
                 }
                 else if ((userSession.UserPermission & requiredPermissions) == 0)
