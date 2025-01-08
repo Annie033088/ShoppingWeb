@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.RoleDto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,22 +17,31 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 取得所有角色
         /// </summary>
-        public IEnumerable<Role> GetAllRole()
+        public (List<Role> roles, int totalPage) GetAllRole(RequestGetAllRoleDto getAllRoleDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
             SqlDataAdapter da = new SqlDataAdapter();
             DataTable dt = new DataTable();
             List<Role> roles = new List<Role>();
+            int totalPages = 0;
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getAllRole";
+                cmd.CommandText = "EXEC pro_pashamao_getAllRole @page, @totalPages OUTPUT";
+
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = getAllRoleDto.Page;
+                SqlParameter totalPagesOutput = new SqlParameter("@totalPages", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(totalPagesOutput);
 
                 cmd.Connection.Open();
 
                 da.SelectCommand = cmd;
                 da.Fill(dt);
+                totalPages = (int)totalPagesOutput.Value;
 
                 cmd.Connection.Close();
 
@@ -45,11 +55,11 @@ namespace Pashamao.Repositories
                         role.Description = dt.Rows[i].IsNull("f_description") ? string.Empty : dt.Rows[i].Field<string>("f_description");
                         roles.Add(role);
                     }
-                    return roles;
+                    return (roles, totalPages);
                 }
                 else
                 {
-                    return null;
+                    return (null, 0);
                 }
 
             }

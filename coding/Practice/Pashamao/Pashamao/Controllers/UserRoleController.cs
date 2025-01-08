@@ -35,19 +35,28 @@ namespace Pashamao.Controllers
         /// 取得所有角色資料
         /// </summary>
         [HttpPost]
-        public ActionResult GetAllRole()
+        public ActionResult GetAllRole(RequestGetAllRoleDto getAllRoleDto)
         {
             try
             {
-                List<Role> roles = userRoleService.GetAllRole();
+                int errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    errorCode = 5;
+                    return Json(new { errorCode });
+                }
+
+                (List<Role> roles, int totalPage) = userRoleService.GetAllRole(getAllRoleDto);
                 List<ResponseMainRoleDto> mainRoleDtos = roles.Select(role => (new ResponseMainRoleDto(role))).ToList();
-                return Json(new { roles = mainRoleDtos });
+                errorCode = 1;
+                return Json(new { roles = mainRoleDtos, totalPage, errorCode });
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                int errorCode = 6;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -92,17 +101,19 @@ namespace Pashamao.Controllers
         /// 取得選擇角色的權限(內容)
         /// </summary>
         [HttpPost]
-        public ActionResult GetRolePermissions(int roleId)
+        public ActionResult GetRolePermissions(RequestGeneralRoleIdDto roleIdDto)
         {
             try
             {
-                if (roleId < 0)
+                int errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid || roleIdDto.RoleId < 0)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = 5;
+                    return Json(new { errorCode });
                 }
 
-                return Json(new { rolePermissions = userRoleService.GetRolePermissions(roleId) });
+                return Json(new { rolePermissions = userRoleService.GetRolePermissions(roleIdDto.RoleId) });
             }
             catch (Exception e)
             {
@@ -153,17 +164,17 @@ namespace Pashamao.Controllers
         /// 刪除角色
         /// </summary>
         [HttpPost]
-        public ActionResult DeleteRole(int roleId)
+        public ActionResult DeleteRole(RequestGeneralRoleIdDto roleIdDto)
         {
             try
             {
-                if (roleId < 0)
+                if (roleIdDto.RoleId < 0)
                 {
                     string errorMessage = "無效的輸入";
                     return Json(new { errorMessage });
                 }
 
-                bool successFlag = userRoleService.DeleteRole(roleId);
+                bool successFlag = userRoleService.DeleteRole(roleIdDto.RoleId);
 
                 if (successFlag)
                 {
@@ -189,22 +200,24 @@ namespace Pashamao.Controllers
         /// 搜尋角色
         /// </summary>
         [HttpPost]
-        public ActionResult SelectRole(int roleId)
+        public ActionResult SelectRole(RequestGeneralRoleIdDto roleIdDto)
         {
             try
             {
-                if (roleId < 0)
+                int errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid || roleIdDto.RoleId < 0)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = 5;
+                    return Json(new { errorCode });
                 }
 
-                Role role = userRoleService.GetRoleById(roleId);
+                Role role = userRoleService.GetRoleById(roleIdDto.RoleId);
 
                 if (role == null)
                 {
-                    string errorMessage = "沒有這個角色";
-                    return Json(new { errorMessage });
+                    errorCode = 1;
+                    return Json(new { errorCode });
                 }
                 else
                 {

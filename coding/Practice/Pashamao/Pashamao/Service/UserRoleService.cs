@@ -20,11 +20,11 @@ namespace Pashamao.Service
         /// <summary>
         /// 取得所有角色
         /// </summary>
-        public List<Role> GetAllRole()
+        public (List<Role> roles, int totalPage) GetAllRole(RequestGetAllRoleDto getAllRoleDto)
         {
             try
             {
-                return roleRepository.GetAllRole().ToList();
+                return roleRepository.GetAllRole(getAllRoleDto);
             }
             catch (Exception e)
             {

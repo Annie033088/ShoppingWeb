@@ -16,6 +16,10 @@
     color: #000000; /* 深灰色文字 */
 }
 
+.nav-link:hover{
+    cursor:pointer;
+}
+
 
 main {
     padding: 20px;

@@ -17,14 +17,14 @@
     <nav class="navbar navbar-expand-sm sidebar " style="position:sticky">
         <div class="container">
             <ul class="navbar-nav  flex-column ">
-                <li class=""> @Html.ActionLink("首頁", "Index", "MainHome", new { area = "" }, new { @class = "nav-link" })</li>
+                <li class=""> <a class="nav-link" onclick="setRedirectPage('MainHome', 'Index')">首頁</a></li>
                 <li>
                     <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#userSubMenu" aria-expanded="false" aria-controls="userSubMenu">
                         ➤ 後台使用者管理
                     </a>
                     <ul id="userSubMenu" class="collapse">
-                        <li>@Html.ActionLink("使用者管理", "Index", "MainUser", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("角色管理", "Index", "UserRole", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li><a class="nav-link" onclick="setRedirectPage('MainUser', 'Index')">使用者管理</a></li>
+                        <li><a class="nav-link" onclick="setRedirectPage('UserRole', 'Index')">角色管理</a></li>
                     </ul>
                 </li>
                 <li>
@@ -32,8 +32,8 @@
                         ➤ 會員管理
                     </a>
                     <ul id="memberSubMenu" class="collapse">
-                        <li>@Html.ActionLink("會員管理", "Index", "MainMember", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("會員地址管理", "Index", "MemberAddress", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li><a class="nav-link" onclick="setRedirectPage('MainMember', 'Index')">會員管理</a></li>
+                        <li><a class="nav-link" onclick="setRedirectPage('MemberAddress', 'Index')">會員地址管理</a></li>
                     </ul>
                 </li>
                 <li>
@@ -41,7 +41,7 @@
                         ➤ 商品
                     </a>
                     <ul id="productSubMenu" class="collapse">
-                        <li>@Html.ActionLink("商品管理", "Index", "MainProduct", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li><a class="nav-link" onclick="setRedirectPage('MainProduct', 'Index')">商品管理</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,7 +50,7 @@
     <div class="position-absolute top-0 end-0 pe-3 d-print-inline ">
         <span class="me-1 mt-2 userName"></span>
         <button type="button" id="btnPersonalData" class="btn btn-outline-primary rounded-pill">Edit</button>
-        <button type="button" id="btnLogOut" class="btn btn-outline-primary rounded-pill" onclick="window.location.href = `/MainHome/Logout`">登出</button>
+        <button type="button" id="btnLogOut" class="btn btn-outline-primary rounded-pill" onclick="logOut()">登出</button>
         <div id="boxPersonalData" class="container border border-4">
             <button id="btnClose" class="btn btn-light mt-1 ">&times;</button>
             <div class=" mt-1 d-md-flex justify-content-md-end">
@@ -60,7 +60,7 @@
             </div>
             <div class="mt-2 d-md-flex justify-content-md-end">
                 <span class="col-8">密碼：******</span>
-                <button class="btn btn-dark col-4 " onclick='location.href="/MainUser/GetEditUserPwdView"'>改密碼</button>
+                <button class="btn btn-dark col-4 " onclick='setRedirectPage("MainHome", "GetEditUserPwdView")'>改密碼</button>
             </div>
         </div>
     </div>
@@ -73,6 +73,19 @@
     </div>
 
     <script>
+
+        function logOut() {
+            axios.post("/MainHome/Logout")
+                .then(response => {
+                    //取得errorCode的信息
+                    responseInfo = errorCodeToInfo(response.data.errorCode);
+                    responseInfoHandler(responseInfo);
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                });
+        }
+
         //設定使用者名稱
         var cookieName = getCookie("cookieName") == null ? "" : getCookie("cookieName");
         var userName = document.getElementsByClassName("userName");
@@ -81,21 +94,6 @@
             userName[i].innerHTML = cookieName;
         }
 
-        function getCookie(name) {
-            var nameEq = name + "=";
-            var cookies = document.cookie.split(';');
-
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim(); 
-
-                if (cookie.indexOf(nameEq) === 0) {
-                    return cookie.substring(nameEq.length, cookie.length);
-                }
-            }
-        }
-    </script>
-
-    <script>
         //設定彈出視窗
         var boxPersonalData = document.getElementById("boxPersonalData");
         var btnPersonalData = document.getElementById("btnPersonalData");
@@ -103,8 +101,8 @@
 
         btnPersonalData.onclick = function () {
             boxPersonalData.style.display = "block";
-        }
-        btnClose.onclick = function () { boxPersonalData.style.display = "none"; }
+        };
+        btnClose.onclick = function () { boxPersonalData.style.display = "none"; };
 
         //設定編輯改名按鈕的事件
         function editName() {
@@ -122,6 +120,18 @@
             }
         }
 
+        function getCookie(name) {
+            var nameEq = name + "=";
+            var cookies = document.cookie.split(';');
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+
+                if (cookie.indexOf(nameEq) === 0) {
+                    return cookie.substring(nameEq.length, cookie.length);
+                }
+            }
+        }
     </script>
 
     @Scripts.Render("~/bundles/jquery")

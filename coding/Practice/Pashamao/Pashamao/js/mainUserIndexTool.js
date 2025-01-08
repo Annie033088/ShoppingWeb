@@ -93,11 +93,17 @@ function getUser(column, page, sortOrder) {
 
     axios.post("/MainUser/GetSortedUser", { sortedUserDto })
         .then(response => {
-            if (response.data.users != "" && response.data.users != null) {
+            responseInfo = errorCodeToInfo(response.data.errorCode);
+            responseInfoHandler(responseInfo);
+
+            if (responseInfo.successMessage) {
+                if (response.data.users == null) return;
                 populateTable(response.data.users);
                 document.getElementById("lastPage").innerHTML = response.data.totalPage;
             } else {
-                Swal.fire(response.data.errorMessage);
+                document.getElementById("currentPage").innerHTML = 1;
+                document.getElementById("lastPage").innerHTML = 1;
+                document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
             }
         })
         .catch(error => {
@@ -196,20 +202,18 @@ function delUser(userId) {
         confirmButtonText: '刪除',
         cancelButtonText: '取消'
     }).then((result) => {
+        let userIdDto = {
+            UserId: userId
+        }
         if (result.isConfirmed) {
-            axios.post("/MainUser/DeleteUser", { userId })
+            axios.post("/MainUser/DeleteUser", { userIdDto })
                 .then(response => {
-                    if (response.data.successFlag == true) {
-                        Swal.fire("刪除成功")
-                            .then(result => {
-                                if (result.isConfirmed) {
-                                    window.location.href = '/MainUser/Index';
-                                }
-                            });
-                    } else {
-                        Swal.fire(response.data.errorMessage);
+                    responseInfo = errorCodeToInfo(response.data.errorCode);
+                    responseInfoHandler(responseInfo);
+                    //成功
+                    if (responseInfo.successMessage) {
+                        window.location.href = '/MainUser/Index';
                     }
-
                 })
                 .catch(error => { console.error(error); });
         }
@@ -246,14 +250,18 @@ function selectUser(txbSelectElementId, selectColumn, value, sortColumn, page, s
     };
     axios.post("/MainUser/SelectUser", { selectUserDto: selectUserModel })
         .then(response => {
-            if (response.data.users != "" && response.data.users != null) {
+            responseInfo = errorCodeToInfo(response.data.errorCode);
+            responseInfoHandler(responseInfo);
+            //成功
+            if (responseInfo.successMessage) {
+                if (response.data.users == null) return;
                 populateTable(response.data.users);
                 document.getElementById("lastPage").innerHTML = response.data.totalPage;
             }
             else {
+                document.getElementById("currentPage").innerHTML = 1;
                 document.getElementById("lastPage").innerHTML = 1;
-                document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
-                Swal.fire(response.data.errorMessage);
+                document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
             }
         })
         .catch(error => {
@@ -310,15 +318,11 @@ function editUserRoleAndStatus(userId, userRoleId, userStatus) {
                         editUserRoleAndStatus: result.value.editUserRoleAndStatus
                     })
                         .then(response => {
-                            if (response.data.successFlag == true) {
-                                Swal.fire("修改成功")
-                                    .then(result => {
-                                        if (result.isConfirmed) {
-                                            window.location.href = '/MainUser/Index';
-                                        }
-                                    });
-                            } else {
-                                Swal.fire(response.data.errorMessage);
+                            responseInfo = errorCodeToInfo(response.data.errorCode);
+                            responseInfoHandler(responseInfo);
+                            //成功
+                            if (responseInfo.successMessage) {
+                                window.location.href = '/MainUser/Index';
                             }
                         })
                         .catch(error => {

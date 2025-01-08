@@ -15,6 +15,6 @@ namespace Pashamao.Models.Dto.UserDto
         [RegularExpression("^.{0,10}$", ErrorMessage = "至多十位數")]
         public string Name { get; set; }
 
-        public string DropDownRole { get; set; }
+        public int RoleId { get; set; }
     }
 }

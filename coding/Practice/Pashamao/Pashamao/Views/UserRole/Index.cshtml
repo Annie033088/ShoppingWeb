@@ -21,13 +21,10 @@
                         <label>輸入搜尋ID</label>
                     </th>
                     <th>
-                        <input type="text" id="txbSelectRoleId" style="width:100%" pattern="^[\d]{1,8}$" required />
+                        <input type="text" id="txbSelectRoleId" style="width:100%" />
                     </th>
                     <th class="text-lg-start">
                         <button type="button" id="btnSelectRoleId" class="btn btn-outline-dark" onclick='selectRole();'>搜尋</button>
-                    </th>
-                    <th>
-                        <span id="searchWarning" class="text-danger"></span>
                     </th>
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
@@ -41,6 +38,18 @@
             <tbody>
             </tbody>
         </table>
+
+        <nav aria-label="Data navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><button class="page-link" id="previousPage" onclick="previousPage()">Previous</button></li>
+                <li class="page-item"><button class="page-link" id="firstPage" onclick="firstPage()">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="currentPage">1</button></li>
+                <li class="page-item ms-1 me-1">...</li>
+                <li class="page-item"><button class="page-link" id="lastPage" onclick="lastPage()">9</button></li>
+                <li class="page-item"><button class="page-link" id="nextPage" onclick="nextPage()">Next</button></li>
+            </ul>
+        </nav>
 
         <div id="overlay"></div>
         <div id="ckbPopUp" class="popUp ">
@@ -85,20 +94,70 @@
 
 
         <script>
-            getAllRole();
+            getAllRole(1);
 
-            function getAllRole() {
-                axios.post("/UserRole/GetAllRole")
+            function getAllRole(page) {
+                getAllRoleDto = {
+                    Page: page
+                };
+                axios.post("/UserRole/GetAllRole", { getAllRoleDto })
                     .then(response => {
-                        if (response.data.roles != "" && response.data.roles != null) {
+                        //處理各種errorCode的通用事件
+                        let responseInfo = errorCodeToInfo(response.data.errorCode);
+                        responseInfoHandler(responseInfo);
+                        //成功
+                        if (responseInfo.successMessage) {
+                            if (response.data.roles == null) return;
                             populateTable(response.data.roles);
+                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
                         } else {
-                            Swal.fire(response.data.errorMessage);
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
                         }
                     })
                     .catch(error => {
                         console.error("fail", error);
                     });
+            }
+
+            function firstPage() {
+                document.getElementById("currentPage").innerHTML = 1;
+                getAllRole(1);
+            }
+
+            function previousPage() {
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
+
+                if (currentPage > 1) {
+                    newCurrentPage = oldCurrentPage - 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else {
+                    newCurrentPage = 1;
+                }
+                getAllRole(newCurrentPage);
+            }
+
+            function nextPage() {
+                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                let newCurrentPage = oldCurrentPage;
+
+                if (oldCurrentPage < maxPage) {
+                    newCurrentPage = oldCurrentPage + 1;
+                    document.getElementById("currentPage").innerHTML = newCurrentPage;
+                }
+                else {
+                    newCurrentPage = maxPage;
+                }
+                newCurrentPage(newCurrentPage);
+            }
+
+            function lastPage() {
+                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+                document.getElementById("currentPage").innerHTML = maxPage;
+                newCurrentPage(maxPage);
             }
 
             function populateTable(roles) {
@@ -132,26 +191,34 @@
                     cellEditBtn.className = "btnEditRole";
                     cellEditBtn.id = "btnShowEditRoleCkb";
                     cellEditBtn.addEventListener("click", function () {
-                        axios.post("/UserRole/GetRolePermissions", { RoleId: role.RoleId })
+                        let roleIdDto = {
+                            RoleId: role.RoleId
+                        };
+
+                        axios.post("/UserRole/GetRolePermissions", { roleIdDto })
                             .then(response => {
-                                if (response.data.rolePermissions != "" && response.data.rolePermissions != null) {
+
+                                //處理各種errorCode的通用事件
+                                let responseInfo = errorCodeToInfo(response.data.errorCode);
+                                responseInfoHandler(responseInfo);
+                                //成功
+                                if (responseInfo.successMessage) {
+                                    if (esponse.data.rolePermissions == null) return;
                                     checkPermission(response.data.rolePermissions);
-                                } else {
-                                    Swal.fire(response.data.errorMessage);
+                                    document.getElementById("overlay").style.display = "block";
+                                    document.getElementById("ckbPopUp").style.display = "block";
+                                    document.getElementById("btnSubmitEditRole").style.display = "block";
+                                    document.getElementById("btnSubmitAddRole").style.display = "none";
+                                    document.getElementById("txbRoleName").value = role.Name;
+                                    document.getElementById("txbRoleDiscript").value = role.Description;
+                                    document.getElementById("btnSubmitEditRole").addEventListener("click", function () {
+                                        editRole(role.RoleId);
+                                    });
                                 }
                             })
                             .catch(error => {
                                 console.error("fail", error);
                             });
-                        document.getElementById("overlay").style.display = "block";
-                        document.getElementById("ckbPopUp").style.display = "block";
-                        document.getElementById("btnSubmitEditRole").style.display = "block";
-                        document.getElementById("btnSubmitAddRole").style.display = "none";
-                        document.getElementById("txbRoleName").value = role.Name;
-                        document.getElementById("txbRoleDiscript").value = role.Description;
-                        document.getElementById("btnSubmitEditRole").addEventListener("click", function () {
-                            editRole(role.RoleId);
-                        });
                     });
                     cellEdit.appendChild(cellEditBtn);
 
@@ -180,21 +247,20 @@
                     confirmButtonText: '刪除',
                     cancelButtonText: '取消'
                 }).then((result) => {
+
+                    let roleIdDto = {
+                        RoleId: roleId
+                    };
+
                     if (result.isConfirmed) {
-                        axios.post("/UserRole/DeleteRole", { RoleId: roleId }, {
-                            headers: {
-                                "Content-Type": "application/json"
-                            }
-                        })
+                        axios.post("/UserRole/DeleteRole", { roleIdDto })
                             .then(response => {
-                                if (response.data.successFlag == true) {
-                                    Swal.fire({
-                                        title: '刪除成功！',
-                                        icon: 'warning',
-                                        confirmButtonText: '確認'
-                                    }).then((result) => { window.location.href = "/UserRole/Index"; });
-                                } else {
-                                    Swal.fire(response.data.errorMessage);
+                                //處理各種errorCode的通用事件
+                                let responseInfo = errorCodeToInfo(response.data.errorCode);
+                                responseInfoHandler(responseInfo);
+                                //成功
+                                if (responseInfo.successMessage) {
+                                    window.location.href = "/UserRole/Index";
                                 }
                             })
                             .catch(error => { console.error(error); });
@@ -203,29 +269,36 @@
             }
 
             function selectRole() {
-                var searchInput = document.getElementById('txbSelectRoleId');
-                var selectRoleId = searchInput.value;
-                var regex = new RegExp(searchInput.pattern);
-                var inputValue = searchInput.value;
+                let searchInput = document.getElementById('txbSelectRoleId');
+                let selectRoleId = searchInput.value;
+                let regexRoleId = /^[\d]{1,10}$/;
 
-                if (!regex.test(inputValue)) {
-                    document.getElementById("searchWarning").innerText = "請輸入8位以內數字";
+                if (!regexRoleId.test(selectRoleId)) {
+                    Swal.fire("請輸入十位以內數字");
                     return;
                 }
 
-                document.getElementById("searchWarning").innerText = " ";
+                let roleIdDto = {
+                    RoleId: selectRoleId
+                };
 
-                axios.post("/UserRole/SelectRole", { RoleId: selectRoleId })
+                axios.post("/UserRole/SelectRole", { roleIdDto })
                     .then(response => {
-                        let role = response.data.role;
+                        //處理各種errorCode的通用事件
+                        let responseInfo = errorCodeToInfo(response.data.errorCode);
+                        responseInfoHandler(responseInfo);
+                        //成功
+                        if (responseInfo.successMessage) {
+                            if (response.data.roles == null) return;
 
-                        if (role != "" && role != null) {
+                            let role = response.data.roles;
                             role = [role];
                             populateTable(role);
-                        }
-                        else {
+                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
+                        } else {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
                             document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
-                            Swal.fire(response.data.errorMessage);
                         }
                     })
                     .catch(error => {
@@ -343,19 +416,15 @@
                     Name: roleName.value,
                     Description: roleDiscript.value
                 };
+
                 axios.post("/UserRole/AddRole", { addRoleDto })
                     .then(response => {
-                        popUp.style.display = "none";
-
-                        if (response.data.successFlag == true) {
-                            Swal.fire("創建成功!")
-                                .then(result => {
-                                    if (result.isConfirmed) {
-                                        window.location.href = "/UserRole/Index";
-                                    }
-                                });
-                        } else {
-                            Swal.fire(response.data.errorMessage);
+                        //處理各種errorCode的通用事件
+                        let responseInfo = errorCodeToInfo(response.data.errorCode);
+                        responseInfoHandler(responseInfo);
+                        //成功
+                        if (responseInfo.successMessage) {
+                            window.location.href = "/UserRole/Index";
                         }
                     })
                     .catch(error => {
@@ -389,19 +458,17 @@
 
                 axios.post("/UserRole/EditRole", { editRoleDto })
                     .then(response => {
-                        document.getElementById("overlay").style.display = "none";
-                        popUp.style.display = "none";
-
-                        if (response.data.successFlag == true) {
+                        //處理各種errorCode的通用事件
+                        let responseInfo = errorCodeToInfo(response.data.errorCode);
+                        responseInfoHandler(responseInfo);
+                        //成功
+                        if (responseInfo.successMessage) {
                             window.location.href = "/UserRole/Index";
-                        } else {
-                            Swal.fire(response.data.errorMessage);
                         }
                     })
                     .catch(error => {
                     });
             }
-
         </script>
     </main>
 </body>

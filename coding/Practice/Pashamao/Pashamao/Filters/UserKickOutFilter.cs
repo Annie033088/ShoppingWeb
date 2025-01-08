@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using Microsoft.Ajax.Utilities;
+using NLog;
 using Pashamao.Models;
 using Pashamao.Repositories;
 using System;
@@ -19,7 +20,8 @@ namespace Pashamao.Filters
 
                 if (userSessionModel == null)
                 {
-                    filterContext.Result = new RedirectResult("/Login/Index");
+                    //使用者未登入卻輸入登入後的url
+                    filterContext.Result = new RedirectResult("/LoginIndex");
                     return;
                 }
                 else
@@ -32,24 +34,42 @@ namespace Pashamao.Filters
 
                     if (UserStatus == false)
                     {
-                        filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被禁止使用";
-                        filterContext.Result = new RedirectResult("/Login/Index");
+                        //禁用的errorCode
+                        int errorCode = 3;
+                        filterContext.Result = new JsonResult()
+                        {
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                            Data = new { errorCode }
+                        };
+                        clearTheUser();
                         return;
                     }
 
                     //判斷現sessionId與資料庫的sessionId是否相同, 不同的話清除session並且重定向到Login
                     if (UserSessionId != HttpContext.Current.Session.SessionID)
                     {
-                        filterContext.Controller.TempData["KickOutMessage"] = "您的帳號已被他人踢出";
-                        filterContext.Result = new RedirectResult("/Login/Index");
+                        //後踢前的errorCode
+                        int errorCode = 2;
+                        filterContext.Result = new JsonResult()
+                        {
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                            Data = new { errorCode }
+                        };
+                        clearTheUser();
                         return;
                     }
 
                     //隨時更新角色權限
                     if (userSessionModel.UserPermission != UserPermissions)
                     {
-                        filterContext.Controller.TempData["KickOutMessage"] = "您的權限已被更動, 請重新登入";
-                        filterContext.Result = new RedirectResult("/Login/Index");
+                        //權限更動的errorCode
+                        int errorCode = 4;
+                        filterContext.Result = new JsonResult()
+                        {
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                            Data = new { errorCode }
+                        };
+                        clearTheUser();
                         return;
                     }
                 }
@@ -61,6 +81,14 @@ namespace Pashamao.Filters
                 logger.Error(e);
                 throw e;
             }
+        }
+
+        private void clearTheUser()
+        {
+            HttpContext.Current.Session.Clear();
+            HttpContext.Current.Session.Abandon();
+            HttpContext.Current.Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
+            return;
         }
     }
 }

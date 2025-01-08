@@ -19,19 +19,6 @@ namespace Pashamao.Controllers
         {
             try
             {
-                //被踢出去之後, 記下紀錄並清除會話
-                if (TempData["KickOutMessage"] != null)
-                {
-                    ViewBag.Message = TempData["KickOutMessage"].ToString();
-                    Session.Clear();
-                    Session.Abandon();
-                    Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
-                }
-                else
-                {
-                    ViewBag.Message = "";
-                }
-
                 //判斷狀態為登入或未登入
                 if (Session["UserSeesion"] != null) return RedirectToAction("Index", "MainHome");
 
@@ -43,7 +30,6 @@ namespace Pashamao.Controllers
                 throw e;
             }
         }
-
         /// <summary>
         /// 提交登入表單
         /// </summary>
@@ -53,9 +39,12 @@ namespace Pashamao.Controllers
 
             try
             {
+                int errorCode = 0;
+
                 if (!ModelState.IsValid)
                 {
-                    return View("Index");
+                    errorCode = 5;
+                    return Json(new { errorCode });
                 }
 
                 UserLoginService userLogin = new UserLoginService();
@@ -65,8 +54,8 @@ namespace Pashamao.Controllers
                     //禁用的帳號?
                     if (userLogin.AcctSuspended())
                     {
-                        ViewBag.Message = $"你的帳號被禁用了";
-                        return View("Index");
+                        errorCode = 3;
+                        return Json(new { errorCode });
                     }
 
                     //用cookie傳出個人化資料
@@ -77,20 +66,21 @@ namespace Pashamao.Controllers
 
                     Response.Cookies.Add(cookie);
                     logger.Info($"User '{loginUserDto.Account}' logged in successfully at {DateTime.Now}.");
-                    return RedirectToAction("Index", "MainHome");
+                    errorCode = 1;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    ViewBag.Message = $"登入失敗";
-                    return View("Index");
+                    errorCode = 9;
+                    return Json(new { errorCode });
                 }
 
             }
             catch (Exception e)
             {
-                ViewBag.Message = $"登入失敗, 再試一次";
                 logger.Error(e);
-                return View("Index");
+                int errorCode = 6;
+                return Json(new { errorCode });
                 throw e;
             }
         }

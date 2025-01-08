@@ -28,13 +28,20 @@ namespace Pashamao.Filters
 
                 if (userSession == null)
                 {
-                    filterContext.Result = new RedirectResult("/Login/Index");
+                    //使用者未登入卻輸入(登入後/不存在)的url
+                    filterContext.Result = new RedirectResult("/LoginIndex");
                     return;
                 }
                 else if ((userSession.UserPermission & requiredPermissions) == 0)
                 {
-                    filterContext.Controller.TempData["NoPermissionMessage"] = "您無此權限";
-                    filterContext.Result = new RedirectResult("/MainHome/Index");
+                    //使用者未登入的errorCode
+                    int errorCode = 7;
+                    filterContext.Result = new JsonResult()
+                    {
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                        Data = new { errorCode }
+                    };
+                    return;
                 }
 
                 base.OnActionExecuting(filterContext);

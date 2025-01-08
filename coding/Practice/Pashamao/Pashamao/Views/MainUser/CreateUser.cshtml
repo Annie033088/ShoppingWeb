@@ -2,46 +2,101 @@
 
 <body>
     <main>
-        <form method="post" action="/MainUser/CreateUser">
-            <div asp-controller="action" class="container col-3 mx-auto">
-                <div class="mb-3  ">
-                    <label class="fs-6 control-form-label ">帳號</label>
-                    <input type="text" name="Account" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
-                </div>
-                <div class="mb-3 ">
-                    <label class="fs-6 ">密碼</label>
-                    <input type="password" name="Password" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
-                </div>
-                <div class="mb-3 ">
-                    <label class="fs-6 ">名稱</label>
-                    <input type="text" name="Name" class="form-control" placeholder="Enter your name" pattern="^{,10}$" />
-                </div>
-                <div class="mb-3 ">
-                    <label class="fs-6 ">角色</label>
-                    <select id="dropDownRole" name="DropDownRole">
-                    </select>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-dark">確認</button>
-                    <button type="button" class="btn btn-dark" onclick="window.location.href=`/MainUser/Index`">取消</button>
-                </div>
+        <div asp-controller="action" class="container col-3 mx-auto">
+            <div class="mb-3  ">
+                <label class="fs-6 control-form-label ">帳號</label>
+                <input type="text" id="txbCreateAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" />
             </div>
-            <p>@ViewBag.Message</p>
-        </form>
-
+            <div class="mb-3 ">
+                <label class="fs-6 ">密碼</label>
+                <input type="password" id="txbCreatePwd" name="Pwd" class="form-control" placeholder="Enter 8~20 words"  />
+            </div>
+            <div class="mb-3 ">
+                <label class="fs-6 ">名稱</label>
+                <input type="text" id="txbCreateName" name="Name" class="form-control" placeholder="Enter your name"  />
+            </div>
+            <div class="mb-3 ">
+                <label class="fs-6 ">角色</label>
+                <select id="dropDownRole" name="DropDownRole">
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark" onclick="submitCreateUser()">確認</button>
+                <button type="button" class="btn btn-dark" onclick="setRedirectPage('MainUser', 'Index')">取消</button>
+            </div>
+        </div>
     </main>
     <script>
-
         var JsonRoles = @Html.Raw(ViewBag.JsonRoles);
-         var selectElement = document.getElementById("dropDownRole");
+        populateRoles();
 
-        JsonRoles.roles.forEach(function (role) {
-            if (role.RoleId != 1) {
-                var option = document.createElement("option");
-                option.value = role.RoleId;
-                option.textContent = role.Name;
-                selectElement.appendChild(option);
+        function populateRoles() {
+            var selectElement = document.getElementById("dropDownRole");
+
+            JsonRoles.roles.forEach(function (role) {
+                if (role.RoleId != 1) {
+                    var option = document.createElement("option");
+                    option.value = role.RoleId;
+                    option.textContent = role.Name;
+                    selectElement.appendChild(option);
+                }
+            })
+        }
+
+        function submitCreateUser() {
+            let createAccountValue = document.getElementById("txbCreateAccount").value;
+            let createPwdValue = document.getElementById("txbCreatePwd").value;
+            let createNameValue = document.getElementById("txbCreateName").value;
+            let dropDownRoleValue = document.getElementById("dropDownRole").value;
+            let roleId = parseInt(dropDownRoleValue, 10);
+
+            //驗證登入資料
+            let createPwdAndAccountRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$/;//至少包含1個數字及英文, 長度為8~20
+            if (!createPwdAndAccountRegex.test(createAccountValue)) {
+                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的帳號');
+                return;
             }
-        })
+
+            if (!createPwdAndAccountRegex.test(createPwdValue)) {
+                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的密碼');
+                return;
+            }
+            //帳密不能一樣
+            if (createAccountValue == createPwdValue) {
+                Swal.fire('帳號密碼不可相同');
+                return;
+            }
+            //驗證名稱
+            let nameRegex = /^.{0,10}$/;
+            if (!nameRegex.test(createNameValue)) {
+                Swal.fire('名稱長度請勿超過10個字');
+                return;
+            }
+            //驗證角色(Id) 
+            if (isNaN(roleId) || dropDownRoleValue.trim() == "") { //不是數字 或者 是空字串
+                Swal.fire('請輸入正確角色格式');
+                return;
+            }
+
+            let createUserDto = {
+                Account: createAccountValue,
+                Pwd: createPwdValue,
+                Name: createNameValue,
+                RoleId: roleId
+            };
+
+            axios.post("/MainUser/CreateUser", { createUserDto })
+                .then(response => {
+                    let responseInfo = errorCodeToInfo(response.data.errorCode);
+                    responseInfoHandler(responseInfo);
+                    //成功
+                    if (responseInfo.successMessage) {
+                        window.location.href = "/MainUser/Index";
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                });
+        }
     </script>
 </body>

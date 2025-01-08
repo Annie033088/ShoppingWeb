@@ -15,7 +15,7 @@ namespace Pashamao.Models.Dto.UserDto
         public string SortColumn { get; set; }
 
         /// <summary>
-        /// 第多少頁面
+        /// 第幾頁
         /// </summary>
         [Required]
         public int Page { get; set; }

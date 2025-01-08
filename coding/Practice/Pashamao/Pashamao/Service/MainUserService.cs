@@ -133,15 +133,8 @@ namespace Pashamao.Service
         {
             try
             {
-                User user = new User
-                {
-                    Account = createUserDto.Account,
-                    Pwd = createUserDto.Pwd,
-                    Name = createUserDto.Name == null ? string.Empty : createUserDto.Name,
-                    RoleId = int.Parse(createUserDto.DropDownRole)
-                };
                 logger.Trace("CreateUser");
-                return userRepository.CreateUser(user);
+                return userRepository.CreateUser(createUserDto);
             }
             catch (Exception e)
             {

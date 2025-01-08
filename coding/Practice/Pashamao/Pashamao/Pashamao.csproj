@@ -149,6 +149,8 @@
     <Compile Include="Models\Dto\ProductDto\ResponseProductDetailDto.cs" />
     <Compile Include="Models\Dto\RoleDto\RequestAddRoleDto.cs" />
     <Compile Include="Models\Dto\RoleDto\RequestEditRoleDto.cs" />
+    <Compile Include="Models\Dto\RoleDto\RequestGeneralRoleIdDto.cs" />
+    <Compile Include="Models\Dto\RoleDto\RequestGetAllRoleDto.cs" />
     <Compile Include="Models\Dto\RoleDto\ResponseMainRoleDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestDeleteUserDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestEditUserPwdDto.cs" />
@@ -226,8 +228,8 @@
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
     <Content Include="js\createProduct.js" />
-    <Content Include="js\initialize.js" />
-    <Content Include="js\mainUserIndex.js" />
+    <Content Include="js\globalTool.js" />
+    <Content Include="js\mainUserIndexTool.js" />
     <Content Include="js\productDetailTool.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -265,7 +267,7 @@
     <Content Include="Views\MainUser\Index.cshtml" />
     <Content Include="Views\Shared\MainHomeLayout.cshtml" />
     <Content Include="Views\MainUser\CreateUser.cshtml" />
-    <Content Include="Views\MainUser\EditUserPwd.cshtml" />
+    <Content Include="Views\MainHome\EditUserPwd.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\MainMember\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />

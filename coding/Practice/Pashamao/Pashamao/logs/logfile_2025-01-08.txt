@@ -1,0 +1,96 @@
+2025-01-08 09:41:08.4446 Info Application Start
+2025-01-08 10:16:59.0841 Info Application End
+2025-01-08 10:17:21.0538 Info Application Start
+2025-01-08 10:17:43.0418 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 上午 10:17:43.
+2025-01-08 10:18:40.8281 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 上午 10:18:40.
+2025-01-08 10:19:12.5334 Error System.InvalidOperationException: 此要求已被封鎖，因為用於 GET 要求時無法向第三方網站揭露敏感資訊。若要允許 GET 要求，請將 JsonRequestBehavior 設定為 AllowGet。
+2025-01-08 10:19:16.6455 Error System.InvalidOperationException: 此要求已被封鎖，因為用於 GET 要求時無法向第三方網站揭露敏感資訊。若要允許 GET 要求，請將 JsonRequestBehavior 設定為 AllowGet。
+2025-01-08 10:20:23.9983 Info Application Start
+2025-01-08 10:20:32.6385 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 上午 10:20:32.
+2025-01-08 10:20:55.8891 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 上午 10:20:55.
+2025-01-08 10:51:50.4143 Info Application Start
+2025-01-08 10:51:51.7534 Error System.Web.HttpException: 找不到路徑 '/Shared/MainHomeLayout' 的控制器或是未實作 IController。
+2025-01-08 10:52:06.1015 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 上午 10:52:06.
+2025-01-08 10:54:35.9333 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 上午 10:54:35.
+2025-01-08 11:20:30.4181 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 上午 11:20:30.
+2025-01-08 13:24:42.6891 Info Application Start
+2025-01-08 13:24:44.0744 Error System.Web.HttpException: 找不到路徑 '/Shared/MainHomeLayout' 的控制器或是未實作 IController。
+2025-01-08 13:27:30.6492 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 01:27:30.
+2025-01-08 13:29:38.0516 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 01:29:38.
+2025-01-08 13:36:03.9393 Info Application Start
+2025-01-08 13:47:38.1838 Info Application End
+2025-01-08 13:47:44.4521 Info Application Start
+2025-01-08 13:47:45.4222 Error System.Web.HttpException: 找不到路徑 '/Shared/MainHomeLayout' 的控制器或是未實作 IController。
+2025-01-08 13:47:57.4160 Error System.Web.HttpException: 找不到路徑 '/www/Index' 的控制器或是未實作 IController。
+2025-01-08 13:49:18.9494 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 01:49:18.
+2025-01-08 13:49:22.4469 Error System.Web.HttpException: 找不到路徑 '/wqw' 的控制器或是未實作 IController。
+2025-01-08 13:50:52.9835 Info Application End
+2025-01-08 13:50:59.8442 Info Application Start
+2025-01-08 13:51:00.7837 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 13:51:12.9211 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 01:51:12.
+2025-01-08 13:51:24.5920 Error System.Web.HttpException: 找不到路徑 '/qwe' 的控制器或是未實作 IController。
+2025-01-08 13:52:41.4852 Error System.InvalidOperationException: 此要求已被封鎖，因為用於 GET 要求時無法向第三方網站揭露敏感資訊。若要允許 GET 要求，請將 JsonRequestBehavior 設定為 AllowGet。
+2025-01-08 13:52:55.7047 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 'SubmitUserLogin22'。
+2025-01-08 13:52:59.4470 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 '123'。
+2025-01-08 13:53:02.7640 Error System.Web.HttpException: 找不到路徑 '/123' 的控制器或是未實作 IController。
+2025-01-08 13:53:25.7693 Error System.Web.HttpException: 找不到路徑 '/123' 的控制器或是未實作 IController。
+2025-01-08 13:53:38.7491 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 01:53:38.
+2025-01-08 14:22:13.1379 Info Application Start
+2025-01-08 15:11:37.8441 Info Application End
+2025-01-08 15:11:48.1578 Info Application Start
+2025-01-08 15:17:53.8300 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 03:17:53.
+2025-01-08 15:18:52.0501 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 03:18:52.
+2025-01-08 15:24:04.8445 Error System.Web.HttpException: 找不到路徑 '/wqeqwe' 的控制器或是未實作 IController。
+2025-01-08 15:24:09.9169 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 15:26:17.0104 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 15:29:52.7861 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 03:29:52.
+2025-01-08 15:29:56.0489 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 15:30:07.1194 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 15:32:20.4490 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 15:32:29.7864 Info User 'LHevHdd3Pab' logged in successfully at 2025/1/8 下午 03:32:29.
+2025-01-08 15:58:02.4834 Info Application End
+2025-01-08 15:58:13.7882 Info Application Start
+2025-01-08 15:58:14.1352 Error System.Web.HttpException: 找不到路徑 '/Shared/MainHomeLayout' 的控制器或是未實作 IController。
+2025-01-08 16:03:37.6929 Error System.Web.HttpException: 找不到路徑 '/Shared/MainHomeLayout' 的控制器或是未實作 IController。
+2025-01-08 16:04:14.0913 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 04:04:14.
+2025-01-08 16:30:35.0081 Info Application End
+2025-01-08 16:30:46.5446 Info Application Start
+2025-01-08 16:31:18.7444 Info Application Start
+2025-01-08 16:32:29.6484 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 下午 04:32:29.
+2025-01-08 16:33:46.6784 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.LoginController' 上找不到公用動作方法 'SubmitEditUserPwd'。
+2025-01-08 16:34:22.2097 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 下午 04:34:22.
+2025-01-08 16:35:10.8618 Info User 'qwp59felp48402' logged in successfully at 2025/1/8 下午 04:35:10.
+2025-01-08 16:46:08.2332 Info Application Start
+2025-01-08 17:04:52.8419 Info Application End
+2025-01-08 17:04:58.9039 Info Application Start
+2025-01-08 17:05:01.4033 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-08 17:21:51.2252 Info Application End
+2025-01-08 17:21:59.8641 Info Application Start
+2025-01-08 17:27:14.0671 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-08 17:27:29.8673 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 05:27:29.
+2025-01-08 17:38:20.9683 Info Application Start
+2025-01-08 17:56:07.3499 Info Application End
+2025-01-08 17:56:20.4678 Info Application Start
+2025-01-08 17:56:21.6297 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 17:56:33.4698 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainUserController' 上找不到公用動作方法 'CreateUser'。
+2025-01-08 17:56:47.3802 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 05:56:47.
+2025-01-08 17:59:40.2758 Info Application Start
+2025-01-08 17:59:40.5810 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 17:59:48.8558 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 05:59:48.
+2025-01-08 17:59:52.4159 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 17:59:56.1978 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 17:59:56.2216 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 18:10:00.7220 Info Application Start
+2025-01-08 18:10:01.0790 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 18:13:34.8908 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 06:13:34.
+2025-01-08 18:16:42.0052 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-08 18:17:56.5654 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-08 18:19:18.9122 Info Application Start
+2025-01-08 18:19:19.9914 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 18:19:31.5951 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 06:19:31.
+2025-01-08 18:41:56.6362 Info Application Start
+2025-01-08 18:41:57.7249 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-08 18:42:08.1579 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/8 下午 06:42:08.
+2025-01-08 18:42:11.4674 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-08 18:42:11.4674 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-08 18:42:11.4674 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。

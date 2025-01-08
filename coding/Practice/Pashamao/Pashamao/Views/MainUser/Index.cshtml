@@ -4,14 +4,14 @@
 }
 <body>
     <link href="~/css/MainUser.css" rel="stylesheet" type="text/css" />
-    <script src="~/js/mainUserIndex.js"></script>
+    <script src="~/js/mainUserIndexTool.js"></script>
     <main>
         <h1 class="text-center mb-3">@ViewBag.Title</h1>
         <table id="userTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr>
                     <th>
-                        <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainUser/GetCreateUserView"'>新增</button>
+                        <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick="setRedirectPage('MainUser', 'GetCreateUserView')">新增</button>
                         <button type="button" id="btnGetAllUser" class="btn btn-outline-dark" onclick='getAll()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">

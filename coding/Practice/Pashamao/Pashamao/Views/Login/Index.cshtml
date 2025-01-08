@@ -1,20 +1,55 @@
 ﻿@{ Layout = "~/Views/Shared/LoginLayout.cshtml"; }
 
 <body>
-    <form method="post" action="/Login/SubmitUserLogin">
-        <div asp-controller="Login" class="container col-3">
-            <div class="mb-3 ">
-                <label class="fs-6 control-form-label ">帳號</label>
-                <input type="text" name="Account" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
-            </div>
-            <div class="mb-3 ">
-                <label class="fs-6 ">密碼</label>
-                <input type="password" name="Pwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
-            </div>
-            <button type="submit" class="btn btn-dark">確認</button>
+    <div asp-controller="Login" class="container col-3">
+        <div class="mb-3 ">
+            <label class="fs-6 control-form-label ">帳號</label>
+            <input type="text" id="txbLoginAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
         </div>
-    </form>
+        <div class="mb-3 ">
+            <label class="fs-6 ">密碼</label>
+            <input type="password" id="txbLoginPwd" name="Pwd" class="form-control" placeholder="Enter 8~20 words" pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$" required />
+        </div>
+        <button type="submit" class="btn btn-dark" onclick="submitUserLogin()">確認</button>
+    </div>
 
-    <p class="text-center text-warning bg-dark mt-3"> @Html.Raw(ViewBag.Message)</p>
+    <script>
+        function submitUserLogin() {
+            let accountValue = document.getElementById("txbLoginAccount").value;
+            let pwdValue = document.getElementById("txbLoginPwd").value;
 
+
+            //驗證登入資料
+            let loginRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$/;//至少包含1個數字及英文, 長度為8~20
+            if (!loginRegex.test(accountValue)) {
+                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的帳號');
+                return;
+            }
+
+            if (!loginRegex.test(pwdValue)) {
+                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的密碼');
+                return;
+            }
+
+            let loginUserDto = {
+                Account: accountValue,
+                Pwd: pwdValue
+            };
+
+            axios.post("/Login/SubmitUserLogin", { loginUserDto })
+                .then(response => {
+                    let responseInfo = errorCodeToInfo(response.data.errorCode);
+                    responseInfoHandler(responseInfo);
+                    //成功
+                    if (responseInfo.successMessage) {
+                        window.location.href = "/MainHome/Index";
+                    }
+                })
+                .catch(error => {
+                    console.error("fail", error);
+                });
+
+        }
+
+    </script>
 </body>

@@ -254,7 +254,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增使用者
         /// </summary>
-        internal bool CreateUser(User user)
+        internal bool CreateUser(RequestCreateUserDto user)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
