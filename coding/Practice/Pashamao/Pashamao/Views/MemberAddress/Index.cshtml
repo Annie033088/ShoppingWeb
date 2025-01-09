@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th style="display:flex">
-                        <button type="button" id="btnGetAllAddress" class="btn btn-outline-dark" onclick='getAll()'>查詢全部</button>
+                        <button type="button" id="btnGetAllAddress" class="btn btn-outline-dark" onclick='btnGetAll()'>查詢全部</button>
                     </th>
                 </tr>
                 <tr class="bg-gradient text-bg-dark ">
@@ -46,6 +46,11 @@
             let lastSelectValue = "";
 
             getAll();
+
+            function btnGetAll() {
+                document.getElementById("currentPage").innerHTML = 1;
+                getAll()
+            }
 
             function getAll() {
                 let btns = document.querySelectorAll(`.btnSort`);
@@ -122,14 +127,46 @@
 
                 axios.post("/MemberAddress/GetSortedAddress", { getSortedAddressDto })
                     .then(response => {
-                        let addresses = response.data.addresses;
 
-                        if (addresses != "" && addresses != null) {
-                            populateTable(addresses);
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        } else {
-                            Swal.fire(response.data.errorMessage);
+                        let errorCode = response.data.errorCode;
+
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("addressTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
                         }
+
+                        //成功的話
+                        if (response.data.addresses == null) {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("addressTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
+                        }
+
+                        let addresses = response.data.addresses;
+                        populateTable(addresses);
+                        document.getElementById("lastPage").innerHTML = response.data.totalPage;
                     })
                     .catch(error => {
                         console.error("fail", error);

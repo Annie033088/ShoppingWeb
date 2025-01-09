@@ -4,7 +4,6 @@ using Pashamao.Models.Dto.RoleDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Pashamao.Service
 {

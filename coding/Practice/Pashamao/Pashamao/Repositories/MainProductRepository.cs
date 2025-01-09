@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.UI;
 
 namespace Pashamao.Repositories
 {
@@ -45,7 +44,8 @@ namespace Pashamao.Repositories
                 {
                     cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = DBNull.Value;
                 }
-                else {
+                else
+                {
                     cmd.Parameters.Add("@productId", SqlDbType.UniqueIdentifier).Value = Guid.Parse(getSelectProductDto.ProductId);
                 }
 
@@ -368,7 +368,7 @@ namespace Pashamao.Repositories
             }
             finally
             {
-                cmd.Parameters.Clear(); 
+                cmd.Parameters.Clear();
 
                 if (cmd.Connection.State != ConnectionState.Closed) cmd.Connection.Close();
             }

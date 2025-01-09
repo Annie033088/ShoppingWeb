@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models.Dto.ProductDto
 {
@@ -12,7 +9,7 @@ namespace Pashamao.Models.Dto.ProductDto
         /// 細項Id
         /// </summary>
         [Required]
-        public int ProductStyleId {  get; set; }
+        public int ProductStyleId { get; set; }
 
         /// <summary>
         /// 商品Id

@@ -20,7 +20,7 @@
             <button class="col-1 h5 btn btn-outline-secondary me-1" onclick="getProductByCategory(11,1)" data-id="11">其他</button>
         </div>
         <div class="d-flex justify-content-center mb-1">
-            <button type="button" id="btnAdd" class="btn btn-outline-dark me-2" onclick='location.href="/MainProduct/GetCreateProductView"'>新增</button>
+            <button type="button" id="btnAdd" class="btn btn-outline-dark me-2" onclick='setRedirectPage("MainProduct", "GetCreateProductView")'>新增</button>
             <button type="button" id="btnGetAllProduct" class="btn btn-outline-dark me-5" onclick='getAll()'>查詢全部</button>
             <label class="me-1 align-content-center">輸入搜尋ID：</label>
             <input type="text" class="form-control me-1" id="txbSelectProductId" style="max-width: 200px;" required />
@@ -57,297 +57,332 @@
                 <li class="page-item"><button class="page-link" id="nextPage" onclick="nextPage()">Next</button></li>
             </ul>
         </nav>
-        <script>
+    </main>
+    <script>
 
-            let lastCategoryId = null;
-            let lastGetProductId = null;
-            let lastGetProductName = null;
+        let lastCategoryId = null;
+        let lastGetProductId = null;
+        let lastGetProductName = null;
 
-            getAll();
+        getAll();
 
-            function getAll() {
-                lastGetProductId = null;
-                lastCategoryId = null;
-                lastGetProductName = null;
-                document.getElementById("currentPage").innerHTML = 1;
-                getProduct(1);
+        function getAll() {
+            lastGetProductId = null;
+            lastCategoryId = null;
+            lastGetProductName = null;
+            document.getElementById("currentPage").innerHTML = 1;
+            getProduct(1);
+        }
+
+        function firstPage() {
+            //設定為第一頁
+            document.getElementById("currentPage").innerHTML = 1;
+            selectBySomething(1);
+        }
+
+        function previousPage() {
+            let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+            let newCurrentPage = oldCurrentPage;
+
+            if (oldCurrentPage > 1) {
+                newCurrentPage = oldCurrentPage - 1;
+                document.getElementById("currentPage").innerHTML = newCurrentPage;
+            }
+            else {
+                newCurrentPage = 1;
             }
 
-            function firstPage() {
-                //設定為第一頁
-                document.getElementById("currentPage").innerHTML = 1;
-                selectBySomething(1);
+            selectBySomething(newCurrentPage);
+        }
+
+        function nextPage() {
+            let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
+            let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+            let newCurrentPage = oldCurrentPage;
+
+            if (oldCurrentPage < maxPage) {
+                newCurrentPage = oldCurrentPage + 1;
+                document.getElementById("currentPage").innerHTML = newCurrentPage;
+            }
+            else {
+                newCurrentPage = maxPage;
             }
 
-            function previousPage() {
-                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
-                let newCurrentPage = oldCurrentPage;
+            selectBySomething(newCurrentPage);
+        }
 
-                if (oldCurrentPage > 1) {
-                    newCurrentPage = oldCurrentPage - 1;
-                    document.getElementById("currentPage").innerHTML = newCurrentPage;
-                }
-                else {
-                    newCurrentPage = 1;
-                }
+        function lastPage() {
+            let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
+            document.getElementById("currentPage").innerHTML = maxPage;
+            selectBySomething(maxPage);
+        }
 
-                selectBySomething(newCurrentPage);
+        function selectBySomething(page) {
+            if (lastCategoryId != null) {
+                getProductByCategory(lastCategoryId, page);
             }
-
-            function nextPage() {
-                let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
-                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
-                let newCurrentPage = oldCurrentPage;
-
-                if (oldCurrentPage < maxPage) {
-                    newCurrentPage = oldCurrentPage + 1;
-                    document.getElementById("currentPage").innerHTML = newCurrentPage;
-                }
-                else {
-                    newCurrentPage = maxPage;
-                }
-
-                selectBySomething(newCurrentPage);
+            else if (lastGetProductId != null) {
+                getProductById(lastGetProductId, page);
             }
-
-            function lastPage() {
-                let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
-                document.getElementById("currentPage").innerHTML = maxPage;
-                selectBySomething(maxPage);
+            else if (lastGetProductName != null) {
+                getProductByName(lastGetProductName, page);
             }
-
-            function selectBySomething(page) {
-                if (lastCategoryId != null) {
-                    getProductByCategory(lastCategoryId, page);
-                }
-                else if (lastGetProductId != null) {
-                    getProductById(lastGetProductId, page);
-                }
-                else if (lastGetProductName != null) {
-                    getProductByName(lastGetProductName, page);
-                }
-                else {
-                    getProduct(page);
-                }
-            }
-
-            function getProduct(page) {
-                let selectProductObject = {
-                    CategoryId: lastCategoryId,
-                    ProductId: lastGetProductId,
-                    Name: lastGetProductName,
-                    Page: page
-                };
-
-                axios.post("/MainProduct/GetProduct", { getSelectProductDto: selectProductObject })
-                    .then(response => {
-                        let products = response.data.products;
-
-                        if (products != "" && products != null) {
-                            populateTable(products);
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        } else {
-                            document.getElementById("productTable").getElementsByTagName('tbody')[0].innerHTML = "";
-                            document.getElementById("lastPage").innerHTML = 1;
-
-                            if (response.data.errorMessage == null) {
-                                window.location.href = "/MainHome/Index";
-                            } else {
-                                Swal.fire(response.data.errorMessage);
-                            }
-                        }
-                    })
-                    .catch(error => {
-                        console.error("fail", error);
-                    });
-            }
-
-            function getProductByCategory(lastSelectCategoryId, page) {
-                if (lastCategoryId == null) {
-                    document.getElementById("currentPage").innerHTML = 1;
-                }
-                else if (lastCategoryId != lastSelectCategoryId) //代表搜尋的是不同分類
-                {
-                    document.getElementById("currentPage").innerHTML = 1;
-                }
-
-                lastGetProductName = null;
-                lastGetProductId = null;
-                lastCategoryId = lastSelectCategoryId;
+            else {
                 getProduct(page);
             }
+        }
 
-            document.getElementById("btnSelectByProductId").addEventListener('click', function () {
-                const selectId = document.getElementById("txbSelectProductId").value;
-                const regexId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+        function getProduct(page) {
+            let selectProductObject = {
+                CategoryId: lastCategoryId,
+                ProductId: lastGetProductId,
+                Name: lastGetProductName,
+                Page: page
+            };
 
-                if (!regexId.test(selectId)) {
-                    Swal.fire("請輸入正確的id!");
-                    return;
-                }
+            axios.post("/MainProduct/GetProduct", { getSelectProductDto: selectProductObject })
+                .then(response => {
+                    let errorCode = response.data.errorCode;
 
-                getProductById(selectId, 1);
-            });
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
 
-            function getProductById(lastSelectProductId, page) {
-                document.getElementById("currentPage").innerHTML = 1;
-                lastGetProductName = null;
-                lastGetProductId = lastSelectProductId;
-                lastCategoryId = null;
-                getProduct(page);
-            }
-
-            document.getElementById("btnSelectByProductName").addEventListener('click', function () {
-                const selectName = document.getElementById("txbSelectProductName").value;
-                const regexName = /^[^\s].{0,29}$/;
-
-                if (!regexName.test(selectName)) {
-                    Swal.fire("請輸入30字以內商品名(第一個字不得為空)");
-                    return;
-                }
-
-                getProductByName(selectName, 1);
-            });
-
-            function getProductByName(lastSelectProductName, page) {
-                if (lastSelectProductName.length > 30) {
-                    Swal.fire("名稱長度需要小於30")
-                        .then(result => {
-                            if (result.isConfirmed) return;
-                        });
-                }
-
-                if (lastGetProductName == null) {
-                    document.getElementById("currentPage").innerHTML = 1;
-                }
-                else if (lastGetProductName != lastSelectProductName) //代表搜尋的是不同名稱
-                {
-                    document.getElementById("currentPage").innerHTML = 1;
-                }
-
-                lastGetProductName = lastSelectProductName;
-                lastGetProductId = null;
-                lastCategoryId = null;
-                getProduct(page);
-            }
-
-            function populateTable(products) {
-                const tableBody = document.getElementById("productTable").getElementsByTagName('tbody')[0];
-                tableBody.innerHTML = '';
-
-                products.forEach((product, index) => {
-                    const row = document.createElement('tr');
-                    const rowSort = document.createElement('th');
-                    rowSort.textContent = index + 1;
-                    rowSort.scope = "row";
-                    row.appendChild(rowSort);
-
-                    const cellId = document.createElement('td');
-                    cellId.textContent = product.ProductId;
-
-                    row.appendChild(cellId);
-
-                    const cellName = document.createElement('td');
-                    cellName.textContent = product.Name;
-                    row.appendChild(cellName);
-
-                    const cellCategory = document.createElement('td');
-                    cellCategory.textContent = productCategoryIdToText(product.CategoryId);
-                    row.appendChild(cellCategory);
-
-                    const cellStatus = document.createElement('td');
-                    cellStatus.textContent = product.Status ? "上架" : "下架";
-                    row.appendChild(cellStatus);
-
-                    const cellEdit = document.createElement('td');
-
-                    const cellEditBtn = document.createElement("button");
-                    cellEditBtn.className = "btnEditProduct";
-                    cellEditBtn.addEventListener("click", function () {
-                        window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                    });
-                    cellEdit.appendChild(cellEditBtn);
-
-                    const cellDeleteBtn = document.createElement("button");
-                    cellDeleteBtn.className = "btnDeleteProduct";
-                    cellDeleteBtn.addEventListener("click", function () {
-                        delProduct(product.ProductId);
-                    });
-                    cellEdit.appendChild(cellDeleteBtn);
-
-                    row.appendChild(cellEdit);
-
-
-                    // 把這一行加到表格中
-                    tableBody.appendChild(row);
-                });
-            }
-
-            function delProduct(productId) {
-                let delProductId = {
-                    ProductId: productId
-                };
-                Swal.fire({
-                    title: '確定要刪除這個項目嗎？',
-                    text: "這個操作無法恢復！",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: '刪除',
-                    cancelButtonText: '取消'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        axios.post("/MainProduct/DeleteProduct", { productId: delProductId })
-                            .then(response => {
-                                if (response.data.successFlag == true) {
-                                    Swal.fire("刪除成功")
-                                        .then(result => {
-                                            window.location.href = "/MainProduct/Index";
-                                        });
-                                } else {
-                                    if (response.data.errorMessage == null) {
-                                        window.location.href = "/MainHome/Index";
-                                    } else {
-                                        Swal.fire(response.data.errorMessage);
+                        //顯示訊息
+                        Swal.fire(message)
+                            .then(result => {
+                                //確認後處理
+                                if (result.isConfirmed) {
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
                                     }
                                 }
-                            })
-                            .catch(error => { console.error(error); });
+                            });
+                        return;
                     }
+
+                    //成功的話
+                    let products = response.data.products;
+                    if (products == null) {
+                        document.getElementById("productTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                        document.getElementById("currentPage").innerHTML = 1;
+                        document.getElementById("lastPage").innerHTML = 1;
+                    }
+                    populateTable(products);
+                    document.getElementById("lastPage").innerHTML = response.data.totalPage;
+                })
+
+                .catch(error => {
+                    console.error("fail", error);
                 });
+        }
+
+        function getProductByCategory(lastSelectCategoryId, page) {
+            if (lastCategoryId == null) {
+                document.getElementById("currentPage").innerHTML = 1;
+            }
+            else if (lastCategoryId != lastSelectCategoryId) //代表搜尋的是不同分類
+            {
+                document.getElementById("currentPage").innerHTML = 1;
             }
 
-            function productCategoryIdToText(categoryId) {
-                switch (categoryId) {
-                    case 3:
-                        return "用品";
-                        break;
-                    case 4:
-                        return "飼料";
-                        break;
-                    case 5:
-                        return "罐頭";
-                        break;
-                    case 6:
-                        return "零食";
-                        break;
-                    case 7:
-                        return "貓砂";
-                        break;
-                    case 8:
-                        return "保健";
-                        break;
-                    case 9:
-                        return "生活";
-                        break;
-                    case 10:
-                        return "品牌";
-                        break;
-                    default:
-                        return "其他";
-                        break;
+            lastGetProductName = null;
+            lastGetProductId = null;
+            lastCategoryId = lastSelectCategoryId;
+            getProduct(page);
+        }
+
+        document.getElementById("btnSelectByProductId").addEventListener('click', function () {
+            const selectId = document.getElementById("txbSelectProductId").value;
+            const regexId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+            if (!regexId.test(selectId)) {
+                Swal.fire("請輸入正確的id!");
+                return;
+            }
+
+            getProductById(selectId, 1);
+        });
+
+        function getProductById(lastSelectProductId, page) {
+            document.getElementById("currentPage").innerHTML = 1;
+            lastGetProductName = null;
+            lastGetProductId = lastSelectProductId;
+            lastCategoryId = null;
+            getProduct(page);
+        }
+
+        document.getElementById("btnSelectByProductName").addEventListener('click', function () {
+            const selectName = document.getElementById("txbSelectProductName").value;
+            const regexName = /^[^\s].{0,29}$/;
+
+            if (!regexName.test(selectName)) {
+                Swal.fire("請輸入30字以內商品名(第一個字不得為空)");
+                return;
+            }
+
+            getProductByName(selectName, 1);
+        });
+
+        function getProductByName(lastSelectProductName, page) {
+            if (lastSelectProductName.length > 30) {
+                Swal.fire("名稱長度需要小於30")
+                    .then(result => {
+                        if (result.isConfirmed) return;
+                    });
+            }
+
+            if (lastGetProductName == null) {
+                document.getElementById("currentPage").innerHTML = 1;
+            }
+            else if (lastGetProductName != lastSelectProductName) //代表搜尋的是不同名稱
+            {
+                document.getElementById("currentPage").innerHTML = 1;
+            }
+
+            lastGetProductName = lastSelectProductName;
+            lastGetProductId = null;
+            lastCategoryId = null;
+            getProduct(page);
+        }
+
+        function populateTable(products) {
+            const tableBody = document.getElementById("productTable").getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            products.forEach((product, index) => {
+                const row = document.createElement('tr');
+                const rowSort = document.createElement('th');
+                rowSort.textContent = index + 1;
+                rowSort.scope = "row";
+                row.appendChild(rowSort);
+
+                const cellId = document.createElement('td');
+                cellId.textContent = product.ProductId;
+
+                row.appendChild(cellId);
+
+                const cellName = document.createElement('td');
+                cellName.textContent = product.Name;
+                row.appendChild(cellName);
+
+                const cellCategory = document.createElement('td');
+                cellCategory.textContent = productCategoryIdToText(product.CategoryId);
+                row.appendChild(cellCategory);
+
+                const cellStatus = document.createElement('td');
+                cellStatus.textContent = product.Status ? "上架" : "下架";
+                row.appendChild(cellStatus);
+
+                const cellEdit = document.createElement('td');
+
+                const cellEditBtn = document.createElement("button");
+                cellEditBtn.className = "btnEditProduct";
+                cellEditBtn.addEventListener("click", function () {
+                    setRedirectPage("MainProduct", `ProductDetail?productId=${product.ProductId}`);
+                });
+                cellEdit.appendChild(cellEditBtn);
+
+                const cellDeleteBtn = document.createElement("button");
+                cellDeleteBtn.className = "btnDeleteProduct";
+                cellDeleteBtn.addEventListener("click", function () {
+                    delProduct(product.ProductId);
+                });
+                cellEdit.appendChild(cellDeleteBtn);
+
+                row.appendChild(cellEdit);
+
+
+                // 把這一行加到表格中
+                tableBody.appendChild(row);
+            });
+        }
+
+        function delProduct(productId) {
+            let delProductId = {
+                ProductId: productId
+            };
+            Swal.fire({
+                title: '確定要刪除這個項目嗎？',
+                text: "這個操作無法恢復！",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '刪除',
+                cancelButtonText: '取消'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post("/MainProduct/DeleteProduct", { productId: delProductId })
+                        .then(response => {
+                            let errorCode = response.data.errorCode;
+
+                            //沒有成功
+                            if (errorCode != errorCodeDefine.Success) {
+                                let message = errorCodeToMessage(errorCode);
+
+                                //顯示訊息
+                                Swal.fire(message)
+                                    .then(result => {
+                                        //確認後處理
+                                        if (result.isConfirmed) {
+                                            //被踢出去
+                                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                || errorCode == errorCodeDefine.PermissionModified) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                        }
+                                    });
+                                return;
+                            }
+
+                            //成功的話
+                            window.location.href = "/MainProduct/Index";
+                        })
+                        .catch(error => { console.error(error); });
                 }
-            }
+            });
+        }
 
-        </script>
-    </main>
+        function productCategoryIdToText(categoryId) {
+            switch (categoryId) {
+                case 3:
+                    return "用品";
+                    break;
+                case 4:
+                    return "飼料";
+                    break;
+                case 5:
+                    return "罐頭";
+                    break;
+                case 6:
+                    return "零食";
+                    break;
+                case 7:
+                    return "貓砂";
+                    break;
+                case 8:
+                    return "保健";
+                    break;
+                case 9:
+                    return "生活";
+                    break;
+                case 10:
+                    return "品牌";
+                    break;
+                default:
+                    return "其他";
+                    break;
+            }
+        }
+
+    </script>
 </body>

@@ -160,6 +160,7 @@
     <Compile Include="Models\Dto\UserDto\RequestSelectUserDto.cs" />
     <Compile Include="Models\Dto\UserDto\ResponseMainUserDto.cs" />
     <Compile Include="Models\Dto\UserDto\ResponseRoleIdAndNameDto.cs" />
+    <Compile Include="Models\ErrorCodeDefine.cs" />
     <Compile Include="Models\MemberAddress.cs" />
     <Compile Include="Controllers\MemberAddressController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />

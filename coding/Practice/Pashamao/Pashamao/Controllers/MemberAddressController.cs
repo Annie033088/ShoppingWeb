@@ -1,4 +1,5 @@
 ﻿using NLog;
+using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Models.Dto.AddressDto;
 using Pashamao.Service;
@@ -8,6 +9,8 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [UserKickOutFilter]
+    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData | UserPermission.EditMemberLevelAndStatus)]
     public class MemberAddressController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -26,27 +29,31 @@ namespace Pashamao.Controllers
         /// <summary>
         /// 取得地址(無搜尋狀態)
         /// </summary>
+        [HttpPost]
         public ActionResult GetSortedAddress(RequestGetSortedAddressDto getSortedAddressDto)
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
+
                 (List<MemberAddress> addresses, int totalPage) = MemberAddressService.GetSortedAddress(getSortedAddressDto);
 
                 if (addresses == null)
                 {
-                    string errorMessage = "沒有地址";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    return Json((new { addresses, totalPage}), JsonRequestBehavior.AllowGet);
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { addresses, totalPage, errorCode }));
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }

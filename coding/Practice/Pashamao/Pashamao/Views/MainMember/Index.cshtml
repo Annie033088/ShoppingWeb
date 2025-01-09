@@ -11,7 +11,7 @@
                 <tr>
                     <th style="display:flex">
                         <button type="button" id="btnAdd" class="btn btn-outline-dark" onclick='location.href="/MainMember/GetCreateMemberView"'>新增</button>
-                        <button type="button" id="btnGetAllMember" class="btn btn-outline-dark" onclick='getAll()'>查詢全部</button>
+                        <button type="button" id="btnGetAllMember" class="btn btn-outline-dark" onclick='btnGetAll()'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
@@ -70,6 +70,11 @@
             let lastSelectValue = "";
 
             getAll();
+
+            function btnGetAll() {
+                document.getElementById("currentPage").innerHTML = 1;
+                getAll();
+            }
 
             function getAll() {
                 let btns = document.querySelectorAll(`.btnSort`);
@@ -157,13 +162,47 @@
 
                 axios.post("/MainMember/GetSortedMember", { getSortedMemberDto })
                     .then(response => {
-                        let members = response.data.members;
-                        if (members != "" && members != null) {
-                            populateTable(members)
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        } else {
+                        let errorCode = response.data.errorCode;
 
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+
+
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
                         }
+
+                        //成功的話
+                        if (response.data.members == null) {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
+                        }
+
+                        let members = response.data.members;
+                        populateTable(members);
+                        document.getElementById("lastPage").innerHTML = response.data.totalPage;
                     })
                     .catch(error => {
                         console.error("fail", error);
@@ -258,7 +297,9 @@
                     const cellEditLevelBtn = document.createElement("button");
                     cellEditLevelBtn.className = "btnEditMemberLevel";
                     cellEditLevelBtn.style.backgroundImage = "url('../images/Pencel.jpg')";
-                    cellEditLevelBtn.addEventListener("click", function () { editMemberLevel(member.MemberId, member.Status, member.Level); });
+                    cellEditLevelBtn.addEventListener("click", function () {
+                        editMemberLevel(member.MemberId, member.Status, member.Level);
+                    });
                     cellEditLevel.appendChild(cellEditLevelBtn);
                     row.appendChild(cellEditLevel);
 
@@ -299,16 +340,48 @@
 
                 axios.post("/MainMember/SelectMember", { getSelectMemberDto })
                     .then(response => {
-                        let members = response.data.members;
-                        if (members != "" && members != null) {
-                            populateTable(members);
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        }
-                        else {
+                        let errorCode = response.data.errorCode;
+
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+
+
+                            document.getElementById("currentPage").innerHTML = 1;
                             document.getElementById("lastPage").innerHTML = 1;
                             document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
-                            Swal.fire(response.data.errorMessage)
+                            return;
                         }
+
+                        //成功的話
+                        if (response.data.members == null) {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("memberTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
+                        }
+
+                        let members = response.data.members;
+                        populateTable(members);
+                        document.getElementById("currentPage").innerHTML = 1;
+                        document.getElementById("lastPage").innerHTML = response.data.totalPage;
                     })
                     .catch(error => {
                         console.error("fail", error);
@@ -364,16 +437,33 @@
                             Status: result.value.statusSelect
                         })
                             .then(response => {
-                                if (response.data.successFlag == true) {
-                                    Swal.fire("修改成功")
-                                        .then((result) => {
+                                let errorCode = response.data.errorCode;
+
+                                //沒有成功
+                                if (errorCode != errorCodeDefine.Success) {
+                                    let message = errorCodeToMessage(errorCode);
+
+                                    //顯示訊息
+                                    Swal.fire(message)
+                                        .then(result => {
+                                            //確認後處理
                                             if (result.isConfirmed) {
-                                                window.location.href = "/MainMember/Index";
+                                                //被踢出去
+                                                if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                    || errorCode == errorCodeDefine.PermissionModified) {
+                                                    window.location.href = "/Login/Index";
+                                                }
+                                                //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                                if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                    window.location.href = "/Login/Index";
+                                                }
                                             }
                                         });
-                                } else {
-                                    Swal.fire(response.data.errorMessage);
+                                    return;
                                 }
+
+                                //成功的話
+                                window.location.href = "/MainMember/Index";
                             })
                             .catch(error => {
                                 console.error("fail", error);

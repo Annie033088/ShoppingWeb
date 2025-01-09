@@ -39,8 +39,31 @@
 
             axios.post("/MainHome/SubmitEditUserPwd", { editUserPwdDto })
                 .then(response => {
-                    let responseInfo = errorCodeToInfo(response.data.errorCode);
-                    responseInfoHandler(responseInfo);
+                    let errorCode = response.data.errorCode;
+
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
+
+                        //顯示訊息, 之後處理
+                        Swal.fire(message)
+                            .then(result => {
+                                if (result.isConfirmed) {
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                }
+                            });
+                        return;
+                    }
+                    //成功的話
+                    window.location.href = "/MainHome/Index";
                 })
                 .catch(error => {
                     console.error("fail", error);

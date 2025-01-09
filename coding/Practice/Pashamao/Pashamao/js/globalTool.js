@@ -1,92 +1,106 @@
-﻿//設定errorCode對應資料
-function errorCodeToInfo(errorCode) {
-    let successMessage;
-    let kickOutMessage;
-    let errorMessage;
-    let redirectMessage;
-    let redirectUrl;
+﻿
+const errorCodeDefine = {
+    //預設
+    Default : 0,
+
+    //成功
+    Success: 1,
+
+    //被他人踢出
+    KickOut: 2,
+
+    //被Ban掉
+    Baned: 3,
+
+    //權限已被修改
+    PermissionModified: 4,
+
+    //無效輸入
+    InvalidFormatOrEntry : 5,
+
+    //伺服器錯誤
+    ServerError : 6,
+
+    //無權限
+    NoPermission : 7,
+
+    //使用者未登入
+    UserNotLogged : 8,
+
+    //登入失敗
+    LoginFailed :9,
+
+    //密碼輸入錯誤
+    PasswordEnterIncorrectly : 10,
+
+    //創建失敗
+    CreateFailed : 11,
+
+    //修改失敗
+    ModifiedFailed : 12,
+
+    //刪除失敗
+    DeleteFailed : 13
+};
+
+//設定errorCode對應資料
+function errorCodeToMessage(errorCode) {
+    let message;
 
     switch (errorCode) {
         case 1:
-            successMessage = "請求成功";
-            return { successMessage: successMessage };
+            message = "請求成功";
+            return  message ;
             break;
         case 2:
-            kickOutMessage = "您的帳號已被其他使用者踢出";
-            return { kickOutMessage: kickOutMessage };
+            message = "您的帳號已被其他使用者踢出";
+            return  message ;
             break;
         case 3:
-            kickOutMessage = "您的帳號已被禁用";
-            return { kickOutMessage: kickOutMessage };
+            message = "您的帳號已被禁用";
+            return  message ;
             break;
         case 4:
-            kickOutMessage = "您的權限已被更動，請重新登入";
-            return { kickOutMessage: kickOutMessage };
+            message = "您的權限已被更動，請重新登入";
+            return message;
             break;
         case 5:
-            errorMessage = "請求格式錯誤或無效數據";
-            return { errorMessage: errorMessage };
+            message = "請求格式錯誤或無效數據";
+            return  message ;
             break;
         case 6:
-            errorMessage = "伺服器錯誤";
-            return { errorMessage: errorMessage };
+            message = "伺服器錯誤";
+            return  message ;
             break;
         case 7:
-            errorMessage = "沒有此權限";
-            return { errorMessage: errorMessage };
+            message = "沒有此權限";
+            return  message;
             break;
         case 8:
-            redirectMessage = "使用者未登入";
-            redirectUrl = "/Login/Index";
-            return { redirectMessage: redirectMessage, redirectUrl: redirectUrl };
+            message = "使用者未登入";
+            return message;
             break;
         case 9:
-            errorMessage = "登入失敗";
-            return { errorMessage: errorMessage };
+            message = "登入失敗";
+            return message;
             break;
         case 10:
-            errorMessage = "密碼輸入錯誤";
-            return { errorMessage: errorMessage };
+            message = "密碼輸入錯誤";
+            return  message;
             break;
         case 11:
-            errorMessage = "此帳號已經存在";
-            return { errorMessage: errorMessage };
+            message = "新增失敗";
+            return  message;
             break;
         case 12:
-            errorMessage = "修改失敗";
-            return { errorMessage: errorMessage };
+            message = "修改失敗";
+            return  message;
             break;
         case 13:
-            errorMessage = "刪除失敗";
-            return { errorMessage: errorMessage };
+            message = "刪除失敗";
+            return message;
             break;
         default:
-    }
-}
-
-//設定通用的errorCode回傳的responseInfo物件的處理方法(不包括可能回傳頁面的post的response)
-function responseInfoHandler(responseInfo) {
-    //失敗
-    if (responseInfo.errorMessage) {
-        Swal.fire(responseInfo.errorMessage)
-            .then(result => {
-                if (result.isConfirmed) {
-                    return;
-                }
-            });
-    }
-    //被kickOut
-    else if (responseInfo.kickOutMessage) {
-        swal.fire(responseInfo.kickOutMessage)
-            .then(result => {
-                if (result.isConfirmed) {
-                    window.location.href = "/Login/Index";
-                }
-            });
-    }
-    //轉導頁面
-    else if (responseInfo.redirectMessage) {
-        window.location.href = responseInfo.redirectUrl;
     }
 }
 
@@ -97,26 +111,32 @@ function setRedirectPage(controller, action) {
             //如果回傳的是View而不是errorCode
             if (!response.data.errorCode) {
                 window.location.href = `/${controller}/${action}`;
+                return;
             }
 
-            //取得errorCode的信息
-            responseInfo = errorCodeToInfo(response.data.errorCode);
-            //失敗的話
-            if (responseInfo.errorMessage) {
-                Swal.fire(responseInfo.errorMessage);
-            }
-            //被kickOut的話
-            else if (responseInfo.kickOutMessage) {
-                swal.fire(responseInfo.kickOutMessage)
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
                     .then(result => {
+                        //確認後處理
                         if (result.isConfirmed) {
-                            window.location.href = "/Login/Index";
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
                         }
                     });
-            }
-            //轉導頁面
-            else if (responseInfo.redirectMessage) {
-                window.location.href = responseInfo.redirectUrl;
+                return;
             }
         })
         .catch(error => {

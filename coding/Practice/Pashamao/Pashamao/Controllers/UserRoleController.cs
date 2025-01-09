@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Pashamao.Controllers
 {
@@ -39,22 +38,23 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
                 (List<Role> roles, int totalPage) = userRoleService.GetAllRole(getAllRoleDto);
                 List<ResponseMainRoleDto> mainRoleDtos = roles.Select(role => (new ResponseMainRoleDto(role))).ToList();
-                errorCode = 1;
+
+                errorCode = ErrorCodeDefine.Success;
                 return Json(new { roles = mainRoleDtos, totalPage, errorCode });
             }
             catch (Exception e)
             {
-                int errorCode = 6;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
                 return Json(new { errorCode });
                 throw e;
@@ -69,30 +69,32 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = userRoleService.AddRole(addRoleDto);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "新增失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -105,21 +107,22 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid || roleIdDto.RoleId < 0)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
-                return Json(new { rolePermissions = userRoleService.GetRolePermissions(roleIdDto.RoleId) });
+                errorCode = ErrorCodeDefine.Success;
+                return Json(new { rolePermissions = userRoleService.GetRolePermissions(roleIdDto.RoleId), errorCode });
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -132,30 +135,32 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
-                if (!ModelState.IsValid)
+                if (!ModelState.IsValid || editRoleDto.RoleId < 0)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = userRoleService.EditRole(editRoleDto);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "修改失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -168,30 +173,33 @@ namespace Pashamao.Controllers
         {
             try
             {
-                if (roleIdDto.RoleId < 0)
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid || roleIdDto.RoleId < 0)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = userRoleService.DeleteRole(roleIdDto.RoleId);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "刪除失敗，請再試一次";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.DeleteFailed;
+                    return Json(new { errorCode });
                 }
 
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -204,11 +212,11 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid || roleIdDto.RoleId < 0)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
@@ -216,20 +224,21 @@ namespace Pashamao.Controllers
 
                 if (role == null)
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
                     ResponseMainRoleDto mainRoleDtos = new ResponseMainRoleDto(role);
-                    return Json(new { role = mainRoleDtos });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { role = mainRoleDtos, errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }

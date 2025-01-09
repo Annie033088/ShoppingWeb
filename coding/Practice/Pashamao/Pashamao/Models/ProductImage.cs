@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Pashamao.Models
+﻿namespace Pashamao.Models
 {
     public class ProductImage
     {

@@ -4,9 +4,6 @@ using Pashamao.Models.Dto.AddressDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Data.SqlClient;
-using System.Web.UI;
 
 namespace Pashamao.Service
 {

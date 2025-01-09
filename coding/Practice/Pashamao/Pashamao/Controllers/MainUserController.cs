@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Pashamao.Controllers
 {
@@ -39,23 +38,22 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
                 (List<User> users, int totalPage) = mainUserService.GetSortedUser(sortedUserDto);
                 List<ResponseMainUserDto> mainUserDto = users.Select(user => (new ResponseMainUserDto(user))).ToList();
-
-                errorCode = 1;
+                errorCode = ErrorCodeDefine.Success;
                 return Json((new { users = mainUserDto, totalPage, errorCode }));
             }
             catch (Exception e)
             {
-                int errorCode = 6;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
                 return Json(new { errorCode });
                 throw e;
@@ -70,11 +68,11 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
@@ -82,19 +80,19 @@ namespace Pashamao.Controllers
 
                 if (users == null)
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
                     List<ResponseMainUserDto> mainUserDto = users.Select(user => (new ResponseMainUserDto(user))).ToList();
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json((new { users = mainUserDto, totalPage, errorCode }));
                 }
             }
             catch (Exception e)
             {
-                int errorCode = 6;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
                 return Json(new { errorCode });
                 throw e;
@@ -117,8 +115,8 @@ namespace Pashamao.Controllers
             }
             catch (Exception e)
             {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                int errorCode = 6;
                 return Json(new { errorCode });
                 throw e;
             }
@@ -133,31 +131,56 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
 
                 if (!ModelState.IsValid || createUserDto.RoleId < 0)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
-                
+
                 bool successFlag = mainUserService.CreateUser(createUserDto);
 
                 if (successFlag)
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
-                    errorCode = 11;
+                    errorCode = ErrorCodeDefine.CreateFailed;
                     return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                int errorCode = 6;
+                return Json(new { errorCode });
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 修改權限前, 取得角色Id跟Name
+        /// </summary>
+        [HttpPost]
+        [UserRoleAuthFilter(UserPermission.EditUser)]
+        public ActionResult GetAllRole()
+        {
+            try
+            {
+                ErrorCodeDefine errorCode = 0;
+                List<Role> roles = mainUserService.GetRoleIdAndName();
+                List<ResponseRoleIdAndNameDto> roleIdAndNameDto = roles.Select(role => (new ResponseRoleIdAndNameDto(role))).ToList();
+
+                errorCode = ErrorCodeDefine.Success;
+                return Json(new { roles = roleIdAndNameDto, errorCode });
+            }
+            catch (Exception e)
+            {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
+                logger.Error(e);
                 return Json(new { errorCode });
                 throw e;
             }
@@ -172,11 +195,11 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
 
                 if (!ModelState.IsValid)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
@@ -184,18 +207,18 @@ namespace Pashamao.Controllers
 
                 if (successFlag)
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
-                    errorCode = 12;
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
                     return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                int errorCode = 6;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
                 return Json(new { errorCode });
                 throw e;
@@ -210,11 +233,11 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
 
                 if (!ModelState.IsValid || userIdDto.UserId < 0)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
@@ -222,18 +245,18 @@ namespace Pashamao.Controllers
 
                 if (successFlag)
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
-                    errorCode = 13;
+                    errorCode = ErrorCodeDefine.DeleteFailed;
                     return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                int errorCode = 6;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
                 return Json(new { errorCode });
                 throw e;

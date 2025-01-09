@@ -1,5 +1,6 @@
 ﻿using NLog;
 using Pashamao.Filters;
+using Pashamao.Models;
 using Pashamao.Models.Dto.UserDto;
 using Pashamao.Service;
 using System;
@@ -37,13 +38,13 @@ namespace Pashamao.Controllers
                 Session.Abandon();
                 Response.Cookies["ASP.NET_SessionId"].Expires = DateTime.Now.AddYears(-1);
                 //登出的errorCode
-                int errorCode = 1;
+                ErrorCodeDefine errorCode = ErrorCodeDefine.Success;
                 return Json((new { errorCode }));
             }
             catch (Exception e)
             {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                int errorCode = 6;
                 return Json(new { errorCode });
                 throw e;
             }
@@ -65,27 +66,27 @@ namespace Pashamao.Controllers
         {
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
 
                 if (!ModelState.IsValid || editUserPwdDto.OldPwd == editUserPwdDto.NewPwd)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
                 if (mainUserService.EditUserPwd(editUserPwdDto))
                 {
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
 
-                errorCode = 10;
+                errorCode = ErrorCodeDefine.PasswordEnterIncorrectly;
                 return Json(new { errorCode });
             }
             catch (Exception e)
             {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                int errorCode = 6;
                 return Json(new { errorCode });
                 throw e;
             }

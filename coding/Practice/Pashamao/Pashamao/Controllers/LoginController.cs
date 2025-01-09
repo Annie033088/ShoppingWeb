@@ -39,11 +39,11 @@ namespace Pashamao.Controllers
 
             try
             {
-                int errorCode = 0;
+                ErrorCodeDefine errorCode = 0;
 
                 if (!ModelState.IsValid)
                 {
-                    errorCode = 5;
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
@@ -54,7 +54,7 @@ namespace Pashamao.Controllers
                     //禁用的帳號?
                     if (userLogin.AcctSuspended())
                     {
-                        errorCode = 3;
+                        errorCode = ErrorCodeDefine.Baned;
                         return Json(new { errorCode });
                     }
 
@@ -66,20 +66,20 @@ namespace Pashamao.Controllers
 
                     Response.Cookies.Add(cookie);
                     logger.Info($"User '{loginUserDto.Account}' logged in successfully at {DateTime.Now}.");
-                    errorCode = 1;
+                    errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
                 else
                 {
-                    errorCode = 9;
+                    errorCode = ErrorCodeDefine.LoginFailed;
                     return Json(new { errorCode });
                 }
 
             }
             catch (Exception e)
             {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                int errorCode = 6;
                 return Json(new { errorCode });
                 throw e;
             }

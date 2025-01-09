@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Pashamao.Models.Dto.MemberDto
+﻿namespace Pashamao.Models.Dto.MemberDto
 {
     public class ResponseMainMemberDto
     {

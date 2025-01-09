@@ -12,7 +12,7 @@ namespace Pashamao.Models.Dto.UserDto
         [RegularExpression("^(?=.*[a-zA-Z])(?=.*\\d)[a-zA-Z\\d]{8,20}$", ErrorMessage = "請輸入8~20位英文數字")]
         public string Pwd { get; set; }
 
-        [RegularExpression("^.{0,10}$", ErrorMessage = "至多十位數")]
+        [RegularExpression("^.{0,10}$", ErrorMessage = "長度上限為10")]
         public string Name { get; set; }
 
         public int RoleId { get; set; }

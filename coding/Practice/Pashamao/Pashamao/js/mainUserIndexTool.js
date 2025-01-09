@@ -6,6 +6,11 @@ let lastSelectValue = "";
 
 getAll();
 
+function btnGetAllUser(){
+    document.getElementById("currentPage").innerHTML = 1;
+    getAll();
+}
+
 function getAll() {
     let btns = document.querySelectorAll(`.btnSort`);
     btns.forEach(btn => {
@@ -32,7 +37,7 @@ function previousPage() {
     let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
     let newCurrentPage = oldCurrentPage;
 
-    if (currentPage > 1) {
+    if (oldCurrentPage > 1) {
         newCurrentPage = oldCurrentPage - 1;
         document.getElementById("currentPage").innerHTML = newCurrentPage;
     }
@@ -93,18 +98,44 @@ function getUser(column, page, sortOrder) {
 
     axios.post("/MainUser/GetSortedUser", { sortedUserDto })
         .then(response => {
-            responseInfo = errorCodeToInfo(response.data.errorCode);
-            responseInfoHandler(responseInfo);
+            let errorCode = response.data.errorCode;
 
-            if (responseInfo.successMessage) {
-                if (response.data.users == null) return;
-                populateTable(response.data.users);
-                document.getElementById("lastPage").innerHTML = response.data.totalPage;
-            } else {
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
+                        if (result.isConfirmed) {
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
+                        }
+                    });
                 document.getElementById("currentPage").innerHTML = 1;
                 document.getElementById("lastPage").innerHTML = 1;
-                document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                return;
             }
+
+            //成功的話
+            if (response.data.users == null) {
+                document.getElementById("currentPage").innerHTML = 1;
+                document.getElementById("lastPage").innerHTML = 1;
+                document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                return;
+            }
+
+            populateTable(response.data.users);
+            document.getElementById("lastPage").innerHTML = response.data.totalPage;
         })
         .catch(error => {
             console.error("fail", error);
@@ -204,16 +235,36 @@ function delUser(userId) {
     }).then((result) => {
         let userIdDto = {
             UserId: userId
-        }
+        };
+
         if (result.isConfirmed) {
             axios.post("/MainUser/DeleteUser", { userIdDto })
                 .then(response => {
-                    responseInfo = errorCodeToInfo(response.data.errorCode);
-                    responseInfoHandler(responseInfo);
-                    //成功
-                    if (responseInfo.successMessage) {
-                        window.location.href = '/MainUser/Index';
+                    let errorCode = response.data.errorCode;
+
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
+
+                        //顯示訊息並處理
+                        Swal.fire(message)
+                            .then(result => {
+                                if (result.isConfirmed) {
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                }
+                            });
+                        return;
                     }
+                    //成功的話
+                    window.location.href = '/MainUser/Index';
                 })
                 .catch(error => { console.error(error); });
         }
@@ -250,19 +301,45 @@ function selectUser(txbSelectElementId, selectColumn, value, sortColumn, page, s
     };
     axios.post("/MainUser/SelectUser", { selectUserDto: selectUserModel })
         .then(response => {
-            responseInfo = errorCodeToInfo(response.data.errorCode);
-            responseInfoHandler(responseInfo);
-            //成功
-            if (responseInfo.successMessage) {
-                if (response.data.users == null) return;
-                populateTable(response.data.users);
-                document.getElementById("lastPage").innerHTML = response.data.totalPage;
-            }
-            else {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                Swal.fire(message)
+                    .then(result => {
+                        if (result.isConfirmed) {
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
+                        }
+                    });
+
                 document.getElementById("currentPage").innerHTML = 1;
                 document.getElementById("lastPage").innerHTML = 1;
-                document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                return;
             }
+
+
+            //成功的話
+            if (response.data.users == null) {
+                document.getElementById("currentPage").innerHTML = 1;
+                document.getElementById("lastPage").innerHTML = 1;
+                document.getElementById("userTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                return;
+            }
+
+            populateTable(response.data.users);
+            document.getElementById("currentPage").innerHTML = 1;
+            document.getElementById("lastPage").innerHTML = response.data.totalPage;
         })
         .catch(error => {
             console.error("fail", error);
@@ -279,8 +356,34 @@ function editUserRoleAndStatus(userId, userRoleId, userStatus) {
         statusSelectOptions = `<option value="true" >啟用</option>` + `<option value="false" selected>禁用</option>`;
     }
 
-    axios.post("/UserRole/GetAllRole")
+    axios.post("/MainUser/GetAllRole")
         .then(response => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息並處理
+                Swal.fire(message)
+                    .then(result => {
+                        if (result.isConfirmed) {
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
+                        }
+                    });
+
+                return;
+            }
+
+            //成功的話
             roleSelectOptions = populateRoleOptionData(response.data.roles, userRoleId);
             Swal.fire({
                 title: '修改使用者',
@@ -318,12 +421,31 @@ function editUserRoleAndStatus(userId, userRoleId, userStatus) {
                         editUserRoleAndStatus: result.value.editUserRoleAndStatus
                     })
                         .then(response => {
-                            responseInfo = errorCodeToInfo(response.data.errorCode);
-                            responseInfoHandler(responseInfo);
-                            //成功
-                            if (responseInfo.successMessage) {
-                                window.location.href = '/MainUser/Index';
+                            let errorCode = response.data.errorCode;
+
+                            //沒有成功
+                            if (errorCode != errorCodeDefine.Success) {
+                                let message = errorCodeToMessage(errorCode);
+
+                                //顯示訊息並處理
+                                Swal.fire(message)
+                                    .then(result => {
+                                        if (result.isConfirmed) {
+                                            //被踢出去
+                                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                || errorCode == errorCodeDefine.PermissionModified) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                        }
+                                    });
+                                return;
                             }
+                            //成功的話
+                            window.location.href = '/MainUser/Index';
                         })
                         .catch(error => {
                             console.error("fail", error);

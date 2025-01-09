@@ -31,8 +31,8 @@ function populateImage() {
         ProductImage.src = imageUrl;
         ProductImageBox.appendChild(ProductImage);
         displayImageContainer.appendChild(ProductImageBox);
-        imageTotal++
-    })
+        imageTotal++;
+    });
     updateImageDisplay();
 }
 
@@ -40,7 +40,7 @@ function populateProduct() {
     let productStatus = product.Status;
     document.getElementById("txbName").value = product.Name;
     document.getElementById("txbDescription").value = product.Description;
-    document.getElementById("dropdownCategory").value = product.CategoryId
+    document.getElementById("dropdownCategory").value = product.CategoryId;
     document.getElementById("productIntroduce").value = product.Introduction;
     if (productStatus == true) {
         document.getElementById("btnProductStatusOn").className = "opacity-100 btn btn-dark";
@@ -67,7 +67,7 @@ function populateStyle() {
         }
 
         addStyleRow(style, imageSrc, imageName);
-    })
+    });
 }
 
 function getImageAndEdit() {
@@ -84,7 +84,7 @@ function getImageAndEdit() {
                         <img id="${image.id}" src="${image.src}" class="img-fluid" />
                         <p class="imageName">${image.id}</p>
                         <button class = "btn btnDeleteImage" style=""  data-id="${image.id}">
-                    </div>`
+                    </div>`;
             imagesHtmlStrings.push(html);
             imageCount++;
         });
@@ -118,7 +118,7 @@ function getImageAndEdit() {
             inputElement.accept = "image/*";
             inputElement.style.display = "none";
             btnAddImage.id = "btnUploadImage";
-            btnAddImage.className = "btn btnAdd"
+            btnAddImage.className = "btn btnAdd";
 
             imgUploadBox.appendChild(btnAddImage);
             imgUploadBox.appendChild(inputElement);
@@ -141,19 +141,19 @@ function getImageAndEdit() {
                 const file = e.target.files[0];
 
                 if (!file) return;
-                
+
                 if (file.name.length > 20) {
                     alert("圖片名過長");
                     return;
                 }
 
                 //驗證檔案最大1mb
-                const maxSize = 1024 * 1024; 
+                const maxSize = 1024 * 1024;
                 if (file.size > maxSize) {
                     alert("圖片檔案過大");
                     return;
                 }
-                
+
                 const mimeType = file.type.toLowerCase();
                 switch (mimeType) {
                     case 'image/jpeg':
@@ -210,7 +210,7 @@ function getImageAndEdit() {
                 reader.readAsDataURL(file);
             });
 
-            const buttons = document.querySelectorAll('.btnDeleteImage')
+            const buttons = document.querySelectorAll('.btnDeleteImage');
             buttons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const btn = event.target;
@@ -256,7 +256,7 @@ function getImageAndEdit() {
                     const parentDiv = image.parentElement;
                     parentDiv.remove();
                     imageTotal--;
-                })
+                });
             }
             currentImageIndex = 0;
             updateImageDisplay();
@@ -316,7 +316,7 @@ function addStyle() {
                             <span id="txtStatus" class="input-group-text">上/下架</span>
                             <button id="btnStatusOn" class="btn btn-outline-dark opacity-50">上架</button>
                             <button id="btnStatusOff" class="opacity-100 btn btn-dark" >下架</button>
-                        </div>`
+                        </div>`;
 
     Swal.fire({
         title: '新增細項',
@@ -405,11 +405,11 @@ function addStyle() {
             btnStatusOn.addEventListener("click", function () {
                 btnStatusOn.className = "opacity-100 btn btn-dark";
                 btnStatusOff.className = "btn btn-outline-dark opacity-50";
-            })
+            });
             btnStatusOff.addEventListener("click", function () {
                 btnStatusOn.className = "btn btn-outline-dark opacity-50";
                 btnStatusOff.className = "opacity-100 btn btn-dark";
-            })
+            });
 
         },
         preConfirm: () => {
@@ -427,7 +427,7 @@ function addStyle() {
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
-            }
+            };
 
             //驗證輸入符合訊息
             const nameRegex = /^.{1,25}$/;
@@ -471,25 +471,37 @@ function addStyle() {
                 }
             })
                 .then(response => {
-                    if (response.data.successFlag == true) {
-                        Swal.fire("新增成功!")
-                            .then((result) => {
+                    let errorCode = response.data.errorCode;
+
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
+
+                        //顯示訊息
+                        Swal.fire(message)
+                            .then(result => {
+                                //確認後處理
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
+                                    }
                                 }
-                            })
-                    } else {
-                        Swal.fire(response.data.errorMessage)
-                            .then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                                }
-                            })
+                            });
+                        return;
                     }
+
+                    //成功的話
+                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                 })
                 .catch(error => {
                     console.error("fail", error);
-                })
+                });
         }
     });
 }
@@ -505,7 +517,7 @@ function editStyle(styleData, imageSrc, id) {
                           <span id="txtStatus" class="input-group-text">上/下架</span>
                           <button id="btnStatusOn" class="opacity-100 btn btn-dark">上架</button>
                           <button id="btnStatusOff" class="btn btn-outline-dark opacity-50" >下架</button>
-                      </div>`
+                      </div>`;
     }
     else {
         htmlStatus = `
@@ -513,7 +525,7 @@ function editStyle(styleData, imageSrc, id) {
                           <span id="txtStatus" class="input-group-text">上/下架</span>
                           <button id="btnStatusOn" class="btn btn-outline-dark opacity-50">上架</button>
                           <button id="btnStatusOff" class="opacity-100 btn btn-dark" >下架</button>
-                      </div>`
+                      </div>`;
     }
 
     Swal.fire({
@@ -603,11 +615,11 @@ function editStyle(styleData, imageSrc, id) {
             btnStatusOn.addEventListener("click", function () {
                 btnStatusOn.className = "opacity-100 btn btn-dark";
                 btnStatusOff.className = "btn btn-outline-dark opacity-50";
-            })
+            });
             btnStatusOff.addEventListener("click", function () {
                 btnStatusOn.className = "btn btn-outline-dark opacity-50";
                 btnStatusOff.className = "opacity-100 btn btn-dark";
-            })
+            });
         },
         preConfirm: () => {
             let styleStatus = "";
@@ -631,7 +643,7 @@ function editStyle(styleData, imageSrc, id) {
                 Price: stylePrice,
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
-            }
+            };
 
 
             //驗證輸入符合訊息
@@ -675,25 +687,37 @@ function editStyle(styleData, imageSrc, id) {
                 }
             })
                 .then(response => {
-                    if (response.data.successFlag == true) {
-                        Swal.fire("修改成功!")
-                            .then((result) => {
+                    let errorCode = response.data.errorCode;
+
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
+
+                        //顯示訊息
+                        Swal.fire(message)
+                            .then(result => {
+                                //確認後處理
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
+                                    }
                                 }
-                            })
-                    } else {
-                        Swal.fire(response.data.errorMessage)
-                            .then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                                }
-                            })
+                            });
+                        return;
                     }
+
+                    //成功的話
+                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                 })
                 .catch(error => {
                     console.error("fail", error);
-                })
+                });
         }
     });
 
@@ -776,8 +800,8 @@ function delStyle(styleId) {
     if (styleCnt < 2) {
         Swal.fire({
             title: '商品至少有一個細項'
-        })
-        return
+        });
+        return;
     }
 
     Swal.fire({
@@ -795,27 +819,39 @@ function delStyle(styleId) {
                 LastEditTime: product.LastEditTime
             })
                 .then(response => {
-                    if (response.data.successFlag == true) {
-                        Swal.fire("刪除成功!")
-                            .then((result) => {
+                    let errorCode = response.data.errorCode;
+
+                    //沒有成功
+                    if (errorCode != errorCodeDefine.Success) {
+                        let message = errorCodeToMessage(errorCode);
+
+                        //顯示訊息
+                        Swal.fire(message)
+                            .then(result => {
+                                //確認後處理
                                 if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
+                                    //被踢出去
+                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                        || errorCode == errorCodeDefine.PermissionModified) {
+                                        window.location.href = "/Login/Index";
+                                    }
+                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                    if (errorCode == errorCodeDefine.UserNotLogged) {
+                                        window.location.href = "/Login/Index";
+                                    }
                                 }
-                            })
-                    } else {
-                        Swal.fire(response.data.errorMessage)
-                            .then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                                }
-                            })
+                            });
+                        return;
                     }
+
+                    //成功的話
+                    window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
                 })
                 .catch(error => {
                     console.error("fail", error);
-                })
+                });
         }
-    })
+    });
 }
 
 function setProductStatusOn() {
@@ -869,7 +905,7 @@ function submitEditProduct() {
         Introduction: productIntroduce,
         Status: productStatus,
         LastEditTime: product.LastEditTime
-    }
+    };
 
     if (newProduct.Name == product.Name && newProduct.CategoryId == product.CategoryId && newProduct.Description == product.Description
         && newProduct.Introduction == product.Introduction && newProduct.Status == product.Status) {
@@ -879,26 +915,37 @@ function submitEditProduct() {
 
     axios.post("/MainProduct/EditProduct", { Product: newProduct })
         .then(response => {
-            console.log(response)
-            if (response.data.successFlag == true) {
-                Swal.fire("修改成功!")
-                    .then((result) => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
                         }
-                    })
-            } else {
-                Swal.fire(response.data.errorMessage)
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                        }
-                    })
+                    });
+                return;
             }
+
+            //成功的話
+            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
         })
         .catch(error => {
             console.error("fail", error);
-        })
+        });
 
 }
 
@@ -913,7 +960,7 @@ function submitEditImage() {
                 let image = {
                     ImageName: imageElements[i].id,
                     ImageUrl: imageElements[i].src
-                }
+                };
                 imageList.push(image);
             }
         }
@@ -941,25 +988,37 @@ function submitEditImage() {
         }
     })
         .then(response => {
-            if (response.data.successFlag == true) {
-                Swal.fire("修改成功!")
-                    .then((result) => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
                         }
-                    })
-            } else {
-                Swal.fire(response.data.errorMessage)
-                    .then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
-                        }
-                    })
+                    });
+                return;
             }
+
+            //成功的話
+            window.location.href = `/MainProduct/ProductDetail?productId=${product.ProductId}`;
         })
         .catch(error => {
             console.error("fail", error);
-        })
+        });
 }
 
 function dataURItoBlob(dataURI) {

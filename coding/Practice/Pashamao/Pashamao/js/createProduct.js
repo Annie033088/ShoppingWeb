@@ -760,16 +760,33 @@ function submitCreatProduct() {
         createProductDto
     })
         .then(response => {
-            if (response.data.successFlag == true) {
-                Swal.fire("新增成功!")
-                    .then((result) => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
                         if (result.isConfirmed) {
-                            window.location.href = `/MainProduct/Index`;
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
                         }
                     });
-            } else {
-                Swal.fire(response.data.errorMessage)
+                return;
             }
+
+            //成功的話
+            window.location.href = `/MainProduct/Index`;
         })
         .catch(error => {
             console.error("fail", error);

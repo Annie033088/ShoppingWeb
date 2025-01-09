@@ -42,11 +42,12 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 if (getSelectProductDto.ProductId != null)
@@ -54,8 +55,8 @@ namespace Pashamao.Controllers
                     Guid productId = Guid.NewGuid();
                     if (!Guid.TryParse(getSelectProductDto.ProductId, out productId))
                     {
-                        string errorMessage = "錯誤的產品Id";
-                        return Json(new { errorMessage });
+                        errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                        return Json(new { errorCode });
                     }
                 }
 
@@ -63,8 +64,8 @@ namespace Pashamao.Controllers
                 {
                     if (getSelectProductDto.Name.Length > 30)
                     {
-                        string errorMessage = "錯誤的產品名稱";
-                        return Json(new { errorMessage });
+                        errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                        return Json(new { errorCode });
                     }
                 }
 
@@ -73,20 +74,21 @@ namespace Pashamao.Controllers
 
                 if (products == null)
                 {
-                    string errorMessage = "沒有商品";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
                     List<ResponseMainProductDto> mainProducts = products.Select(product => new ResponseMainProductDto(product)).ToList();
-                    return Json((new { products = mainProducts, totalPage }));
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { products = mainProducts, totalPage, errorCode }));
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -109,29 +111,31 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = mainProductService.CreateProduct(createProductDto);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "修改失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -145,29 +149,31 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = mainProductService.DeleteProduct(productId.ProductId);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "修改失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.DeleteFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -180,13 +186,14 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //驗證前端資料
                 Guid productIdGuid = Guid.NewGuid();
 
                 if (!Guid.TryParse(productId, out productIdGuid))
                 {
-                    string errorMessage = "錯誤的產品Id";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 (ProductDetail product, List<ProductStyle> styles, List<ProductImage> images) = mainProductService.GetProductDetail(productIdGuid);
@@ -204,9 +211,9 @@ namespace Pashamao.Controllers
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -220,30 +227,32 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = mainProductService.EditProduct(product);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "修改失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -257,23 +266,23 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //驗證前端資料
                 var files = Request.Files;
-
                 Guid productId = new Guid();
 
                 if (!Guid.TryParse(Request.Form["ProductId"], out productId))
                 {
-                    string errorMessage = "錯誤的產品Id";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 DateTime lastEditTime = new DateTime();
 
                 if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 List<int> delImageIdList = JsonConvert.DeserializeObject<List<int>>(Request.Form["DelImageList"]);
@@ -281,22 +290,24 @@ namespace Pashamao.Controllers
                 //先判斷圖片Id的陣列是否為空 再檢查id是不是小於0
                 if (delImageIdList.Count != 0)
                 {
-                    if(delImageIdList.All(id => id < 0))
+                    if (delImageIdList.All(id => id < 0))
                     {
-                        string errorMessage = "無效的輸入";
-                        return Json(new { errorMessage });
+                        errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                        return Json(new { errorCode });
                     }
                 }
 
                 bool successFlag = mainProductService.EditProductImage(productId, lastEditTime, delImageIdList, files);
 
-                return Json(new { successFlag });
+
+                errorCode = ErrorCodeDefine.Success;
+                return Json(new { errorCode });
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -310,19 +321,20 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 var files = Request.Files;
                 DateTime lastEditTime = new DateTime();
 
                 if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 if (Request.Form["EditStyle"] == null)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
@@ -330,19 +342,20 @@ namespace Pashamao.Controllers
                 bool successFlag = mainProductService.EditProductStyle(EditStyle, files, ImageType, lastEditTime);
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "修改失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -356,19 +369,20 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 var files = Request.Files;
                 DateTime lastEditTime = new DateTime();
 
                 if (!DateTime.TryParse(Request.Form["LastEditTime"], out lastEditTime))
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 if (Request.Form["AddStyle"] == null)
                 {
-                    string errorMessage = "無效的輸入";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);
@@ -377,19 +391,20 @@ namespace Pashamao.Controllers
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "新增失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -403,30 +418,32 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = mainProductService.DeleteProductStyle(deleteProductStyleDto);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "刪除失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.DeleteFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }

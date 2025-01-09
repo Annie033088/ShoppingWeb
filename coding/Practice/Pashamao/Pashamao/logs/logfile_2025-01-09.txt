@@ -1,0 +1,35 @@
+2025-01-09 09:06:01.8636 Info Application Start
+2025-01-09 09:06:03.4102 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-09 09:06:35.1494 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 上午 09:06:35.
+2025-01-09 09:10:16.6397 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:10:16.6985 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:10:16.7523 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:10:28.7913 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:10:28.8493 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:10:28.9022 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 09:12:14.0624 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (tst1)。
+陳述式已經結束。
+2025-01-09 09:12:14.1123 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (tst1)。
+陳述式已經結束。
+2025-01-09 09:12:14.1652 Error System.Data.SqlClient.SqlException: 違反 UNIQUE KEY 條件約束 'uniqueName'。無法在物件 'dbo.t_role' 中插入重複的索引鍵。重複的索引鍵值是 (tst1)。
+陳述式已經結束。
+2025-01-09 11:15:51.9880 Info Application Start
+2025-01-09 11:15:53.5953 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-09 11:16:04.9145 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 上午 11:16:04.
+2025-01-09 11:20:59.2477 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 11:20:59.2908 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 11:20:59.3560 Error System.Data.SqlClient.SqlException: OFFSET 子句中指定的位置不可為負值。
+2025-01-09 13:07:30.9467 Info Application Start
+2025-01-09 13:07:32.1992 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-09 13:07:42.7336 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 下午 01:07:42.
+2025-01-09 13:31:22.2257 Info Application Start
+2025-01-09 13:31:22.6206 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-09 13:32:00.8557 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 下午 01:32:00.
+2025-01-09 14:29:51.4883 Info Application Start
+2025-01-09 15:26:11.6029 Info Application Start
+2025-01-09 15:26:11.9829 Error System.Web.HttpException: 找不到路徑 '/LoginIndex' 的控制器或是未實作 IController。
+2025-01-09 15:31:11.3290 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 下午 03:31:11.
+2025-01-09 15:36:12.1914 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 下午 03:36:12.
+2025-01-09 15:50:29.9075 Info Application Start
+2025-01-09 15:50:31.1388 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainHomeController' 上找不到公用動作方法 'EditUserPwd'。
+2025-01-09 15:50:41.4694 Info User 'BG6nNMVFp34q' logged in successfully at 2025/1/9 下午 03:50:41.

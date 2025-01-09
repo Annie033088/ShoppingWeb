@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Pashamao.Models.Dto.UserDto
 {
@@ -12,7 +8,7 @@ namespace Pashamao.Models.Dto.UserDto
         /// 使用者Id
         /// </summary>
         [Required]
-        public int UserId {  get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// 腳色id
@@ -23,6 +19,6 @@ namespace Pashamao.Models.Dto.UserDto
         /// <summary>
         /// 狀態
         /// </summary>
-        public bool Status {  get; set; }
+        public bool Status { get; set; }
     }
 }

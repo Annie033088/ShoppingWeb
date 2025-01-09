@@ -2,7 +2,6 @@
 using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Models.Dto.MemberDto;
-using Pashamao.Models.Dto.UserDto;
 using Pashamao.Service;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using System.Web.Mvc;
 namespace Pashamao.Controllers
 {
     [UserKickOutFilter]
-    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData |  UserPermission.EditMemberLevelAndStatus)]
+    [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData | UserPermission.EditMemberLevelAndStatus)]
     public class MainMemberController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -38,30 +37,33 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 (List<Member> members, int totalPage) = mainMemberService.GetSortedMember(getSortedMemberDto);
 
                 if (members == null)
                 {
-                    string errorMessage = "沒有會員";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { errorCode }));
                 }
                 else
                 {
                     List<ResponseMainMemberDto> memberDtos = members.Select(member => (new ResponseMainMemberDto(member))).ToList();
-                    return Json((new { members = memberDtos, totalPage }));
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { members = memberDtos, totalPage, errorCode }));
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -74,30 +76,33 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 (List<Member> members, int totalPage) = mainMemberService.SelectMember(getSelectMemberDto);
 
                 if (members == null)
                 {
-                    string errorMessage = "沒有此會員";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { errorCode }));
                 }
                 else
                 {
                     List<ResponseMainMemberDto> memberDtos = members.Select(member => (new ResponseMainMemberDto(member))).ToList();
-                    return Json((new { members = memberDtos, totalPage }));
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json((new { members = memberDtos, totalPage, errorCode }));
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -120,32 +125,20 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    ViewBag.Message = "格式輸入";
-
-                    foreach (var key in ModelState.Keys)
-                    {
-                        var state = ModelState[key];
-
-                        if (state.Errors.Count > 0)
-                        {
-                            foreach (var error in state.Errors)
-                            {
-                                ViewBag.Message = ViewBag.Message + "失敗: " + error.ErrorMessage + "；";
-                            }
-                        }
-                    }
-
-                    return View("CreateMember");
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 if (createMemberDto.CountryCode != null)
                 {
                     if (createMemberDto.Phone == null)
                     {
-                        ViewBag.Message = "無效的電話號碼, 請再試一次";
-                        return View("CreateMember");
+                        errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                        return Json(new { errorCode });
                     }
                 }
 
@@ -153,19 +146,20 @@ namespace Pashamao.Controllers
 
                 if (successFlag)
                 {
-                    return View("Index");
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    ViewBag.Message = "帳號重複, 創建失敗, 請再試一次";
-                    return View("CreateMember");
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                ViewBag.Message = "創建失敗, 請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return View("CreateMember");
+                return Json(new { errorCode });
                 throw e;
             }
         }
@@ -179,31 +173,33 @@ namespace Pashamao.Controllers
         {
             try
             {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
                 if (!ModelState.IsValid)
                 {
-                    string errorMessage = "無效的輸入格式";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
                 }
 
                 bool successFlag = mainMemberService.EditMemberLevelAndStatus(editMemberLevelAndStatusDto);
 
                 if (successFlag)
                 {
-                    return Json(new { successFlag });
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
                 }
                 else
                 {
-                    string errorMessage = "刪除失敗";
-                    return Json(new { errorMessage });
+                    errorCode = ErrorCodeDefine.DeleteFailed;
+                    return Json(new { errorCode });
                 }
             }
             catch (Exception e)
             {
-                string errorMessage = "發生錯誤，請再試一次";
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
                 logger.Error(e);
-                return Json(new { errorMessage });
+                return Json(new { errorCode });
                 throw e;
-                throw;
             }
         }
     }

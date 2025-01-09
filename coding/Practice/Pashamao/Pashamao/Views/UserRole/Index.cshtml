@@ -15,7 +15,7 @@
                 <tr>
                     <th>
                         <button type="button" id="btnShowAddRoleCkb" class="btn btn-outline-dark" onclick="showAddRoleCkb()">新增</button>
-                        <button type="button" id="btnGetAllRole" class="btn btn-outline-dark " onclick='getAllRole()'>查詢全部</button>
+                        <button type="button" id="btnGetAllRole" class="btn btn-outline-dark " onclick='getAllRole(1)'>查詢全部</button>
                     </th>
                     <th class="text-lg-end">
                         <label>輸入搜尋ID</label>
@@ -102,18 +102,47 @@
                 };
                 axios.post("/UserRole/GetAllRole", { getAllRoleDto })
                     .then(response => {
-                        //處理各種errorCode的通用事件
-                        let responseInfo = errorCodeToInfo(response.data.errorCode);
-                        responseInfoHandler(responseInfo);
-                        //成功
-                        if (responseInfo.successMessage) {
-                            if (response.data.roles == null) return;
-                            populateTable(response.data.roles);
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        } else {
+                        let errorCode = response.data.errorCode;
+
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+
+
                             document.getElementById("currentPage").innerHTML = 1;
                             document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
                         }
+
+                        //成功的話
+                        if (response.data.roles == null) {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
+                        }
+
+                        populateTable(response.data.roles);
+                        document.getElementById("currentPage").innerHTML = page;
+                        document.getElementById("lastPage").innerHTML = response.data.totalPage;
                     })
                     .catch(error => {
                         console.error("fail", error);
@@ -129,7 +158,7 @@
                 let oldCurrentPage = parseInt(document.getElementById("currentPage").innerHTML);
                 let newCurrentPage = oldCurrentPage;
 
-                if (currentPage > 1) {
+                if (oldCurrentPage > 1) {
                     newCurrentPage = oldCurrentPage - 1;
                     document.getElementById("currentPage").innerHTML = newCurrentPage;
                 }
@@ -151,13 +180,13 @@
                 else {
                     newCurrentPage = maxPage;
                 }
-                newCurrentPage(newCurrentPage);
+                getAllRole(newCurrentPage);
             }
 
             function lastPage() {
                 let maxPage = parseInt(document.getElementById("lastPage").innerHTML);
                 document.getElementById("currentPage").innerHTML = maxPage;
-                newCurrentPage(maxPage);
+                getAllRole(maxPage);
             }
 
             function populateTable(roles) {
@@ -197,24 +226,44 @@
 
                         axios.post("/UserRole/GetRolePermissions", { roleIdDto })
                             .then(response => {
+                                let errorCode = response.data.errorCode;
 
-                                //處理各種errorCode的通用事件
-                                let responseInfo = errorCodeToInfo(response.data.errorCode);
-                                responseInfoHandler(responseInfo);
-                                //成功
-                                if (responseInfo.successMessage) {
-                                    if (esponse.data.rolePermissions == null) return;
-                                    checkPermission(response.data.rolePermissions);
-                                    document.getElementById("overlay").style.display = "block";
-                                    document.getElementById("ckbPopUp").style.display = "block";
-                                    document.getElementById("btnSubmitEditRole").style.display = "block";
-                                    document.getElementById("btnSubmitAddRole").style.display = "none";
-                                    document.getElementById("txbRoleName").value = role.Name;
-                                    document.getElementById("txbRoleDiscript").value = role.Description;
-                                    document.getElementById("btnSubmitEditRole").addEventListener("click", function () {
-                                        editRole(role.RoleId);
-                                    });
+                                //沒有成功
+                                if (errorCode != errorCodeDefine.Success) {
+                                    let message = errorCodeToMessage(errorCode);
+
+                                    //顯示訊息
+                                    Swal.fire(message)
+                                        .then(result => {
+                                            //確認後處理
+                                            if (result.isConfirmed) {
+                                                //被踢出去
+                                                if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                    || errorCode == errorCodeDefine.PermissionModified) {
+                                                    window.location.href = "/Login/Index";
+                                                }
+                                                //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                                if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                    window.location.href = "/Login/Index";
+                                                }
+                                            }
+                                        });
+                                    return;
                                 }
+
+                                //成功的話
+                                if (response.data.rolePermissions == null) return; //沒有資料
+
+                                checkPermission(response.data.rolePermissions);
+                                document.getElementById("overlay").style.display = "block";
+                                document.getElementById("ckbPopUp").style.display = "block";
+                                document.getElementById("btnSubmitEditRole").style.display = "block";
+                                document.getElementById("btnSubmitAddRole").style.display = "none";
+                                document.getElementById("txbRoleName").value = role.Name;
+                                document.getElementById("txbRoleDiscript").value = role.Description;
+                                document.getElementById("btnSubmitEditRole").addEventListener("click", function () {
+                                    editRole(role.RoleId);
+                                });
                             })
                             .catch(error => {
                                 console.error("fail", error);
@@ -255,13 +304,33 @@
                     if (result.isConfirmed) {
                         axios.post("/UserRole/DeleteRole", { roleIdDto })
                             .then(response => {
-                                //處理各種errorCode的通用事件
-                                let responseInfo = errorCodeToInfo(response.data.errorCode);
-                                responseInfoHandler(responseInfo);
-                                //成功
-                                if (responseInfo.successMessage) {
-                                    window.location.href = "/UserRole/Index";
+                                let errorCode = response.data.errorCode;
+
+                                //沒有成功
+                                if (errorCode != errorCodeDefine.Success) {
+                                    let message = errorCodeToMessage(errorCode);
+
+                                    //顯示訊息
+                                    Swal.fire(message)
+                                        .then(result => {
+                                            //確認後處理
+                                            if (result.isConfirmed) {
+                                                //被踢出去
+                                                if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                    || errorCode == errorCodeDefine.PermissionModified) {
+                                                    window.location.href = "/Login/Index";
+                                                }
+                                                //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                                if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                    window.location.href = "/Login/Index";
+                                                }
+                                            }
+                                        });
+                                    return;
                                 }
+
+                                //成功的話
+                                window.location.href = "/UserRole/Index";
                             })
                             .catch(error => { console.error(error); });
                     }
@@ -284,22 +353,48 @@
 
                 axios.post("/UserRole/SelectRole", { roleIdDto })
                     .then(response => {
-                        //處理各種errorCode的通用事件
-                        let responseInfo = errorCodeToInfo(response.data.errorCode);
-                        responseInfoHandler(responseInfo);
-                        //成功
-                        if (responseInfo.successMessage) {
-                            if (response.data.roles == null) return;
+                        let errorCode = response.data.errorCode;
 
-                            let role = response.data.roles;
-                            role = [role];
-                            populateTable(role);
-                            document.getElementById("lastPage").innerHTML = response.data.totalPage;
-                        } else {
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+
                             document.getElementById("currentPage").innerHTML = 1;
                             document.getElementById("lastPage").innerHTML = 1;
                             document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
                         }
+
+                        //成功的話
+                        if (response.data.role == null) {
+                            document.getElementById("currentPage").innerHTML = 1;
+                            document.getElementById("lastPage").innerHTML = 1;
+                            document.getElementById("roleTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                            return;
+                        }
+
+                        let role = response.data.role;
+                        role = [role];
+                        populateTable(role);
+                        document.getElementById("currentPage").innerHTML = 1;
+                        document.getElementById("lastPage").innerHTML = 1;
                     })
                     .catch(error => {
                         console.error("fail", error);
@@ -399,12 +494,21 @@
                     }
                 });
 
-                const roleName = document.getElementById("txbRoleName");
-                const roleDiscript = document.getElementById("txbRoleDiscript");
+                const roleName = document.getElementById("txbRoleName").value.trim();
+                const roleDiscript = document.getElementById("txbRoleDiscript").value.trim();
 
-                if (roleName.value == "" || roleDiscript.value == "") {
+                if (roleName == "" || roleName.length > 30) {
                     Swal.fire({
-                        title: '名稱及敘述請勿填空！',
+                        title: '請輸入30字以內名稱！',
+                        icon: 'warning',
+                        confirmButtonText: '確認'
+                    });
+                    return;
+                }
+
+                if (roleDiscript == "" || roleDiscript.length > 60) {
+                    Swal.fire({
+                        title: '請輸入60字以內描述！',
                         icon: 'warning',
                         confirmButtonText: '確認'
                     });
@@ -413,19 +517,39 @@
 
                 let addRoleDto = {
                     PermissionCkbs: selectedCkbs,
-                    Name: roleName.value,
-                    Description: roleDiscript.value
+                    Name: roleName,
+                    Description: roleDiscript
                 };
 
                 axios.post("/UserRole/AddRole", { addRoleDto })
                     .then(response => {
-                        //處理各種errorCode的通用事件
-                        let responseInfo = errorCodeToInfo(response.data.errorCode);
-                        responseInfoHandler(responseInfo);
-                        //成功
-                        if (responseInfo.successMessage) {
-                            window.location.href = "/UserRole/Index";
+                        let errorCode = response.data.errorCode;
+
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+                            return;
                         }
+
+                        //成功的話
+                        window.location.href = "/UserRole/Index";
                     })
                     .catch(error => {
                     });
@@ -440,9 +564,21 @@
                     }
                 });
 
-                if (roleName.value == "" || roleDiscript.value == "") {
+                const roleName = document.getElementById("txbRoleName").value.trim();
+                const roleDiscript = document.getElementById("txbRoleDiscript").value.trim();
+
+                if (roleName == "" || roleName.length > 30) {
                     Swal.fire({
-                        title: '名稱及敘述請勿填空！',
+                        title: '請輸入30字以內名稱！',
+                        icon: 'warning',
+                        confirmButtonText: '確認'
+                    });
+                    return;
+                }
+
+                if (roleDiscript == "" || roleDiscript.length > 60) {
+                    Swal.fire({
+                        title: '請輸入60字以內描述！',
                         icon: 'warning',
                         confirmButtonText: '確認'
                     });
@@ -452,19 +588,39 @@
                 const editRoleDto = {
                     RoleId: roleId,
                     PermissionCkbs: selectedCkbs,
-                    Name: roleName.value,
-                    Description: roleDiscript.value
+                    Name: roleName,
+                    Description: roleDiscript
                 };
 
                 axios.post("/UserRole/EditRole", { editRoleDto })
                     .then(response => {
-                        //處理各種errorCode的通用事件
-                        let responseInfo = errorCodeToInfo(response.data.errorCode);
-                        responseInfoHandler(responseInfo);
-                        //成功
-                        if (responseInfo.successMessage) {
-                            window.location.href = "/UserRole/Index";
+                        let errorCode = response.data.errorCode;
+
+                        //沒有成功
+                        if (errorCode != errorCodeDefine.Success) {
+                            let message = errorCodeToMessage(errorCode);
+
+                            //顯示訊息
+                            Swal.fire(message)
+                                .then(result => {
+                                    //確認後處理
+                                    if (result.isConfirmed) {
+                                        //被踢出去
+                                        if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                            || errorCode == errorCodeDefine.PermissionModified) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                        //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                        if (errorCode == errorCodeDefine.UserNotLogged) {
+                                            window.location.href = "/Login/Index";
+                                        }
+                                    }
+                                });
+                            return;
                         }
+
+                        //成功的話
+                        window.location.href = "/UserRole/Index";
                     })
                     .catch(error => {
                     });
