@@ -18,21 +18,21 @@ namespace Pashamao.Models.Dto.ProductDto
         public int CategoryId { get; set; }
 
         /// <summary>
-        /// 商品名稱
+        /// 商品名稱 不可空
         /// </summary>
-        [Required]
+        [RegularExpression("^.{1,30}$", ErrorMessage = "至多30字")]
         public string Name { get; set; }
 
         /// <summary>
-        /// 商品描述
+        /// 商品描述 (若為空會處理為空字串)
         /// </summary>
-        [Required]
+        [RegularExpression("^.{0,40}$", ErrorMessage = "至多40字")]
         public string Description { get; set; }
 
         /// <summary>
-        /// 商品介紹
+        /// 商品介紹 (若為空會處理為空字串)
         /// </summary>
-        [Required]
+        [RegularExpression("^.{0,40}$", ErrorMessage = "至多1500字")]
         public string Introduction { get; set; }
 
         /// <summary>

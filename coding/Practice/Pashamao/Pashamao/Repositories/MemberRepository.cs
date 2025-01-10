@@ -17,7 +17,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增會員
         /// </summary>
-        internal bool Create(Member member)
+        internal bool Create(RequestCreateMemberDto member)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -29,9 +29,17 @@ namespace Pashamao.Repositories
                 cmd.Parameters.Add("@acct", SqlDbType.VarChar).Value = member.Account;
                 cmd.Parameters.Add("@pwd", SqlDbType.VarChar).Value = member.Pwd;
                 cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = member.Email;
-                cmd.Parameters.Add("@phone", SqlDbType.Char).Value = member.Phone;
                 cmd.Parameters.Add("@memberName", SqlDbType.NVarChar).Value = member.MemberName;
                 cmd.Parameters.Add("@nickname", SqlDbType.NVarChar).Value = member.Nickname;
+
+                if (member.Phone == null)
+                {
+                    cmd.Parameters.Add("@phone", SqlDbType.Int).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("@phone", SqlDbType.Int).Value = member.Phone.Value;
+                }
 
                 cmd.Connection.Open();
 
@@ -98,7 +106,7 @@ namespace Pashamao.Repositories
                         Member member = new Member();
                         member.MemberId = dt.Rows[i].IsNull("f_memberId") ? 0 : dt.Rows[i].Field<int>("f_memberId");
                         member.Email = dt.Rows[i].IsNull("f_email") ? string.Empty : dt.Rows[i].Field<string>("f_email");
-                        member.Phone = dt.Rows[i].IsNull("f_phone") ? string.Empty : dt.Rows[i].Field<string>("f_phone");
+                        member.Phone = dt.Rows[i].IsNull("f_phone") ? 0 : dt.Rows[i].Field<int>("f_phone");
                         member.MemberName = dt.Rows[i].IsNull("f_memberName") ? string.Empty : dt.Rows[i].Field<string>("f_memberName");
                         member.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
                         member.Level = dt.Rows[i].IsNull("f_level") ? 0 : dt.Rows[i].Field<byte>("f_level");
@@ -167,7 +175,7 @@ namespace Pashamao.Repositories
                         Member member = new Member();
                         member.MemberId = dt.Rows[i].IsNull("f_memberId") ? 0 : dt.Rows[i].Field<int>("f_memberId");
                         member.Email = dt.Rows[i].IsNull("f_email") ? string.Empty : dt.Rows[i].Field<string>("f_email");
-                        member.Phone = dt.Rows[i].IsNull("f_phone") ? string.Empty : dt.Rows[i].Field<string>("f_phone");
+                        member.Phone = dt.Rows[i].IsNull("f_phone") ? 0 : dt.Rows[i].Field<int>("f_phone");
                         member.MemberName = dt.Rows[i].IsNull("f_memberName") ? string.Empty : dt.Rows[i].Field<string>("f_memberName");
                         member.Status = dt.Rows[i].IsNull("f_status") ? false : dt.Rows[i].Field<bool>("f_status");
                         member.Level = dt.Rows[i].IsNull("f_level") ? 0 : dt.Rows[i].Field<byte>("f_level");

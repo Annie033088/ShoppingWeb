@@ -29,7 +29,7 @@ namespace Pashamao.Filters
                 if (userSession == null)
                 {
                     //使用者未登入卻輸入(登入後/不存在)的url
-                    filterContext.Result = new RedirectResult("/LoginIndex");
+                    filterContext.Result = new RedirectResult("/Login/Index");
                     return;
                 }
                 else if ((userSession.UserPermission & requiredPermissions) == 0)

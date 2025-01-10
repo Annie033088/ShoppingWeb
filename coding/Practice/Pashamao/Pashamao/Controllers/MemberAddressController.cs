@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     [UserKickOutFilter]
     [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData | UserPermission.EditMemberLevelAndStatus)]
     public class MemberAddressController : Controller

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     [UserKickOutFilter]
     [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser)]
     public class UserRoleController : Controller

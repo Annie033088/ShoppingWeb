@@ -314,13 +314,12 @@ function addStyle() {
                     }
                 }
 
-                const timestamp = new Date().getTime();
-                addStyleImage.dataset.id = `${timestamp}-${file.name}`;
-
                 reader.onload = function (event) {
                     addStyleImage.src = event.target.result;
                     addImage = true;
                 };
+                const timestamp = new Date().getTime();
+                addStyleImage.dataset.id = `${timestamp}-${file.name}`;
                 reader.readAsDataURL(file);
             });
 
@@ -350,7 +349,11 @@ function addStyle() {
                 Status: styleStatus,
             };
 
-            let imageName = document.getElementById("addStyleImage").dataset.id;
+            let imageName = "";
+
+            if (addImage) {
+                imageName = document.getElementById("addStyleImage").dataset.id;
+            }
 
             //驗證輸入符合訊息
             const nameRegex = /^.{1,25}$/;
@@ -375,8 +378,8 @@ function addStyle() {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            const imgFile = document.getElementById("addStyleImage");
-            addStyleRow(result.value.addStyle, imgFile.src, result.value.imageName);
+            let imgSrc = document.getElementById("addStyleImage").src
+            addStyleRow(result.value.addStyle, imgSrc, result.value.imageName);
         }
     });
 }
@@ -492,7 +495,13 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
-            let imageName = document.getElementById("addStyleImage").dataset.id;
+            //如果這邊不加驗證邏輯就會出錯
+            //let imageName = document.getElementById("addStyleImage").dataset.id;
+            let imageName = "";
+
+            if (addImage) {
+                imageName = document.getElementById("addStyleImage").dataset.id;
+            }
 
             if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
             else { styleStatus = false; }
@@ -537,7 +546,6 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
             editStyleRow(result.value.editStyle, imgFile.src, result.value.imageName, id);
         }
     });
-
 }
 
 function addStyleRow(styleData, imageSrc, imageName) {
@@ -629,24 +637,11 @@ function editStyleRow(styleData, imageSrc, imageName, id) {
     quantityInRow.textContent = styleData.StockQuantity;
     priceInRow.textContent = styleData.Price;
     statusInRow.textContent = styleData.Status == true ? "上架" : "下架";
-
-    Swal.fire("修改成功!");
 }
 
 function delStyle(id) {
-    Swal.fire({
-        title: '確定要刪除這個項目嗎？',
-        text: "這個操作無法恢復！",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '刪除',
-        cancelButtonText: '取消'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const row = document.getElementById(id);
-            row.remove();
-        }
-    });
+         const row = document.getElementById(id);
+        row.remove();
 }
 
 function setProductStatusOn() {

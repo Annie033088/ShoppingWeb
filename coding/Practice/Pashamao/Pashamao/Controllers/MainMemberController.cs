@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     [UserKickOutFilter]
     [UserRoleAuthFilter(UserPermission.CreateMember | UserPermission.SelectMember | UserPermission.EditMemberPersonalData | UserPermission.EditMemberLevelAndStatus)]
     public class MainMemberController : Controller
@@ -127,20 +128,22 @@ namespace Pashamao.Controllers
             {
                 ErrorCodeDefine errorCode = 0;
                 //檢查前端資料
-                if (!ModelState.IsValid)
+                if (!ModelState.IsValid || createMemberDto.Account == createMemberDto.Pwd)
                 {
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
 
-                if (createMemberDto.CountryCode != null)
+                if ( createMemberDto.Phone != null)
                 {
-                    if (createMemberDto.Phone == null)
+                    if(createMemberDto.Phone.ToString().Length != 10)
                     {
                         errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                         return Json(new { errorCode });
                     }
                 }
+
+                createMemberDto.Nickname = createMemberDto.Nickname == null ? string.Empty : createMemberDto.Nickname;
 
                 bool successFlag = mainMemberService.CreateMember(createMemberDto);
 

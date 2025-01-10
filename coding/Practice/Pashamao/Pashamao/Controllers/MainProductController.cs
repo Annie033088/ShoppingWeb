@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     [UserKickOutFilter]
     [UserRoleAuthFilter(UserPermission.SelectProduct | UserPermission.CreateProduct | UserPermission.EditProduct | UserPermission.DelProduct)]
     public class MainProductController : Controller
@@ -112,10 +113,38 @@ namespace Pashamao.Controllers
             try
             {
                 ErrorCodeDefine errorCode = 0;
+
+                //前端驗證
                 if (!ModelState.IsValid)
                 {
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
+                }
+
+                //檔案大小驗證
+                List<string> imageUrl = createProductDto.ProductStyleDto.Select(style => style.ImageUrl)
+                    .Where(url => url != null)
+                    .ToList();
+                if (createProductDto.DisplayImageUrl != null) imageUrl.AddRange(createProductDto.DisplayImageUrl);
+
+                if (imageUrl != null)
+                {
+                    foreach (string url in imageUrl)
+                    {
+                        // 判斷 Base64 字串的長度
+                        long urlLength = url.Length;
+
+                        // 計算解碼後的檔案大小，使用公式：解碼後的大小 ≈ base64 字串長度 * 3 / 4
+                        long decodedSize = urlLength * 3 / 4;
+
+                        long maxSize = 1024 * 1024; // 1MB
+
+                        if (decodedSize > maxSize)
+                        {
+                            errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                            return Json(new { errorCode });
+                        }
+                    }
                 }
 
                 bool successFlag = mainProductService.CreateProduct(createProductDto);
@@ -228,12 +257,17 @@ namespace Pashamao.Controllers
             try
             {
                 ErrorCodeDefine errorCode = 0;
+
                 //檢查前端資料
                 if (!ModelState.IsValid)
                 {
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
+
+                //處理沒有填入的資料(設定為空字串
+                if (product.Description == null) product.Description = "";
+                if (product.Introduction == null) product.Introduction = "";
 
                 bool successFlag = mainProductService.EditProduct(product);
 
@@ -284,6 +318,20 @@ namespace Pashamao.Controllers
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
                 }
+
+                //檔案大小驗證
+                if (files.Count > 0)
+                {
+                    foreach (string fileKey in files)
+                    {
+                        if (files[fileKey].ContentLength > 1024 * 1024) // 10MB
+                        {
+                            errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                            return Json(new { errorCode });
+                        }
+                    }
+                }
+
 
                 List<int> delImageIdList = JsonConvert.DeserializeObject<List<int>>(Request.Form["DelImageList"]);
 
@@ -337,6 +385,19 @@ namespace Pashamao.Controllers
                     return Json(new { errorCode });
                 }
 
+                //檔案大小驗證
+                if (files.Count>0)
+                {
+                    foreach (string fileKey in files)
+                    {
+                        if (files[fileKey].ContentLength > 1024 * 1024) // 10MB
+                        {
+                            errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                            return Json(new { errorCode });
+                        }
+                    }
+                }
+
                 ProductStyle EditStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["EditStyle"]);
                 string ImageType = Request.Form["ImageType"];
                 bool successFlag = mainProductService.EditProductStyle(EditStyle, files, ImageType, lastEditTime);
@@ -383,6 +444,19 @@ namespace Pashamao.Controllers
                 {
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
+                }
+
+                //檔案大小驗證
+                if (files.Count > 0)
+                {
+                    foreach (string fileKey in files)
+                    {
+                        if (files[fileKey].ContentLength > 1024 * 1024) // 10MB
+                        {
+                            errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                            return Json(new { errorCode });
+                        }
+                    }
                 }
 
                 ProductStyle AddStyle = JsonConvert.DeserializeObject<ProductStyle>(Request.Form["AddStyle"]);

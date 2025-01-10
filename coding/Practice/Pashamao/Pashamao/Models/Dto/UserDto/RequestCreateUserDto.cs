@@ -15,6 +15,7 @@ namespace Pashamao.Models.Dto.UserDto
         [RegularExpression("^.{0,10}$", ErrorMessage = "長度上限為10")]
         public string Name { get; set; }
 
+        [Required]
         public int RoleId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using NLog;
+using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Models.Dto.UserLoginDto;
 using Pashamao.Service;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     public class LoginController : Controller
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -65,7 +67,6 @@ namespace Pashamao.Controllers
                     };
 
                     Response.Cookies.Add(cookie);
-                    logger.Info($"User '{loginUserDto.Account}' logged in successfully at {DateTime.Now}.");
                     errorCode = ErrorCodeDefine.Success;
                     return Json(new { errorCode });
                 }
@@ -74,7 +75,6 @@ namespace Pashamao.Controllers
                     errorCode = ErrorCodeDefine.LoginFailed;
                     return Json(new { errorCode });
                 }
-
             }
             catch (Exception e)
             {

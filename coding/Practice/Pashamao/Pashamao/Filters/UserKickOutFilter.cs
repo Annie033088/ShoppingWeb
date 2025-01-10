@@ -16,11 +16,11 @@ namespace Pashamao.Filters
             try
             {
                 UserSessionModel userSessionModel = HttpContext.Current.Session["UserSession"] as UserSessionModel;
-
+                
                 if (userSessionModel == null)
                 {
                     //使用者未登入卻輸入登入後的url
-                    filterContext.Result = new RedirectResult("/LoginIndex");
+                    filterContext.Result = new RedirectResult("/Login/Index");
                     return;
                 }
                 else
@@ -81,7 +81,6 @@ namespace Pashamao.Filters
                 throw e;
             }
         }
-
         private void clearTheUser()
         {
             HttpContext.Current.Session.Clear();

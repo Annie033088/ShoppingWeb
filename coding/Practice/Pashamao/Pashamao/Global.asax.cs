@@ -41,8 +41,5 @@ namespace Pashamao
             logger.Info("Application End");
         }
 
-        protected void Session_Start(object sender, EventArgs e)
-        {
-        }
     }
 }

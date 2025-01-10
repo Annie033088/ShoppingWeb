@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
+    [RequestLoggerFilter]
     [UserKickOutFilter]
     [UserRoleAuthFilter(UserPermission.CreateUser | UserPermission.DelUser | UserPermission.EditUser | UserPermission.SelectUser)]
     public class MainUserController : Controller
@@ -166,7 +167,7 @@ namespace Pashamao.Controllers
         /// </summary>
         [HttpPost]
         [UserRoleAuthFilter(UserPermission.EditUser)]
-        public ActionResult GetAllRole()
+        public ActionResult GetRoleIdAndName()
         {
             try
             {

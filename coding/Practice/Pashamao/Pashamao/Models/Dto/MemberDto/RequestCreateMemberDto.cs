@@ -13,14 +13,11 @@ namespace Pashamao.Models.Dto.MemberDto
         public string Pwd { get; set; }
 
         [StringLength(254, ErrorMessage = "信箱長度應該小於254")]
-        [RegularExpression("^([\\w\\.-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z0-9]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
+        [RegularExpression("^([a-zA-Z0-9.-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z0-9]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
         public string Email { get; set; }
 
-        [RegularExpression("^([0-9]{0,4})?$", ErrorMessage = "國際碼應輸入小於4的數字")]
-        public string CountryCode { get; set; }
-
-        [RegularExpression("^([0-9]{4,20})?$", ErrorMessage = "請輸入4位以上，且20位以內數字")]
-        public string Phone { get; set; }
+        [Range(1000000000, 9999999999, ErrorMessage = "請輸入10位數字，或保持為空")]
+        public int? Phone { get; set; }
 
         [Required(ErrorMessage = "名字不得為空")]
         [RegularExpression("^.{1,50}$", ErrorMessage = "至多50字")]

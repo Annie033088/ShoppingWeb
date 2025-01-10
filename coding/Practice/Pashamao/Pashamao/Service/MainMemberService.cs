@@ -78,35 +78,7 @@ namespace Pashamao.Service
         {
             try
             {
-                Member member = new Member()
-                {
-                    Account = createMemberDto.Account,
-                    Pwd = createMemberDto.Pwd,
-                    Email = createMemberDto.Email,
-                    MemberName = createMemberDto.MemberName,
-                    Nickname = createMemberDto.Nickname == null ? string.Empty : createMemberDto.Nickname
-                };
-
-                if (createMemberDto.CountryCode == null)
-                {
-                    if (createMemberDto.Phone == null)
-                    {
-                        member.Phone = string.Empty;
-                    }
-                    else
-                    {
-                        member.Phone = "886" + " " + createMemberDto.Phone;
-                    }
-                }
-                else
-                {
-                    if (createMemberDto.Phone != null)
-                    {
-                        member.Phone = createMemberDto.CountryCode + " " + createMemberDto.Phone;
-                    }
-                }
-
-                return memberRepository.Create(member);
+                return memberRepository.Create(createMemberDto);
             }
             catch (Exception e)
             {
@@ -178,6 +150,7 @@ namespace Pashamao.Service
                 member.MemberId = editMemberLevelAndStatusDto.MemberId;
                 member.Status = editMemberLevelAndStatusDto.Status;
                 member.Level = editMemberLevelAndStatusDto.Level;
+
                 if (member.Level == 1) member.Points = 0;
                 if (member.Level == 2) member.Points = 3000;
                 if (member.Level == 3) member.Points = 12000;

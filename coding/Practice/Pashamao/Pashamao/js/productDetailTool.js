@@ -913,10 +913,9 @@ function submitEditProduct() {
         return;
     }
 
-    axios.post("/MainProduct/EditProduct", { Product: newProduct })
+    axios.post("/MainProduct/EditProduct", { product: newProduct })
         .then(response => {
             let errorCode = response.data.errorCode;
-
             //沒有成功
             if (errorCode != errorCodeDefine.Success) {
                 let message = errorCodeToMessage(errorCode);

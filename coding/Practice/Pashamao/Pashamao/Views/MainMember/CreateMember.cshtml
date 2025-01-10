@@ -1,6 +1,7 @@
 ﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
 
 <body>
+    <script src="~/js/mainMember/createMmeber.js"></script>
     <main>
         <div asp-controller="action" class="container col-3 mx-auto">
             <div class="mb-3">
@@ -13,21 +14,19 @@
             </div>
             <div class="mb-3">
                 <label class="fs-6 ">信箱</label>
-                <input type="text" id="txbEmail" name="Email" class="form-control" placeholder="Enter your email"  />
+                <input type="text" id="txbEmail" name="Email" class="form-control" placeholder="Enter your email" />
             </div>
             <div class="mb-3">
                 <div class="" style="display:flex">
-                    <label class="fs-6 me-3">國際碼(可空)</label>
                     <label class="fs-6 ">手機號碼(可空)</label>
                 </div>
                 <div style="display:flex">
-                    <input type="text" id="txbCountryCode" style="width:50px;" name="CountryCode" class="form-control" placeholder="Country code"  />
-                    <input type="text" id="txbPhone" style="margin-left: 50px" name="Phone" class="form-control" placeholder="Enter your phone"  />
+                    <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" />
                 </div>
             </div>
             <div class="mb-3">
                 <label class="fs-6 ">名字</label>
-                <input type="text" id="txbMemberName" name="MemberName" class="form-control" placeholder="Enter your full name"  />
+                <input type="text" id="txbMemberName" name="MemberName" class="form-control" placeholder="Enter your full name" />
             </div>
             <div class="mb-3">
                 <label class="fs-6 ">暱稱(可空)</label>
@@ -40,112 +39,4 @@
         </div>
         <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>
     </main>
-
-    <script>
-        function submitCreateMember() {
-            const account = document.getElementById("txbAccount").value.trim();
-            const pwd = document.getElementById("txbPwd").value.trim();
-            const email = document.getElementById("txbEmail").value.trim();
-            const countryCode = document.getElementById("txbCountryCode").value.trim();
-            const phone = document.getElementById("txbPhone").value.trim();
-            const memberName = document.getElementById("txbMemberName").value.trim();
-            const nickname = document.getElementById("txbNickname").value.trim();
-
-            //驗證資料
-            let accountAndPwdRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,20}$/;//至少包含1個數字及英文, 長度為8~20
-            if (!accountAndPwdRegex.test(account)) {
-                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的帳號');
-                return;
-            }
-
-            if (!accountAndPwdRegex.test(pwd)) {
-                Swal.fire('請輸入至少包含1個數字及英文, 長度為8~20的密碼');
-                return;
-            }
-
-            if (email == "") {
-                Swal.fire('請輸入正確的信箱');
-                return;
-            }
-
-            //4位以上，且20位以內數字
-            let phoneRegex = /^([0-9]{4,20})?$/; //不一定要有
-            if (!phoneRegex.test(phone)) {
-                Swal.fire('請輸入正確的電話');
-                return;
-            }
-
-            //如果說有國際號碼, 則必須要有電話
-            if (countryCode != "") {
-                let regex = /^([0-9]{4,20})$/; //這種情況必須要有電話號碼
-                if (!regex.test(phone)) {
-                    Swal.fire('請輸入正確的電話');
-                    return;
-                }
-            }
-
-            //4碼以內的國際碼
-            let countryCodeRegex = /^([0-9]{0,4})?$/; //不一定要有 
-            if (!countryCodeRegex.test(countryCode)) {
-                Swal.fire('請輸入正確的國際碼');
-                return;
-            }
-
-            let memberNameRegex = /^.{1,50}$/ //1到50字名字
-            if (!memberNameRegex.test(memberName)) {
-                Swal.fire('請輸入正確的名字');
-                return;
-            }
-
-            let nickNameRegex = /^.{0,25}$/; //0到20字名字
-            if (!nickNameRegex.test(nickname)) {
-                Swal.fire('請輸入25字以內暱稱');
-                return;
-            }
-
-            let createMemberDto = {
-                Account: account,
-                Pwd: pwd,
-                Email: email,
-                CountryCode: countryCode,
-                Phone: phone,
-                MemberName: memberName,
-                Nickname: nickname
-            };
-
-            axios.post("/MainMember/CreateMember", { createMemberDto })
-                .then(response => {
-                    let errorCode = response.data.errorCode;
-                    console.log(response);
-                    //沒有成功
-                    if (errorCode != errorCodeDefine.Success) {
-                        let message = errorCodeToMessage(errorCode);
-
-                        //顯示訊息
-                        Swal.fire(message)
-                            .then(result => {
-                                //確認後處理
-                                if (result.isConfirmed) {
-                                    //被踢出去
-                                    if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
-                                        || errorCode == errorCodeDefine.PermissionModified) {
-                                        window.location.href = "/Login/Index";
-                                    }
-                                    //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
-                                    if (errorCode == errorCodeDefine.UserNotLogged) {
-                                        window.location.href = "/Login/Index";
-                                    }
-                                }
-                            });
-                        return;
-                    }
-
-                    //成功的話
-                    window.location.href = "/MainMember/Index";
-                })
-                .catch(error => {
-                    console.error("fail", error);
-                });
-        }
-    </script>
 </body>

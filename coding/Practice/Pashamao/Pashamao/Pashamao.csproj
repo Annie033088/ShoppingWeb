@@ -136,6 +136,7 @@
     <Compile Include="Controllers\MainOrderController.cs" />
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
+    <Compile Include="Filters\RequestLoggerFilter.cs" />
     <Compile Include="Models\Dto\AddressDto\RequestGetSortedAddressDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestEditMemberLevelAndStatusDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
@@ -230,6 +231,7 @@
     <Content Include="images\Pencel.jpg" />
     <Content Include="js\createProduct.js" />
     <Content Include="js\globalTool.js" />
+    <Content Include="js\mainMember\createMmeber.js" />
     <Content Include="js\mainUserIndexTool.js" />
     <Content Include="js\productDetailTool.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

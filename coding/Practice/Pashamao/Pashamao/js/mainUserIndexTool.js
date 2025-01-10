@@ -356,7 +356,7 @@ function editUserRoleAndStatus(userId, userRoleId, userStatus) {
         statusSelectOptions = `<option value="true" >啟用</option>` + `<option value="false" selected>禁用</option>`;
     }
 
-    axios.post("/MainUser/GetAllRole")
+    axios.post("/MainUser/GetRoleIdAndName")
         .then(response => {
             let errorCode = response.data.errorCode;
 
