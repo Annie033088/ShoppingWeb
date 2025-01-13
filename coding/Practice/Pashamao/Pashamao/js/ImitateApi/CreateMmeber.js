@@ -19,6 +19,11 @@ function submitCreateMember() {
         return;
     }
 
+    if (pwd == account) {
+        Swal.fire('帳密不可相同');
+        return;
+    }
+
     // 帳號:表示字母、數字、下劃線(長度64以內) + @ + 匹配域名 包含字母、數字、點和破折號(最多253) + . + 頂級域名 至少包含 2 個的字母或數字
     let emailRegex = /^([a-zA-Z0-9.-]{1,64})@([a-zA-Z0-9.-]{1,253})\.[a-zA-Z0-9]{2,}$/ //不一定要有
     if (!emailRegex.test(email)) {
@@ -54,7 +59,7 @@ function submitCreateMember() {
         Nickname: nickname
     };
 
-    axios.post("/MainMember/CreateMember", { createMemberDto })
+    axios.post("/ImitateApi/CreateMember", { createMemberDto })
         .then(response => {
             let errorCode = response.data.errorCode;
             console.log(response);
@@ -70,11 +75,11 @@ function submitCreateMember() {
                             //被踢出去
                             if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
                                 || errorCode == errorCodeDefine.PermissionModified) {
-                                window.location.href = "/Login/Index";
+                                window.location.href = "/ImitateApi/Index";
                             }
                             //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
                             if (errorCode == errorCodeDefine.UserNotLogged) {
-                                window.location.href = "/Login/Index";
+                                window.location.href = "/ImitateApi/Index";
                             }
                         }
                     });
@@ -82,7 +87,7 @@ function submitCreateMember() {
             }
 
             //成功的話
-            window.location.href = "/MainMember/Index";
+            window.location.href = "/ImitateApi/Index";
         })
         .catch(error => {
             console.error("fail", error);

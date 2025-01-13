@@ -129,7 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ImitateApiController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainHomeController.cs" />
     <Compile Include="Controllers\MainMemberController.cs" />
@@ -138,6 +138,7 @@
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Filters\RequestLoggerFilter.cs" />
     <Compile Include="Models\Dto\AddressDto\RequestGetSortedAddressDto.cs" />
+    <Compile Include="Models\Dto\ImitateApiDto\RequestCreateOrderDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestEditMemberLevelAndStatusDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
@@ -182,11 +183,13 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Dto\UserLoginDto\RequestLoginUserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ImitateApiRepository.cs" />
     <Compile Include="Repositories\MainProductRepository.cs" />
     <Compile Include="Repositories\MemberAddressRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Service\ImitateApiService.cs" />
     <Compile Include="Service\MainMemberService.cs" />
     <Compile Include="Service\MainProductService.cs" />
     <Compile Include="Service\MainUserService.cs" />
@@ -216,6 +219,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="css\ImitateApi\CreateOrder.css" />
     <Content Include="css\CreateProduct.css" />
     <Content Include="css\MainHomeLayout.css" />
     <Content Include="css\MainMember.css" />
@@ -229,11 +233,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\Garbage.jpg" />
     <Content Include="images\Pencel.jpg" />
-    <Content Include="js\createProduct.js" />
-    <Content Include="js\globalTool.js" />
-    <Content Include="js\mainMember\createMmeber.js" />
-    <Content Include="js\mainUserIndexTool.js" />
-    <Content Include="js\productDetailTool.js" />
+    <Content Include="js\CreateProduct.js" />
+    <Content Include="js\GlobalTool.js" />
+    <Content Include="js\ImitateApi\CreateMmeber.js" />
+    <Content Include="js\ImitateApi\CreateOrder.js" />
+    <Content Include="js\MainOrder\GetMainOrderIndex.js" />
+    <Content Include="js\MainUserIndexTool.js" />
+    <Content Include="js\ProductDetailTool.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -266,20 +272,20 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
     <Content Include="Views\MainHome\Index.cshtml" />
-    <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\MainUser\Index.cshtml" />
     <Content Include="Views\Shared\MainHomeLayout.cshtml" />
     <Content Include="Views\MainUser\CreateUser.cshtml" />
     <Content Include="Views\MainHome\EditUserPwd.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\MainMember\Index.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\MainMember\CreateMember.cshtml" />
+    <Content Include="Views\ImitateApi\CreateMember.cshtml" />
     <Content Include="Views\MemberAddress\Index.cshtml" />
     <Content Include="Views\MainProduct\Index.cshtml" />
     <Content Include="Views\MainProduct\ProductDetail.cshtml" />
     <Content Include="Views\MainProduct\CreateProduct.cshtml" />
     <Content Include="Views\MainOrder\Index.cshtml" />
+    <Content Include="Views\ImitateApi\Index.cshtml" />
+    <Content Include="Views\ImitateApi\CreateOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

@@ -1,7 +1,5 @@
-﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
-
-<body>
-    <script src="~/js/mainMember/createMmeber.js"></script>
+﻿<body>
+    <script src="~/js/ImitateApi/CreateMmeber.js"></script>
     <main>
         <div asp-controller="action" class="container col-3 mx-auto">
             <div class="mb-3">
@@ -34,7 +32,7 @@
             </div>
             <div>
                 <button type="submit" class="btn btn-dark" onclick="submitCreateMember()">確認</button>
-                <button type="button" class="btn btn-dark" onclick="setRedirectPage('MainMember', 'Index')">取消</button>
+                <button type="button" class="btn btn-dark" onclick="setRedirectPage('ImitateApi', 'Index')">取消</button>
             </div>
         </div>
         <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>

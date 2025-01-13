@@ -1,5 +1,4 @@
-﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
-@{
+﻿@{
     ViewBag.Title = "商品管理";
 }
 
@@ -63,6 +62,30 @@
         let lastCategoryId = null;
         let lastGetProductId = null;
         let lastGetProductName = null;
+
+        document.getElementById("btnSelectByProductId").addEventListener('click', function () {
+            const selectId = document.getElementById("txbSelectProductId").value;
+            const regexId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+
+            if (!regexId.test(selectId)) {
+                Swal.fire("請輸入正確的id!");
+                return;
+            }
+
+            getProductById(selectId, 1);
+        });
+
+        document.getElementById("btnSelectByProductName").addEventListener('click', function () {
+            const selectName = document.getElementById("txbSelectProductName").value;
+            const regexName = /^[^\s].{0,29}$/;
+
+            if (!regexName.test(selectName)) {
+                Swal.fire("請輸入30字以內商品名(第一個字不得為空)");
+                return;
+            }
+
+            getProductByName(selectName, 1);
+        });
 
         getAll();
 
@@ -198,18 +221,6 @@
             getProduct(page);
         }
 
-        document.getElementById("btnSelectByProductId").addEventListener('click', function () {
-            const selectId = document.getElementById("txbSelectProductId").value;
-            const regexId = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
-
-            if (!regexId.test(selectId)) {
-                Swal.fire("請輸入正確的id!");
-                return;
-            }
-
-            getProductById(selectId, 1);
-        });
-
         function getProductById(lastSelectProductId, page) {
             document.getElementById("currentPage").innerHTML = 1;
             lastGetProductName = null;
@@ -217,18 +228,6 @@
             lastCategoryId = null;
             getProduct(page);
         }
-
-        document.getElementById("btnSelectByProductName").addEventListener('click', function () {
-            const selectName = document.getElementById("txbSelectProductName").value;
-            const regexName = /^[^\s].{0,29}$/;
-
-            if (!regexName.test(selectName)) {
-                Swal.fire("請輸入30字以內商品名(第一個字不得為空)");
-                return;
-            }
-
-            getProductByName(selectName, 1);
-        });
 
         function getProductByName(lastSelectProductName, page) {
             if (lastSelectProductName.length > 30) {

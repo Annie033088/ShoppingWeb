@@ -1,0 +1,51 @@
+2025-01-12 20:19:05.7176 Info Application Start
+2025-01-12 20:19:07.4145 Trace Executing Controller: MainHome, Action: Index
+2025-01-12 20:19:07.4145 Trace Executed Controller: MainHome, Action: Index
+2025-01-12 20:19:07.4526 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:19:07.4705 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:19:42.9010 Trace Executing Controller: MainMember, Action: GetCreateMemberView
+2025-01-12 20:19:42.9010 Trace Executed Controller: MainMember, Action: GetCreateMemberView
+2025-01-12 20:19:42.9010 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:19:42.9010 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:19:42.9209 Trace Executing Controller: MainMember, Action: GetCreateMemberView
+2025-01-12 20:19:42.9209 Trace Executed Controller: MainMember, Action: GetCreateMemberView
+2025-01-12 20:19:42.9209 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:19:42.9209 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:29:04.0328 Info Application End
+2025-01-12 20:29:16.6502 Info Application Start
+2025-01-12 20:29:18.9614 Trace Executing Controller: MainHome, Action: Index
+2025-01-12 20:29:18.9823 Trace Executed Controller: MainHome, Action: Index
+2025-01-12 20:29:19.0294 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:29:19.1437 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:29:40.4520 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainMemberController' 上找不到公用動作方法 'GetCreateMemberView'。
+2025-01-12 20:29:40.7172 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:29:40.7172 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:29:40.7319 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.MainMemberController' 上找不到公用動作方法 'GetCreateMemberView'。
+2025-01-12 20:29:40.7319 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:29:40.7319 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:31:26.3125 Error System.Web.HttpException: 找不到路徑 '/ImitateApieService/Index' 的控制器或是未實作 IController。
+2025-01-12 20:31:26.3125 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:31:26.3125 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:31:26.3335 Error System.Web.HttpException: 找不到路徑 '/ImitateApieService/Index' 的控制器或是未實作 IController。
+2025-01-12 20:31:26.3384 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:31:26.3384 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:31:40.3971 Error System.Web.HttpException: 找不到路徑 '/ImitateApie/Index' 的控制器或是未實作 IController。
+2025-01-12 20:31:40.4041 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:31:40.4041 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:31:40.4211 Error System.Web.HttpException: 找不到路徑 '/ImitateApie/Index' 的控制器或是未實作 IController。
+2025-01-12 20:31:40.4211 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:31:40.4211 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:36:44.9867 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-12 20:36:56.3790 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-12 20:37:23.9724 Trace Executing Controller: MainHome, Action: Index
+2025-01-12 20:37:23.9724 Trace Executed Controller: MainHome, Action: Index
+2025-01-12 20:37:23.9784 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:37:23.9784 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:38:27.5565 Info Application Start
+2025-01-12 20:38:29.3899 Trace Executing Controller: MainHome, Action: Index
+2025-01-12 20:38:29.4029 Trace Executed Controller: MainHome, Action: Index
+2025-01-12 20:38:29.4359 Trace Executing Controller: Login, Action: Index
+2025-01-12 20:38:29.4780 Trace Executed Controller: Login, Action: Index
+2025-01-12 20:40:05.9615 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-12 20:40:28.7222 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。
+2025-01-12 20:40:29.5599 Error System.NullReferenceException: 並未將物件參考設定為物件的執行個體。

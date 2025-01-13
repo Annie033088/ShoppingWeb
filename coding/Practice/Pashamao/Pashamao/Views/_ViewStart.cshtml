@@ -1,11 +1,7 @@
 ﻿@{
     var controllerName = ViewContext.RouteData.Values["controller"].ToString();
 
-    if (controllerName == "Login")
-    {
-        Layout = "Shared/LoginLayout.cshtml";  
-    }
-    else if (controllerName == "Error")
+    if (controllerName == "Login" || controllerName == "ImitateApi")
     {
         Layout = "Shared/LoginLayout.cshtml";
     }
@@ -15,4 +11,4 @@
     }
 }
 
-<script src="~/js/globalTool.js"></script>
+<script src="~/js/GlobalTool.js"></script>

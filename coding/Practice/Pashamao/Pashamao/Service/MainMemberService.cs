@@ -1,5 +1,4 @@
-﻿
-using NLog;
+﻿using NLog;
 using Pashamao.Models;
 using Pashamao.Models.Dto.MemberDto;
 using Pashamao.Repositories;
@@ -63,22 +62,6 @@ namespace Pashamao.Service
                 }
 
                 return (null, 0);
-            }
-            catch (Exception e)
-            {
-                logger.Error(e);
-                throw e;
-            }
-        }
-
-        /// <summary>
-        /// 創建會員
-        /// </summary>
-        public bool CreateMember(RequestCreateMemberDto createMemberDto)
-        {
-            try
-            {
-                return memberRepository.Create(createMemberDto);
             }
             catch (Exception e)
             {

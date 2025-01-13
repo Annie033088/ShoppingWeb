@@ -1,0 +1,294 @@
+2025-01-13 09:19:21.5776 Info Application Start
+2025-01-13 09:19:22.4862 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ImitateApiController' 上找不到公用動作方法 'CreateMember'。
+2025-01-13 09:19:22.7369 Trace Executing Controller: Login, Action: Index
+2025-01-13 09:19:22.7539 Trace Executed Controller: Login, Action: Index
+2025-01-13 09:23:01.9975 Info Application Start
+2025-01-13 09:55:28.0306 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ImitateApiController' 上找不到公用動作方法 'CreateOrder'。
+2025-01-13 09:55:28.0635 Trace Executing Controller: Login, Action: Index
+2025-01-13 09:55:28.0635 Trace Executed Controller: Login, Action: Index
+2025-01-13 10:00:53.3643 Info Application End
+2025-01-13 10:00:55.4838 Info Application Start
+2025-01-13 11:22:53.3143 Info Application End
+2025-01-13 11:22:57.1116 Info Application Start
+2025-01-13 12:09:33.5889 Info Application End
+2025-01-13 12:09:41.7167 Info Application Start
+2025-01-13 13:26:09.5178 Info Application End
+2025-01-13 13:26:13.9319 Info Application Start
+2025-01-13 16:10:36.1309 Info Application End
+2025-01-13 16:11:54.0193 Info Application Start
+2025-01-13 16:11:55.8079 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ImitateApiController' 上找不到公用動作方法 'CreateOrder'。
+2025-01-13 16:11:56.3379 Trace Executing Controller: Login, Action: Index
+2025-01-13 16:11:56.3699 Trace Executed Controller: Login, Action: Index
+2025-01-13 16:36:16.0001 Info Application Start
+2025-01-13 16:36:16.3129 Error System.Web.HttpException: 在控制器 'Pashamao.Controllers.ImitateApiController' 上找不到公用動作方法 'CreateOrder'。
+2025-01-13 16:36:16.3817 Trace Executing Controller: Login, Action: Index
+2025-01-13 16:36:16.4083 Trace Executed Controller: Login, Action: Index
+2025-01-13 16:55:47.5181 Info Application Start
+2025-01-13 16:55:48.9793 Trace Executing Controller: MainHome, Action: Index
+2025-01-13 16:55:49.0033 Trace Executed Controller: MainHome, Action: Index
+2025-01-13 16:55:49.1170 Trace Executing Controller: Login, Action: Index
+2025-01-13 16:55:49.1569 Trace Executed Controller: Login, Action: Index
+2025-01-13 16:57:54.0095 Error System.FormatException: 格式規範無效。
+2025-01-13 16:57:54.0644 Error System.FormatException: 格式規範無效。
+2025-01-13 16:59:00.4401 Error System.FormatException: 格式規範無效。
+2025-01-13 16:59:00.4790 Error System.FormatException: 格式規範無效。
+2025-01-13 17:01:23.4433 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:01:23.5400 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:01:23.6088 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:04:11.6619 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_price'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:04:11.7327 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_price'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:04:11.7815 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_price'，資料表 'ShopWeb.dbo.t_orderProductStyle'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+警告: 彙總或其他 SET 作業已刪除 Null 值。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:17:58.7793 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_quantity'，資料表 '@productStyles'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_totalPrice'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:17:58.8275 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_quantity'，資料表 '@productStyles'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_totalPrice'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:17:58.9104 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_quantity'，資料表 '@productStyles'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_totalPrice'，資料表 'ShopWeb.dbo.t_order'; 資料行不得有 Null。INSERT 失敗。
+無法插入 NULL 值到資料行 'f_orderId'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+陳述式已經結束。
+陳述式已經結束。
+2025-01-13 17:18:10.0792 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-13 17:18:10.1319 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-13 17:18:10.1854 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_remark'，資料表 'ShopWeb.dbo.t_orderState'; 資料行不得有 Null。INSERT 失敗。
+陳述式已經結束。
+2025-01-13 17:34:27.2563 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:34:27.3787 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:34:27.4273 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:38.9864 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:39.0836 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:39.1578 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:45.1811 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:45.2351 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:37:45.2860 Error System.Data.SqlClient.SqlException: ROLLBACK TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+COMMIT TRANSACTION 要求沒有對應的 BEGIN TRANSACTION。
+2025-01-13 17:38:48.6238 Error System.Data.SqlClient.SqlException: EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+在 MARS 批次中啟動的交易，到達批次結尾時仍在使用中。已回復交易。
+2025-01-13 17:38:48.6793 Error System.Data.SqlClient.SqlException: EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+在 MARS 批次中啟動的交易，到達批次結尾時仍在使用中。已回復交易。
+2025-01-13 17:38:48.7322 Error System.Data.SqlClient.SqlException: EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+EXECUTE 之後的交易計數顯示 BEGIN 和 COMMIT 陳述式數目不相符。前次計數 = 0，目前的計數 = 1。
+在 MARS 批次中啟動的交易，到達批次結尾時仍在使用中。已回復交易。
+2025-01-13 17:49:39.3757 Info Application Start
+2025-01-13 17:49:40.0218 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:49:40.0438 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:50:53.9053 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:50:53.9053 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:51:29.7965 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:51:29.7965 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:51:38.1793 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:51:38.1793 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:52:01.0218 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:52:01.0218 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:53:46.6740 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:53:46.6740 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:53:58.8782 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:53:58.8782 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:54:38.3272 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:54:38.3272 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:54:45.9946 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:54:45.9946 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:56:10.5791 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:56:10.5791 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:56:28.2668 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:56:28.2668 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:56:47.4150 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:56:47.4150 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:56:52.3229 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:56:52.3229 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:57:11.1581 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:57:11.1581 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:57:19.3300 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:57:19.3300 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:57:23.5513 Info Application End
+2025-01-13 17:57:40.7131 Info Application Start
+2025-01-13 17:57:40.8582 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:57:40.8742 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:59:08.1805 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:59:08.1805 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:59:22.5011 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:59:22.5011 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:59:36.8047 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:59:36.8047 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 17:59:58.8338 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 17:59:58.8338 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:00:17.0035 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:00:17.0035 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:00:28.1874 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:00:28.1874 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:00:38.3614 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:00:38.3614 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:01:02.3212 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:01:02.3212 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:02:40.1896 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:02:40.1896 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:02:56.1224 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:02:56.1224 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:03:00.2888 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:03:00.2888 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:03:16.1814 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:03:16.1814 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:03:25.6374 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:03:25.6374 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:04:44.3541 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:04:44.3541 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:05:09.7637 Info Application End
+2025-01-13 18:05:11.4579 Info Application Start
+2025-01-13 18:05:11.5407 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:05:11.5616 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:05:39.2915 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:05:39.2915 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:06:02.6513 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:06:02.6513 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:06:13.8040 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:06:13.8040 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:06:24.1032 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:06:24.1032 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:06:56.2357 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:06:56.2357 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:07:18.3827 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:07:18.3827 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:07:34.6879 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:07:34.6879 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:07:40.2262 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:07:40.2262 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:07:54.5814 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:07:54.5814 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:08:01.6787 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:08:01.6787 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:08:10.6985 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:08:10.6985 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:08:40.4320 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:08:40.4320 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:08:44.2942 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:08:44.2942 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:09:14.2695 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:09:14.2695 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:09:22.6726 Info Application End
+2025-01-13 18:09:30.3411 Info Application Start
+2025-01-13 18:09:30.4188 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:09:30.4338 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:09:40.0679 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:09:40.0679 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:09:48.0567 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:09:48.0567 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:10:28.9399 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:10:28.9399 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:10:47.9898 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:10:47.9898 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:11:25.4492 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:11:25.4492 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:11:42.3775 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:11:42.3775 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:12:09.7839 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:12:09.7839 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:12:14.8690 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:12:14.8690 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:12:24.2869 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:12:24.2869 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:12:39.2226 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:12:39.2226 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:12:57.8935 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:12:57.8935 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:21:56.9130 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:21:56.9130 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:42:34.3519 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:42:34.3519 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:43:21.8063 Info Application End
+2025-01-13 18:53:28.8004 Info Application Start
+2025-01-13 18:53:28.8832 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:53:28.8982 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:54:05.1738 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:54:05.1738 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:55:54.0848 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:55:54.0858 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:56:46.2793 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:56:46.2793 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:56:53.9859 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:56:53.9859 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:57:03.1422 Trace Executing Controller: MainHome, Action: Index
+2025-01-13 18:57:03.1422 Trace Executed Controller: MainHome, Action: Index
+2025-01-13 18:57:03.1661 Trace Executing Controller: Login, Action: Index
+2025-01-13 18:57:03.1661 Trace Executed Controller: Login, Action: Index
+2025-01-13 18:57:14.2775 Error System.Web.HttpException: 找不到路徑 '/GetMainOrder/Index' 的控制器或是未實作 IController。
+2025-01-13 18:57:14.2954 Trace Executing Controller: Login, Action: Index
+2025-01-13 18:57:14.2954 Trace Executed Controller: Login, Action: Index
+2025-01-13 18:57:42.5925 Error System.Web.HttpException: 找不到路徑 '/MainOrde/Index' 的控制器或是未實作 IController。
+2025-01-13 18:57:42.6015 Trace Executing Controller: Login, Action: Index
+2025-01-13 18:57:42.6015 Trace Executed Controller: Login, Action: Index
+2025-01-13 18:58:18.5024 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:58:18.5024 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:58:35.1624 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:58:35.1624 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:59:16.1683 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:59:16.1683 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 18:59:26.1764 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 18:59:26.1764 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:00:11.3533 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:00:11.3533 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:00:56.1477 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:00:56.1477 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:01:22.0450 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:01:22.0450 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:03:44.7132 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:03:44.7132 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:03:50.8570 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:03:50.8570 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:04:18.0716 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:04:18.0716 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:05:34.5578 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:05:34.5578 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:06:13.8519 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:06:13.8519 Trace Executed Controller: MainOrder, Action: Index
+2025-01-13 19:06:34.1779 Trace Executing Controller: MainOrder, Action: Index
+2025-01-13 19:06:34.1779 Trace Executed Controller: MainOrder, Action: Index

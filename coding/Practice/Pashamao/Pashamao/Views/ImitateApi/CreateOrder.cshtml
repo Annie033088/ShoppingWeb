@@ -1,0 +1,76 @@
+﻿<body>
+    <link href="~/css/ImitateApi/CreateOrder.css" rel="stylesheet" />
+    <script src="~/js/ImitateApi/CreateOrder.js"></script>
+    <main>
+        <div class="col-3 " id="mokeOne">
+            <h3  class="w-100 text-center">模擬資料-1</h3>
+            <div class="container card overflow-auto" style="height:500px">
+                <div class="card-body">
+                    <label>會員資料</label>
+                    <div class="mb-3">
+                        <label class="fs-6 control-form-label">帳號</label>
+                        <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="2" value="qwp59felp48401" disabled />
+                    </div>
+                </div>
+                <div class="card-body">
+                    <label class="fs-6 ">收件人資料</label>
+                    <div>
+                        <div class="mb-3">
+                            <label class="fs-6 ">姓名</label>
+                            <input type="text" id="txbName" name="Name" class="form-control" placeholder="Enter your name" value="王六仔" disabled />
+                        </div>
+                        <div class="mb-3">
+                            <label class="fs-6 ">地址</label>
+                            <div class="d-flex">
+                                <input type="text" id="txbPostalCode" name="postalCode" class="form-control w-25" placeholder="Enter your postalCode" value="403" disabled />
+                                <input type="text" id="txbAddress" name="Address" class="form-control" placeholder="Enter your address" value="台中市西區三民路一段171號" disabled />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fs-6 ">手機號碼</label>
+                            <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" value="0934567891" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="fs-6 ">送貨方式：</label>
+                    <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="宅配" disabled />
+                </div>
+                <div class="card-header text-center mb-1">
+                    商品：
+                </div>
+                <table id="productTable" class="table " style="table-layout:fixed" border="1">
+                    <thead>
+                        <tr class="">
+                            <th scope="col">商品</th>
+                            <th scope="col">細項</th>
+                            <th scope="col">數量</th>
+                            <th scope="col">價格</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="7">
+                            <td scope="col">CIAO肉泥</td>
+                            <td scope="col">4SC-77-鮪魚&干貝</td>
+                            <td scope="col">3</td>
+                            <td scope="col">73</td>
+                        </tr>
+                        <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="9">
+                            <td scope="col">CIAO肉泥</td>
+                            <td scope="col">SC-143-鮪魚&鮭魚</td>
+                            <td scope="col">1</td>
+                            <td scope="col">78</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="w-100 justify-content-center d-flex mt-2">
+                    <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder1()">送出</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 justify-content-center d-flex mt-2">
+            <button type="button" class="btn btn-dark w-25" onclick="setRedirectPage('ImitateApi', 'Index')">返回</button>
+        </div>
+        <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>
+    </main>
+</body>

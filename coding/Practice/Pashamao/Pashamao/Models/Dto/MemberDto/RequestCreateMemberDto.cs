@@ -16,7 +16,6 @@ namespace Pashamao.Models.Dto.MemberDto
         [RegularExpression("^([a-zA-Z0-9.-]{1,64}@[a-zA-Z0-9.-]{1,253}\\.[a-zA-Z0-9]{2,})$", ErrorMessage = "請輸入正確的信箱格式")]
         public string Email { get; set; }
 
-        [Range(1000000000, 9999999999, ErrorMessage = "請輸入10位數字，或保持為空")]
         public int? Phone { get; set; }
 
         [Required(ErrorMessage = "名字不得為空")]

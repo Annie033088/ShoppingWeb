@@ -1,6 +1,5 @@
-﻿@{ Layout = "~/Views/Shared/MainHomeLayout.cshtml"; }
-@{
-    ViewBag.Title = "商品管理";
+﻿@{
+    ViewBag.Title = "訂單管理";
 }
 
 
@@ -8,35 +7,59 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/MainProduct.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/MainOrder/GetMainOrderIndex.js"></script>
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
-        <div class="d-flex justify-content-center mb-1">
-            <button type="button" id="btnAdd" class="btn btn-outline-dark me-2" onclick='location.href="/MainOrder/CreateOrder"'>新增</button>
-            <button type="button" id="btnGetAllProduct" class="btn btn-outline-dark me-5" onclick='getAll()'>查詢全部</button>
-            <label class="me-1 align-content-center">輸入搜尋ID：</label>
-            <input type="text" class="form-control me-1" id="txbSelectProductId" style="max-width: 200px;" required />
-            <button type="button" id="btnSelectByProductId" class="btn btn-outline-dark me-2">搜尋</button>
+        <div class=" mb-1">
+            <div class="d-flex mb-1 w-100 h-100">
+                <div class="d-flex">
+                    <button type="button" id="btnGetAllOrder" class="btn btn-outline-dark me-5" onclick='getAll()'>查詢全部</button>
+                </div>
+                <div class="d-flex mt-1" style="">
+                    <label class="me-1 align-content-center">訂單編號：</label>
+                    <input type="text" class="form-control me-1" id="txbSelectOrderNumber" style="width: 200px" required />
+                    <button type="button" id="btnSelectByOrderNumber" class="btn btn-outline-dark me-2">搜尋</button>
+                </div>
 
-            <label class="me-1  align-content-center">輸入搜尋會員名：</label>
-            <input type="text" class="form-control me-1" id="txbSelectProductName" style="max-width: 200px;" required />
-            <button type="button" id="btnSelectByProductName" class="btn btn-outline-dark me-1">搜尋</button>
+                <div class="d-flex mt-1 me-3">
+                    <label class="me-1  align-content-center">電話末三碼：</label>
+                    <input type="text" class="form-control me-1" style="width:60px;" id="txbSelectPhone" required />
+                    <button type="button" id="btnSelectByPhone" class="btn btn-outline-dark me-1">搜尋</button>
+                </div>
+            </div>
 
-            <label class="me-1  align-content-center">輸入搜尋日期：</label>
-            <input type="datetime" class="form-control me-1" id="" style="max-width: 200px;" required />
-            <input type="datetime" class="form-control me-1" id="" style="max-width: 200px;" required />
-            <button type="button" id="btnSelectByProductName" class="btn btn-outline-dark me-1">搜尋</button>
+            <div class="d-flex mt-1" style="">
+                <label class="me-1 align-content-center">日期：</label>
+                <input type="date" class="form-control me-1" id="txbDateStart" style="" required />
+                <label class="">~</label>
+                <input type="date" class="form-control me-1" id="txbDateEnd" style="" required />
+                <button type="button" id="btnSelectByDate" class="btn btn-outline-dark me-1">搜尋</button>
+                <div class=" ms-1 mt-1">
+                    <label>狀態：</label>
+                    <select type="" id="selectStatus" class="">
+                        <option value="0">請選擇</option>
+                        <option value="1">待確認</option>
+                        <option value="2">待出貨</option>
+                        <option value="3">已出貨</option>
+                        <option value="4">完成</option>
+                        <option value="5">買家未取商品</option>
+                        <option value="6">重新寄回</option>
+                        <option value="7">取消</option>
+                        <option value="8">退貨</option>
+                    </select>
+                </div>
+            </div>
         </div>
-
         <table id="orderTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr class="bg-gradient text-bg-dark ">
                     <th scope="col">#</th>
-                    <th scope="col">訂單Id<button id="" class="btn btnSort"></button></th>
-                    <th scope="col">日期<button id="" class="btn btnSort"></button></th>
-                    <th scope="col">收件人<button id="" class="btn btnSort"></button></th>
-                    <th scope="col">狀態<button id="" class="btn btnSort"></button></th>
-                    <th scope="col">會員信箱<button id="" class="btn btnSort"></button></th>
-                    <th scope="col">金額<button id="" class="btn btnSort"></button></th>
+                    <th scope="col">訂單編號</th>
+                    <th scope="col">日期</th>
+                    <th scope="col">收件人</th>
+                    <th scope="col">狀態</th>
+                    <th scope="col">會員信箱</th>
+                    <th scope="col">金額</th>
                     <th scope="col">操作選項</th>
                 </tr>
             </thead>
