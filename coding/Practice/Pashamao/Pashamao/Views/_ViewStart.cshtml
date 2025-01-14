@@ -1,7 +1,8 @@
 ﻿@{
     var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    controllerName = controllerName.ToLower();
 
-    if (controllerName == "Login" || controllerName == "ImitateApi")
+    if (controllerName == "login"  || controllerName == "imitateapi")
     {
         Layout = "Shared/LoginLayout.cshtml";
     }

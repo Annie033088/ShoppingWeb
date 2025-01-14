@@ -77,10 +77,10 @@ namespace Pashamao.Service
                     for (int i = 0; i < createProductDto.DisplayImageUrl.Count; i++)
                     {
                         // 檢查 URL 是否為佔位預設圖片，如果是，則將其替換為空字串。
-                        if (createProductDto.DisplayImageUrl[i] == "https://localhost:44303/images/productImage/noImage.jpg")
+                        /*if (createProductDto.DisplayImageUrl[i] == "https://localhost:44303/images/productImage/noImage.jpg")
                         {
                             createProductDto.DisplayImageUrl[i] = "";
-                        }
+                        }*/
 
                         string fileName = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss") + i;
 
@@ -130,7 +130,12 @@ namespace Pashamao.Service
                     string a = createProductDto.ProductStyleDto[i].ImageUrl;
 
                     if (createProductDto.ProductStyleDto[i].ImageUrl != null)
-                    {
+                    {                        
+                        // 檢查 URL 是否為佔位預設圖片，如果是，則將其替換為空字串。
+                        /*if (createProductDto.ProductStyleDto[i].ImageUrl == "https://localhost:44303/images/productImage/noImage.jpg")
+                        {
+                            createProductDto.ProductStyleDto[i].ImageUrl = "";
+                        }*/
                         //mimeType的取得方式是根據前端傳遞過來的 base64 string進行擷取 (data:image/jpeg;base64, ~) => (image/jpeg)
                         string mimeType = createProductDto.ProductStyleDto[i].ImageUrl.Substring(5, createProductDto.ProductStyleDto[i].ImageUrl.IndexOf(";") - 5);
 

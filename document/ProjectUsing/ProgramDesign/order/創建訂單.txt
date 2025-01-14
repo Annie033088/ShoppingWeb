@@ -23,7 +23,6 @@
     	不一樣的話就rollback(代表商品資料被人更改過)
     	一樣的話就取得訂單總金額(參考下方), 將訂單新增之後, 新增訂單商品mapping表(t_orderProductStyle)
 
-
 (後端處理)
 訂單編號生成方式:	今日時間(yymmdd:250108) + 時分秒時間序(小時分鐘秒數轉成秒數=>00000~86,399) + 會員碼(0000001)
 	=>儲存到資料庫
@@ -44,5 +43,6 @@
   資料庫生成填入:	t_order的f_orderId (流水號自動生成), f_orderNumber (取得EX:202501070100005), f_totalPrice (在後端會將總金額加總), f_createTime, f_updateTime
 		  					t_orderProductStyle的 f_orderId, f_quantity, f_price
 		  					t_orderState的 f_orderId, f_state, f_createTime, f_updateTime
+
 
 

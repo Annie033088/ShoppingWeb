@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectDateEnd = document.getElementById("txbDateEnd").value;
 
         const selectDate = {
-            selectDateStart,
-            selectDateEnd
+            StartDate: selectDateStart,
+            EndDate: selectDateEnd
         };
 
         getOrderByDate(selectDate, 1);
@@ -48,7 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             lastGetStatus = selectedValue;
         }
+
+        document.getElementById("currentPage").innerHTML = 1;
+        getOrder(1)
     });
+
+    getAll();
 });
 
 function getAll() {
@@ -56,22 +61,30 @@ function getAll() {
     lastGetPhone = null;
     lastGetDate = null;
     lastGetStatus = null;
-    document.getElementById("selectStatus").value = 0;
+    document.getElementById("selectStatus").value = "0";
     document.getElementById("currentPage").innerHTML = 1;
     getOrder(1);
 }
 
 function getOrder(page) {
+
+    if (lastGetDate == null) {
+        lastGetDate = {
+            StartDate: null,
+            EndDate:null
+        }
+    }
+
     let selectOrderDto = {
         OrderNumber: lastGetOrderNum,
         Phone: lastGetPhone,
-        Date: lastGetDate,
-        Status: lastGetStatus
+        StartDate: lastGetDate.StartDate,
+        EndDate: lastGetDate.EndDate,
+        Status: lastGetStatus,
+        Page: page
     };
 
-    console.log(selectOrderDto);
-
-    /*axios.post("/MainOrder/GetOrder", { selectOrderDto })
+    axios.post("/MainOrder/GetOrder", { selectOrderDto })
         .then(response => {
             let errorCode = response.data.errorCode;
 
@@ -101,9 +114,10 @@ function getOrder(page) {
             //成功的話
             let orders = response.data.orders;
             if (orders == null) {
-                document.getElementById("productTable").getElementsByTagName('tbody')[0].innerHTML = "";
+                document.getElementById("orderTable").getElementsByTagName('tbody')[0].innerHTML = "";
                 document.getElementById("currentPage").innerHTML = 1;
                 document.getElementById("lastPage").innerHTML = 1;
+                return;
             }
             populateTable(orders);
             document.getElementById("lastPage").innerHTML = response.data.totalPage;
@@ -111,7 +125,7 @@ function getOrder(page) {
 
         .catch(error => {
             console.error("fail", error);
-        });*/
+        });
 }
 
 function firstPage() {
@@ -204,4 +218,114 @@ function getOrderByDate(lastDate, page) {
     lastGetPhone = null;
     lastGetDate = lastDate;
     getOrder(page);
+}
+
+function populateTable(orders) {
+    const tableBody = document.getElementById("orderTable").getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = '';
+
+    orders.forEach((order, index) => {
+        const row = document.createElement('tr');
+        const rowSort = document.createElement('th');
+        rowSort.textContent = index + 1;
+        rowSort.scope = "row";
+        row.appendChild(rowSort);
+
+        const cellOrderNumber = document.createElement('td');
+        cellOrderNumber.style = " word-wrap: break-word;";
+        cellOrderNumber.textContent = order.OrderNumber;
+        row.appendChild(cellOrderNumber);
+
+        const cellDate = document.createElement('td');
+        var date = formatDateToYYYYMMDDHHMMSS(order.CreateTime)
+        cellDate.textContent = date
+        row.appendChild(cellDate);
+
+        const cellMemberId = document.createElement('td');
+        cellMemberId.textContent = order.MemberId
+        row.appendChild(cellMemberId);
+
+        const cellRecipient = document.createElement('td');
+        cellRecipient.textContent = order.RecipientName + "(0" + order.Phone + ")";
+        row.appendChild(cellRecipient);
+
+        const cellState = document.createElement('td');
+        cellState.className = "border border-secondary border-3 pt-3";
+        cellState.textContent = orderStateToText(order.State);
+        row.appendChild(cellState);
+
+        const cellPrice = document.createElement('td');
+        cellPrice.textContent = "$" +order.TotalPrice
+        row.appendChild(cellPrice);
+
+        const cellEdit = document.createElement('td');
+
+        const cellEditBtn = document.createElement("button");
+        cellEditBtn.className = "btnEditOrder";
+        cellEditBtn.addEventListener("click", function () {
+        });
+        cellEdit.appendChild(cellEditBtn);
+
+        const cellDeleteBtn = document.createElement("button");
+        cellDeleteBtn.className = "btnDeleteOrder";
+        cellDeleteBtn.addEventListener("click", function () {
+        });
+        cellEdit.appendChild(cellDeleteBtn);
+
+        row.appendChild(cellEdit);
+
+        // 把這一行加到表格中
+        tableBody.appendChild(row);
+    });
+}
+
+function orderStateToText(state) {
+    switch (state) {
+        case 1:
+            return "待確認";
+        case 2:
+            return "待出貨";
+        case 3:
+            return "已出貨";
+        case 4:
+            return "完成";
+        case 5:
+            return "買家未取商品";
+        case 6:
+            return "重新寄回";
+        case 7:
+            return "取消";
+        case 8:
+            return "退貨";
+        default:
+            return "";
+    }
+}
+
+function formatDateToYYYYMMDDHHMMSS(dateString) {
+    // 使用正則表達式提取時間戳部分
+    var timestamp = dateString.match(/\/Date\((\d+)\)\//);
+
+    if (timestamp && timestamp[1]) {
+        var date = new Date(parseInt(timestamp[1], 10));  // 轉換為毫秒並創建 Date 物件
+
+        // 取得年份、月份、日期、時、分、秒
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1; // 月份從 0 開始，需加 1
+        var day = date.getDate();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+
+        // 格式化為兩位數
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        // 返回格式化後的字串：YYYY-MM-DD HH:mm:ss
+        return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+    return null;  // 如果無法匹配，返回 null
 }

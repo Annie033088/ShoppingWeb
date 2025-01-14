@@ -1,4 +1,4 @@
-﻿console.log(productData.productDetail);
+﻿console.log(productData.productDetail.SelectProductImages);
 let product = productData.productDetail.SelectProductDetailDto;
 let styles = productData.productDetail.SelectProductStyleDto;
 let images = productData.productDetail.SelectProductImages;
@@ -11,9 +11,11 @@ let imageTotal = 0;
 //刪除的圖片
 let delImageList = [];
 
-populateImage();
-populateProduct();
-populateStyle();
+document.addEventListener("DOMContentLoaded", function () {
+    populateImage();
+    populateProduct();
+    populateStyle();
+});
 
 function populateImage() {
     images.forEach(image => {

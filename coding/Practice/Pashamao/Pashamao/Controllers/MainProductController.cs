@@ -324,7 +324,7 @@ namespace Pashamao.Controllers
                 {
                     foreach (string fileKey in files)
                     {
-                        if (files[fileKey].ContentLength > 1024 * 1024) // 10MB
+                        if (files[fileKey].ContentLength > 20 * 1024) // 10MB
                         {
                             errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                             return Json(new { errorCode });

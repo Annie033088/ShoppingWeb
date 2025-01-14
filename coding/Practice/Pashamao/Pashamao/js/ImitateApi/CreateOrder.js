@@ -2,6 +2,11 @@
     let element = document.getElementById("mokeOne");
     submitCreateOrder(element);
 }
+function submitCreateOrder2() {
+    let element = document.getElementById("mokeTwo");
+    submitCreateOrder(element);
+}
+
 function submitCreateOrder(parentElement) {
     let txbAccount = parentElement.querySelector("#txbAccount");
     let memberId = txbAccount.dataset.id;

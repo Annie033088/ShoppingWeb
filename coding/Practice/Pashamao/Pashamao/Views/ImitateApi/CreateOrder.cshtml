@@ -2,73 +2,143 @@
     <link href="~/css/ImitateApi/CreateOrder.css" rel="stylesheet" />
     <script src="~/js/ImitateApi/CreateOrder.js"></script>
     <main>
-        <div class="col-3 " id="mokeOne">
-            <h3  class="w-100 text-center">模擬資料-1</h3>
-            <div class="container card overflow-auto" style="height:500px">
-                <div class="card-body">
-                    <label>會員資料</label>
-                    <div class="mb-3">
-                        <label class="fs-6 control-form-label">帳號</label>
-                        <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="2" value="qwp59felp48401" disabled />
-                    </div>
-                </div>
-                <div class="card-body">
-                    <label class="fs-6 ">收件人資料</label>
-                    <div>
+        <div class="d-flex">
+            <div class="col-3 " id="mokeOne">
+                <h3 class="w-100 text-center">模擬資料-1</h3>
+                <div class="container card overflow-auto" style="height:500px">
+                    <div class="card-body">
+                        <label>會員資料</label>
                         <div class="mb-3">
-                            <label class="fs-6 ">姓名</label>
-                            <input type="text" id="txbName" name="Name" class="form-control" placeholder="Enter your name" value="王六仔" disabled />
+                            <label class="fs-6 control-form-label">帳號</label>
+                            <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="2" value="qwp59felp48401" disabled />
                         </div>
-                        <div class="mb-3">
-                            <label class="fs-6 ">地址</label>
-                            <div class="d-flex">
-                                <input type="text" id="txbPostalCode" name="postalCode" class="form-control w-25" placeholder="Enter your postalCode" value="403" disabled />
-                                <input type="text" id="txbAddress" name="Address" class="form-control" placeholder="Enter your address" value="台中市西區三民路一段171號" disabled />
+                    </div>
+                    <div class="card-body">
+                        <label class="fs-6 ">收件人資料</label>
+                        <div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">姓名</label>
+                                <input type="text" id="txbName" name="Name" class="form-control" placeholder="Enter your name" value="王六仔" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">地址</label>
+                                <div class="d-flex">
+                                    <input type="text" id="txbPostalCode" name="postalCode" class="form-control w-25" placeholder="Enter your postalCode" value="403" disabled />
+                                    <input type="text" id="txbAddress" name="Address" class="form-control" placeholder="Enter your address" value="台中市西區三民路一段171號" disabled />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">手機號碼</label>
+                                <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" value="0934567891" disabled />
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="fs-6 ">手機號碼</label>
-                            <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" value="0934567891" disabled />
-                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fs-6 ">送貨方式：</label>
+                        <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="宅配" disabled />
+                    </div>
+                    <div class="card-header text-center mb-1">
+                        商品：
+                    </div>
+                    <table id="productTable" class="table " style="table-layout:fixed" border="1">
+                        <thead>
+                            <tr class="">
+                                <th scope="col">商品</th>
+                                <th scope="col">細項</th>
+                                <th scope="col">數量</th>
+                                <th scope="col">價格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="7">
+                                <td scope="col">CIAO肉泥</td>
+                                <td scope="col">4SC-77-鮪魚&干貝</td>
+                                <td scope="col">3</td>
+                                <td scope="col">73</td>
+                            </tr>
+                            <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="9">
+                                <td scope="col">CIAO肉泥</td>
+                                <td scope="col">SC-143-鮪魚&鮭魚</td>
+                                <td scope="col">1</td>
+                                <td scope="col">78</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="w-100 justify-content-center d-flex mt-2">
+                        <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder1()">送出</button>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label class="fs-6 ">送貨方式：</label>
-                    <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="宅配" disabled />
-                </div>
-                <div class="card-header text-center mb-1">
-                    商品：
-                </div>
-                <table id="productTable" class="table " style="table-layout:fixed" border="1">
-                    <thead>
-                        <tr class="">
-                            <th scope="col">商品</th>
-                            <th scope="col">細項</th>
-                            <th scope="col">數量</th>
-                            <th scope="col">價格</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="7">
-                            <td scope="col">CIAO肉泥</td>
-                            <td scope="col">4SC-77-鮪魚&干貝</td>
-                            <td scope="col">3</td>
-                            <td scope="col">73</td>
-                        </tr>
-                        <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="9">
-                            <td scope="col">CIAO肉泥</td>
-                            <td scope="col">SC-143-鮪魚&鮭魚</td>
-                            <td scope="col">1</td>
-                            <td scope="col">78</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="w-100 justify-content-center d-flex mt-2">
-                    <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder1()">送出</button>
+            </div>
+
+            <div class="col-3 " id="mokeTwo">
+                <h3 class="w-100 text-center">模擬資料-2</h3>
+                <div class="container card overflow-auto" style="height:500px">
+                    <div class="card-body">
+                        <label>會員資料</label>
+                        <div class="mb-3">
+                            <label class="fs-6 control-form-label">帳號</label>
+                            <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="1" value="qwp59felp484" disabled />
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <label class="fs-6 ">收件人資料</label>
+                        <div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">姓名</label>
+                                <input type="text" id="txbName" name="Name" class="form-control" placeholder="Enter your name" value="李小明" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">地址</label>
+                                <div class="d-flex">
+                                    <input type="text" id="txbPostalCode" name="postalCode" class="form-control w-25" placeholder="Enter your postalCode" value="110" disabled />
+                                    <input type="text" id="txbAddress" name="Address" class="form-control" placeholder="Enter your address" value="台北市信義區松仁路91-1號" disabled />
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fs-6 ">手機號碼</label>
+                                <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" value="0999732215" disabled />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fs-6 ">送貨方式：</label>
+                        <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="便利商店" disabled />
+                    </div>
+                    <div class="card-header text-center mb-1">
+                        商品：
+                    </div>
+                    <table id="productTable" class="table " style="table-layout:fixed" border="1">
+                        <thead>
+                            <tr class="">
+                                <th scope="col">商品</th>
+                                <th scope="col">細項</th>
+                                <th scope="col">數量</th>
+                                <th scope="col">價格</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="" data-productId="34b3e6a9-1967-40f8-a0c4-5453c91085c7" data-productStyleId="1">
+                                <td scope="col">寵物防滑地墊 (多色)</td>
+                                <td scope="col">米白</td>
+                                <td scope="col">10</td>
+                                <td scope="col">26</td>
+                            </tr>
+                            <tr class="" data-productId="5e1cc0db-a187-4fba-b689-a88de17a4233" data-productStyleId="18">
+                                <td scope="col">貓砂</td>
+                                <td scope="col">1桶</td>
+                                <td scope="col">1</td>
+                                <td scope="col">500</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="w-100 justify-content-center d-flex mt-2">
+                        <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder2()">送出</button>
+                    </div>
                 </div>
             </div>
+
         </div>
-        <div class="w-100 justify-content-center d-flex mt-2">
+            <div class="w-100 justify-content-center d-flex mt-2">
             <button type="button" class="btn btn-dark w-25" onclick="setRedirectPage('ImitateApi', 'Index')">返回</button>
         </div>
         <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>

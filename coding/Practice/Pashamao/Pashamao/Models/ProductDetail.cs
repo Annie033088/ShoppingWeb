@@ -42,7 +42,6 @@ namespace Pashamao.Models
         /// <summary>
         /// 商品最後修改時間
         /// </summary>
-        public DateTime LastEditTime
-        { get; set; }
+        public DateTime LastEditTime { get; set; }
     }
 }

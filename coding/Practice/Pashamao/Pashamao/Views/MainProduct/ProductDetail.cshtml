@@ -4,6 +4,7 @@
 
 <body>
     <link href="~/css/CreateProduct.css" rel="stylesheet" type="text/css" />
+    <script>var productData = @Html.Raw(ViewBag.JsonData);</script>
     <script src="~/js/ProductDetailTool.js"></script>
     <main>
         <div class="d-flex">
@@ -103,5 +104,4 @@
             </div>
         </div>
     </main>
-    <script>var productData = @Html.Raw(ViewBag.JsonData);</script>
 </body>

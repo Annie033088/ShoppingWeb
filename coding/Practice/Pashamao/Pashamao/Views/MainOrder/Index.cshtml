@@ -5,7 +5,7 @@
 
 <body>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-    <link href="~/css/MainProduct.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Order/Order.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script src="~/js/MainOrder/GetMainOrderIndex.js"></script>
     <main>
@@ -37,7 +37,7 @@
                 <div class=" ms-1 mt-1">
                     <label>狀態：</label>
                     <select type="" id="selectStatus" class="">
-                        <option value="0">請選擇</option>
+                        <option value="0">全部</option>
                         <option value="1">待確認</option>
                         <option value="2">待出貨</option>
                         <option value="3">已出貨</option>
@@ -56,9 +56,9 @@
                     <th scope="col">#</th>
                     <th scope="col">訂單編號</th>
                     <th scope="col">日期</th>
+                    <th scope="col">會員</th>
                     <th scope="col">收件人</th>
                     <th scope="col">狀態</th>
-                    <th scope="col">會員信箱</th>
                     <th scope="col">金額</th>
                     <th scope="col">操作選項</th>
                 </tr>

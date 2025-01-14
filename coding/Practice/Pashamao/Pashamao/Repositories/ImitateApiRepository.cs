@@ -74,7 +74,7 @@ namespace Pashamao.Repositories
         /// <summary>
         /// 新增訂單
         /// </summary>
-        internal bool CreateOrder(RequestCreateOrderDto createOrderDto, string orderNumber)
+        internal bool CreateOrder(RequestCreateOrderDto createOrderDto, long orderNumber)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
@@ -83,7 +83,7 @@ namespace Pashamao.Repositories
             {
                 cmd.CommandText = "EXEC pro_pashamao_addOrder @orderNumber, @memberId, @name, @address, @phone, @shippingMethod, @orderProductStyles";
 
-                cmd.Parameters.Add("@orderNumber", SqlDbType.Char).Value = orderNumber;
+                cmd.Parameters.Add("@orderNumber", SqlDbType.BigInt).Value = orderNumber;
                 cmd.Parameters.Add("@memberId", SqlDbType.Int).Value = createOrderDto.MemberId;
                 cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = createOrderDto.Name;
                 cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = createOrderDto.PostalCode + createOrderDto.Address;

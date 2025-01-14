@@ -43,9 +43,10 @@ namespace Pashamao.Service
                 string date = DateTime.Now.ToString("yyMMdd");
                 string second = ((int)(DateTime.Now - DateTime.Today).TotalSeconds).ToString("D5"); //取得午夜至現在過的秒數並轉成5位
 
-                string orderNumber = date + second + createOrderDto.MemberId.ToString("D7");
+                string orderNumberStr = date + second + createOrderDto.MemberId.ToString("D7");
+                long orderNumberLong = long.Parse(orderNumberStr);
 
-                return imitateApiRepository.CreateOrder(createOrderDto, orderNumber);
+                return imitateApiRepository.CreateOrder(createOrderDto, orderNumberLong);
             }
             catch (Exception e)
             {

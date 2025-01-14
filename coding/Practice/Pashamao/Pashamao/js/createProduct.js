@@ -339,6 +339,12 @@ function addStyle() {
             let stylePrice = document.getElementById("txbAddStylePrice").value;
             let styleQuantity = document.getElementById("txbAddStyleQuantity").value;
             let btnStatusOn = document.getElementById("btnStatusOn").className;
+            let imageName = "";
+
+            if (addImage) {
+                imageName = document.getElementById("addStyleImage").dataset.id;
+            }
+
             if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
             else { styleStatus = false; }
 
@@ -348,12 +354,6 @@ function addStyle() {
                 StockQuantity: styleQuantity,
                 Status: styleStatus,
             };
-
-            let imageName = "";
-
-            if (addImage) {
-                imageName = document.getElementById("addStyleImage").dataset.id;
-            }
 
             //驗證輸入符合訊息
             const nameRegex = /^.{1,25}$/;
@@ -503,8 +503,14 @@ function editStyle(styleData, imageSrc, oldImageName, id) {
                 imageName = document.getElementById("addStyleImage").dataset.id;
             }
 
-            if (btnStatusOn == "opacity-100 btn btn-dark") { styleStatus = true; }
-            else { styleStatus = false; }
+            if (btnStatusOn == "opacity-100 btn btn-dark")
+            {
+                styleStatus = true;
+            }
+            else
+            {
+                styleStatus = false;
+            }
 
             if (styleName == styleData.Style && stylePrice == styleData.Price && styleQuantity == styleData.StockQuantity && styleStatus == styleData.Status && !addImage) {
                 Swal.showValidationMessage('請修改資料');
@@ -660,7 +666,7 @@ function submitCreatProduct() {
     let imageList = [];
 
     if (imageElements.length != 0) {
-        for (var i = 0; i < imageElements.length; i++) {
+        for (let i = 0; i < imageElements.length; i++) {
             imageList.push(imageElements[i].src);
         }
     }

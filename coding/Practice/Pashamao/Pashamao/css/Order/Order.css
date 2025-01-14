@@ -1,0 +1,21 @@
+﻿table {
+    text-align:center;
+}
+
+tbody button {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btnEditOrder {
+    background-image: url(../../images/CheckOut.png);
+}
+
+.btnDeleteOrder {
+    background-image: url(../../images/Garbage.jpg);
+}

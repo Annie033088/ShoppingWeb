@@ -143,6 +143,8 @@
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\ResponseMainMemberDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestGetSelectOrderDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\ResponseMainOrderDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestCreateProductDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestDeleteProductDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestDeleteProductStyleDto.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Models\Dto\MemberDto\RequestCreateMemberDto.cs" />
     <Compile Include="Models\Dto\UserDto\RequestCreateUserDto.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductStyle.cs" />
@@ -187,10 +190,12 @@
     <Compile Include="Repositories\MainProductRepository.cs" />
     <Compile Include="Repositories\MemberAddressRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Service\ImitateApiService.cs" />
     <Compile Include="Service\MainMemberService.cs" />
+    <Compile Include="Service\MainOrderService.cs" />
     <Compile Include="Service\MainProductService.cs" />
     <Compile Include="Service\MainUserService.cs" />
     <Compile Include="Service\MemberAddressService.cs" />
@@ -225,6 +230,7 @@
     <Content Include="css\MainMember.css" />
     <Content Include="css\MainProduct.css" />
     <Content Include="css\MainUser.css" />
+    <Content Include="css\Order\Order.css" />
     <Content Include="css\Product.css" />
     <Content Include="css\ProductDetail.css" />
     <Content Include="css\UserRole.css" />
