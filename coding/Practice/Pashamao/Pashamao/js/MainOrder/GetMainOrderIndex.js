@@ -2,6 +2,7 @@
 let lastGetPhone = null;
 let lastGetDate = null;
 let lastGetStatus = null;
+let lastGetMemberId = null;
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnSelectByOrderNumber").addEventListener('click', function () {
@@ -28,6 +29,18 @@ document.addEventListener("DOMContentLoaded", function () {
         getOrderByPhone(selectPhone, 1);
     });
 
+    document.getElementById("btnSelectByMemberId").addEventListener('click', function(){
+        const selectMemberId = document.getElementById("txbSelectMemberId").value;
+        const regexMemberId = /^[0-9]{1,10}$/
+
+        if (!regexMemberId.test(selectMemberId)) {
+            Swal.fire("請輸入正確會員Id")
+            return;
+        }
+
+        getOrderByMemberId(selectMemberId, 1)
+    })
+
     document.getElementById("btnSelectByDate").addEventListener('click', function () {
         const selectDateStart = document.getElementById("txbDateStart").value;
         const selectDateEnd = document.getElementById("txbDateEnd").value;
@@ -52,6 +65,29 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("currentPage").innerHTML = 1;
         getOrder(1)
     });
+    // 設定勾選/取消勾選所有訂單
+    document.getElementById("ckbAllOrder").addEventListener("change", function (event) {
+        const orderCkbs = document.querySelectorAll('tbody input[type = "checkbox"]');
+        
+        if (event.target.checked) {
+            orderCkbs.forEach(function (orderCkb) {
+                orderCkb.checked = true
+            })
+        } else {
+            orderCkbs.forEach( function (orderCkb) {
+                orderCkb.checked = false;
+            })
+        }
+    })
+    //編輯勾選的訂單狀態
+    document.getElementById("btnEditOrderState").addEventListener("click", function () {
+        //判斷選重的狀態是不是都一樣
+        const orderCkbs = document.querySelectorAll('tbody input[type = "checkbox"]');
+        let stateList = [];
+        orderCkbs.forEach(function (orderCkb) {
+            const parentTr = orderCkb.closest('tr');
+        })
+    })
 
     getAll();
 });
@@ -59,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function getAll() {
     lastGetOrderNum = null;
     lastGetPhone = null;
+    lastGetMemberId = null;
     lastGetDate = null;
     lastGetStatus = null;
     document.getElementById("selectStatus").value = "0";
@@ -78,6 +115,7 @@ function getOrder(page) {
     let selectOrderDto = {
         OrderNumber: lastGetOrderNum,
         Phone: lastGetPhone,
+        MemberId: lastGetMemberId,
         StartDate: lastGetDate.StartDate,
         EndDate: lastGetDate.EndDate,
         Status: lastGetStatus,
@@ -172,14 +210,17 @@ function lastPage() {
 }
 
 function selectBySomething(page) {
-    if (lastCategoryId != null) {
-        getProductByCategory(lastCategoryId, page);
+    if (lastGetOrderNum != null) {
+        getOrderByOrderNum(lastGetOrderNum, page);
     }
-    else if (lastGetProductId != null) {
-        getProductById(lastGetProductId, page);
+    else if (lastGetPhone != null) {
+        getOrderByPhone(lastGetPhone, page);
     }
-    else if (lastGetProductName != null) {
-        getProductByName(lastGetProductName, page);
+    else if (lastGetMemberId != null) {
+        getOrderByMemberId(lastGetMemberId, page);
+    }
+    else if (lastGetDate != null) {
+        getOrderByDate(lastGetDate, page);
     }
     else {
         getProduct(page);
@@ -192,6 +233,7 @@ function getOrderByOrderNum(lastOrderNum, page) {
 
     lastGetOrderNum = lastOrderNum;
     lastGetPhone = null;
+    lastGetMemberId = null
     lastGetDate = null;
     getOrder(page);
 }
@@ -204,6 +246,20 @@ function getOrderByPhone(lastPhone, page) {
 
     lastGetOrderNum = null;
     lastGetPhone = lastPhone;
+    lastGetMemberId = null;
+    lastGetDate = null;
+    getOrder(page);
+}
+
+function getOrderByMemberId(lastMemberId, page) {
+    //第一次用memberId搜尋
+    if (lastGetMemberId == null) document.getElementById("currentPage").innerHTML = 1;
+    //搜尋不同會員 重設頁數
+    if (lastGetMemberId != lastMemberId) document.getElementById("currentPage").innerHTML = 1;
+
+    lastGetOrderNum = null;
+    lastGetPhone = null;
+    lastGetMemberId = lastMemberId;
     lastGetDate = null;
     getOrder(page);
 }
@@ -216,6 +272,7 @@ function getOrderByDate(lastDate, page) {
 
     lastGetOrderNum = null;
     lastGetPhone = null;
+    lastGetMemberId = null;
     lastGetDate = lastDate;
     getOrder(page);
 }
@@ -226,10 +283,16 @@ function populateTable(orders) {
 
     orders.forEach((order, index) => {
         const row = document.createElement('tr');
-        const rowSort = document.createElement('th');
-        rowSort.textContent = index + 1;
-        rowSort.scope = "row";
-        row.appendChild(rowSort);
+        row.dataset.orderId = order.OrderId;
+        const rowHead = document.createElement('th');
+        const rowHeadSort = document.createElement('span');
+        const rowHeadCkb = document.createElement('input');
+        rowHead.scope = "row";
+        rowHeadSort.textContent = index + 1;
+        rowHeadCkb.type = "checkbox";
+        rowHead.appendChild(rowHeadCkb);
+        rowHead.appendChild(rowHeadSort);
+        row.appendChild(rowHead);
 
         const cellOrderNumber = document.createElement('td');
         cellOrderNumber.style = " word-wrap: break-word;";
@@ -263,6 +326,7 @@ function populateTable(orders) {
         const cellEditBtn = document.createElement("button");
         cellEditBtn.className = "btnEditOrder";
         cellEditBtn.addEventListener("click", function () {
+            setRedirectPage("MainOrder", `GetRedirectOrderDetailView?orderId=${order.OrderId}`);
         });
         cellEdit.appendChild(cellEditBtn);
 

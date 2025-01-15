@@ -3,28 +3,28 @@
   "WorkspaceRootPath": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\imitateapi\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\imitateapi\\createorder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\js\\imitateapi\\createorder.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\js\\imitateapi\\createorder.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\controllers\\mainordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\mainordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\css\\order\\order.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\css\\order\\order.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\service\\mainorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\service\\mainorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\js\\mainorder\\getmainorderindex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\js\\mainorder\\getmainorderindex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\views\\mainorder\\shippingoption.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\mainorder\\shippingoption.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\controllers\\mainproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\controllers\\mainproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\js\\mainorder\\editshippingoption.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\js\\mainorder\\editshippingoption.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\pashamao\\views\\mainorder\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\views\\mainorder\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\models\\dto\\orderdto\\requesteditshippingoptiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\models\\dto\\orderdto\\requesteditshippingoptiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,80 +38,80 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainProductController.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\MainProductController.cs",
-              "RelativeDocumentMoniker": "Pashamao\\Controllers\\MainProductController.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\MainProductController.cs",
-              "RelativeToolTip": "Pashamao\\Controllers\\MainProductController.cs",
-              "ViewState": "AgIAACkBAAAAAAAAAAAAAD4BAAAzAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "RequestEditShippingOptionDto.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\Dto\\OrderDto\\RequestEditShippingOptionDto.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Models\\Dto\\OrderDto\\RequestEditShippingOptionDto.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Models\\Dto\\OrderDto\\RequestEditShippingOptionDto.cs",
+              "RelativeToolTip": "Pashamao\\Models\\Dto\\OrderDto\\RequestEditShippingOptionDto.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAiwBQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T07:08:25.678Z",
+              "WhenOpened": "2025-01-15T11:30:15.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Order.css",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\css\\Order\\Order.css",
-              "RelativeDocumentMoniker": "Pashamao\\css\\Order\\Order.css",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\css\\Order\\Order.css",
-              "RelativeToolTip": "Pashamao\\css\\Order\\Order.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-01-14T06:38:23.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateOrder.js",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\ImitateApi\\CreateOrder.js",
-              "RelativeDocumentMoniker": "Pashamao\\js\\ImitateApi\\CreateOrder.js",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\ImitateApi\\CreateOrder.js",
-              "RelativeToolTip": "Pashamao\\js\\ImitateApi\\CreateOrder.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "EditShippingOption.js",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\MainOrder\\EditShippingOption.js",
+              "RelativeDocumentMoniker": "Pashamao\\js\\MainOrder\\EditShippingOption.js",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\MainOrder\\EditShippingOption.js",
+              "RelativeToolTip": "Pashamao\\js\\MainOrder\\EditShippingOption.js",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAowC4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-14T05:28:10.88Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateOrder.cshtml",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\ImitateApi\\CreateOrder.cshtml",
-              "RelativeDocumentMoniker": "Pashamao\\Views\\ImitateApi\\CreateOrder.cshtml",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\ImitateApi\\CreateOrder.cshtml",
-              "RelativeToolTip": "Pashamao\\Views\\ImitateApi\\CreateOrder.cshtml",
-              "ViewState": "AgIAADwAAAAAAAAAAAAxwJAAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-14T05:26:59.707Z",
+              "WhenOpened": "2025-01-15T11:01:13.682Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GetMainOrderIndex.js",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\MainOrder\\GetMainOrderIndex.js",
-              "RelativeDocumentMoniker": "Pashamao\\js\\MainOrder\\GetMainOrderIndex.js",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\js\\MainOrder\\GetMainOrderIndex.js",
-              "RelativeToolTip": "Pashamao\\js\\MainOrder\\GetMainOrderIndex.js",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAIwPIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-13T09:48:49.588Z",
+              "Title": "ShippingOption.cshtml",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainOrder\\ShippingOption.cshtml",
+              "RelativeDocumentMoniker": "Pashamao\\Views\\MainOrder\\ShippingOption.cshtml",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainOrder\\ShippingOption.cshtml",
+              "RelativeToolTip": "Pashamao\\Views\\MainOrder\\ShippingOption.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-15T08:34:38.334Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainOrder\\Index.cshtml",
-              "RelativeDocumentMoniker": "Pashamao\\Views\\MainOrder\\Index.cshtml",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Views\\MainOrder\\Index.cshtml",
-              "RelativeToolTip": "Pashamao\\Views\\MainOrder\\Index.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACoAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-13T09:47:30.135Z",
+              "DocumentIndex": 0,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "Pashamao\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAALgAAAAAAAAAAAAswMQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T10:34:50.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainOrderService.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Service\\MainOrderService.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Service\\MainOrderService.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Service\\MainOrderService.cs",
+              "RelativeToolTip": "Pashamao\\Service\\MainOrderService.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAMBBwCMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T08:58:13.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainOrderController.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\MainOrderController.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Controllers\\MainOrderController.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Controllers\\MainOrderController.cs",
+              "RelativeToolTip": "Pashamao\\Controllers\\MainOrderController.cs",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAkwM4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-15T01:53:53.128Z",
               "EditorCaption": ""
             }
           ]

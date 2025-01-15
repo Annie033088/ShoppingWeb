@@ -26,5 +26,21 @@ namespace Pashamao.Service
         {
             return orderRepository.GetOrder(selectOrderDto);
         }
+
+        /// <summary>
+        /// 取得所有運輸方式
+        /// </summary>
+        public List<ShippingOption> GetShippingOption()
+        {
+            return orderRepository.GetShippingOption();
+        }
+
+        /// <summary>
+        /// 修改運輸價格
+        /// </summary>
+        public bool EditShippingOption(RequestEditShippingOptionDto editShippingOptionDto)
+        {
+            return orderRepository.EditShippingOption(editShippingOptionDto);
+        }
     }
 }

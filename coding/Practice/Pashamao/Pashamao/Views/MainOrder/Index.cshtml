@@ -2,11 +2,8 @@
     ViewBag.Title = "訂單管理";
 }
 
-
 <body>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="~/css/Order/Order.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script src="~/js/MainOrder/GetMainOrderIndex.js"></script>
     <main>
         <h2 class="text-center mb-3">@ViewBag.Title</h2>
@@ -26,17 +23,23 @@
                     <input type="text" class="form-control me-1" style="width:60px;" id="txbSelectPhone" required />
                     <button type="button" id="btnSelectByPhone" class="btn btn-outline-dark me-1">搜尋</button>
                 </div>
+
+                <div class="d-flex mt-1 me-3">
+                    <label class="me-1  align-content-center">會員Id：</label>
+                    <input type="text" class="form-control me-1" style="width:100px;" id="txbSelectMemberId" required />
+                    <button type="button" id="btnSelectByMemberId" class="btn btn-outline-dark me-1">搜尋</button>
+                </div>
             </div>
 
-            <div class="d-flex mt-1" style="">
+            <div class="d-flex mt-1" style="height:35px">
                 <label class="me-1 align-content-center">日期：</label>
                 <input type="date" class="form-control me-1" id="txbDateStart" style="" required />
                 <label class="">~</label>
                 <input type="date" class="form-control me-1" id="txbDateEnd" style="" required />
                 <button type="button" id="btnSelectByDate" class="btn btn-outline-dark me-1">搜尋</button>
-                <div class=" ms-1 mt-1">
-                    <label>狀態：</label>
-                    <select type="" id="selectStatus" class="">
+                <div class=" ms-1 d-flex">
+                    <span class=" mt-1" style="white-space:nowrap">狀態：</span>
+                    <select type="" id="selectStatus" class="form-select form-select-sm">
                         <option value="0">全部</option>
                         <option value="1">待確認</option>
                         <option value="2">待出貨</option>
@@ -49,11 +52,18 @@
                     </select>
                 </div>
             </div>
+
+            <div class="w-100 d-flex  justify-content-end" style="">
+                <button id="btnEditOrderState" class="btn btn-outline-secondary">編輯狀態</button>
+            </div>
         </div>
         <table id="orderTable" class="table" style="table-layout:fixed" border="1">
             <thead>
                 <tr class="bg-gradient text-bg-dark ">
-                    <th scope="col">#</th>
+                    <th scope="col">
+                        <input type="checkbox" name="name" id="ckbAllOrder"/>
+                        <span>#</span>                        
+                    </th>
                     <th scope="col">訂單編號</th>
                     <th scope="col">日期</th>
                     <th scope="col">會員</th>

@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
     populateProduct();
     populateStyle();
 });
-
 function populateImage() {
     images.forEach(image => {
         let imageUrl = image.ImageUrl;

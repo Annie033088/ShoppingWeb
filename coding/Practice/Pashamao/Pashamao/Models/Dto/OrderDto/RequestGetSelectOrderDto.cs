@@ -19,6 +19,11 @@ namespace Pashamao.Models.Dto.OrderDto
         public int? Phone { get; set; }
 
         /// <summary>
+        /// 會員Id
+        /// </summary>
+        public int? MemberId { get; set; }
+
+        /// <summary>
         /// 日期起始
         /// </summary>
         public DateTime? StartDate { get; set; }

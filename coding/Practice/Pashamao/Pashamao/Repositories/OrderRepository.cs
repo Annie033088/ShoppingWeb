@@ -31,7 +31,7 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_getOrder @orderNumber, @phone, @dateStart, @dateEnd, @status, @page, @totalPages OUTPUT";
+                cmd.CommandText = "EXEC pro_pashamao_getOrder @orderNumber, @phone, @memberId, @dateStart, @dateEnd, @status, @page, @totalPages OUTPUT";
 
                 if (selectOrderDto.OrderNumber == null)
                 {
@@ -49,6 +49,15 @@ namespace Pashamao.Repositories
                 else
                 {
                     cmd.Parameters.Add("@phone", SqlDbType.Int).Value = selectOrderDto.Phone;
+                }
+
+                if (selectOrderDto.MemberId == null)
+                {
+                    cmd.Parameters.Add("@memberId", SqlDbType.Int).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("@memberId", SqlDbType.Int).Value = selectOrderDto.MemberId;
                 }
 
                 if (selectOrderDto.StartDate == null)
@@ -123,6 +132,102 @@ namespace Pashamao.Repositories
             }
         }
 
+        /// <summary>
+        /// 取得所有運輸方式
+        /// </summary>
+        public List<ShippingOption> GetShippingOption()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            List<ShippingOption> shippingOptions = new List<ShippingOption>();
 
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_getShippingOption";
+
+                cmd.Connection.Open();
+
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+
+                cmd.Connection.Close();
+
+                if (dt.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        ShippingOption shippingOption= new ShippingOption();
+                        shippingOption.ShippingOptionId = dt.Rows[i].IsNull("f_shippingOptionId") ? 0 : dt.Rows[i].Field<int>("f_shippingOptionId");
+                        shippingOption.Option = dt.Rows[i].IsNull("f_option") ? string.Empty : dt.Rows[i].Field<string>("f_option");
+                        shippingOption.ShippingFee = dt.Rows[i].IsNull("f_shippingFee") ? 0 : dt.Rows[i].Field<decimal>("f_shippingFee");
+                        shippingOption.FreeShipping = dt.Rows[i].IsNull("f_freeShipping") ? 0 : dt.Rows[i].Field<decimal>("f_freeShipping");
+                        shippingOption.UpdateTime = dt.Rows[i].IsNull("f_updateTime") ? DateTime.MinValue : dt.Rows[i].Field<DateTime>("f_updateTime");
+                        shippingOptions.Add(shippingOption);
+                    }
+
+                    return shippingOptions;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+
+                if (cmd.Connection.State != ConnectionState.Closed)
+                    cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 修改運輸價格
+        /// </summary>
+        internal bool EditShippingOption(RequestEditShippingOptionDto editShippingOptionDto)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editShippingOption @shippingOptionId, @option, @shippingFee, @freeShipping, @updateTime";
+                cmd.Parameters.Add("@shippingOptionId", SqlDbType.Int).Value = editShippingOptionDto.ShippingOptionId;
+                cmd.Parameters.Add("@option", SqlDbType.NVarChar).Value = editShippingOptionDto.Option;
+                cmd.Parameters.Add("@shippingFee", SqlDbType.Decimal).Value = editShippingOptionDto.ShippingFee;
+                cmd.Parameters.Add("@freeShipping", SqlDbType.Decimal).Value = editShippingOptionDto.FreeShipping;
+                cmd.Parameters.Add("@updateTime", SqlDbType.DateTime).Value = editShippingOptionDto.UpdateTime;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
     }
 }

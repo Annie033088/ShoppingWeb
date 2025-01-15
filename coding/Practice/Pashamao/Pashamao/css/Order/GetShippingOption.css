@@ -1,0 +1,9 @@
+﻿.btnEdit {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 13px;
+    cursor: pointer;
+    background-image: url(../../images/Pencel.jpg);
+}

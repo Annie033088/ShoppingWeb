@@ -143,6 +143,7 @@
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\ResponseMainMemberDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestEditShippingOptionDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestGetSelectOrderDto.cs" />
     <Compile Include="Models\Dto\OrderDto\ResponseMainOrderDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestCreateProductDto.cs" />
@@ -177,10 +178,12 @@
     <Compile Include="Models\Dto\UserDto\RequestCreateUserDto.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderState.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductStyle.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\ShippingOption.cs" />
     <Compile Include="Models\UserPermission.cs" />
     <Compile Include="Models\UserSessionModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -230,6 +233,7 @@
     <Content Include="css\MainMember.css" />
     <Content Include="css\MainProduct.css" />
     <Content Include="css\MainUser.css" />
+    <Content Include="css\Order\GetShippingOption.css" />
     <Content Include="css\Order\Order.css" />
     <Content Include="css\Product.css" />
     <Content Include="css\ProductDetail.css" />
@@ -243,6 +247,7 @@
     <Content Include="js\GlobalTool.js" />
     <Content Include="js\ImitateApi\CreateMmeber.js" />
     <Content Include="js\ImitateApi\CreateOrder.js" />
+    <Content Include="js\MainOrder\EditShippingOption.js" />
     <Content Include="js\MainOrder\GetMainOrderIndex.js" />
     <Content Include="js\MainUserIndexTool.js" />
     <Content Include="js\ProductDetailTool.js" />
@@ -292,6 +297,8 @@
     <Content Include="Views\MainOrder\Index.cshtml" />
     <Content Include="Views\ImitateApi\Index.cshtml" />
     <Content Include="Views\ImitateApi\CreateOrder.cshtml" />
+    <Content Include="Views\MainOrder\OrderDetail.cshtml" />
+    <Content Include="Views\MainOrder\ShippingOption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />
