@@ -4,6 +4,50 @@ let lastGetDate = null;
 let lastGetStatus = null;
 let lastGetMemberId = null;
 
+//狀態枚舉
+const orderStateEnum = {
+    //1:待確認
+    ToBeConfirmed: 1,
+
+    //2:待出貨
+    ToBeShipped: 2,
+
+    //3:已出貨
+    Shipped:3,
+
+    //4:完成
+    Finish:4,
+
+    //5:買家未取商品
+    NotPickedUp:5,
+
+    //6:重新寄回
+    Resend:6,
+
+    //7:取消
+    Cancel:7,
+
+    //8:退貨
+    Returned: 8,
+
+    //9:退款
+    Refund:9
+}
+
+//狀態合法轉換
+const stateTransitionRules = {
+    [orderStateEnum.ToBeConfirmed]: [orderStateEnum.ToBeShipped, orderStateEnum.Cancel],
+    [orderStateEnum.ToBeShipped]: [orderStateEnum.Shipped, orderStateEnum.Cancel],
+    [orderStateEnum.Shipped]: [orderStateEnum.Finish, orderStateEnum.NotPickedUp, orderStateEnum.Cancel],
+    [orderStateEnum.Finish]: [orderStateEnum.Returned], 
+    [orderStateEnum.NotPickedUp]: [orderStateEnum.Resend, orderStateEnum.Cancel],
+    [orderStateEnum.Resend]: [orderStateEnum.Finish, orderStateEnum.Cancel],
+    [orderStateEnum.Cancel]: [], 
+    [orderStateEnum.Returned]: [orderStateEnum.Refund, orderStateEnum.Cancel],
+    [orderStateEnum.Refund]: []
+};
+
+//初始化
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnSelectByOrderNumber").addEventListener('click', function () {
         const selectOrderNumber = document.getElementById("txbSelectOrderNumber").value;
@@ -65,30 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("currentPage").innerHTML = 1;
         getOrder(1)
     });
-    // 設定勾選/取消勾選所有訂單
-    document.getElementById("ckbAllOrder").addEventListener("change", function (event) {
-        const orderCkbs = document.querySelectorAll('tbody input[type = "checkbox"]');
-        
-        if (event.target.checked) {
-            orderCkbs.forEach(function (orderCkb) {
-                orderCkb.checked = true
-            })
-        } else {
-            orderCkbs.forEach( function (orderCkb) {
-                orderCkb.checked = false;
-            })
-        }
-    })
-    //編輯勾選的訂單狀態
-    document.getElementById("btnEditOrderState").addEventListener("click", function () {
-        //判斷選重的狀態是不是都一樣
-        const orderCkbs = document.querySelectorAll('tbody input[type = "checkbox"]');
-        let stateList = [];
-        orderCkbs.forEach(function (orderCkb) {
-            const parentTr = orderCkb.closest('tr');
-        })
-    })
-
+ 
     getAll();
 });
 
@@ -157,6 +178,7 @@ function getOrder(page) {
                 document.getElementById("lastPage").innerHTML = 1;
                 return;
             }
+
             populateTable(orders);
             document.getElementById("lastPage").innerHTML = response.data.totalPage;
         })
@@ -286,11 +308,8 @@ function populateTable(orders) {
         row.dataset.orderId = order.OrderId;
         const rowHead = document.createElement('th');
         const rowHeadSort = document.createElement('span');
-        const rowHeadCkb = document.createElement('input');
         rowHead.scope = "row";
         rowHeadSort.textContent = index + 1;
-        rowHeadCkb.type = "checkbox";
-        rowHead.appendChild(rowHeadCkb);
         rowHead.appendChild(rowHeadSort);
         row.appendChild(rowHead);
 
@@ -313,12 +332,59 @@ function populateTable(orders) {
         row.appendChild(cellRecipient);
 
         const cellState = document.createElement('td');
-        cellState.className = "border border-secondary border-3 pt-3";
-        cellState.textContent = orderStateToText(order.State);
+        // 創建一個 select 元素
+        let selectElement = document.createElement("select");
+        selectElement.id = "selectState";
+        selectElement.className = "form-select";
+        let currentState = order.State;
+        if (currentState == orderStateEnum.Cancel || currentState == orderStateEnum.Refund) selectElement.disabled = true;
+
+        //監聽器
+        selectElement.addEventListener("change", function (event) {
+            let selectedValue = event.target.value;
+
+            if (selectedValue == currentState) return;
+
+            Swal.fire({
+                title: '確定要修改狀態嗎？',
+                text: "這個操作無法恢復！",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '確認',
+                cancelButtonText: '取消'
+            })
+                .then(result => {
+                    if (result.isConfirmed) {
+                        editOrderState(order.OrderId, currentState, selectedValue, formatDateToYYYYMMDDHHMMSS(order.UpdateTime));
+                    }
+                    else if (result.isDismissed) {
+                        selectElement.value = currentState;
+                    }
+                })
+        });
+
+        //原本的狀態
+        let stateOption = document.createElement("option");
+        stateOption.value = currentState;
+        stateOption.textContent = orderStateToText(currentState);
+        stateOption.selected = true;
+        selectElement.appendChild(stateOption);
+
+        //可以選擇/轉換的狀態
+        let translateStates = stateTransitionRules[currentState];
+
+        for (let i = 0; i < translateStates.length; i++) {
+            let stateOption = document.createElement("option");
+            stateOption.value = translateStates[i];
+            stateOption.textContent = orderStateToText(translateStates[i]);
+            selectElement.appendChild(stateOption);
+        }
+
+        cellState.appendChild(selectElement);
         row.appendChild(cellState);
 
         const cellPrice = document.createElement('td');
-        cellPrice.textContent = "$" +order.TotalPrice
+        cellPrice.textContent = "$" +order.TotalAmount
         row.appendChild(cellPrice);
 
         const cellEdit = document.createElement('td');
@@ -343,6 +409,7 @@ function populateTable(orders) {
     });
 }
 
+//狀態轉成文字
 function orderStateToText(state) {
     switch (state) {
         case 1:
@@ -361,6 +428,8 @@ function orderStateToText(state) {
             return "取消";
         case 8:
             return "退貨";
+        case 9:
+            return "退款";
         default:
             return "";
     }
@@ -392,4 +461,51 @@ function formatDateToYYYYMMDDHHMMSS(dateString) {
         return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
     }
     return null;  // 如果無法匹配，返回 null
+}
+
+function editOrderState(orderId, originalState, selectedState, updateTime) {
+
+    editOrderStateDto = {
+        OrderId: orderId,
+        OriginalState: originalState,
+        SelectedState: selectedState,
+        UpdateTime: updateTime
+    }
+
+    axios.post("/MainOrder/EditOrderState", { editOrderStateDto })
+        .then(response => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
+                        if (result.isConfirmed) {
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
+
+                            window.location.href = "/MainOrder/Index";
+                        }
+                    });
+                return;
+            }
+
+            //成功的話
+            window.location.href = "/MainOrder/Index";
+        })
+
+        .catch(error => {
+            console.error("fail", error);
+        });
 }

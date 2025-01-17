@@ -23,11 +23,6 @@ namespace Pashamao.Models
         public long OrderNumber { get; set; }
 
         /// <summary>
-        /// 總金額
-        /// </summary>
-        public decimal TotalPrice {  get; set; }
-
-        /// <summary>
         /// 訂單狀態
         /// </summary>
         public int State {  get; set; }
@@ -48,9 +43,29 @@ namespace Pashamao.Models
         public string Address { get; set; }
 
         /// <summary>
+        /// 折扣前金額
+        /// </summary>
+        public decimal OriginalAmount { get; set; }
+
+        /// <summary>
+        /// 折扣後金額
+        /// </summary>
+        public decimal DiscountedAmount { get; set; }
+
+        /// <summary>
         /// 運輸方式
         /// </summary>
-        public int ShippingMethod { get; set; }
+        public string ShippingOption { get; set; }
+
+        /// <summary>
+        /// 運費
+        /// </summary>
+        public decimal ShippingFee { get; set; }
+
+        /// <summary>
+        /// 總金額
+        /// </summary>
+        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 備註

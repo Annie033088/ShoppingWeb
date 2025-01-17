@@ -81,14 +81,14 @@ namespace Pashamao.Repositories
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_addOrder @orderNumber, @memberId, @name, @address, @phone, @shippingMethod, @orderProductStyles";
+                cmd.CommandText = "EXEC pro_pashamao_addOrder @orderNumber, @memberId, @name, @address, @phone, @shippingOptionId, @orderProductStyles";
 
                 cmd.Parameters.Add("@orderNumber", SqlDbType.BigInt).Value = orderNumber;
                 cmd.Parameters.Add("@memberId", SqlDbType.Int).Value = createOrderDto.MemberId;
                 cmd.Parameters.Add("@name", SqlDbType.NVarChar).Value = createOrderDto.Name;
                 cmd.Parameters.Add("@address", SqlDbType.NVarChar).Value = createOrderDto.PostalCode + createOrderDto.Address;
                 cmd.Parameters.Add("@phone", SqlDbType.Int).Value = createOrderDto.Phone;
-                cmd.Parameters.Add("@shippingMethod", SqlDbType.Int).Value = createOrderDto.ShippingMethod;
+                cmd.Parameters.Add("@shippingOptionId", SqlDbType.Int).Value = createOrderDto.ShippingOptionId;
 
                 DataTable OrderProductStyle = new DataTable();
                 OrderProductStyle.Columns.Add("f_productStyleId", typeof(int));

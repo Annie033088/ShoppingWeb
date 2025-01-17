@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "會員點數管理";
+}
+
+<body>
+    <main>
+        <div class="card col-3 d-flex justify-content-center text-center p-3">
+            <label class="card-header">重製所有會員點數</label>
+            <button class="btn btn-outline-danger card-body" id="btnResetPoints" onclick="resetMemberPoints()">重製</button>
+        </div>
+    </main>
+</body>
+
+<script>
+    function resetMemberPoints() {
+        Swal.fire({
+            title: '確定要重製會員點數嗎？',
+            text: "這個操作無法恢復！",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '刪除',
+            cancelButtonText: '取消'
+        })
+            .then(result => {
+                if (result.isConfirmed) {
+                    axios.post("/MemberPoint/ResetMemberPoint")
+                        .then(response => {
+                            let errorCode = response.data.errorCode;
+
+                            //沒有成功
+                            if (errorCode != errorCodeDefine.Success) {
+                                let message = errorCodeToMessage(errorCode);
+
+                                //顯示訊息
+                                Swal.fire(message)
+                                    .then(result => {
+                                        //確認後處理
+                                        if (result.isConfirmed) {
+                                            //被踢出去
+                                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                                || errorCode == errorCodeDefine.PermissionModified) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                                window.location.href = "/Login/Index";
+                                            }
+                                        }
+                                    });
+                                return;
+                            }
+
+                            //成功的話
+                            window.location.href = "/MainMember/Index";
+                        })
+
+                        .catch(error => {
+                            console.error("fail", error);
+                        });
+                }
+            });
+    }
+</script>
