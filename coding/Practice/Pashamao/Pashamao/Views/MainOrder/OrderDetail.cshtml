@@ -4,21 +4,100 @@
 
 <body>
     <main>
-        <h2 class="text-center mb-3">@ViewBag.Title</h2>
+        <div class="d-flex">
+            <div class="" style="width:5%">
+                <button class="btn btn-dark" style="" onclick="window.location.href='/MainOrder/Index'"> 返回</button>
+            </div>
+            <div class="" style="width:95%">
+                <h2 class="text-center mb-3">@ViewBag.Title</h2>
+            </div>
+        </div>
+        <script>var orderId = @Html.Raw(ViewBag.orderId);</script>
+        <script src="~/js/MainOrder/OrderDetailTool.js"></script>
         <div>
             <div class="d-flex">
-                <div class="col-6 card p-1">
-                    <div class="d-flex" style="font-size:20px">
-                        <span class="badge bg-light text-dark">訂單編號：</span>
-                        <span class="badge bg-secondary">備註：</span>
+                <div class="col-6 card ">
+                    <label class="card-header d-flex justify-content-center text-center">訂單資訊</label>
+                    <div class="d-flex flex-wrap card-body" style="font-size:20px">
+                        <div class="w-100 d-flex">
+                            <span class="badge bg-light text-dark col-5 me-1" id="txbOrderNumber">訂單編號：</span>
+                            <span class="badge bg-light text-dark col-7" id="txbOrderCreateTime">創建時間：</span>
+                        </div>
+                        <div class="d-flex w-100 mt-1 ">
+                            <div class=" col-2">
+                                <span class="badge bg-secondary d-flex justify-content-center text-center align-items-center" style="height: 50px;" id="txbOrderState">狀態：</span>
+                                <span class="badge bg-secondary d-flex justify-content-center text-center align-items-center mt-1 flex-wrap" style="height: 50px;" id="txbMemberId">會員Id：</span>
+                            </div>
+                            <div class="ms-1 badge bg-secondary col-10 d-flex justify-content-center align-items-center flex-wrap">
+                                <span id="">備註：</span>
+                                <textarea id="txbOrderRemark" class="form-control mt-1 w-100" style=" resize: none; height: 150px; " placeholder="在此輸入內容..."></textarea>
+                                <button class="btn btn-outline-light ms-1" id="" onclick="editOrderRemark()">修改</button>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="card-header d-flex justify-content-center text-center">收件人資訊</label>
+                    <div class="d-flex flex-wrap card-body justify-content-center text-center w-100" style="font-size:20px">
+                        <div class="w-100 ">
+                            <span class="badge bg-light text-dark col-6 me-1" id="txbRecipientName">姓名：</span>
+                        </div>
+                        <div class="w-100 mt-1  ">
+                            <span class="badge bg-light text-dark col-6" id="txbPhone">電話：0</span>
+                        </div>
+                        <div class="w-100  mt-1 ">
+                            <span class="badge bg-light text-dark col-6 " id="txbAddress">地址：</span>
+                        </div>
+                    </div>
+                    <label class="card-header d-flex justify-content-center text-center">運送資訊</label>
+                    <div class="d-flex flex-wrap card-body justify-content-center text-center w-100" style="font-size:20px">
+                        <div class="w-100 ">
+                            <span class="badge bg-light text-dark col-6 me-1" id="txbShippintOption">運送方式：</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 card">
-                    2
+
+
+                <div class="col-6 card p-1">
+                    <div>
+                        <label class="card-header d-flex justify-content-center text-center">商品資訊</label>
+                        <table id="orderItemTable" class="table" style="table-layout:fixed" border="1">
+                            <thead>
+                                <tr class="bg-gradient">
+                                    <th scope="col">#</th>
+                                    <th scope="col">商品名稱</th>
+                                    <th scope="col">細項</th>
+                                    <th scope="col">數量</th>
+                                    <th scope="col">總金額</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 用來插入用戶資料的行將在這裡 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <label class="card-header d-flex justify-content-center text-center">金額</label>
+                        <div class="d-flex flex-wrap card-body justify-content-center text-center w-100" style="font-size:20px">
+                            <div class="w-100 ">
+                                <span class="badge bg-light text-dark col-6 me-1" id="txbOriginalAmount">原價：$</span>
+                            </div>
+                            <div class="w-100 mt-1  ">
+                                <span class="badge bg-light text-dark col-6" id="txbDiscountAmount">折扣：$</span>
+                            </div>
+                            <div class="w-100  mt-1 ">
+                                <span class="badge bg-light text-dark col-6 " id="txbShippingFee">運費：$</span>
+                            </div>
+                            <div class="w-100  mt-1 ">
+                                <span class="badge bg-light text-dark col-6 " id="txbTotalAmount">總價：$</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                3
+
+            <div class="card">
+                <label class="card-header d-flex justify-content-center text-center">訂單狀態流程</label>
+                <div id="orderStateContainer" class="d-flex flex-wrap">
+                </div>
             </div>
         </div>
 

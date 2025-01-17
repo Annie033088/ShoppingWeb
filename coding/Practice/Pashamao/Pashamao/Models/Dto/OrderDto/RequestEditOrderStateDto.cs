@@ -6,25 +6,25 @@ using System.Web;
 
 namespace Pashamao.Models.Dto.OrderDto
 {
-    public class RequestEditShippingOptionDto
+    public class RequestEditOrderStateDto
     {
         /// <summary>
-        /// 運輸方式Id
+        /// 訂單Id
         /// </summary>
         [Required]
-        public int ShippingOptionId { get; set; }
+        public int OrderId { get; set; }
 
         /// <summary>
-        /// 運費
+        /// 原訂單狀態
         /// </summary>
         [Required]
-        public decimal ShippingFee { get; set; }
+        public OrderStateEnum OriginalState { get; set; }
 
         /// <summary>
-        /// 免運費金額
+        /// 修改後訂單狀態
         /// </summary>
         [Required]
-        public decimal FreeShipping { get; set; }
+        public OrderStateEnum SelectedState { get; set; }
 
         /// <summary>
         /// 最後修改時間

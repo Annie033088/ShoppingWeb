@@ -17,6 +17,7 @@
         SelectProduct = 2048,
         CreateProduct = 4096,
         EditProduct = 8192,
-        DelProduct = 16384,//再不包含None的情況下, 此為第15個, 最多可儲存63個權限
+        DelProduct = 16384,
+        ResetMemberPoints = 32768//再不包含None的情況下, 此為第16個, 最多可儲存63個權限
     }
 }

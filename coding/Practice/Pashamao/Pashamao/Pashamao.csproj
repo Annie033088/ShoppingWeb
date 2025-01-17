@@ -136,6 +136,7 @@
     <Compile Include="Controllers\MainOrderController.cs" />
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
+    <Compile Include="Controllers\MemberPointController.cs" />
     <Compile Include="Filters\RequestLoggerFilter.cs" />
     <Compile Include="Models\Dto\AddressDto\RequestGetSortedAddressDto.cs" />
     <Compile Include="Models\Dto\ImitateApiDto\RequestCreateOrderDto.cs" />
@@ -143,9 +144,13 @@
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\ResponseMainMemberDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestEditOrderRemarkDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestEditOrderStateDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestEditOrderStateRemarkDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestEditShippingOptionDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestGetSelectOrderDto.cs" />
     <Compile Include="Models\Dto\OrderDto\ResponseMainOrderDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\ResponseOrderDetailDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestCreateProductDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestDeleteProductDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestDeleteProductStyleDto.cs" />
@@ -178,7 +183,9 @@
     <Compile Include="Models\Dto\UserDto\RequestCreateUserDto.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\OrderState.cs" />
+    <Compile Include="Models\OrderStateEnumAndRule.cs" />
     <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductStyle.cs" />
@@ -192,6 +199,7 @@
     <Compile Include="Repositories\ImitateApiRepository.cs" />
     <Compile Include="Repositories\MainProductRepository.cs" />
     <Compile Include="Repositories\MemberAddressRepository.cs" />
+    <Compile Include="Repositories\MemberPointRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
@@ -202,9 +210,11 @@
     <Compile Include="Service\MainProductService.cs" />
     <Compile Include="Service\MainUserService.cs" />
     <Compile Include="Service\MemberAddressService.cs" />
+    <Compile Include="Service\MemberPointService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Service\UserRoleService.cs" />
     <Compile Include="Utility\HashUtility.cs" />
+    <Compile Include="Utility\ValidStateTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\PashamaoDB.mdf" />
@@ -249,6 +259,7 @@
     <Content Include="js\ImitateApi\CreateOrder.js" />
     <Content Include="js\MainOrder\EditShippingOption.js" />
     <Content Include="js\MainOrder\GetMainOrderIndex.js" />
+    <Content Include="js\MainOrder\OrderDetailTool.js" />
     <Content Include="js\MainUserIndexTool.js" />
     <Content Include="js\ProductDetailTool.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -299,6 +310,7 @@
     <Content Include="Views\ImitateApi\CreateOrder.cshtml" />
     <Content Include="Views\MainOrder\OrderDetail.cshtml" />
     <Content Include="Views\MainOrder\ShippingOption.cshtml" />
+    <Content Include="Views\MemberPoint\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="logs\" />

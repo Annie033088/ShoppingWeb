@@ -1,4 +1,4 @@
-﻿console.log(productData.productDetail.SelectProductImages);
+﻿
 let product = productData.productDetail.SelectProductDetailDto;
 let styles = productData.productDetail.SelectProductStyleDto;
 let images = productData.productDetail.SelectProductImages;

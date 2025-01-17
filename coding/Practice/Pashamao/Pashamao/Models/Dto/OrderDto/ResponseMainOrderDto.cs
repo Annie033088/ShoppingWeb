@@ -12,11 +12,12 @@ namespace Pashamao.Models.Dto.OrderDto
             OrderId = order.OrderId;
             MemberId = order.MemberId;
             OrderNumber = order.OrderNumber.ToString();
-            TotalPrice = order.TotalPrice;
+            TotalAmount = order.TotalAmount;
             State = order.State;
             RecipientName = order.RecipientName;
             Phone = order.Phone;
             CreateTime = order.CreateTime;
+            UpdateTime = order.UpdateTime;
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace Pashamao.Models.Dto.OrderDto
         /// <summary>
         /// 總金額
         /// </summary>
-        public decimal TotalPrice { get; set; }
+        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 訂單狀態
@@ -58,5 +59,10 @@ namespace Pashamao.Models.Dto.OrderDto
         /// 創建時間
         /// </summary>
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 最後修改時間
+        /// </summary>
+        public DateTime UpdateTime { get; set; }
     }
 }

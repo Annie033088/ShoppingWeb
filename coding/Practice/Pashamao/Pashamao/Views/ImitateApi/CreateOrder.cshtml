@@ -9,8 +9,14 @@
                     <div class="card-body">
                         <label>會員資料</label>
                         <div class="mb-3">
-                            <label class="fs-6 control-form-label">帳號</label>
-                            <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="2" value="qwp59felp48401" disabled />
+                            <div class="mb-3">
+                                <label class="fs-6 control-form-label">帳號</label>
+                                <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="2" value="qwp59felp48401" disabled />
+                            </div>
+                            <div class="mb-3">
+                                <label class="fs-6 control-form-label">會員等級</label>
+                                <input type="text" id="txbLevel" name="Level" class="form-control" value="普通會員" data-level="1" disabled />
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -35,7 +41,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="fs-6 ">送貨方式：</label>
-                        <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="宅配" data- disabled />
+                        <div class="d-flex ">
+                            <input type="text" id="txbShippingMethod" style="width:150px;" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="便利商店" data-id="1" disabled />
+                            <label class="fs-6">運費：免運</label>
+                        </div>
                     </div>
                     <div class="card-header text-center mb-1">
                         商品：
@@ -53,17 +62,36 @@
                             <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="7">
                                 <td scope="col">CIAO肉泥</td>
                                 <td scope="col">4SC-77-鮪魚&干貝</td>
-                                <td scope="col">3</td>
+                                <td scope="col">10</td>
                                 <td scope="col">73</td>
                             </tr>
-                            <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="9">
-                                <td scope="col">CIAO肉泥</td>
-                                <td scope="col">SC-143-鮪魚&鮭魚</td>
-                                <td scope="col">1</td>
-                                <td scope="col">78</td>
+                            <tr class="" data-productId="5a2637b5-10f4-4076-82d0-45e2db2da563" data-productStyleId="12">
+                                <td scope="col">寵物防滑地墊 (多色)</td>
+                                <td scope="col">深棕</td>
+                                <td scope="col">15</td>
+                                <td scope="col">26</td>
                             </tr>
                         </tbody>
                     </table>
+                    <div class="card-footer">
+                        <div class="mb-3">
+                            <label>商品總價: $1120 元</label>
+                        </div>
+                        <div class="mb-3">
+                            <label>運費: $0 元</label>
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label>折扣:</label>
+                            </div>
+                            <div>
+                                <label class="ms-3">普通會員: $0 元</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>總計: $1120 元</label>
+                        </div>
+                    </div>
                     <div class="w-100 justify-content-center d-flex mt-2">
                         <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder1()">送出</button>
                     </div>
@@ -78,6 +106,10 @@
                         <div class="mb-3">
                             <label class="fs-6 control-form-label">帳號</label>
                             <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" data-id="1" value="qwp59felp484" disabled />
+                        </div>
+                        <div class="mb-3">
+                            <label class="fs-6 control-form-label">會員等級</label>
+                            <input type="text" id="txbLevel" name="Level" class="form-control" value="鑽石會員" data-level="3" disabled />
                         </div>
                     </div>
                     <div class="card-body">
@@ -102,7 +134,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="fs-6 ">送貨方式：</label>
-                        <input type="text" id="txbShippingMethod" style="" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="便利商店" disabled />
+                        <div class="d-flex ">
+                            <input type="text" id="txbShippingMethod" style="width:150px;" name="ShippingMethod" class="form-control" placeholder="Enter your ShippingMethod" value="便利商店" data-id="1"  disabled />
+                            <label class="fs-6">運費：$60</label>
+                        </div>
                     </div>
                     <div class="card-header text-center mb-1">
                         商品：
@@ -131,6 +166,25 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="card-footer">
+                        <div class="mb-3">
+                            <label>商品總價: $760 元</label>
+                        </div>
+                        <div class="mb-3">
+                            <label>運費: $60 元</label>
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label>折扣:</label>
+                            </div>
+                            <div>
+                                <label class="ms-3">鑽石會員(93折): $53 元</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label>總計: $767 元</label>
+                        </div>
+                    </div>
                     <div class="w-100 justify-content-center d-flex mt-2">
                         <button type="button" class="btn btn-dark w-50 mb-1" onclick="submitCreateOrder2()">送出</button>
                     </div>

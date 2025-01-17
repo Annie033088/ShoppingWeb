@@ -100,7 +100,6 @@ function populateTable(shippingOptions) {
         btnEdit.addEventListener("click", function () {
             btnEdit.style.display = 'none';
             btnSubmitEdit.style.display = 'inline-block';
-            optionNameInput.disabled = false;
             shippingFeeInput.disabled = false;
             freeShippingInput.disabled = false;
         });
@@ -109,21 +108,8 @@ function populateTable(shippingOptions) {
         btnSubmitEdit.addEventListener("click", function () {
             btnEdit.style.display = 'inline-block';
             btnSubmitEdit.style.display = 'none';
-            optionNameInput.disabled = true;
             shippingFeeInput.disabled = true;
             freeShippingInput.disabled = true;
-
-            //驗證輸入符合訊息
-            const optionNameRegex = /^.{1,10}$/;
-            if (!optionNameRegex.test(optionNameInput.value)) {
-                Swal.fire('請輸入10字以內運輸方式')
-                    .then(result => {
-                        if (result.isConfirmed) {
-                            setRedirectPage('MainOrder', 'GetRedirectShippingOptionView');
-                        }
-                    });
-                return;
-            }
 
             const priceRegex = /^[0-9]{1,9}$/;
             if (!priceRegex.test(shippingFeeInput.value) || !priceRegex.test(freeShippingInput.value)) {
@@ -137,9 +123,9 @@ function populateTable(shippingOptions) {
             }
 
             //如果有修改才提交請求
-            if (!(optionNameInput.value == shippingOption.Option && shippingFeeInput.value == shippingOption.ShippingFee
+            if (!(shippingFeeInput.value == shippingOption.ShippingFee
                 && freeShippingInput.value == shippingOption.FreeShipping)) {
-                postEditShippingOption(shippingOption.ShippingOptionId, optionNameInput.value, shippingFeeInput.value, freeShippingInput.value, shippingOption.UpdateTime);
+                postEditShippingOption(shippingOption.ShippingOptionId, shippingFeeInput.value, freeShippingInput.value, shippingOption.UpdateTime);
             }
         });
 
@@ -149,11 +135,10 @@ function populateTable(shippingOptions) {
         cardContainer.appendChild(shippingOptionCard);
     });
 }
-function postEditShippingOption(id, optionName, shippingFee, freeShipping, updateTime) {
+function postEditShippingOption(id, shippingFee, freeShipping, updateTime) {
 
     let editShippingOptionDto = {
         ShippingOptionId: id,
-        Option: optionName,
         ShippingFee: shippingFee,
         FreeShipping: freeShipping,
         UpdateTime: formatDateToYYYYMMDDHHMMSS(updateTime)
@@ -195,8 +180,6 @@ function postEditShippingOption(id, optionName, shippingFee, freeShipping, updat
             console.error("fail", error);
         });
 }
-
-
 function formatDateToYYYYMMDDHHMMSS(dateString) {
     // 使用正則表達式提取時間戳部分
     var timestamp = dateString.match(/\/Date\((\d+)\)\//);

@@ -41,10 +41,10 @@ namespace Pashamao.Models.Dto.ImitateApiDto
         public int Phone { get; set; }
 
         /// <summary>
-        /// 運用方式
+        /// 運送方式
         /// </summary>
         [Required]
-        public int ShippingMethod { get; set; }
+        public int ShippingOptionId { get; set; }
 
         /// <summary>
         /// 子項目(細項)

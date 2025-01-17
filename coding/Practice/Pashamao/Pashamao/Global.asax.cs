@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Web.Mvc;
@@ -12,6 +13,7 @@ namespace Pashamao
 
         protected void Application_Start()
         {
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
