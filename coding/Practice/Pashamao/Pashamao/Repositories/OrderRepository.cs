@@ -1,15 +1,11 @@
-﻿using Pashamao.Models.Dto.OrderDto;
+﻿using NLog;
 using Pashamao.Models;
+using Pashamao.Models.Dto.OrderDto;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using NLog;
-using Pashamao.Models.Dto.ProductDto;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
-using System.Web.Optimization;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Pashamao.Repositories
 {
@@ -106,7 +102,8 @@ namespace Pashamao.Repositories
                         order.MemberId = dt.Rows[i].IsNull("f_memberId") ? 0 : dt.Rows[i].Field<int>("f_memberId");
                         order.RecipientName = dt.Rows[i].IsNull("f_recipientName") ? string.Empty : dt.Rows[i].Field<string>("f_recipientName");
                         order.Phone = dt.Rows[i].IsNull("f_phone") ? 0 : dt.Rows[i].Field<int>("f_phone");
-                        order.State = dt.Rows[i].IsNull("f_state") ? 0 : dt.Rows[i].Field<byte>("f_state");
+                        order.PreviousState = dt.Rows[i].IsNull("f_previousState") ? 0 : dt.Rows[i].Field<byte>("f_previousState");
+                        order.CurrentState = dt.Rows[i].IsNull("f_currentState") ? 0 : dt.Rows[i].Field<byte>("f_currentState");
                         order.TotalAmount = dt.Rows[i].IsNull("f_totalAmount") ? 0 : dt.Rows[i].Field<decimal>("f_totalAmount");
                         order.CreateTime = dt.Rows[i].IsNull("f_createTime") ? DateTime.MinValue : dt.Rows[i].Field<DateTime>("f_createTime");
                         order.UpdateTime = dt.Rows[i].IsNull("f_updateTime") ? DateTime.MinValue : dt.Rows[i].Field<DateTime>("f_updateTime");
@@ -165,15 +162,16 @@ namespace Pashamao.Repositories
                     order.OrderId = orderId;
                     order.MemberId = ds.Tables[0].Rows[0].IsNull("f_memberId") ? 0 : ds.Tables[0].Rows[0].Field<int>("f_memberId");
                     order.OrderNumber = ds.Tables[0].Rows[0].IsNull("f_orderNumber") ? 0 : ds.Tables[0].Rows[0].Field<long>("f_orderNumber");
-                    order.State = ds.Tables[0].Rows[0].IsNull("f_state") ? 0 : ds.Tables[0].Rows[0].Field<byte>("f_state");
+                    order.CurrentState = ds.Tables[0].Rows[0].IsNull("f_currentState") ? 0 : ds.Tables[0].Rows[0].Field<byte>("f_currentState");
                     order.RecipientName = ds.Tables[0].Rows[0].IsNull("f_recipientName") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_recipientName");
                     order.Phone = ds.Tables[0].Rows[0].IsNull("f_phone") ? 0 : ds.Tables[0].Rows[0].Field<int>("f_phone");
                     order.Address = ds.Tables[0].Rows[0].IsNull("f_address") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_address");
-                    order.ShippingOption = ds.Tables[0].Rows[0].IsNull("f_shippingOption") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_shippingOption");
+                    order.ShippingOptionName = ds.Tables[0].Rows[0].IsNull("f_shippingOptionName") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_shippingOptionName");
                     order.ShippingFee = ds.Tables[0].Rows[0].IsNull("f_shippingFee") ? 0 : ds.Tables[0].Rows[0].Field<decimal>("f_shippingFee");
                     order.OriginalAmount = ds.Tables[0].Rows[0].IsNull("f_originalAmount") ? 0 : ds.Tables[0].Rows[0].Field<decimal>("f_originalAmount");
                     order.DiscountedAmount = ds.Tables[0].Rows[0].IsNull("f_discountedAmount") ? 0 : ds.Tables[0].Rows[0].Field<decimal>("f_discountedAmount");
                     order.TotalAmount = ds.Tables[0].Rows[0].IsNull("f_totalAmount") ? 0 : ds.Tables[0].Rows[0].Field<decimal>("f_totalAmount");
+                    order.LogisticsNumber = ds.Tables[0].Rows[0].IsNull("f_logisticsNumber") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_logisticsNumber");
                     order.Remark = ds.Tables[0].Rows[0].IsNull("f_remark") ? string.Empty : ds.Tables[0].Rows[0].Field<string>("f_remark");
                     order.CreateTime = ds.Tables[0].Rows[0].IsNull("f_createTime") ? DateTime.MinValue : ds.Tables[0].Rows[0].Field<DateTime>("f_createTime");
                     order.UpdateTime = ds.Tables[0].Rows[0].IsNull("f_updateTime") ? DateTime.MinValue : ds.Tables[0].Rows[0].Field<DateTime>("f_updateTime");
@@ -266,18 +264,18 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
-        /// 修改訂單備註
+        /// 修改物流編號
         /// </summary>
-        public bool EditOrderRemark(RequestEditOrderRemarkDto editOrderRemarkDto)
+        public bool EditLogisticsNumber(RequestEditLogisticsNumberDto editLogisticsNumberDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editOrderRemark @orderId, @remark";
-                cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = editOrderRemarkDto.OrderId;
-                cmd.Parameters.Add("@remark", SqlDbType.NVarChar).Value = editOrderRemarkDto.Remark;
+                cmd.CommandText = "EXEC pro_pashamao_editLogisticsNumber @orderId, @logisticsNumber";
+                cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = editLogisticsNumberDto.OrderId;
+                cmd.Parameters.Add("@logisticsNumber", SqlDbType.VarChar).Value = editLogisticsNumberDto.LogisticsNumber;
 
                 cmd.Connection.Open();
 
@@ -344,6 +342,83 @@ namespace Pashamao.Repositories
         }
 
         /// <summary>
+        /// 修改訂單備註
+        /// </summary>
+        public bool EditOrderRemark(RequestEditOrderRemarkDto editOrderRemarkDto)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editOrderRemark @orderId, @remark";
+                cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = editOrderRemarkDto.OrderId;
+                cmd.Parameters.Add("@remark", SqlDbType.NVarChar).Value = editOrderRemarkDto.Remark;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
+        /// 刪除訂單
+        /// </summary>
+        public bool DeleteOrder(RequestOrderIdDto orderIdDto)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_delOrder @orderId";
+                cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = orderIdDto.OrderId;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
+
+        /// <summary>
         /// 取得所有運輸方式
         /// </summary>
         public List<ShippingOption> GetShippingOption()
@@ -371,7 +446,7 @@ namespace Pashamao.Repositories
                     {
                         ShippingOption shippingOption = new ShippingOption();
                         shippingOption.ShippingOptionId = dt.Rows[i].IsNull("f_shippingOptionId") ? 0 : dt.Rows[i].Field<int>("f_shippingOptionId");
-                        shippingOption.Option = dt.Rows[i].IsNull("f_option") ? string.Empty : dt.Rows[i].Field<string>("f_option");
+                        shippingOption.OptionName = dt.Rows[i].IsNull("f_optionName") ? string.Empty : dt.Rows[i].Field<string>("f_optionName");
                         shippingOption.ShippingFee = dt.Rows[i].IsNull("f_shippingFee") ? 0 : dt.Rows[i].Field<decimal>("f_shippingFee");
                         shippingOption.FreeShipping = dt.Rows[i].IsNull("f_freeShipping") ? 0 : dt.Rows[i].Field<decimal>("f_freeShipping");
                         shippingOption.UpdateTime = dt.Rows[i].IsNull("f_updateTime") ? DateTime.MinValue : dt.Rows[i].Field<DateTime>("f_updateTime");

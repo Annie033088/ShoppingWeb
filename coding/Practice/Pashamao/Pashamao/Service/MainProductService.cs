@@ -130,7 +130,7 @@ namespace Pashamao.Service
                     string a = createProductDto.ProductStyleDto[i].ImageUrl;
 
                     if (createProductDto.ProductStyleDto[i].ImageUrl != null)
-                    {                        
+                    {
                         // 檢查 URL 是否為佔位預設圖片，如果是，則將其替換為空字串。
                         /*if (createProductDto.ProductStyleDto[i].ImageUrl == "https://localhost:44303/images/productImage/noImage.jpg")
                         {

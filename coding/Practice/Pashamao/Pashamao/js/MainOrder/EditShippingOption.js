@@ -50,7 +50,7 @@ function populateTable(shippingOptions) {
         //標題
         let shippingOptionCardTitle = document.createElement("label");
         shippingOptionCardTitle.className = "card-header mb-2 w-100";
-        shippingOptionCardTitle.textContent = shippingOption.Option + "(" + formatDateToYYYYMMDDHHMMSS(shippingOption.UpdateTime) + ")";
+        shippingOptionCardTitle.textContent = shippingOption.OptionName + "(" + formatDateToYYYYMMDDHHMMSS(shippingOption.UpdateTime) + ")";
         shippingOptionCard.appendChild(shippingOptionCardTitle);
 
         //運輸方式名
@@ -59,7 +59,7 @@ function populateTable(shippingOptions) {
         let optionNameTitle = document.createElement("span");
         optionNameTitle.innerHTML = "運輸方式：";
         let optionNameInput = document.createElement("input");
-        optionNameInput.value = shippingOption.Option;
+        optionNameInput.value = shippingOption.OptionName;
         optionNameInput.disabled = true;
         optionNameBox.appendChild(optionNameTitle);
         optionNameBox.appendChild(optionNameInput);
@@ -135,6 +135,7 @@ function populateTable(shippingOptions) {
         cardContainer.appendChild(shippingOptionCard);
     });
 }
+
 function postEditShippingOption(id, shippingFee, freeShipping, updateTime) {
 
     let editShippingOptionDto = {
@@ -180,6 +181,7 @@ function postEditShippingOption(id, shippingFee, freeShipping, updateTime) {
             console.error("fail", error);
         });
 }
+
 function formatDateToYYYYMMDDHHMMSS(dateString) {
     // 使用正則表達式提取時間戳部分
     var timestamp = dateString.match(/\/Date\((\d+)\)\//);

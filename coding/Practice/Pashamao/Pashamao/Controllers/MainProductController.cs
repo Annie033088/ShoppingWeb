@@ -386,7 +386,7 @@ namespace Pashamao.Controllers
                 }
 
                 //檔案大小驗證
-                if (files.Count>0)
+                if (files.Count > 0)
                 {
                     foreach (string fileKey in files)
                     {

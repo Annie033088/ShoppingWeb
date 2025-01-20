@@ -1,13 +1,11 @@
 ﻿using NLog;
-using Pashamao.Models;
 using System;
-using System.Web;
 using System.Web.Mvc;
 
 
 namespace Pashamao.Filters
 {
-    public class RequestLoggerFilter: ActionFilterAttribute
+    public class RequestLoggerFilter : ActionFilterAttribute
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         public override void OnActionExecuting(ActionExecutingContext filterContext)

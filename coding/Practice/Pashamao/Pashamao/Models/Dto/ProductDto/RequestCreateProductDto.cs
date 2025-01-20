@@ -45,7 +45,7 @@ namespace Pashamao.Models.Dto.ProductDto
         /// <summary>
         /// 商品描述 (若為空會處理為空字串)
         /// </summary>
-        [RegularExpression("^.{0,40}$", ErrorMessage = "至多40字")] 
+        [RegularExpression("^.{0,40}$", ErrorMessage = "至多40字")]
         public string Description { get; set; }
 
         /// <summary>

@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Web.Mvc;
@@ -42,6 +41,5 @@ namespace Pashamao
         {
             logger.Info("Application End");
         }
-
     }
 }

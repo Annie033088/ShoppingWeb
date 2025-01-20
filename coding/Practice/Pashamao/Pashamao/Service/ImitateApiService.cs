@@ -1,12 +1,8 @@
 ﻿using NLog;
-using Pashamao.Models;
 using Pashamao.Models.Dto.ImitateApiDto;
 using Pashamao.Models.Dto.MemberDto;
 using Pashamao.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Service
 {

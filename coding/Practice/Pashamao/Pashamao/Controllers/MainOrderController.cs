@@ -1,18 +1,13 @@
 ﻿using NLog;
 using Pashamao.Filters;
-using Pashamao.Models.Dto.ProductDto;
 using Pashamao.Models;
-using Pashamao.Service;
-using System.Collections.Generic;
-using System;
-using System.Web.Mvc;
 using Pashamao.Models.Dto.OrderDto;
-using System.Linq;
-using System.Security.Policy;
-using System.Web.UI;
-using Newtonsoft.Json;
-using System.Net.NetworkInformation;
+using Pashamao.Service;
 using Pashamao.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Pashamao.Controllers
 {
@@ -90,7 +85,7 @@ namespace Pashamao.Controllers
 
                 if (selectOrderDto.Status != null)
                 {
-                    if (selectOrderDto.Status > 9 || selectOrderDto.Status < 1) //目前只有 1~9狀態
+                    if (selectOrderDto.Status > 10 || selectOrderDto.Status < 1) //目前只有 1~9狀態
                     {
                         errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                         return Json(new { errorCode });
@@ -243,7 +238,7 @@ namespace Pashamao.Controllers
                     return Json(new { errorCode });
                 }
 
-                if (editOrderRemarkDto.OrderId<0)
+                if (editOrderRemarkDto.OrderId < 0)
                 {
                     errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                     return Json(new { errorCode });
@@ -255,6 +250,53 @@ namespace Pashamao.Controllers
                 }
 
                 bool successFlag = mainOrderService.EditOrderRemark(editOrderRemarkDto);
+
+                if (successFlag)
+                {
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
+                }
+                else
+                {
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
+                    return Json(new { errorCode });
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
+                logger.Error(e);
+                return Json(new { errorCode });
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 修改物流編號
+        /// </summary>
+        [HttpPost]
+        [UserRoleAuthFilter(UserPermission.EditOrder)]
+        public ActionResult EditLogisticsNumber(RequestEditLogisticsNumberDto editLogisticsNumberDto)
+        {
+            try
+            {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
+                }
+
+                if (editLogisticsNumberDto.OrderId < 0)
+                {
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
+                }
+
+                if (editLogisticsNumberDto.LogisticsNumber == null) editLogisticsNumberDto.LogisticsNumber = string.Empty;
+               
+                bool successFlag = mainOrderService.EditLogisticsNumber(editLogisticsNumberDto);
 
                 if (successFlag)
                 {
@@ -305,6 +347,46 @@ namespace Pashamao.Controllers
                 }
 
                 bool successFlag = mainOrderService.EditOrderStateRemark(editOrderStateRemarkDto);
+
+                if (successFlag)
+                {
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
+                }
+                else
+                {
+                    errorCode = ErrorCodeDefine.ModifiedFailed;
+                    return Json(new { errorCode });
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorCodeDefine errorCode = ErrorCodeDefine.ServerError;
+                logger.Error(e);
+                return Json(new { errorCode });
+                throw e;
+            }
+        }
+
+        public ActionResult DeleteOrder(RequestOrderIdDto orderIdDto)
+        {
+            try
+            {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
+                }
+
+                if (orderIdDto.OrderId < 0)
+                {
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
+                }
+
+                bool successFlag = mainOrderService.DeleteOrder(orderIdDto);
 
                 if (successFlag)
                 {
@@ -380,7 +462,7 @@ namespace Pashamao.Controllers
         /// 修改運費
         /// </summary>
         [HttpPost]
-        [UserRoleAuthFilter(UserPermission.EditOrder)]
+        [UserRoleAuthFilter(UserPermission.EditShippingFee)]
         public ActionResult EditShippingOption(RequestEditShippingOptionDto editShippingOptionDto)
         {
             try

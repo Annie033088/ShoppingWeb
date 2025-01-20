@@ -8,13 +8,14 @@ getOrderDetail();
 function populateOrder() {
     document.getElementById("txbOrderNumber").innerHTML += order.OrderNumber;
     document.getElementById("txbOrderCreateTime").innerHTML += formatDateToYYYYMMDDHHMMSS(order.CreateTime);
-    document.getElementById("txbOrderState").innerHTML += orderStateToText(order.State);
+    document.getElementById("txbOrderState").innerHTML += orderStateToText(order.CurrentState);
     document.getElementById("txbOrderRemark").innerHTML += order.Remark;
     document.getElementById("txbMemberId").innerHTML += order.MemberId;
     document.getElementById("txbRecipientName").innerHTML += order.RecipientName;
     document.getElementById("txbPhone").innerHTML += order.Phone;
     document.getElementById("txbAddress").innerHTML += order.Address;
-    document.getElementById("txbShippintOption").innerHTML += order.ShippingOption;
+    document.getElementById("txbShippingOption").innerHTML += order.ShippingOptionName
+    document.getElementById("txbLogisticsNumber").value = order.LogisticsNumber;
 
     document.getElementById("txbOriginalAmount").innerHTML += order.OriginalAmount +" 元";
     document.getElementById("txbDiscountAmount").innerHTML += (order.OriginalAmount - order.DiscountedAmount) + " 元";
@@ -300,18 +301,67 @@ function orderStateToText(state) {
         case 3:
             return "已出貨";
         case 4:
-            return "完成";
+            return "包裹已抵達";
         case 5:
-            return "買家未取商品";
+            return "完成";
         case 6:
-            return "重新寄回";
+            return "買家未取商品";
         case 7:
             return "取消";
         case 8:
-            return "退貨";
+            return "申請退貨";
         case 9:
+            return "退貨";
+        case 10:
             return "退款";
         default:
             return "";
     }
+}
+
+function editLogisticsNumber() {
+    let logisticsNumber = document.getElementById("txbLogisticsNumber").value;
+
+    //驗證輸入符合訊息
+    const logisticsNumberRegex = /^[a-z0-9A-Z]{0,20}$/;
+    if (!logisticsNumberRegex.test(logisticsNumber)) {
+        Swal.fire('請輸入20字內物流編號');
+        return false;
+    }
+
+    editLogisticsNumberDto = {
+        OrderId: order.OrderId,
+        LogisticsNumber: logisticsNumber
+    };
+
+    axios.post("/MainOrder/EditLogisticsNumber", { editLogisticsNumberDto })
+        .then(response => {
+            let errorCode = response.data.errorCode;
+
+            //沒有成功
+            if (errorCode != errorCodeDefine.Success) {
+                let message = errorCodeToMessage(errorCode);
+
+                //顯示訊息
+                Swal.fire(message)
+                    .then(result => {
+                        //確認後處理
+                        if (result.isConfirmed) {
+                            //被踢出去
+                            if (errorCode == errorCodeDefine.KickOut || errorCode == errorCodeDefine.Baned
+                                || errorCode == errorCodeDefine.PermissionModified) {
+                                window.location.href = "/Login/Index";
+                            }
+                            //跳轉頁面(情況是未登入的使用者輸入登入後的URL)
+                            if (errorCode == errorCodeDefine.UserNotLogged) {
+                                window.location.href = "/Login/Index";
+                            }
+                        }
+                    });
+                return;
+            }
+
+            //成功的話
+            setRedirectPage("MainOrder", `GetRedirectOrderDetailView?orderId=${order.OrderId}`);
+        });
 }

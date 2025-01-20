@@ -144,11 +144,13 @@
     <Compile Include="Models\Dto\MemberDto\RequestGetSelectMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\RequestGetSortedMemberDto.cs" />
     <Compile Include="Models\Dto\MemberDto\ResponseMainMemberDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestEditLogisticsNumberDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestEditOrderRemarkDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestEditOrderStateDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestEditOrderStateRemarkDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestEditShippingOptionDto.cs" />
     <Compile Include="Models\Dto\OrderDto\RequestGetSelectOrderDto.cs" />
+    <Compile Include="Models\Dto\OrderDto\RequestOrderIdDto.cs" />
     <Compile Include="Models\Dto\OrderDto\ResponseMainOrderDto.cs" />
     <Compile Include="Models\Dto\OrderDto\ResponseOrderDetailDto.cs" />
     <Compile Include="Models\Dto\ProductDto\RequestCreateProductDto.cs" />
@@ -258,7 +260,7 @@
     <Content Include="js\ImitateApi\CreateMmeber.js" />
     <Content Include="js\ImitateApi\CreateOrder.js" />
     <Content Include="js\MainOrder\EditShippingOption.js" />
-    <Content Include="js\MainOrder\GetMainOrderIndex.js" />
+    <Content Include="js\MainOrder\MainOrderIndexTool.js" />
     <Content Include="js\MainOrder\OrderDetailTool.js" />
     <Content Include="js\MainUserIndexTool.js" />
     <Content Include="js\ProductDetailTool.js" />

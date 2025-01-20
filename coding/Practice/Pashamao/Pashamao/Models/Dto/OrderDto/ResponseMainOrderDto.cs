@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models.Dto.OrderDto
 {
@@ -13,7 +10,8 @@ namespace Pashamao.Models.Dto.OrderDto
             MemberId = order.MemberId;
             OrderNumber = order.OrderNumber.ToString();
             TotalAmount = order.TotalAmount;
-            State = order.State;
+            PreviousState = order.PreviousState;
+            CurrentState = order.CurrentState;
             RecipientName = order.RecipientName;
             Phone = order.Phone;
             CreateTime = order.CreateTime;
@@ -41,9 +39,14 @@ namespace Pashamao.Models.Dto.OrderDto
         public decimal TotalAmount { get; set; }
 
         /// <summary>
-        /// 訂單狀態
+        /// 前一個訂單狀態
         /// </summary>
-        public int State { get; set; }
+        public int PreviousState { get; set; }
+
+        /// <summary>
+        /// 目前訂單狀態
+        /// </summary>
+        public int CurrentState { get; set; }
 
         /// <summary>
         /// 收件人

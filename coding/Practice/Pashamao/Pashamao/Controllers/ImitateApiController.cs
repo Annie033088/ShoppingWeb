@@ -1,15 +1,10 @@
 ﻿using NLog;
-using Pashamao.Filters;
-using Pashamao.Models.Dto.MemberDto;
 using Pashamao.Models;
+using Pashamao.Models.Dto.ImitateApiDto;
+using Pashamao.Models.Dto.MemberDto;
 using Pashamao.Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Pashamao.Models.Dto.ImitateApiDto;
-using System.Diagnostics;
 
 namespace Pashamao.Controllers
 {
@@ -51,7 +46,7 @@ namespace Pashamao.Controllers
                     return Json(new { errorCode });
                 }
 
-                if (createMemberDto.Phone!=null)
+                if (createMemberDto.Phone != null)
                 {
                     if (createMemberDto.Phone.ToString().Length != 9)
                     {
@@ -59,7 +54,7 @@ namespace Pashamao.Controllers
                         return Json(new { errorCode });
                     }
                 }
-                    
+
                 createMemberDto.Nickname = createMemberDto.Nickname == null ? string.Empty : createMemberDto.Nickname;
 
                 bool successFlag = imitateApiService.CreateMember(createMemberDto);
@@ -122,7 +117,7 @@ namespace Pashamao.Controllers
 
                 foreach (var createOrderProductDto in createOrderDto.createOrderProductDtos)
                 {
-                    if (createOrderProductDto.ProductStyleId<0)
+                    if (createOrderProductDto.ProductStyleId < 0)
                     {
                         errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
                         return Json(new { errorCode });
@@ -131,16 +126,16 @@ namespace Pashamao.Controllers
 
                 bool successFlag = imitateApiService.CreateOrder(createOrderDto);
 
-                 if (successFlag)
-                 {
-                     errorCode = ErrorCodeDefine.Success;
-                     return Json(new { errorCode });
-                 }
-                 else
-                 {
-                     errorCode = ErrorCodeDefine.CreateFailed;
-                     return Json(new { errorCode });
-                 }
+                if (successFlag)
+                {
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
+                }
+                else
+                {
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
+                }
             }
             catch (Exception e)
             {

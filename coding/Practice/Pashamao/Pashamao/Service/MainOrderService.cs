@@ -4,8 +4,6 @@ using Pashamao.Models.Dto.OrderDto;
 using Pashamao.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Service
 {
@@ -84,6 +82,22 @@ namespace Pashamao.Service
         }
 
         /// <summary>
+        /// 修改物流編號
+        /// </summary>
+        public bool EditLogisticsNumber(RequestEditLogisticsNumberDto editLogisticsNumberDto)
+        {
+            try
+            {
+                return orderRepository.EditLogisticsNumber(editLogisticsNumberDto);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
         /// 修改訂單狀態備註
         /// </summary>
         /// <param name="editOrderStateRemarkDto"></param>
@@ -93,6 +107,22 @@ namespace Pashamao.Service
             try
             {
                 return orderRepository.EditOrderStateRemark(editOrderStateRemarkDto);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 刪除訂單
+        /// </summary>
+        public bool DeleteOrder (RequestOrderIdDto orderIdDto)
+        {
+            try
+            {
+                return orderRepository.DeleteOrder(orderIdDto);
             }
             catch (Exception e)
             {

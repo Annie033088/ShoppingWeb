@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models
 {
@@ -23,9 +20,14 @@ namespace Pashamao.Models
         public long OrderNumber { get; set; }
 
         /// <summary>
-        /// 訂單狀態
+        /// 前一個訂單狀態
         /// </summary>
-        public int State {  get; set; }
+        public int PreviousState { get; set; }
+
+        /// <summary>
+        /// 目前訂單狀態
+        /// </summary>
+        public int CurrentState { get; set; }
 
         /// <summary>
         /// 收件人
@@ -35,7 +37,7 @@ namespace Pashamao.Models
         /// <summary>
         /// 收件人電話
         /// </summary>
-        public int Phone {  get; set; }
+        public int Phone { get; set; }
 
         /// <summary>
         /// 收件人地址
@@ -55,7 +57,7 @@ namespace Pashamao.Models
         /// <summary>
         /// 運輸方式
         /// </summary>
-        public string ShippingOption { get; set; }
+        public string ShippingOptionName { get; set; }
 
         /// <summary>
         /// 運費
@@ -66,6 +68,11 @@ namespace Pashamao.Models
         /// 總金額
         /// </summary>
         public decimal TotalAmount { get; set; }
+
+        /// <summary>
+        /// 物流編號
+        /// </summary>
+        public string LogisticsNumber { get; set; }
 
         /// <summary>
         /// 備註

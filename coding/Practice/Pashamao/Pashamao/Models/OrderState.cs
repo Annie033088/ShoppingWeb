@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models
 {
@@ -25,12 +22,12 @@ namespace Pashamao.Models
         /// <summary>
         /// 備註
         /// </summary>
-        public string Remark {  get; set; }
+        public string Remark { get; set; }
 
         /// <summary>
         /// 創建時間
         /// </summary>
-        public DateTime CreateTime {  get; set; }
+        public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 更新時間

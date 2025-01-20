@@ -1,0 +1,40 @@
+﻿<body>
+    <script src="~/js/Member/CreateMember.js"></script>
+    <main>
+        <div asp-controller="action" class="container col-3 mx-auto">
+            <div class="mb-3">
+                <label class="fs-6 control-form-label ">帳號</label>
+                <input type="text" id="txbAccount" name="Account" class="form-control" placeholder="Enter 8~20 words" />
+            </div>
+            <div class="mb-3">
+                <label class="fs-6 ">密碼</label>
+                <input type="password" id="txbPwd" name="Pwd" class="form-control" placeholder="Enter 8~20 words" />
+            </div>
+            <div class="mb-3">
+                <label class="fs-6 ">信箱</label>
+                <input type="text" id="txbEmail" name="Email" class="form-control" placeholder="Enter your email" />
+            </div>
+            <div class="mb-3">
+                <div class="" style="display:flex">
+                    <label class="fs-6 ">手機號碼(可空)</label>
+                </div>
+                <div style="display:flex">
+                    <input type="text" id="txbPhone" style="" name="Phone" class="form-control" placeholder="Enter your phone" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="fs-6 ">名字</label>
+                <input type="text" id="txbMemberName" name="MemberName" class="form-control" placeholder="Enter your full name" />
+            </div>
+            <div class="mb-3">
+                <label class="fs-6 ">暱稱(可空)</label>
+                <input type="text" id="txbNickname" name="Nickname" class="form-control" placeholder="Enter your nickname" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark" onclick="submitCreateMember()">確認</button>
+                <button type="button" class="btn btn-dark" onclick="location.href='/Home/Index'">取消</button>
+            </div>
+        </div>
+        <p class="text-center text-warning bg-dark mt-3">@ViewBag.Message</p>
+    </main>
+</body>

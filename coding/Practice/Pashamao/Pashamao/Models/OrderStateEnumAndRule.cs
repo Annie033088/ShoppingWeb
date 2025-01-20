@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace Pashamao.Models
 {
@@ -23,19 +20,19 @@ namespace Pashamao.Models
         Shipped = 3,
 
         /// <summary>
-        /// 4:完成
+        /// 4:包裹已抵達
         /// </summary>
-        Finish = 4,
+        PackageArrive = 4,
+
+        /// <summary>
+        /// 5:完成
+        /// </summary>
+        Finish = 5,
 
         /// <summary>
         /// 5:買家未取商品
         /// </summary>
-        NotPickedUp = 5,
-
-        /// <summary>
-        /// 6:重新寄回
-        /// </summary>
-        Resend = 6,
+        NotPickedUp = 6,
 
         /// <summary>
         /// 7:取消
@@ -43,14 +40,19 @@ namespace Pashamao.Models
         Cancel = 7,
 
         /// <summary>
-        /// 8:退貨
+        /// 8:申請退貨
         /// </summary>
-        Returned = 8,
+        ApplyForReturn = 8,
 
         /// <summary>
-        /// 9:退款
+        /// 9:退貨
         /// </summary>
-        Refund = 9
+        Returned = 9,
+
+        /// <summary>
+        /// 10:退款
+        /// </summary>
+        Refund = 10
     }
 
     /// <summary>
@@ -64,13 +66,14 @@ namespace Pashamao.Models
         {
             TransitionRules = new Dictionary<OrderStateEnum, List<OrderStateEnum>>()
             {
-                { OrderStateEnum.ToBeConfirmed, new List<OrderStateEnum> { OrderStateEnum.ToBeShipped,  OrderStateEnum.Cancel } },
-                { OrderStateEnum.ToBeShipped, new List<OrderStateEnum> { OrderStateEnum.Shipped,    OrderStateEnum.Cancel } },
-                { OrderStateEnum.Shipped, new List<OrderStateEnum> { OrderStateEnum.Finish, OrderStateEnum.NotPickedUp,     OrderStateEnum.Cancel } },
-                { OrderStateEnum.Finish, new List<OrderStateEnum> { OrderStateEnum.Returned } },
-                { OrderStateEnum.NotPickedUp, new List<OrderStateEnum> { OrderStateEnum.Resend,     OrderStateEnum.Cancel } },
-                { OrderStateEnum.Resend, new List<OrderStateEnum> { OrderStateEnum.Finish, OrderStateEnum.Cancel } },
+                { OrderStateEnum.ToBeConfirmed, new List<OrderStateEnum> { OrderStateEnum.ToBeShipped, OrderStateEnum.Cancel } },
+                { OrderStateEnum.ToBeShipped, new List<OrderStateEnum> { OrderStateEnum.Shipped, OrderStateEnum.Cancel } },
+                { OrderStateEnum.Shipped, new List<OrderStateEnum> { OrderStateEnum.Cancel } },
+                { OrderStateEnum.PackageArrive, new List<OrderStateEnum>() },
+                { OrderStateEnum.Finish, new List<OrderStateEnum>() },
+                { OrderStateEnum.NotPickedUp, new List<OrderStateEnum> { OrderStateEnum.Cancel } },
                 { OrderStateEnum.Cancel, new List<OrderStateEnum>() },
+                { OrderStateEnum.ApplyForReturn, new List<OrderStateEnum> { OrderStateEnum.Finish, OrderStateEnum.PackageArrive } },
                 { OrderStateEnum.Returned, new List<OrderStateEnum> { OrderStateEnum.Refund, OrderStateEnum.Cancel } },
                 { OrderStateEnum.Refund, new List<OrderStateEnum>() }
             };

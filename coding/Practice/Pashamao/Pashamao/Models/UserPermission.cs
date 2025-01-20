@@ -18,6 +18,7 @@
         CreateProduct = 4096,
         EditProduct = 8192,
         DelProduct = 16384,
-        ResetMemberPoints = 32768//再不包含None的情況下, 此為第16個, 最多可儲存63個權限
+        ResetMemberPoints = 32768,
+        EditShippingFee = 65536//再不包含None的情況下, 此為第17個, 最多可儲存63個權限
     }
 }

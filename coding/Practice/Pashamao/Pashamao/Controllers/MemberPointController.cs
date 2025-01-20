@@ -3,9 +3,6 @@ using Pashamao.Filters;
 using Pashamao.Models;
 using Pashamao.Service;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Pashamao.Controllers

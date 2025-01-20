@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pashamao.Models.Dto.OrderDto
 {
@@ -21,15 +19,16 @@ namespace Pashamao.Models.Dto.OrderDto
             OrderId = order.OrderId;
             MemberId = order.MemberId;
             OrderNumber = order.OrderNumber.ToString();
-            State = order.State;
+            CurrentState = order.CurrentState;
             RecipientName = order.RecipientName;
             Phone = order.Phone;
             Address = order.Address;
             OriginalAmount = order.OriginalAmount;
             DiscountedAmount = order.DiscountedAmount;
-            ShippingOption = order.ShippingOption;
+            ShippingOptionName = order.ShippingOptionName;
             ShippingFee = order.ShippingFee;
             TotalAmount = order.TotalAmount;
+            LogisticsNumber = order.LogisticsNumber;
             Remark = order.Remark;
             CreateTime = order.CreateTime;
             UpdateTime = order.UpdateTime;
@@ -53,7 +52,7 @@ namespace Pashamao.Models.Dto.OrderDto
         /// <summary>
         /// 訂單狀態
         /// </summary>
-        public int State { get; set; }
+        public int CurrentState { get; set; }
 
         /// <summary>
         /// 收件人
@@ -83,7 +82,7 @@ namespace Pashamao.Models.Dto.OrderDto
         /// <summary>
         /// 運輸方式
         /// </summary>
-        public string ShippingOption { get; set; }
+        public string ShippingOptionName { get; set; }
 
         /// <summary>
         /// 運費
@@ -94,6 +93,11 @@ namespace Pashamao.Models.Dto.OrderDto
         /// 總金額
         /// </summary>
         public decimal TotalAmount { get; set; }
+
+        /// <summary>
+        /// 物流編號
+        /// </summary>
+        public string LogisticsNumber { get; set; }
 
         /// <summary>
         /// 備註

@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "新增設定檔",
+    "Projects": [
+      {
+        "Path": "Pashamao\\Pashamao.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "MokePashamao\\MockPashamao.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]
