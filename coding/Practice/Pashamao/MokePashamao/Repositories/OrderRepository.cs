@@ -1,6 +1,7 @@
 ﻿
 using MockPashamao.Models.Dto.OrderDto;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -75,16 +76,31 @@ namespace MockPashamao.Repositories
         /// <summary>
         /// 模擬訂單狀態
         /// </summary>
-        public bool EditOrderState(RequestEditOrderStateDto editOrderStateDto)
+        public bool EditOrderState(List<RequestEditOrderStateDto> editOrderStateDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editOrderStateMock @orderId, @nextState";
-                cmd.Parameters.Add("@orderId", SqlDbType.Int).Value = editOrderStateDto.OrderId;
-                cmd.Parameters.Add("@nextState", SqlDbType.TinyInt).Value = editOrderStateDto.State;
+                cmd.CommandText = "EXEC pro_pashamao_editOrderStateMock @orderState";
+
+                DataTable OrderStats = new DataTable();
+                OrderStats.Columns.Add("f_orderId", typeof(int));
+                OrderStats.Columns.Add("f_state", typeof(byte));
+
+                foreach (RequestEditOrderStateDto orderState in editOrderStateDto)
+                {
+                    OrderStats.Rows.Add(orderState.OrderId, orderState.State);
+                }
+
+                var orderParam = new SqlParameter("@orderState", SqlDbType.Structured)
+                {
+                    TypeName = "dbo.type_pashamao_editOrderStateMock",
+                    Value = OrderStats
+                };
+
+                cmd.Parameters.Add(orderParam);
 
                 cmd.Connection.Open();
 

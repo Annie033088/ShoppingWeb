@@ -21,8 +21,8 @@ const orderStateEnum = {
     //5:完成
     Finish: 5,
 
-    //6:買家未取商品
-    NotPickedUp: 6,
+    //6:商品退回
+    ProductReturn: 6,
 
     //7:取消
     Cancel: 7,
@@ -44,7 +44,7 @@ const stateTransitionRules = {
     [orderStateEnum.Shipped]: [orderStateEnum.Cancel],
     [orderStateEnum.PackageArrive]: [],
     [orderStateEnum.Finish]: [],
-    [orderStateEnum.NotPickedUp]: [orderStateEnum.Cancel],
+    [orderStateEnum.ProductReturn]: [],
     [orderStateEnum.Cancel]: [],
     [orderStateEnum.ApplyForReturn]: [orderStateEnum.Returned, orderStateEnum.PackageArrive],
     [orderStateEnum.Returned]: [orderStateEnum.Refund, orderStateEnum.Cancel],
@@ -342,7 +342,7 @@ function populateTable(orders) {
         selectElement.className = "form-select";
         let currentState = order.CurrentState;
         if (currentState == orderStateEnum.PackageArrive || currentState == orderStateEnum.Finish || currentState == orderStateEnum.Cancel
-            || currentState == orderStateEnum.Refund) selectElement.disabled = true;
+            || currentState == orderStateEnum.Refund || currentState == orderStateEnum.ProductReturn) selectElement.disabled = true;
 
         //監聽器
         selectElement.addEventListener("change", function (event) {
@@ -447,7 +447,7 @@ function orderStateToText(state) {
         case 5:
             return "完成";
         case 6:
-            return "買家未取商品";
+            return "商品退回";
         case 7:
             return "取消";
         case 8:

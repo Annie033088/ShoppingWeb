@@ -19,13 +19,10 @@ namespace MockPashamao.Controllers
             orderService = new OrderService();
         }
 
-        // 模擬資料庫：將產品存儲在內存中的 List 中
-        private static List<RequestEditOrderStateDto> editOrderStateDtos = new List<RequestEditOrderStateDto>
+        // 模擬資料庫：將狀態存儲在內存中的 List 中
+        private static List<RequestEditOrderStateDto> editOrderStates = new List<RequestEditOrderStateDto>
         {
-            new RequestEditOrderStateDto { OrderId = 28, State = OrderStateEnum.PackageArrive },
-            new RequestEditOrderStateDto { OrderId = 29, State = OrderStateEnum.NotPickedUp },
-            new RequestEditOrderStateDto { OrderId = 30, State = OrderStateEnum.Finish },
-            new RequestEditOrderStateDto { OrderId = 31, State = OrderStateEnum.ApplyForReturn }
+            new RequestEditOrderStateDto { OrderId = 12, State = OrderStateEnum.PackageArrive }
         };
 
         public IHttpActionResult Get()
@@ -34,22 +31,22 @@ namespace MockPashamao.Controllers
         }
 
         // POST api/values
-        public IHttpActionResult Post([FromBody] RequestEditOrderStateDto editOrderStateDto)
+        public IHttpActionResult Post()
         {
-            if (editOrderStateDto == null)
+            if (editOrderStates == null)
             {
                 return BadRequest("Invalid product data.");
             }
 
-            bool successFlag = orderService.EditOrderState(editOrderStateDto);
+            bool successFlag = orderService.EditOrderState(editOrderStates);
 
             if (successFlag)
             {
-                return CreatedAtRoute("DefaultApi", new { id = editOrderStateDto.OrderId }, editOrderStateDto); // 返回創建的產品
+                return CreatedAtRoute("DefaultApi", new { id = editOrderStates[0].OrderId }, editOrderStates); // 返回創建的產品
             }
             else
             {
-                return BadRequest("Invalid product data.");
+                return BadRequest("Invalid state data.");
             }
         }
     }

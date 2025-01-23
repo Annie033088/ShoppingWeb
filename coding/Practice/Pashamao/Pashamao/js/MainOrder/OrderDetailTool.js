@@ -305,7 +305,7 @@ function orderStateToText(state) {
         case 5:
             return "完成";
         case 6:
-            return "買家未取商品";
+            return "商品退回";
         case 7:
             return "取消";
         case 8:

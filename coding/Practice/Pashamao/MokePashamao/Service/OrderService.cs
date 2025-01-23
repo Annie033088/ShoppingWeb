@@ -1,6 +1,7 @@
 ﻿using MockPashamao.Models.Dto.OrderDto;
 using MockPashamao.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace MockPashamao.Service
 {
@@ -34,7 +35,7 @@ namespace MockPashamao.Service
             }
         }
 
-        public bool EditOrderState(RequestEditOrderStateDto editOrderStateDto)
+        public bool EditOrderState(List<RequestEditOrderStateDto> editOrderStateDto)
         {
             return orderRepository.EditOrderState(editOrderStateDto);
         }

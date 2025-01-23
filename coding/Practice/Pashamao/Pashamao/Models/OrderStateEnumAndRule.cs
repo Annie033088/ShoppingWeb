@@ -30,9 +30,9 @@ namespace Pashamao.Models
         Finish = 5,
 
         /// <summary>
-        /// 5:買家未取商品
+        /// 6:商品退回
         /// </summary>
-        NotPickedUp = 6,
+        ProductReturn = 6,
 
         /// <summary>
         /// 7:取消
@@ -71,7 +71,7 @@ namespace Pashamao.Models
                 { OrderStateEnum.Shipped, new List<OrderStateEnum> { OrderStateEnum.Cancel } },
                 { OrderStateEnum.PackageArrive, new List<OrderStateEnum>() },
                 { OrderStateEnum.Finish, new List<OrderStateEnum>() },
-                { OrderStateEnum.NotPickedUp, new List<OrderStateEnum> { OrderStateEnum.Cancel } },
+                { OrderStateEnum.ProductReturn, new List<OrderStateEnum>() },
                 { OrderStateEnum.Cancel, new List<OrderStateEnum>() },
                 { OrderStateEnum.ApplyForReturn, new List<OrderStateEnum> { OrderStateEnum.Finish, OrderStateEnum.PackageArrive } },
                 { OrderStateEnum.Returned, new List<OrderStateEnum> { OrderStateEnum.Refund, OrderStateEnum.Cancel } },

@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\controllers\\membercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\controllers\\editorderstateapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\controllers\\editorderstateapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\models\\orderstateenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\models\\orderstateenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +30,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MemberController.cs",
-              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Controllers\\MemberController.cs",
-              "RelativeDocumentMoniker": "MokePashamao\\Controllers\\MemberController.cs",
-              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Controllers\\MemberController.cs",
-              "RelativeToolTip": "MokePashamao\\Controllers\\MemberController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "OrderStateEnum.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\OrderStateEnum.cs",
+              "RelativeDocumentMoniker": "MokePashamao\\Models\\OrderStateEnum.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\OrderStateEnum.cs",
+              "RelativeToolTip": "MokePashamao\\Models\\OrderStateEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T10:45:26.276Z",
+              "WhenOpened": "2025-01-21T01:12:17.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "MokePashamao\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "MokePashamao\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA4wFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T10:49:04.494Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Service\\OrderService.cs",
+              "RelativeDocumentMoniker": "MokePashamao\\Service\\OrderService.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Service\\OrderService.cs",
+              "RelativeToolTip": "MokePashamao\\Service\\OrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-20T10:48:21.059Z",
               "EditorCaption": ""
             },
             {
@@ -45,20 +79,20 @@
               "RelativeDocumentMoniker": "MokePashamao\\Controllers\\EditOrderStateApiController.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Controllers\\EditOrderStateApiController.cs",
               "RelativeToolTip": "MokePashamao\\Controllers\\EditOrderStateApiController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA7wAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAA4wAoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:45:17.948Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "RequestEditOrderStateDto.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "RelativeDocumentMoniker": "MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "RelativeToolTip": "MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAD4vxEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:42:42.375Z",
               "EditorCaption": ""

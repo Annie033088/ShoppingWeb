@@ -33,9 +33,9 @@ namespace MockPashamao.Models
         Finish = 5,
 
         /// <summary>
-        /// 5:買家未取商品
+        /// 6:商品退回
         /// </summary>
-        NotPickedUp = 6,
+        ProductReturn = 6,
 
         /// <summary>
         /// 7:取消

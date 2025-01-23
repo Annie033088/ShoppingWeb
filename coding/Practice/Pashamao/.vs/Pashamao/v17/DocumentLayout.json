@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\controllers\\editorderstateapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\models\\dto\\orderdto\\requesteditorderstatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|d:\\secretplace\\coding\\practice\\pashamao\\pashamao\\repositories\\imitateapirepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{15368A1E-AED5-4CB1-B883-C70AF0658C44}|Pashamao\\Pashamao.csproj|solutionrelative:pashamao\\repositories\\imitateapirepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|D:\\SecretPlace\\coding\\Practice\\Pashamao\\mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF15D469-B496-459A-8A9F-1C139AB7E29A}|MokePashamao\\MockPashamao.csproj|solutionrelative:mokepashamao\\service\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImitateApiRepository.cs",
+              "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\ImitateApiRepository.cs",
+              "RelativeDocumentMoniker": "Pashamao\\Repositories\\ImitateApiRepository.cs",
+              "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\Pashamao\\Repositories\\ImitateApiRepository.cs",
+              "RelativeToolTip": "Pashamao\\Repositories\\ImitateApiRepository.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAF4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-21T05:25:21.031Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -36,20 +53,20 @@
               "RelativeDocumentMoniker": "MokePashamao\\Repositories\\OrderRepository.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Repositories\\OrderRepository.cs",
               "RelativeToolTip": "MokePashamao\\Repositories\\OrderRepository.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAA4wFEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAIwGkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:49:04.494Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "OrderService.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Service\\OrderService.cs",
               "RelativeDocumentMoniker": "MokePashamao\\Service\\OrderService.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Service\\OrderService.cs",
               "RelativeToolTip": "MokePashamao\\Service\\OrderService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAACQAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:48:21.059Z",
               "EditorCaption": ""
@@ -62,20 +79,20 @@
               "RelativeDocumentMoniker": "MokePashamao\\Controllers\\EditOrderStateApiController.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Controllers\\EditOrderStateApiController.cs",
               "RelativeToolTip": "MokePashamao\\Controllers\\EditOrderStateApiController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAA4wCgAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAowB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:45:17.948Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "RequestEditOrderStateDto.cs",
               "DocumentMoniker": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "RelativeDocumentMoniker": "MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "ToolTip": "D:\\SecretPlace\\coding\\Practice\\Pashamao\\MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
               "RelativeToolTip": "MokePashamao\\Models\\Dto\\OrderDto\\RequestEditOrderStateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAD4vxEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:42:42.375Z",
               "EditorCaption": ""
