@@ -10,29 +10,29 @@ namespace Pashamao.Models
         ToBeConfirmed = 1,
 
         /// <summary>
-        /// 2:待出貨
+        /// 2:申請取消
         /// </summary>
-        ToBeShipped = 2,
+        ApplyForCancel = 2,
 
         /// <summary>
-        /// 3:已出貨
+        /// 3:待出貨
         /// </summary>
-        Shipped = 3,
+        ToBeShipped = 3,
 
         /// <summary>
-        /// 4:包裹已抵達
+        /// 4:已出貨
         /// </summary>
-        PackageArrive = 4,
+        Shipped = 4,
 
         /// <summary>
-        /// 5:完成
+        /// 5:包裹已抵達
         /// </summary>
-        Finish = 5,
+        PackageArrive = 5,
 
         /// <summary>
-        /// 6:商品退回
+        /// 6:完成
         /// </summary>
-        ProductReturn = 6,
+        Finish = 6,
 
         /// <summary>
         /// 7:取消
@@ -47,7 +47,7 @@ namespace Pashamao.Models
         /// <summary>
         /// 9:退貨
         /// </summary>
-        Returned = 9,
+        returning = 9,
 
         /// <summary>
         /// 10:退款
@@ -67,14 +67,14 @@ namespace Pashamao.Models
             TransitionRules = new Dictionary<OrderStateEnum, List<OrderStateEnum>>()
             {
                 { OrderStateEnum.ToBeConfirmed, new List<OrderStateEnum> { OrderStateEnum.ToBeShipped, OrderStateEnum.Cancel } },
+                { OrderStateEnum.ApplyForCancel, new List<OrderStateEnum> { OrderStateEnum.ToBeConfirmed, OrderStateEnum.Cancel } },
                 { OrderStateEnum.ToBeShipped, new List<OrderStateEnum> { OrderStateEnum.Shipped, OrderStateEnum.Cancel } },
                 { OrderStateEnum.Shipped, new List<OrderStateEnum> { OrderStateEnum.Cancel } },
                 { OrderStateEnum.PackageArrive, new List<OrderStateEnum>() },
                 { OrderStateEnum.Finish, new List<OrderStateEnum>() },
-                { OrderStateEnum.ProductReturn, new List<OrderStateEnum>() },
                 { OrderStateEnum.Cancel, new List<OrderStateEnum>() },
-                { OrderStateEnum.ApplyForReturn, new List<OrderStateEnum> { OrderStateEnum.Finish, OrderStateEnum.PackageArrive } },
-                { OrderStateEnum.Returned, new List<OrderStateEnum> { OrderStateEnum.Refund, OrderStateEnum.Cancel } },
+                { OrderStateEnum.ApplyForReturn, new List<OrderStateEnum> { OrderStateEnum.returning, OrderStateEnum.PackageArrive } },
+                { OrderStateEnum.returning, new List<OrderStateEnum> { OrderStateEnum.Refund, OrderStateEnum.Cancel } },
                 { OrderStateEnum.Refund, new List<OrderStateEnum>() }
             };
         }

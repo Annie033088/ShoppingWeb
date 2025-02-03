@@ -118,7 +118,7 @@ namespace Pashamao.Service
         /// <summary>
         /// 刪除訂單
         /// </summary>
-        public bool DeleteOrder (RequestOrderIdDto orderIdDto)
+        public bool DeleteOrder(RequestOrderIdDto orderIdDto)
         {
             try
             {

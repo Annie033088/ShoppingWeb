@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MockPashamao.Models.Dto.OrderDto
+﻿namespace MockPashamao.Models.Dto.OrderDto
 {
     public class RequestEditOrderStateDto
     {
         /// <summary>
         /// 訂單Id
         /// </summary>
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
+
+        /// <summary>
+        /// 物流編號
+        /// </summary>
+        public string LogisticsNumber { get; set; }
 
         /// <summary>
         /// 目標訂單狀態

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "EditOrderState";
+}
+<body>
+    <script src="~/js/Order/EditOrderState.js"></script>
+    <main>
+        <div class="d-flex">
+            <div class="card p-1 col-6">
+                <div class="card-header d-flex justify-content-center">
+                    <label>前端打入api</label>
+                </div>
+                <div class="d-flex mt-1">
+                    <label>OrderId：</label>
+                    <input name="" class="form-control" value="" id="orderId" placeholder="輸入訂單Id"/>
+                </div>
+                <div class="d-flex mt-1">
+                    <label>打入狀態：</label>
+                    <select class="form-control" id="memberOrderState">
+                        <option value="2">申請取消</option>
+                        <option value="8">申請退貨</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center mt-1">
+                    <button class="btn btn-outline-primary w-25" onclick="memberEditOrderState()">送出</button>
+                </div>
+            </div>
+            <div class="card col-6 p-1">
+                <div class="card-header d-flex justify-content-center">
+                    <label>物流打入api</label>
+                </div>
+                <div class="d-flex mt-1">
+                    <label>物流編號：</label>
+                    <input name="" class="form-control" id="logisticsNumber" value="" placeholder="輸入物流編號" />
+                </div>
+                <div class="d-flex mt-1">
+                    <label>打入狀態：</label>
+                    <select class="form-control" id="logisticsOrderState">
+                        <option value="5">已到貨</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center mt-1">
+                    <button class="btn btn-outline-primary w-25" onclick="logisticsEditOrderState()">送出</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+

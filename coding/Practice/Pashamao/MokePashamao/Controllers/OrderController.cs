@@ -73,5 +73,55 @@ namespace MockPashamao.Controllers
                 throw e;
             }
         }
+
+        /// <summary>
+        /// 修改訂單狀態頁面
+        /// </summary>
+        public ActionResult GetEditOrderStateView()
+        {
+            try
+            {
+                return View("EditOrderState");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// 修改訂單狀態
+        /// </summary>
+        [HttpPost]
+        public ActionResult EditOrderState(RequestEditOrderStateDto editOrderStateDto)
+        {
+            try
+            {
+                ErrorCodeDefine errorCode = 0;
+                //檢查前端資料
+                if (!ModelState.IsValid)
+                {
+                    errorCode = ErrorCodeDefine.InvalidFormatOrEntry;
+                    return Json(new { errorCode });
+                }
+
+                bool successFlag = orderService.EditOrderState(editOrderStateDto);
+
+                if (successFlag)
+                {
+                    errorCode = ErrorCodeDefine.Success;
+                    return Json(new { errorCode });
+                }
+                else
+                {
+                    errorCode = ErrorCodeDefine.CreateFailed;
+                    return Json(new { errorCode });
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

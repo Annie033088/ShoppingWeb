@@ -130,7 +130,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
-    <Compile Include="Controllers\EditOrderStateApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +167,7 @@
     <Content Include="js\GlobalTool.js" />
     <Content Include="js\Member\CreateMember.js" />
     <Content Include="js\Order\CreateOrder.js" />
+    <Content Include="js\Order\EditOrderState.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -196,6 +196,7 @@
     <Content Include="Views\Order\CreateOrder.cshtml" />
     <Content Include="Views\Member\CreateMember.cshtml" />
     <Content Include="Views\EditOrderStateApi\Index.cshtml" />
+    <Content Include="Views\Order\EditOrderState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

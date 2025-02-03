@@ -294,24 +294,26 @@ function formatDateToYYYYMMDDHHMMSS(dateString) {
 
 function orderStateToText(state) {
     switch (state) {
+        case 0:
+            return "無";
         case 1:
             return "待確認";
         case 2:
-            return "待出貨";
+            return "申請取消";
         case 3:
-            return "已出貨";
+            return "待出貨";
         case 4:
-            return "包裹已抵達";
+            return "已出貨";
         case 5:
-            return "完成";
+            return "已到貨";
         case 6:
-            return "商品退回";
+            return "完成";
         case 7:
             return "取消";
         case 8:
             return "申請退貨";
         case 9:
-            return "退貨";
+            return "退貨中";
         case 10:
             return "退款";
         default:

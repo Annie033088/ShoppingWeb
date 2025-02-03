@@ -9,20 +9,20 @@ const orderStateEnum = {
     //1:待確認
     ToBeConfirmed: 1,
 
-    //2:待出貨
-    ToBeShipped: 2,
+    //2:申請取消
+    ApplyForCancel:2,
 
-    //3:已出貨
-    Shipped: 3,
+    //3:待出貨
+    ToBeShipped: 3,
 
-    //4:包裹已抵達
-    PackageArrive: 4,
+    //4:已出貨
+    Shipped: 4,
 
-    //5:完成
-    Finish: 5,
+    //5:已到貨
+    PackageArrive: 5,
 
-    //6:商品退回
-    ProductReturn: 6,
+    //6:完成
+    Finish: 6,
 
     //7:取消
     Cancel: 7,
@@ -31,7 +31,7 @@ const orderStateEnum = {
     ApplyForReturn: 8,
 
     //9:退貨
-    Returned: 9,
+    Returning: 9,
 
     //10:退款
     Refund: 10
@@ -40,14 +40,14 @@ const orderStateEnum = {
 //狀態合法轉換
 const stateTransitionRules = {
     [orderStateEnum.ToBeConfirmed]: [orderStateEnum.ToBeShipped, orderStateEnum.Cancel],
+    [orderStateEnum.ApplyForCancel]: [orderStateEnum.ToBeConfirmed, orderStateEnum.Cancel],
     [orderStateEnum.ToBeShipped]: [orderStateEnum.Shipped, orderStateEnum.Cancel],
     [orderStateEnum.Shipped]: [orderStateEnum.Cancel],
     [orderStateEnum.PackageArrive]: [],
     [orderStateEnum.Finish]: [],
-    [orderStateEnum.ProductReturn]: [],
     [orderStateEnum.Cancel]: [],
-    [orderStateEnum.ApplyForReturn]: [orderStateEnum.Returned, orderStateEnum.PackageArrive],
-    [orderStateEnum.Returned]: [orderStateEnum.Refund, orderStateEnum.Cancel],
+    [orderStateEnum.ApplyForReturn]: [orderStateEnum.Returning, orderStateEnum.PackageArrive],
+    [orderStateEnum.Returning]: [orderStateEnum.Refund, orderStateEnum.Cancel],
     [orderStateEnum.Refund]: []
 };
 
@@ -341,8 +341,6 @@ function populateTable(orders) {
         selectElement.id = "selectState";
         selectElement.className = "form-select";
         let currentState = order.CurrentState;
-        if (currentState == orderStateEnum.PackageArrive || currentState == orderStateEnum.Finish || currentState == orderStateEnum.Cancel
-            || currentState == orderStateEnum.Refund || currentState == orderStateEnum.ProductReturn) selectElement.disabled = true;
 
         //監聽器
         selectElement.addEventListener("change", function (event) {
@@ -377,6 +375,8 @@ function populateTable(orders) {
 
         //可以選擇/轉換的狀態
         let translateStates = stateTransitionRules[currentState];
+
+        if (translateStates.length == 0) selectElement.disabled = true;
 
         for (let i = 0; i < translateStates.length; i++) {
             let stateOption = document.createElement("option");
@@ -439,21 +439,21 @@ function orderStateToText(state) {
         case 1:
             return "待確認";
         case 2:
-            return "待出貨";
+            return "申請取消";
         case 3:
-            return "已出貨";
+            return "待出貨";
         case 4:
-            return "包裹已抵達";
+            return "已出貨";
         case 5:
-            return "完成";
+            return "已到貨";
         case 6:
-            return "商品退回";
+            return "完成";
         case 7:
             return "取消";
         case 8:
             return "申請退貨";
         case 9:
-            return "退貨";
+            return "退貨中";
         case 10:
             return "退款";
         default:

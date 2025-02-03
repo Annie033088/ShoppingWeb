@@ -295,7 +295,7 @@ namespace Pashamao.Controllers
                 }
 
                 if (editLogisticsNumberDto.LogisticsNumber == null) editLogisticsNumberDto.LogisticsNumber = string.Empty;
-               
+
                 bool successFlag = mainOrderService.EditLogisticsNumber(editLogisticsNumberDto);
 
                 if (successFlag)

@@ -1,7 +1,6 @@
 ﻿
 using MockPashamao.Models.Dto.OrderDto;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -76,31 +75,34 @@ namespace MockPashamao.Repositories
         /// <summary>
         /// 模擬訂單狀態
         /// </summary>
-        public bool EditOrderState(List<RequestEditOrderStateDto> editOrderStateDto)
+        public bool EditOrderState(RequestEditOrderStateDto editOrderStateDto)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = new SqlConnection(this.ConnStr);
 
             try
             {
-                cmd.CommandText = "EXEC pro_pashamao_editOrderStateMock @orderState";
+                cmd.CommandText = "EXEC pro_pashamao_editOrderStateMock @orderId, @logisticsNumber, @state";
 
-                DataTable OrderStats = new DataTable();
-                OrderStats.Columns.Add("f_orderId", typeof(int));
-                OrderStats.Columns.Add("f_state", typeof(byte));
-
-                foreach (RequestEditOrderStateDto orderState in editOrderStateDto)
+                if (editOrderStateDto.OrderId == null)
                 {
-                    OrderStats.Rows.Add(orderState.OrderId, orderState.State);
+                    cmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("@OrderId", SqlDbType.Int).Value = editOrderStateDto.OrderId;
                 }
 
-                var orderParam = new SqlParameter("@orderState", SqlDbType.Structured)
+                if (editOrderStateDto.LogisticsNumber == null)
                 {
-                    TypeName = "dbo.type_pashamao_editOrderStateMock",
-                    Value = OrderStats
-                };
+                    cmd.Parameters.Add("@logisticsNumber", SqlDbType.VarChar).Value = DBNull.Value;
+                }
+                else
+                {
+                    cmd.Parameters.Add("@logisticsNumber", SqlDbType.VarChar).Value = editOrderStateDto.LogisticsNumber;
+                }
 
-                cmd.Parameters.Add(orderParam);
+                cmd.Parameters.Add("@state", SqlDbType.TinyInt).Value = (int)editOrderStateDto.State;
 
                 cmd.Connection.Open();
 

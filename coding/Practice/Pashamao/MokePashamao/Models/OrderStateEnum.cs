@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MockPashamao.Models
+﻿namespace MockPashamao.Models
 {
     public enum OrderStateEnum
     {
@@ -13,29 +8,29 @@ namespace MockPashamao.Models
         ToBeConfirmed = 1,
 
         /// <summary>
-        /// 2:待出貨
+        /// 2:申請取消
         /// </summary>
-        ToBeShipped = 2,
+        ApplyForCancel = 2,
 
         /// <summary>
-        /// 3:已出貨
+        /// 3:待出貨
         /// </summary>
-        Shipped = 3,
+        ToBeShipped = 3,
 
         /// <summary>
-        /// 4:包裹已抵達
+        /// 4:已出貨
         /// </summary>
-        PackageArrive = 4,
+        Shipped = 4,
 
         /// <summary>
-        /// 5:完成
+        /// 5:包裹已抵達
         /// </summary>
-        Finish = 5,
+        PackageArrive = 5,
 
         /// <summary>
-        /// 6:商品退回
+        /// 6:完成
         /// </summary>
-        ProductReturn = 6,
+        Finish = 6,
 
         /// <summary>
         /// 7:取消
@@ -50,7 +45,7 @@ namespace MockPashamao.Models
         /// <summary>
         /// 9:退貨
         /// </summary>
-        Returned = 9,
+        returning = 9,
 
         /// <summary>
         /// 10:退款
