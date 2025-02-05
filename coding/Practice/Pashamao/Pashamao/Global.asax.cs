@@ -1,8 +1,15 @@
+using Hangfire;
+using Hangfire.Storage;
 using NLog;
+using Owin;
+using Pashamao.Utility;
 using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Linq;
 
 namespace Pashamao
 {
@@ -12,14 +19,13 @@ namespace Pashamao
 
         protected void Application_Start()
         {
-
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            logger.Info("Application Start");
 
+            logger.Info("Application Start");
         }
 
         protected void Application_Error(object sender, EventArgs e)

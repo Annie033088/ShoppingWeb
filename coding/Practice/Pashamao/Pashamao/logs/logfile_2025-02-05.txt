@@ -1,0 +1,1635 @@
+2025-02-05 09:20:21.4783 Info Start installing Hangfire SQL objects...
+2025-02-05 09:20:21.7576 Info Hangfire SQL objects installed.
+2025-02-05 09:20:21.7857 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:20:21.7857 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:20:21.7857 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:20:21.8045 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:20:21.8045 Debug Execution loop BackgroundServerProcess:383f9bcd has started in 9.5988 ms
+2025-02-05 09:20:21.8045 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:20:21.8045 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:20:21.8045 Trace Server laptop-43cnj97a:4248:ba863174 is announcing itself...
+2025-02-05 09:20:21.9232 Trace Recurring job 'EditOrderStateFromPackageArriveToFinish' is being updated. RecurringJob: (), Changes: (Queue:default;Cron:0 0 * * *;TimeZoneId:UTC;Job:{"Type":"Pashamao.Utility.ScheduledJobHandler, Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","Method":"AutoEditOrderStateFromPackageArriveToFinish","ParameterTypes":"[]","Arguments":"[]"};CreatedAt:2025-02-05T01:20:21.8418250Z;NextExecution:2025-02-06T00:00:00.0000000Z;V:2)
+2025-02-05 09:20:21.9302 Info Server laptop-43cnj97a:4248:ba863174 successfully announced in 116.7155 ms
+2025-02-05 09:20:21.9302 Info Server laptop-43cnj97a:4248:ba863174 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:20:21.9302 Debug Execution loop ServerHeartbeatProcess:3332a3bc has started in 3.7495 ms
+2025-02-05 09:20:21.9302 Debug Execution loop ServerWatchdog:d871f01f has started in 2.6039 ms
+2025-02-05 09:20:21.9302 Trace Server laptop-43cnj97a:4248:ba863174 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:20:21.9302 Debug Execution loop ServerJobCancellationWatcher:12987dcf has started in 2.8222 ms
+2025-02-05 09:20:21.9302 Trace Checking for aborted jobs...
+2025-02-05 09:20:21.9429 Debug Execution loop ExpirationManager:896d2f4d has started in 2.41 ms
+2025-02-05 09:20:21.9429 Trace No newly aborted jobs found.
+2025-02-05 09:20:21.9429 Info 1 servers were removed due to timeout
+2025-02-05 09:20:21.9429 Debug Execution loop CountersAggregator:f2a19902 has started in 4.1091 ms
+2025-02-05 09:20:21.9429 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:20:21.9429 Debug Execution loop SqlServerHeartbeatProcess:9cf7e112 has started in 2.5742 ms
+2025-02-05 09:20:21.9429 Debug Execution loop Worker:d90d3e44 has started in 5.396 ms
+2025-02-05 09:20:21.9429 Debug Execution loop Worker:6460b8bb has started in 7.8303 ms
+2025-02-05 09:20:21.9640 Debug Execution loop Worker:f5dbe690 has started in 16.6277 ms
+2025-02-05 09:20:21.9640 Debug Execution loop Worker:a69a7d0a has started in 23.2311 ms
+2025-02-05 09:20:21.9640 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:20:21.9640 Debug Execution loop Worker:c5a5b372 has started in 25.9718 ms
+2025-02-05 09:20:21.9750 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:20:21.9750 Debug Execution loop Worker:b9ab74fb has started in 35.079 ms
+2025-02-05 09:20:21.9750 Debug Execution loop Worker:47a74328 has started in 38.6557 ms
+2025-02-05 09:20:21.9925 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:20:21.9925 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:20:21.9925 Debug Execution loop Worker:b56c3ab0 has started in 47.9444 ms
+2025-02-05 09:20:21.9925 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:20:21.9925 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:20:21.9925 Debug Execution loop Worker:d658d0bb has started in 52.1171 ms
+2025-02-05 09:20:21.9925 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:20:21.9925 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:20:21.9925 Debug Execution loop Worker:896a226c has started in 55.4932 ms
+2025-02-05 09:20:22.0065 Debug Execution loop Worker:ee8b2e9c has started in 58.8456 ms
+2025-02-05 09:20:22.0065 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:20:22.0065 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:20:22.0065 Debug Execution loop Worker:31643976 has started in 62.9048 ms
+2025-02-05 09:20:22.0065 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:20:22.0065 Debug Execution loop Worker:e1b72d4a has started in 65.8529 ms
+2025-02-05 09:20:22.0065 Debug Execution loop Worker:de11dc4e has started in 70.5022 ms
+2025-02-05 09:20:22.0215 Debug Execution loop Worker:a9e056f5 has started in 73.7673 ms
+2025-02-05 09:20:22.0215 Debug Execution loop Worker:40a9be1f has started in 76.7954 ms
+2025-02-05 09:20:22.0215 Debug Execution loop Worker:642e0185 has started in 78.7233 ms
+2025-02-05 09:20:22.0215 Debug Execution loop Worker:f1a89fc0 has started in 80.527 ms
+2025-02-05 09:20:22.0215 Debug Execution loop Worker:16253c99 has started in 82.9754 ms
+2025-02-05 09:20:22.0215 Debug Execution loop DelayedJobScheduler:2205c6a4 has started in 10.2101 ms
+2025-02-05 09:20:22.0215 Info Server laptop-43cnj97a:4248:ba863174 all the dispatchers started
+2025-02-05 09:20:22.0385 Debug Execution loop RecurringJobScheduler:d2fe39ba has started in 4.1253 ms
+2025-02-05 09:20:22.0385 Debug Execution loop Worker:9d7d9620 has started in 97.1378 ms
+2025-02-05 09:21:06.8358 Info Start installing Hangfire SQL objects...
+2025-02-05 09:21:07.1458 Info Hangfire SQL objects installed.
+2025-02-05 09:21:07.1748 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:21:07.1748 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:21:07.1748 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:21:07.1938 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:21:07.1938 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:21:07.1938 Debug Execution loop BackgroundServerProcess:8d0127de has started in 7.8972 ms
+2025-02-05 09:21:07.1938 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:21:07.1938 Trace Server laptop-43cnj97a:9368:04ed2aff is announcing itself...
+2025-02-05 09:21:07.3419 Info Server laptop-43cnj97a:9368:04ed2aff successfully announced in 134.5783 ms
+2025-02-05 09:21:07.3419 Debug Execution loop ServerHeartbeatProcess:757b3877 has started in 4.0559 ms
+2025-02-05 09:21:07.3419 Info Server laptop-43cnj97a:9368:04ed2aff is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:21:07.3519 Debug Execution loop ServerWatchdog:4281edb8 has started in 2.5587 ms
+2025-02-05 09:21:07.3519 Debug Execution loop ServerJobCancellationWatcher:3db43127 has started in 2.9088 ms
+2025-02-05 09:21:07.3519 Trace Server laptop-43cnj97a:9368:04ed2aff waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:21:07.3519 Trace Checking for aborted jobs...
+2025-02-05 09:21:07.3519 Debug Execution loop ExpirationManager:0adbb5bd has started in 3.2467 ms
+2025-02-05 09:21:07.3519 Trace No newly aborted jobs found.
+2025-02-05 09:21:07.3519 Debug Execution loop CountersAggregator:e9dc07af has started in 3.3885 ms
+2025-02-05 09:21:07.3519 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:21:07.3879 Debug Execution loop SqlServerHeartbeatProcess:79ef675d has started in 28.3421 ms
+2025-02-05 09:21:07.3879 Debug Execution loop Worker:57198225 has started in 29.7029 ms
+2025-02-05 09:21:07.3879 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:21:07.3879 Debug Execution loop Worker:864ae870 has started in 32.1963 ms
+2025-02-05 09:21:07.3979 Debug Execution loop Worker:038bce77 has started in 35.5688 ms
+2025-02-05 09:21:07.3979 Debug Execution loop Worker:f5959466 has started in 37.8321 ms
+2025-02-05 09:21:07.3979 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:21:07.3979 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:21:07.3979 Debug Execution loop Worker:4ae7ef7d has started in 40.1029 ms
+2025-02-05 09:21:07.3979 Debug Execution loop Worker:35d1d110 has started in 43.4631 ms
+2025-02-05 09:21:07.3979 Debug Execution loop Worker:50c1723a has started in 45.8649 ms
+2025-02-05 09:21:07.3979 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:21:07.4139 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:21:07.4139 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:21:07.4139 Debug Execution loop Worker:d49ee2fc has started in 51.8989 ms
+2025-02-05 09:21:07.4139 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:21:07.4139 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:21:07.4139 Debug Execution loop Worker:e777ca2e has started in 56.2333 ms
+2025-02-05 09:21:07.4139 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:21:07.4139 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:21:07.4504 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:e7be9095 has started in 88.5613 ms
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:32ea900e has started in 89.1983 ms
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:5c2fea1c has started in 89.2044 ms
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:5c0d3df6 has started in 90.1111 ms
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:9f37399a has started in 91.2038 ms
+2025-02-05 09:21:07.4504 Debug Execution loop Worker:542af120 has started in 94.9576 ms
+2025-02-05 09:21:07.4594 Debug Execution loop Worker:715c1565 has started in 97.3817 ms
+2025-02-05 09:21:07.4594 Debug Execution loop Worker:a96e21d7 has started in 100.3305 ms
+2025-02-05 09:21:07.4594 Debug Execution loop Worker:83532254 has started in 102.5498 ms
+2025-02-05 09:21:07.4594 Debug Execution loop Worker:4d9c19b9 has started in 104.8796 ms
+2025-02-05 09:21:07.4594 Debug Execution loop Worker:cc50168c has started in 107.0355 ms
+2025-02-05 09:21:07.4594 Debug Execution loop DelayedJobScheduler:8299e688 has started in 2.9485 ms
+2025-02-05 09:21:07.4594 Info Server laptop-43cnj97a:9368:04ed2aff all the dispatchers started
+2025-02-05 09:21:07.4744 Debug Execution loop RecurringJobScheduler:07513a29 has started in 2.5831 ms
+2025-02-05 09:21:43.4641 Info Start installing Hangfire SQL objects...
+2025-02-05 09:21:43.5581 Info Hangfire SQL objects installed.
+2025-02-05 09:21:43.5897 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:21:43.5897 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:21:43.5897 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:21:43.6157 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:21:43.6157 Debug Execution loop BackgroundServerProcess:1aa8db4f has started in 8.2241 ms
+2025-02-05 09:21:43.6157 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:21:43.6157 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:21:43.6157 Trace Server laptop-43cnj97a:18892:0bbcc530 is announcing itself...
+2025-02-05 09:21:43.7596 Info Server laptop-43cnj97a:18892:0bbcc530 successfully announced in 133.602 ms
+2025-02-05 09:21:43.7596 Debug Execution loop ServerHeartbeatProcess:8dac201f has started in 3.533 ms
+2025-02-05 09:21:43.7596 Info Server laptop-43cnj97a:18892:0bbcc530 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:21:43.7596 Debug Execution loop ServerWatchdog:d4a4a213 has started in 2.4211 ms
+2025-02-05 09:21:43.7596 Trace Server laptop-43cnj97a:18892:0bbcc530 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:21:43.7731 Debug Execution loop ServerJobCancellationWatcher:ea251222 has started in 4.0783 ms
+2025-02-05 09:21:43.7731 Trace Checking for aborted jobs...
+2025-02-05 09:21:43.7731 Debug Execution loop ExpirationManager:6bd1332b has started in 2.6477 ms
+2025-02-05 09:21:43.7731 Trace No newly aborted jobs found.
+2025-02-05 09:21:43.7731 Debug Execution loop CountersAggregator:37bb7274 has started in 2.5372 ms
+2025-02-05 09:21:43.7731 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:21:43.7731 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:21:43.7731 Debug Execution loop SqlServerHeartbeatProcess:27ec196b has started in 2.0981 ms
+2025-02-05 09:21:43.7731 Debug Execution loop Worker:d18c21d3 has started in 3.4924 ms
+2025-02-05 09:21:43.7731 Debug Execution loop Worker:46072031 has started in 3.4928 ms
+2025-02-05 09:21:43.8151 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:21:43.8151 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:21:43.8151 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:21:43.8151 Debug Execution loop Worker:e465ad2c has started in 34.9154 ms
+2025-02-05 09:21:43.8151 Debug Execution loop Worker:f8a47160 has started in 34.9485 ms
+2025-02-05 09:21:43.8185 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:21:43.8185 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:21:43.8185 Debug Execution loop Worker:d1ffac67 has started in 38.0246 ms
+2025-02-05 09:21:43.8185 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:21:43.8185 Debug Execution loop Worker:f5199d40 has started in 40.6915 ms
+2025-02-05 09:21:43.8185 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:21:43.8185 Debug Execution loop Worker:631ce193 has started in 43.0472 ms
+2025-02-05 09:21:43.8185 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:21:43.8185 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:21:43.8185 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:21:43.8185 Debug Execution loop Worker:930a5127 has started in 51.3783 ms
+2025-02-05 09:21:43.8351 Debug Execution loop Worker:bd46fbfe has started in 54.444 ms
+2025-02-05 09:21:43.8351 Debug Execution loop Worker:65ba4ff9 has started in 57.3782 ms
+2025-02-05 09:21:43.8351 Debug Execution loop Worker:847bfe02 has started in 60.1167 ms
+2025-02-05 09:21:43.8351 Debug Execution loop Worker:9f6a3fa0 has started in 64.2968 ms
+2025-02-05 09:21:43.8351 Debug Execution loop Worker:af8ae223 has started in 67.5359 ms
+2025-02-05 09:21:43.8513 Debug Execution loop Worker:fccdb63e has started in 69.9566 ms
+2025-02-05 09:21:43.8513 Debug Execution loop Worker:e28a6ba1 has started in 73.3151 ms
+2025-02-05 09:21:43.8513 Debug Execution loop Worker:c4ece2ec has started in 75.3386 ms
+2025-02-05 09:21:43.8513 Debug Execution loop Worker:0c043fd0 has started in 77.866 ms
+2025-02-05 09:21:43.8513 Debug Execution loop Worker:cf962381 has started in 80.9857 ms
+2025-02-05 09:21:43.8659 Debug Execution loop Worker:0373c01c has started in 84.3252 ms
+2025-02-05 09:21:43.8659 Debug Execution loop Worker:d7c5b7c0 has started in 87.1838 ms
+2025-02-05 09:21:43.8659 Debug Execution loop DelayedJobScheduler:e4b2ec29 has started in 3.8012 ms
+2025-02-05 09:21:43.8659 Info Server laptop-43cnj97a:18892:0bbcc530 all the dispatchers started
+2025-02-05 09:21:43.8659 Debug Execution loop RecurringJobScheduler:177e10e1 has started in 4.564 ms
+2025-02-05 09:21:50.1122 Trace Checking for aborted jobs...
+2025-02-05 09:21:50.1122 Trace No newly aborted jobs found.
+2025-02-05 09:21:59.9325 Trace Checking for aborted jobs...
+2025-02-05 09:21:59.9325 Trace No newly aborted jobs found.
+2025-02-05 09:21:59.9429 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_points'，資料表 'Pashamao.dbo.t_member'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2025-02-05 09:21:59.9584 Error System.Data.SqlClient.SqlException: 無法插入 NULL 值到資料行 'f_points'，資料表 'Pashamao.dbo.t_member'; 資料行不得有 Null。UPDATE 失敗。
+陳述式已經結束。
+2025-02-05 09:22:00.8998 Warn Failed to process the job '3': an exception occurred. Retry attempt 1 of 6 will be performed in 00:00:10.
+2025-02-05 09:22:04.9390 Trace Checking for aborted jobs...
+2025-02-05 09:22:04.9390 Trace No newly aborted jobs found.
+2025-02-05 09:22:09.9403 Trace Checking for aborted jobs...
+2025-02-05 09:22:09.9403 Trace No newly aborted jobs found.
+2025-02-05 09:22:13.7839 Debug Server laptop-43cnj97a:18892:0bbcc530 heartbeat successfully sent
+2025-02-05 09:22:13.7839 Trace Server laptop-43cnj97a:18892:0bbcc530 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:22:14.9405 Trace Checking for aborted jobs...
+2025-02-05 09:22:14.9405 Trace No newly aborted jobs found.
+2025-02-05 09:22:14.9709 Debug 1 scheduled job(s) processed by scheduler.
+2025-02-05 09:36:37.8303 Info Start installing Hangfire SQL objects...
+2025-02-05 09:36:38.0751 Info Hangfire SQL objects installed.
+2025-02-05 09:36:38.6918 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:36:38.6928 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:36:38.6928 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:36:38.6928 Debug Execution loop BackgroundServerProcess:59c4f768 has started in 5.3529 ms
+2025-02-05 09:36:38.7089 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:36:38.7089 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:36:38.7089 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:36:39.5161 Trace Server laptop-43cnj97a:23008:8172ba29 is announcing itself...
+2025-02-05 09:36:50.0604 Info Server laptop-43cnj97a:23008:8172ba29 successfully announced in 10533.1357 ms
+2025-02-05 09:36:50.0719 Debug Execution loop ServerHeartbeatProcess:38da59e3 has started in 3.6173 ms
+2025-02-05 09:36:50.0719 Info Server laptop-43cnj97a:23008:8172ba29 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:36:50.0719 Debug Execution loop ServerWatchdog:a3bf1338 has started in 1.8612 ms
+2025-02-05 09:36:50.0719 Trace Server laptop-43cnj97a:23008:8172ba29 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:36:50.0719 Debug Execution loop ServerJobCancellationWatcher:7655a9b7 has started in 2.686 ms
+2025-02-05 09:36:50.0719 Trace Checking for aborted jobs...
+2025-02-05 09:36:50.0719 Trace No newly aborted jobs found.
+2025-02-05 09:36:50.0719 Debug Execution loop ExpirationManager:c9f3c89f has started in 3.0098 ms
+2025-02-05 09:36:50.0719 Info 3 servers were removed due to timeout
+2025-02-05 09:36:50.0719 Debug Execution loop CountersAggregator:e5a6ec00 has started in 2.6643 ms
+2025-02-05 09:36:50.0719 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:36:50.0719 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:36:50.0839 Debug Execution loop SqlServerHeartbeatProcess:222955fb has started in 2.9565 ms
+2025-02-05 09:36:50.0839 Debug Execution loop Worker:a38df39d has started in 2.8399 ms
+2025-02-05 09:36:50.0839 Debug Execution loop Worker:d59c28f5 has started in 6.7212 ms
+2025-02-05 09:36:50.0839 Debug Execution loop Worker:fcb5f3fd has started in 9.946 ms
+2025-02-05 09:36:50.0839 Debug Execution loop Worker:ecb59da7 has started in 15.2159 ms
+2025-02-05 09:36:50.0999 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:36:50.0999 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:36:50.0999 Debug Execution loop Worker:7d052ae1 has started in 20.309 ms
+2025-02-05 09:36:50.0999 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:36:50.0999 Debug Execution loop Worker:faef2432 has started in 22.1978 ms
+2025-02-05 09:36:50.0999 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:36:50.0999 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:36:50.0999 Debug Execution loop Worker:89ad00ff has started in 28.6926 ms
+2025-02-05 09:36:50.1162 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:36:50.1162 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:36:50.1162 Debug Execution loop Worker:b7bf9ba7 has started in 34.0698 ms
+2025-02-05 09:36:50.1162 Debug Execution loop Worker:8648a24a has started in 37.5562 ms
+2025-02-05 09:36:50.1162 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:36:50.1162 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:36:50.1162 Debug Execution loop Worker:3214550c has started in 44.4487 ms
+2025-02-05 09:36:50.1324 Debug Execution loop Worker:1b12b81f has started in 48.8711 ms
+2025-02-05 09:36:50.1324 Debug Execution loop Worker:14cfeb6a has started in 51.6335 ms
+2025-02-05 09:36:50.1324 Debug Execution loop Worker:cfc51b3c has started in 55.7687 ms
+2025-02-05 09:36:50.1324 Debug Execution loop Worker:cf9131a5 has started in 59.8296 ms
+2025-02-05 09:36:50.1484 Debug Execution loop Worker:f9d7bd67 has started in 64.3861 ms
+2025-02-05 09:36:50.1484 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:36:50.1484 Debug Execution loop Worker:ada76c08 has started in 67.539 ms
+2025-02-05 09:36:50.1484 Debug Execution loop Worker:565807df has started in 70.9227 ms
+2025-02-05 09:36:50.1484 Debug Execution loop Worker:3f6364ad has started in 74.4583 ms
+2025-02-05 09:36:50.1624 Debug Execution loop Worker:3edf104f has started in 78.09 ms
+2025-02-05 09:36:50.1624 Debug Execution loop Worker:7ebc750f has started in 80.0268 ms
+2025-02-05 09:36:50.1624 Debug Execution loop DelayedJobScheduler:1326feb5 has started in 4.6618 ms
+2025-02-05 09:36:50.1624 Info Server laptop-43cnj97a:23008:8172ba29 all the dispatchers started
+2025-02-05 09:36:50.1624 Debug Execution loop RecurringJobScheduler:9123d3ab has started in 3.2711 ms
+2025-02-05 09:36:56.1642 Trace Checking for aborted jobs...
+2025-02-05 09:36:56.1642 Trace No newly aborted jobs found.
+2025-02-05 09:37:11.0378 Trace Checking for aborted jobs...
+2025-02-05 09:37:19.1662 Trace No newly aborted jobs found.
+2025-02-05 09:37:26.3858 Trace Checking for aborted jobs...
+2025-02-05 09:37:26.3858 Trace No newly aborted jobs found.
+2025-02-05 09:37:30.6772 Debug Server laptop-43cnj97a:23008:8172ba29 heartbeat successfully sent
+2025-02-05 09:37:30.6772 Trace Server laptop-43cnj97a:23008:8172ba29 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:37:32.4997 Trace Checking for aborted jobs...
+2025-02-05 09:37:32.4997 Trace No newly aborted jobs found.
+2025-02-05 09:37:38.5922 Trace Checking for aborted jobs...
+2025-02-05 09:37:38.5922 Trace No newly aborted jobs found.
+2025-02-05 09:37:57.5217 Trace Checking for aborted jobs...
+2025-02-05 09:37:57.5217 Trace No newly aborted jobs found.
+2025-02-05 09:37:59.2448 Trace Keep-alive query for message 2 sent
+2025-02-05 09:37:59.2448 Trace Keep-alive query for message 5 sent
+2025-02-05 09:37:59.2448 Trace Keep-alive query for message 4 sent
+2025-02-05 09:37:59.2448 Trace Keep-alive query for message 1 sent
+2025-02-05 09:38:01.2022 Debug Server laptop-43cnj97a:23008:8172ba29 heartbeat successfully sent
+2025-02-05 09:38:01.2022 Trace Server laptop-43cnj97a:23008:8172ba29 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:38:06.1564 Trace Checking for aborted jobs...
+2025-02-05 09:38:06.1564 Trace No newly aborted jobs found.
+2025-02-05 09:38:11.1655 Trace Checking for aborted jobs...
+2025-02-05 09:38:11.1655 Trace No newly aborted jobs found.
+2025-02-05 09:38:16.1677 Trace Checking for aborted jobs...
+2025-02-05 09:38:16.1677 Trace No newly aborted jobs found.
+2025-02-05 09:40:35.0762 Info Start installing Hangfire SQL objects...
+2025-02-05 09:40:35.2877 Info Hangfire SQL objects installed.
+2025-02-05 09:40:35.3223 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:40:35.3223 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:40:35.3223 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:40:35.3393 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:40:35.3393 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:40:35.3393 Debug Execution loop BackgroundServerProcess:16a5ff3b has started in 5.5814 ms
+2025-02-05 09:40:35.3393 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:40:35.3393 Trace Server laptop-43cnj97a:7248:c727a30d is announcing itself...
+2025-02-05 09:40:35.4650 Info Server laptop-43cnj97a:7248:c727a30d successfully announced in 115.8158 ms
+2025-02-05 09:40:35.4650 Debug Execution loop ServerHeartbeatProcess:ccaa9689 has started in 3.2497 ms
+2025-02-05 09:40:35.4650 Info Server laptop-43cnj97a:7248:c727a30d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:40:35.4650 Debug Execution loop ServerWatchdog:1fe0e921 has started in 1.5095 ms
+2025-02-05 09:40:35.4743 Trace Server laptop-43cnj97a:7248:c727a30d waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:40:35.4743 Debug Execution loop ServerJobCancellationWatcher:3a1487c9 has started in 3.648 ms
+2025-02-05 09:40:35.4743 Trace Checking for aborted jobs...
+2025-02-05 09:40:35.5044 Debug Execution loop ExpirationManager:76eda2f2 has started in 29.184 ms
+2025-02-05 09:40:35.5064 Trace No newly aborted jobs found.
+2025-02-05 09:40:35.5064 Debug Execution loop CountersAggregator:e16b5c78 has started in 2.6434 ms
+2025-02-05 09:40:35.5064 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:40:35.5064 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:40:35.5064 Debug Execution loop SqlServerHeartbeatProcess:8d93be96 has started in 3.2632 ms
+2025-02-05 09:40:35.5064 Debug Execution loop Worker:1c8a9d19 has started in 3.0523 ms
+2025-02-05 09:40:35.5064 Debug Execution loop Worker:9b5d84d8 has started in 5.8107 ms
+2025-02-05 09:40:35.5064 Debug Execution loop Worker:6fa3043c has started in 7.4559 ms
+2025-02-05 09:40:35.5064 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:40:35.5064 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:40:35.5212 Debug Execution loop Worker:6506f26d has started in 10.2826 ms
+2025-02-05 09:40:35.5212 Debug Execution loop Worker:ca4fea6f has started in 13.988 ms
+2025-02-05 09:40:35.5212 Debug Execution loop Worker:1bee57b8 has started in 16.2579 ms
+2025-02-05 09:40:35.5212 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:40:35.5212 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:40:35.5212 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:40:35.5212 Debug Execution loop Worker:d613df98 has started in 22.1743 ms
+2025-02-05 09:40:35.5369 Debug Execution loop Worker:df6dc880 has started in 26.0205 ms
+2025-02-05 09:40:35.5369 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:40:35.5369 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:40:35.5533 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:40:35.5533 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:40:35.5533 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:40:35.5533 Debug Execution loop Worker:e32c4de6 has started in 48.8367 ms
+2025-02-05 09:40:35.5533 Debug Execution loop Worker:13edbd3b has started in 51.6959 ms
+2025-02-05 09:40:35.5533 Debug Execution loop Worker:898216d3 has started in 52.9203 ms
+2025-02-05 09:40:35.5683 Debug Execution loop Worker:ed456b76 has started in 57.32 ms
+2025-02-05 09:40:35.5683 Debug Execution loop Worker:70848338 has started in 63.2821 ms
+2025-02-05 09:40:35.5683 Debug Execution loop Worker:25e23196 has started in 67.1896 ms
+2025-02-05 09:40:35.5683 Debug Execution loop Worker:f2750cc5 has started in 71.046 ms
+2025-02-05 09:40:35.5683 Debug Execution loop Worker:cbab5d06 has started in 72.3775 ms
+2025-02-05 09:40:35.5878 Debug Execution loop Worker:01563a69 has started in 77.3985 ms
+2025-02-05 09:40:35.6041 Debug Execution loop Worker:757be45b has started in 93.7549 ms
+2025-02-05 09:40:35.6041 Debug Execution loop Worker:cd945e81 has started in 100.0383 ms
+2025-02-05 09:40:35.6041 Debug Execution loop Worker:0cdb942f has started in 103.0301 ms
+2025-02-05 09:40:35.6183 Debug Execution loop DelayedJobScheduler:bf6f77d3 has started in 4.3025 ms
+2025-02-05 09:40:35.6183 Info Server laptop-43cnj97a:7248:c727a30d all the dispatchers started
+2025-02-05 09:40:35.6183 Debug Execution loop RecurringJobScheduler:aedc4700 has started in 3.184 ms
+2025-02-05 09:40:57.6886 Info Start installing Hangfire SQL objects...
+2025-02-05 09:40:57.9256 Info Hangfire SQL objects installed.
+2025-02-05 09:40:57.9521 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:40:57.9521 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:40:57.9521 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:40:57.9717 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:40:57.9717 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:40:57.9717 Debug Execution loop BackgroundServerProcess:2579a9b1 has started in 8.6252 ms
+2025-02-05 09:40:57.9717 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:40:57.9806 Trace Server laptop-43cnj97a:30152:cc52560d is announcing itself...
+2025-02-05 09:40:58.1180 Info Server laptop-43cnj97a:30152:cc52560d successfully announced in 137.1048 ms
+2025-02-05 09:40:58.1180 Debug Execution loop ServerHeartbeatProcess:348f2d37 has started in 4.1243 ms
+2025-02-05 09:40:58.1180 Info Server laptop-43cnj97a:30152:cc52560d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:40:58.1180 Debug Execution loop ServerWatchdog:a5d16c25 has started in 2.2487 ms
+2025-02-05 09:40:58.1180 Trace Server laptop-43cnj97a:30152:cc52560d waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:40:58.1180 Debug Execution loop ServerJobCancellationWatcher:a275f7fb has started in 3.1229 ms
+2025-02-05 09:40:58.1313 Trace Checking for aborted jobs...
+2025-02-05 09:40:58.1313 Debug Execution loop ExpirationManager:72a66a12 has started in 2.745 ms
+2025-02-05 09:40:58.1313 Trace No newly aborted jobs found.
+2025-02-05 09:40:58.1313 Debug Execution loop CountersAggregator:618f54dc has started in 2.1227 ms
+2025-02-05 09:40:58.1313 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:40:58.1313 Debug Execution loop SqlServerHeartbeatProcess:63c33be3 has started in 2.9375 ms
+2025-02-05 09:40:58.1313 Debug Execution loop Worker:431d507b has started in 4.9284 ms
+2025-02-05 09:40:58.1313 Debug Execution loop Worker:03ed04b4 has started in 6.301 ms
+2025-02-05 09:40:58.1481 Debug Execution loop Worker:b404fecd has started in 10.8465 ms
+2025-02-05 09:40:58.1481 Debug Execution loop Worker:9d91c58f has started in 14.9361 ms
+2025-02-05 09:40:58.1481 Debug Execution loop Worker:9a835150 has started in 18.42 ms
+2025-02-05 09:40:58.1621 Debug Execution loop Worker:64346832 has started in 24.0675 ms
+2025-02-05 09:40:58.1621 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:40:58.1621 Debug Execution loop Worker:089c22f6 has started in 27.9998 ms
+2025-02-05 09:40:58.1621 Debug Execution loop Worker:b8029c26 has started in 32.157 ms
+2025-02-05 09:40:58.1621 Debug Execution loop Worker:44d60a62 has started in 38.8408 ms
+2025-02-05 09:40:58.1851 Debug Execution loop Worker:02ca57ee has started in 47.4466 ms
+2025-02-05 09:40:58.1851 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:40:58.1851 Debug Execution loop Worker:942edc6f has started in 51.6967 ms
+2025-02-05 09:40:58.1851 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:40:58.1851 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:40:58.1941 Debug Execution loop Worker:21c7c6bc has started in 56.3158 ms
+2025-02-05 09:40:58.1941 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:40:58.1941 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:40:58.1941 Debug Execution loop Worker:d506de0e has started in 58.6417 ms
+2025-02-05 09:40:58.1941 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:40:58.1941 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:40:58.1941 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:40:58.1941 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:40:58.1941 Debug Execution loop Worker:416bf10c has started in 66.0874 ms
+2025-02-05 09:40:58.1941 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:40:58.2416 Debug Execution loop Worker:8cd58e15 has started in 103.8379 ms
+2025-02-05 09:40:58.2416 Debug Execution loop Worker:637b2ee3 has started in 104.2174 ms
+2025-02-05 09:40:58.2416 Debug Execution loop Worker:23b8571d has started in 107.6285 ms
+2025-02-05 09:40:58.2416 Debug Execution loop Worker:fa5cfdba has started in 111.3857 ms
+2025-02-05 09:40:58.2416 Debug Execution loop Worker:920a0336 has started in 114.7942 ms
+2025-02-05 09:40:58.2576 Debug Execution loop Worker:c0bb57e1 has started in 119.8027 ms
+2025-02-05 09:40:58.2576 Debug Execution loop DelayedJobScheduler:f72dd8b9 has started in 4.3635 ms
+2025-02-05 09:40:58.2576 Info Server laptop-43cnj97a:30152:cc52560d all the dispatchers started
+2025-02-05 09:40:58.2576 Debug Execution loop RecurringJobScheduler:b272ba7c has started in 5.3915 ms
+2025-02-05 09:41:03.1366 Trace Checking for aborted jobs...
+2025-02-05 09:41:03.1366 Trace No newly aborted jobs found.
+2025-02-05 09:41:08.1431 Trace Checking for aborted jobs...
+2025-02-05 09:41:08.1431 Trace No newly aborted jobs found.
+2025-02-05 09:41:13.1548 Trace Checking for aborted jobs...
+2025-02-05 09:41:13.1548 Trace No newly aborted jobs found.
+2025-02-05 09:41:50.8829 Info Start installing Hangfire SQL objects...
+2025-02-05 09:41:51.1370 Info Hangfire SQL objects installed.
+2025-02-05 09:41:51.1637 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:41:51.1637 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:41:51.1637 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:41:51.1806 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:41:51.1806 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:41:51.1806 Debug Execution loop BackgroundServerProcess:750e377d has started in 6.6223 ms
+2025-02-05 09:41:51.1806 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:41:51.1806 Trace Server laptop-43cnj97a:15348:b7ec9fec is announcing itself...
+2025-02-05 09:41:51.3274 Info Server laptop-43cnj97a:15348:b7ec9fec successfully announced in 139.0317 ms
+2025-02-05 09:41:51.3274 Info Server laptop-43cnj97a:15348:b7ec9fec is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:41:51.3360 Debug Execution loop ServerHeartbeatProcess:837a19de has started in 6.0337 ms
+2025-02-05 09:41:51.3360 Debug Execution loop ServerWatchdog:a773fb74 has started in 5.3499 ms
+2025-02-05 09:41:51.3360 Trace Server laptop-43cnj97a:15348:b7ec9fec waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:41:51.3360 Debug Execution loop ServerJobCancellationWatcher:08211814 has started in 5.6907 ms
+2025-02-05 09:41:51.3360 Trace Checking for aborted jobs...
+2025-02-05 09:41:51.3360 Trace No newly aborted jobs found.
+2025-02-05 09:41:51.3360 Debug Execution loop ExpirationManager:eb1d9f40 has started in 3.8224 ms
+2025-02-05 09:41:51.3507 Debug Execution loop CountersAggregator:231ff7e9 has started in 4.1486 ms
+2025-02-05 09:41:51.3507 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:41:51.3507 Debug Execution loop SqlServerHeartbeatProcess:42ef83f6 has started in 4.6461 ms
+2025-02-05 09:41:51.3507 Debug Execution loop Worker:4038b172 has started in 8.4613 ms
+2025-02-05 09:41:51.3667 Debug Execution loop Worker:10911313 has started in 13.6418 ms
+2025-02-05 09:41:51.3667 Debug Execution loop Worker:01decf74 has started in 17.5573 ms
+2025-02-05 09:41:51.3667 Debug Execution loop Worker:b695595e has started in 22.9004 ms
+2025-02-05 09:41:51.3667 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:41:51.3667 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:41:51.3833 Debug Execution loop Worker:a8090e48 has started in 30.3556 ms
+2025-02-05 09:41:51.3833 Debug Execution loop Worker:6ca486b8 has started in 32.6382 ms
+2025-02-05 09:41:51.3833 Debug Execution loop Worker:c7cd1c19 has started in 35.7498 ms
+2025-02-05 09:41:51.3833 Debug Execution loop Worker:b919b8e2 has started in 41.3005 ms
+2025-02-05 09:41:51.3993 Debug Execution loop Worker:794692fb has started in 46.214 ms
+2025-02-05 09:41:51.3993 Debug Execution loop Worker:e81569ac has started in 50.2908 ms
+2025-02-05 09:41:51.3993 Debug Execution loop Worker:73ff328f has started in 54.7392 ms
+2025-02-05 09:41:51.3993 Debug Execution loop Worker:1901926a has started in 57.3865 ms
+2025-02-05 09:41:51.4139 Debug Execution loop Worker:fae316c9 has started in 60.7644 ms
+2025-02-05 09:41:51.4139 Debug Execution loop Worker:c9c1e780 has started in 63.408 ms
+2025-02-05 09:41:51.4139 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:41:51.4139 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:41:51.4320 Debug Execution loop Worker:83e41493 has started in 79.5493 ms
+2025-02-05 09:41:51.4320 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:41:51.4320 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:41:51.4320 Debug Execution loop Worker:ddc1cd13 has started in 83.5974 ms
+2025-02-05 09:41:51.4320 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:41:51.4320 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:41:51.4320 Debug Execution loop Worker:5d8a1b33 has started in 88.4805 ms
+2025-02-05 09:41:51.4320 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:41:51.4320 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:41:51.4445 Debug Execution loop Worker:c07c2aab has started in 92.2361 ms
+2025-02-05 09:41:51.4445 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:41:51.4445 Debug Execution loop Worker:2831d088 has started in 95.8783 ms
+2025-02-05 09:41:51.4445 Debug Execution loop DelayedJobScheduler:c3761044 has started in 6.7825 ms
+2025-02-05 09:41:51.4445 Info Server laptop-43cnj97a:15348:b7ec9fec all the dispatchers started
+2025-02-05 09:41:51.4585 Debug Execution loop RecurringJobScheduler:63770a42 has started in 7.0434 ms
+2025-02-05 09:41:51.4585 Debug Execution loop Worker:1a76aaae has started in 107.4824 ms
+2025-02-05 09:41:56.3471 Trace Checking for aborted jobs...
+2025-02-05 09:41:56.3471 Trace No newly aborted jobs found.
+2025-02-05 09:42:01.3618 Trace Checking for aborted jobs...
+2025-02-05 09:42:01.3618 Trace No newly aborted jobs found.
+2025-02-05 09:42:06.3724 Trace Checking for aborted jobs...
+2025-02-05 09:42:06.3724 Trace No newly aborted jobs found.
+2025-02-05 09:42:11.3834 Trace Checking for aborted jobs...
+2025-02-05 09:42:11.3834 Trace No newly aborted jobs found.
+2025-02-05 09:42:16.3973 Trace Checking for aborted jobs...
+2025-02-05 09:42:16.3973 Trace No newly aborted jobs found.
+2025-02-05 09:42:21.3578 Debug Server laptop-43cnj97a:15348:b7ec9fec heartbeat successfully sent
+2025-02-05 09:42:21.3578 Trace Server laptop-43cnj97a:15348:b7ec9fec waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:42:21.4108 Trace Checking for aborted jobs...
+2025-02-05 09:42:21.4108 Trace No newly aborted jobs found.
+2025-02-05 09:44:20.3996 Info Start installing Hangfire SQL objects...
+2025-02-05 09:44:20.7029 Info Hangfire SQL objects installed.
+2025-02-05 09:44:20.7291 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:44:20.7291 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:44:20.7291 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:44:20.7492 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:44:20.7492 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:44:20.7492 Debug Execution loop BackgroundServerProcess:c0c27d19 has started in 6.9407 ms
+2025-02-05 09:44:20.7492 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:44:20.7596 Trace Server laptop-43cnj97a:10868:dca3f8d8 is announcing itself...
+2025-02-05 09:44:20.8990 Info Server laptop-43cnj97a:10868:dca3f8d8 successfully announced in 138.2981 ms
+2025-02-05 09:44:20.8990 Info Server laptop-43cnj97a:10868:dca3f8d8 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:44:20.8990 Debug Execution loop ServerHeartbeatProcess:6c0011c0 has started in 4.4302 ms
+2025-02-05 09:44:20.8990 Trace Server laptop-43cnj97a:10868:dca3f8d8 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:44:20.8990 Debug Execution loop ServerWatchdog:5dafa345 has started in 4.6465 ms
+2025-02-05 09:44:20.8990 Debug Execution loop ServerJobCancellationWatcher:ebe9b41a has started in 4.0576 ms
+2025-02-05 09:44:20.9121 Trace Checking for aborted jobs...
+2025-02-05 09:44:20.9121 Debug Execution loop ExpirationManager:ac2cadb6 has started in 2.9214 ms
+2025-02-05 09:44:20.9121 Trace No newly aborted jobs found.
+2025-02-05 09:44:20.9121 Debug Execution loop CountersAggregator:1bcb3691 has started in 3.1073 ms
+2025-02-05 09:44:20.9121 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:44:20.9121 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:44:20.9121 Info 1 servers were removed due to timeout
+2025-02-05 09:44:20.9121 Debug Execution loop SqlServerHeartbeatProcess:c22c1a85 has started in 5.3805 ms
+2025-02-05 09:44:20.9121 Debug Execution loop Worker:0a6f297e has started in 3.8123 ms
+2025-02-05 09:44:20.9278 Debug Execution loop Worker:8ceeee03 has started in 6.7164 ms
+2025-02-05 09:44:20.9278 Debug Execution loop Worker:9109314d has started in 9.4807 ms
+2025-02-05 09:44:20.9278 Debug Execution loop Worker:f783150f has started in 12.7015 ms
+2025-02-05 09:44:20.9278 Debug Execution loop Worker:0264d0fb has started in 16.4615 ms
+2025-02-05 09:44:20.9278 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:44:20.9278 Debug Execution loop Worker:37794b68 has started in 22.0921 ms
+2025-02-05 09:44:20.9453 Debug Execution loop Worker:b31df2ee has started in 24.4418 ms
+2025-02-05 09:44:20.9453 Debug Execution loop Worker:f9bae015 has started in 26.9582 ms
+2025-02-05 09:44:20.9453 Debug Execution loop Worker:eee01c3b has started in 29.9129 ms
+2025-02-05 09:44:20.9453 Debug Execution loop Worker:3e4b705d has started in 32.7749 ms
+2025-02-05 09:44:20.9453 Debug Execution loop Worker:432ba9a1 has started in 35.2456 ms
+2025-02-05 09:44:20.9592 Debug Execution loop Worker:a564ddf7 has started in 38.1459 ms
+2025-02-05 09:44:20.9592 Debug Execution loop Worker:70ebecac has started in 40.6178 ms
+2025-02-05 09:44:20.9592 Debug Execution loop Worker:93fd1201 has started in 43.4906 ms
+2025-02-05 09:44:20.9592 Debug Execution loop Worker:494a940c has started in 49.1763 ms
+2025-02-05 09:44:20.9749 Debug Execution loop Worker:4ada8a25 has started in 53.7411 ms
+2025-02-05 09:44:20.9749 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:44:20.9749 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:44:20.9749 Debug Execution loop Worker:a4e6ff64 has started in 57.0325 ms
+2025-02-05 09:44:20.9749 Debug Execution loop Worker:b4b7f839 has started in 59.5883 ms
+2025-02-05 09:44:20.9749 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:44:20.9749 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:44:20.9749 Debug Execution loop DelayedJobScheduler:e4c5aca8 has started in 6.5292 ms
+2025-02-05 09:44:20.9749 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:44:20.9749 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:44:20.9749 Debug Execution loop Worker:13ecd49a has started in 64.7792 ms
+2025-02-05 09:44:20.9749 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:44:20.9749 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:44:20.9749 Info Server laptop-43cnj97a:10868:dca3f8d8 all the dispatchers started
+2025-02-05 09:44:20.9749 Debug Execution loop Worker:4e735d77 has started in 67.9074 ms
+2025-02-05 09:44:20.9749 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:44:20.9903 Debug Execution loop RecurringJobScheduler:163b9955 has started in 7.034 ms
+2025-02-05 09:49:03.0757 Info Application Start
+2025-02-05 09:49:03.5988 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 09:49:03.6038 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 09:49:03.6192 Trace Executing Controller: Login, Action: Index
+2025-02-05 09:49:03.6192 Trace Executed Controller: Login, Action: Index
+2025-02-05 09:49:57.8144 Info Application Start
+2025-02-05 09:49:57.9110 Info Start installing Hangfire SQL objects...
+2025-02-05 09:49:58.1326 Info Hangfire SQL objects installed.
+2025-02-05 09:49:58.1610 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:49:58.1610 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:49:58.1610 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:49:58.1775 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:49:58.1775 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:49:58.1775 Debug Execution loop BackgroundServerProcess:2ee95c22 has started in 5.8404 ms
+2025-02-05 09:49:58.1775 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:49:58.1775 Trace Server laptop-43cnj97a:28376:ef50df90 is announcing itself...
+2025-02-05 09:49:58.2946 Info Server laptop-43cnj97a:28376:ef50df90 successfully announced in 108.135 ms
+2025-02-05 09:49:58.3024 Info Server laptop-43cnj97a:28376:ef50df90 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:49:58.3024 Debug Execution loop ServerHeartbeatProcess:86ae60c2 has started in 4.5448 ms
+2025-02-05 09:49:58.3024 Debug Execution loop ServerWatchdog:1a8f12ea has started in 3.2718 ms
+2025-02-05 09:49:58.3024 Trace Server laptop-43cnj97a:28376:ef50df90 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:49:58.3024 Debug Execution loop ServerJobCancellationWatcher:fffcae53 has started in 6.8615 ms
+2025-02-05 09:49:58.3024 Trace Checking for aborted jobs...
+2025-02-05 09:49:58.3024 Debug Execution loop ExpirationManager:49847b02 has started in 2.1123 ms
+2025-02-05 09:49:58.3024 Trace No newly aborted jobs found.
+2025-02-05 09:49:58.3024 Info 4 servers were removed due to timeout
+2025-02-05 09:49:58.3024 Debug Execution loop CountersAggregator:6e1124a6 has started in 1.7546 ms
+2025-02-05 09:49:58.3024 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:49:58.3024 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:49:58.3185 Debug Execution loop SqlServerHeartbeatProcess:25c297e9 has started in 3.1505 ms
+2025-02-05 09:49:58.3478 Debug Execution loop Worker:fca576b1 has started in 30.9401 ms
+2025-02-05 09:49:58.3478 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:49:58.3478 Debug Execution loop Worker:ba9800eb has started in 30.9607 ms
+2025-02-05 09:49:58.3478 Debug Execution loop Worker:bc59a3b2 has started in 31.2716 ms
+2025-02-05 09:49:58.3518 Debug Execution loop Worker:6a1476d3 has started in 34.6787 ms
+2025-02-05 09:49:58.3518 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:49:58.3518 Debug Execution loop Worker:5002b5b2 has started in 38.8113 ms
+2025-02-05 09:49:58.3518 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:49:58.3518 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:49:58.3518 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:49:58.3518 Debug Execution loop Worker:cd016b91 has started in 44.8293 ms
+2025-02-05 09:49:58.3518 Debug Execution loop Worker:818d611e has started in 46.1026 ms
+2025-02-05 09:49:58.3728 Debug Execution loop Worker:ebda8226 has started in 55.5603 ms
+2025-02-05 09:49:58.3728 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:49:58.3728 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:49:58.3728 Debug Execution loop Worker:3b21a355 has started in 58.376 ms
+2025-02-05 09:49:58.3818 Debug Execution loop Worker:c104caee has started in 64.2126 ms
+2025-02-05 09:49:58.3818 Debug Execution loop Worker:3a356f6f has started in 74.7921 ms
+2025-02-05 09:49:58.3818 Debug Execution loop Worker:21980187 has started in 74.794 ms
+2025-02-05 09:49:58.3818 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:49:58.3818 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:49:58.3818 Debug Execution loop Worker:0fc7e325 has started in 78.4194 ms
+2025-02-05 09:49:58.3818 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:49:58.3998 Debug Execution loop Worker:51310bfb has started in 82.5752 ms
+2025-02-05 09:49:58.3998 Debug Execution loop Worker:6b16467b has started in 86.0547 ms
+2025-02-05 09:49:58.3998 Debug Execution loop Worker:4706a7af has started in 88.1751 ms
+2025-02-05 09:49:58.3998 Debug Execution loop Worker:59a1aca6 has started in 92.4392 ms
+2025-02-05 09:49:58.4138 Debug Execution loop Worker:fa424b5e has started in 96.6913 ms
+2025-02-05 09:49:58.4138 Debug Execution loop Worker:b88f162f has started in 99.3144 ms
+2025-02-05 09:49:58.4138 Debug Execution loop Worker:95ac26da has started in 101.8832 ms
+2025-02-05 09:49:58.4138 Debug Execution loop DelayedJobScheduler:29098fa6 has started in 4.9237 ms
+2025-02-05 09:49:58.4138 Info Server laptop-43cnj97a:28376:ef50df90 all the dispatchers started
+2025-02-05 09:49:58.4138 Debug Execution loop RecurringJobScheduler:7f4ad9c6 has started in 3.6611 ms
+2025-02-05 09:49:58.7949 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 09:49:58.7949 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 09:49:58.8161 Trace Executing Controller: Login, Action: Index
+2025-02-05 09:49:58.8234 Trace Executed Controller: Login, Action: Index
+2025-02-05 09:50:03.3149 Trace Checking for aborted jobs...
+2025-02-05 09:50:03.3149 Trace No newly aborted jobs found.
+2025-02-05 09:50:08.3296 Trace Checking for aborted jobs...
+2025-02-05 09:50:08.3296 Trace No newly aborted jobs found.
+2025-02-05 09:50:13.3449 Trace Checking for aborted jobs...
+2025-02-05 09:50:13.3449 Trace No newly aborted jobs found.
+2025-02-05 09:57:43.8187 Info Application Start
+2025-02-05 09:57:43.9143 Info Start installing Hangfire SQL objects...
+2025-02-05 09:57:44.1174 Info Hangfire SQL objects installed.
+2025-02-05 09:57:44.1453 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 09:57:44.1453 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 09:57:44.1453 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 09:57:44.1625 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 09:57:44.1625 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 09:57:44.1625 Debug Execution loop BackgroundServerProcess:b80762e0 has started in 5.3083 ms
+2025-02-05 09:57:44.1625 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 09:57:44.1625 Trace Server laptop-43cnj97a:27936:27f67607 is announcing itself...
+2025-02-05 09:57:44.2899 Info Server laptop-43cnj97a:27936:27f67607 successfully announced in 115.4892 ms
+2025-02-05 09:57:44.2899 Info Server laptop-43cnj97a:27936:27f67607 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 09:57:44.2899 Debug Execution loop ServerHeartbeatProcess:0beb0e8d has started in 4.163 ms
+2025-02-05 09:57:44.2899 Debug Execution loop ServerWatchdog:71434ef3 has started in 2.214 ms
+2025-02-05 09:57:44.2899 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:57:44.2899 Debug Execution loop ServerJobCancellationWatcher:98e95ac8 has started in 3.3998 ms
+2025-02-05 09:57:44.3026 Trace Checking for aborted jobs...
+2025-02-05 09:57:44.3026 Debug Execution loop ExpirationManager:fc582f6c has started in 3.5356 ms
+2025-02-05 09:57:44.3026 Trace No newly aborted jobs found.
+2025-02-05 09:57:44.3026 Debug Execution loop CountersAggregator:f4365840 has started in 3.275 ms
+2025-02-05 09:57:44.3026 Debug Aggregating records in 'Counter' table...
+2025-02-05 09:57:44.3026 Debug Execution loop SqlServerHeartbeatProcess:404b6d28 has started in 6.1968 ms
+2025-02-05 09:57:44.3026 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 09:57:44.3026 Debug Execution loop Worker:e358dd16 has started in 7.1519 ms
+2025-02-05 09:57:44.3207 Debug Execution loop Worker:9e53cb4e has started in 11.9173 ms
+2025-02-05 09:57:44.3207 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 09:57:44.3207 Debug Removing outdated records from the 'Job' table...
+2025-02-05 09:57:44.3207 Trace Records from the 'Counter' table aggregated.
+2025-02-05 09:57:44.3207 Debug Execution loop Worker:0a1956d3 has started in 19.8344 ms
+2025-02-05 09:57:44.3207 Info 1 servers were removed due to timeout
+2025-02-05 09:57:44.3207 Trace Outdated records removed from the 'Job' table.
+2025-02-05 09:57:44.3207 Debug Removing outdated records from the 'List' table...
+2025-02-05 09:57:44.3336 Trace Outdated records removed from the 'List' table.
+2025-02-05 09:57:44.3336 Debug Removing outdated records from the 'Set' table...
+2025-02-05 09:57:44.3336 Debug Execution loop Worker:27aa19ce has started in 25.151 ms
+2025-02-05 09:57:44.3336 Trace Outdated records removed from the 'Set' table.
+2025-02-05 09:57:44.3336 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 09:57:44.3336 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 09:57:44.3336 Debug Execution loop Worker:ebb656e2 has started in 34.1123 ms
+2025-02-05 09:57:44.3523 Debug Execution loop Worker:13c2990d has started in 43.6437 ms
+2025-02-05 09:57:44.3523 Debug Execution loop Worker:848e2069 has started in 50.0997 ms
+2025-02-05 09:57:44.3523 Debug Execution loop Worker:3e1d63e8 has started in 54.4328 ms
+2025-02-05 09:57:44.3697 Debug Execution loop Worker:e61913ca has started in 60.7482 ms
+2025-02-05 09:57:44.3697 Debug Execution loop Worker:867cc923 has started in 63.7427 ms
+2025-02-05 09:57:44.3851 Debug Execution loop Worker:37dc6bac has started in 76.6481 ms
+2025-02-05 09:57:44.3851 Debug Execution loop Worker:91384dee has started in 80.7634 ms
+2025-02-05 09:57:44.3851 Debug Execution loop Worker:3a292754 has started in 84.4716 ms
+2025-02-05 09:57:44.3966 Debug Execution loop Worker:919436ee has started in 87.4368 ms
+2025-02-05 09:57:44.3966 Debug Execution loop Worker:19a608e5 has started in 90.4973 ms
+2025-02-05 09:57:44.3966 Debug Execution loop Worker:6d7efde2 has started in 93.426 ms
+2025-02-05 09:57:44.3966 Debug Execution loop Worker:b22bcf7a has started in 96.7135 ms
+2025-02-05 09:57:44.3966 Debug Execution loop Worker:f1e0bcf1 has started in 99.5481 ms
+2025-02-05 09:57:44.4119 Debug Execution loop DelayedJobScheduler:5be6b493 has started in 6.102 ms
+2025-02-05 09:57:44.4119 Debug Execution loop Worker:46f3d5cc has started in 105.2014 ms
+2025-02-05 09:57:44.4119 Info Server laptop-43cnj97a:27936:27f67607 all the dispatchers started
+2025-02-05 09:57:44.4119 Debug Execution loop RecurringJobScheduler:288adf45 has started in 10.0424 ms
+2025-02-05 09:57:44.4119 Debug Execution loop Worker:c782fb85 has started in 117.0923 ms
+2025-02-05 09:57:49.6374 Trace Checking for aborted jobs...
+2025-02-05 09:57:49.6374 Trace No newly aborted jobs found.
+2025-02-05 09:57:51.9683 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 09:57:51.9683 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 09:57:51.9896 Trace Executing Controller: Login, Action: Index
+2025-02-05 09:57:51.9966 Trace Executed Controller: Login, Action: Index
+2025-02-05 09:57:54.6421 Trace Checking for aborted jobs...
+2025-02-05 09:57:54.6421 Trace No newly aborted jobs found.
+2025-02-05 09:57:59.6533 Trace Checking for aborted jobs...
+2025-02-05 09:57:59.6533 Trace No newly aborted jobs found.
+2025-02-05 09:58:04.6674 Trace Checking for aborted jobs...
+2025-02-05 09:58:04.6674 Trace No newly aborted jobs found.
+2025-02-05 09:58:09.6760 Trace Checking for aborted jobs...
+2025-02-05 09:58:09.6760 Trace No newly aborted jobs found.
+2025-02-05 09:58:14.3402 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 09:58:14.3402 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:58:14.6908 Trace Checking for aborted jobs...
+2025-02-05 09:58:14.6908 Trace No newly aborted jobs found.
+2025-02-05 09:58:17.7700 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-05 09:58:17.7943 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-05 09:58:17.8103 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 09:58:17.8103 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 09:58:19.7053 Trace Checking for aborted jobs...
+2025-02-05 09:58:19.7053 Trace No newly aborted jobs found.
+2025-02-05 09:58:22.6067 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 09:58:22.6067 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 09:58:24.3199 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 09:58:24.3199 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 09:58:24.3780 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-05 09:58:24.4038 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-05 09:58:24.7141 Trace Checking for aborted jobs...
+2025-02-05 09:58:24.7141 Trace No newly aborted jobs found.
+2025-02-05 09:58:29.7171 Trace Checking for aborted jobs...
+2025-02-05 09:58:29.7171 Trace No newly aborted jobs found.
+2025-02-05 09:58:34.7282 Trace Checking for aborted jobs...
+2025-02-05 09:58:34.7282 Trace No newly aborted jobs found.
+2025-02-05 09:58:37.0008 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 09:58:37.0087 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 09:58:37.0301 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 09:58:37.0301 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 09:58:37.1057 Trace Executing Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 09:58:37.1257 Trace Executed Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 09:58:39.7462 Trace Checking for aborted jobs...
+2025-02-05 09:58:39.7462 Trace No newly aborted jobs found.
+2025-02-05 09:58:44.3654 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 09:58:44.3654 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:58:44.7465 Trace Checking for aborted jobs...
+2025-02-05 09:58:44.7465 Trace No newly aborted jobs found.
+2025-02-05 09:58:49.7585 Trace Checking for aborted jobs...
+2025-02-05 09:58:49.7585 Trace No newly aborted jobs found.
+2025-02-05 09:58:54.7682 Trace Checking for aborted jobs...
+2025-02-05 09:58:54.7682 Trace No newly aborted jobs found.
+2025-02-05 09:58:59.7689 Trace Checking for aborted jobs...
+2025-02-05 09:58:59.7689 Trace No newly aborted jobs found.
+2025-02-05 09:59:04.7779 Trace Checking for aborted jobs...
+2025-02-05 09:59:04.7779 Trace No newly aborted jobs found.
+2025-02-05 09:59:09.7856 Trace Checking for aborted jobs...
+2025-02-05 09:59:09.7856 Trace No newly aborted jobs found.
+2025-02-05 09:59:14.3749 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 09:59:14.3749 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:59:14.7876 Trace Checking for aborted jobs...
+2025-02-05 09:59:14.7876 Trace No newly aborted jobs found.
+2025-02-05 09:59:19.8004 Trace Checking for aborted jobs...
+2025-02-05 09:59:19.8004 Trace No newly aborted jobs found.
+2025-02-05 09:59:24.8080 Trace Checking for aborted jobs...
+2025-02-05 09:59:24.8080 Trace No newly aborted jobs found.
+2025-02-05 09:59:29.8209 Trace Checking for aborted jobs...
+2025-02-05 09:59:29.8209 Trace No newly aborted jobs found.
+2025-02-05 09:59:34.8337 Trace Checking for aborted jobs...
+2025-02-05 09:59:34.8337 Trace No newly aborted jobs found.
+2025-02-05 09:59:39.8467 Trace Checking for aborted jobs...
+2025-02-05 09:59:39.8467 Trace No newly aborted jobs found.
+2025-02-05 09:59:44.3963 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 09:59:44.3963 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 09:59:44.8512 Trace Checking for aborted jobs...
+2025-02-05 09:59:44.8512 Trace No newly aborted jobs found.
+2025-02-05 09:59:49.8597 Trace Checking for aborted jobs...
+2025-02-05 09:59:49.8597 Trace No newly aborted jobs found.
+2025-02-05 09:59:54.8640 Trace Checking for aborted jobs...
+2025-02-05 09:59:54.8640 Trace No newly aborted jobs found.
+2025-02-05 09:59:59.8758 Trace Checking for aborted jobs...
+2025-02-05 09:59:59.8758 Trace No newly aborted jobs found.
+2025-02-05 10:00:04.8820 Trace Checking for aborted jobs...
+2025-02-05 10:00:04.8820 Trace No newly aborted jobs found.
+2025-02-05 10:00:09.8927 Trace Checking for aborted jobs...
+2025-02-05 10:00:09.8927 Trace No newly aborted jobs found.
+2025-02-05 10:00:14.4058 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 10:00:14.4058 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:00:14.8978 Trace Checking for aborted jobs...
+2025-02-05 10:00:14.8978 Trace No newly aborted jobs found.
+2025-02-05 10:00:19.9101 Trace Checking for aborted jobs...
+2025-02-05 10:00:19.9101 Trace No newly aborted jobs found.
+2025-02-05 10:00:24.9159 Trace Checking for aborted jobs...
+2025-02-05 10:00:24.9159 Trace No newly aborted jobs found.
+2025-02-05 10:00:29.9233 Trace Checking for aborted jobs...
+2025-02-05 10:00:29.9233 Trace No newly aborted jobs found.
+2025-02-05 10:00:34.9311 Trace Checking for aborted jobs...
+2025-02-05 10:00:34.9311 Trace No newly aborted jobs found.
+2025-02-05 10:00:39.9464 Trace Checking for aborted jobs...
+2025-02-05 10:00:39.9464 Trace No newly aborted jobs found.
+2025-02-05 10:00:44.4218 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 10:00:44.4218 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:00:44.9585 Trace Checking for aborted jobs...
+2025-02-05 10:00:44.9585 Trace No newly aborted jobs found.
+2025-02-05 10:00:49.9614 Trace Checking for aborted jobs...
+2025-02-05 10:00:49.9614 Trace No newly aborted jobs found.
+2025-02-05 10:00:54.9647 Trace Checking for aborted jobs...
+2025-02-05 10:00:54.9647 Trace No newly aborted jobs found.
+2025-02-05 10:00:59.9680 Trace Checking for aborted jobs...
+2025-02-05 10:00:59.9680 Trace No newly aborted jobs found.
+2025-02-05 10:01:04.9807 Trace Checking for aborted jobs...
+2025-02-05 10:01:04.9807 Trace No newly aborted jobs found.
+2025-02-05 10:01:09.9842 Trace Checking for aborted jobs...
+2025-02-05 10:01:09.9842 Trace No newly aborted jobs found.
+2025-02-05 10:01:14.4312 Debug Server laptop-43cnj97a:27936:27f67607 heartbeat successfully sent
+2025-02-05 10:01:14.4312 Trace Server laptop-43cnj97a:27936:27f67607 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:01:14.9857 Trace Checking for aborted jobs...
+2025-02-05 10:01:14.9857 Trace No newly aborted jobs found.
+2025-02-05 10:01:25.9535 Info Application Start
+2025-02-05 10:01:26.0609 Info Start installing Hangfire SQL objects...
+2025-02-05 10:01:26.3100 Info Hangfire SQL objects installed.
+2025-02-05 10:01:26.3348 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 10:01:26.3348 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 10:01:26.3348 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 10:01:26.3526 Debug Execution loop BackgroundServerProcess:c6c841bb has started in 6.9846 ms
+2025-02-05 10:01:26.3526 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 10:01:26.3526 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 10:01:26.3526 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 10:01:26.3526 Trace Server laptop-43cnj97a:29628:2bceb121 is announcing itself...
+2025-02-05 10:01:26.4744 Info Server laptop-43cnj97a:29628:2bceb121 successfully announced in 113.5297 ms
+2025-02-05 10:01:26.4744 Info Server laptop-43cnj97a:29628:2bceb121 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 10:01:26.4744 Debug Execution loop ServerHeartbeatProcess:a93b9b59 has started in 4.416 ms
+2025-02-05 10:01:26.4744 Debug Execution loop ServerWatchdog:eafe03a2 has started in 4.5071 ms
+2025-02-05 10:01:26.4744 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:01:26.4744 Debug Execution loop ServerJobCancellationWatcher:5fba352b has started in 3.3328 ms
+2025-02-05 10:01:26.4744 Trace Checking for aborted jobs...
+2025-02-05 10:01:26.4744 Debug Execution loop ExpirationManager:2c3df0ce has started in 2.4354 ms
+2025-02-05 10:01:26.4744 Trace No newly aborted jobs found.
+2025-02-05 10:01:26.4902 Debug Execution loop CountersAggregator:ac9842d7 has started in 2.6251 ms
+2025-02-05 10:01:26.4902 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 10:01:26.4902 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:01:26.4902 Debug Execution loop SqlServerHeartbeatProcess:dad76c8d has started in 4.8851 ms
+2025-02-05 10:01:26.4902 Debug Execution loop Worker:dd3b0d8a has started in 7.0048 ms
+2025-02-05 10:01:26.5061 Debug Execution loop Worker:a323d668 has started in 13.4527 ms
+2025-02-05 10:01:26.5061 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 10:01:26.5061 Debug Removing outdated records from the 'Job' table...
+2025-02-05 10:01:26.5061 Trace Outdated records removed from the 'Job' table.
+2025-02-05 10:01:26.5061 Debug Removing outdated records from the 'List' table...
+2025-02-05 10:01:26.5061 Trace Outdated records removed from the 'List' table.
+2025-02-05 10:01:26.5061 Debug Removing outdated records from the 'Set' table...
+2025-02-05 10:01:26.5061 Debug Execution loop Worker:fa1ea4e6 has started in 28.8868 ms
+2025-02-05 10:01:26.5219 Trace Outdated records removed from the 'Set' table.
+2025-02-05 10:01:26.5219 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 10:01:26.5219 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:01:26.5219 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 10:01:26.5219 Debug Execution loop Worker:29bab8ed has started in 34.7855 ms
+2025-02-05 10:01:26.5219 Debug Execution loop Worker:63aca38a has started in 38.5453 ms
+2025-02-05 10:01:26.5219 Debug Execution loop Worker:c22fc55b has started in 41.8881 ms
+2025-02-05 10:01:26.5377 Debug Execution loop Worker:a8fb6c2c has started in 45.2612 ms
+2025-02-05 10:01:26.5377 Debug Execution loop Worker:86608bbe has started in 47.9551 ms
+2025-02-05 10:01:26.5377 Debug Execution loop Worker:8f94c66d has started in 51.1521 ms
+2025-02-05 10:01:26.5377 Debug Execution loop Worker:7a2c7f0f has started in 52.9943 ms
+2025-02-05 10:01:26.5377 Debug Execution loop Worker:598ca8d4 has started in 59.1093 ms
+2025-02-05 10:01:26.5542 Debug Execution loop Worker:79061d9e has started in 61.8809 ms
+2025-02-05 10:01:26.5542 Debug Execution loop Worker:10dbacd1 has started in 64.2247 ms
+2025-02-05 10:01:26.5542 Debug Execution loop Worker:814e9952 has started in 70.8838 ms
+2025-02-05 10:01:26.5542 Debug Execution loop Worker:2887124f has started in 72.6334 ms
+2025-02-05 10:01:26.5704 Debug Execution loop Worker:080ae0e5 has started in 77.862 ms
+2025-02-05 10:01:26.5704 Debug Execution loop Worker:98da232b has started in 81.5803 ms
+2025-02-05 10:01:26.5704 Debug Execution loop Worker:bb8b7c56 has started in 84.648 ms
+2025-02-05 10:01:26.5704 Debug Execution loop Worker:b0bcb6ce has started in 88.7514 ms
+2025-02-05 10:01:26.5837 Debug Execution loop Worker:3e7ff9ed has started in 91.4631 ms
+2025-02-05 10:01:26.5837 Debug Execution loop DelayedJobScheduler:0165a176 has started in 5.051 ms
+2025-02-05 10:01:26.5837 Info Server laptop-43cnj97a:29628:2bceb121 all the dispatchers started
+2025-02-05 10:01:26.5837 Debug Execution loop RecurringJobScheduler:fb7e5cbe has started in 6.3302 ms
+2025-02-05 10:01:27.0847 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 10:01:27.1037 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 10:01:31.4936 Trace Checking for aborted jobs...
+2025-02-05 10:01:31.4936 Trace No newly aborted jobs found.
+2025-02-05 10:01:36.5072 Trace Checking for aborted jobs...
+2025-02-05 10:01:36.5072 Trace No newly aborted jobs found.
+2025-02-05 10:01:37.4598 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:01:37.4598 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:01:39.3927 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:01:39.3927 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:01:39.4846 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-05 10:01:39.5036 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-05 10:01:41.5177 Trace Checking for aborted jobs...
+2025-02-05 10:01:41.5177 Trace No newly aborted jobs found.
+2025-02-05 10:01:42.2917 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:42.2917 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:42.3228 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:42.3228 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:42.3478 Trace Executing Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 10:01:42.3612 Trace Executed Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 10:01:46.5262 Trace Checking for aborted jobs...
+2025-02-05 10:01:46.5262 Trace No newly aborted jobs found.
+2025-02-05 10:01:48.5191 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:01:48.5191 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:01:48.5440 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-05 10:01:48.5440 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-05 10:01:50.6662 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:50.6662 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:50.6796 Trace Executing Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:50.6796 Trace Executed Controller: MainOrder, Action: GetRedirectOrderDetailView
+2025-02-05 10:01:50.6996 Trace Executing Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 10:01:50.6996 Trace Executed Controller: MainOrder, Action: GetOrderDetail
+2025-02-05 10:01:51.5397 Trace Checking for aborted jobs...
+2025-02-05 10:01:51.5397 Trace No newly aborted jobs found.
+2025-02-05 10:01:56.5076 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:01:56.5076 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:01:56.5477 Trace Checking for aborted jobs...
+2025-02-05 10:01:56.5477 Trace No newly aborted jobs found.
+2025-02-05 10:01:58.2796 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:01:58.2796 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:01:58.3028 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-05 10:01:58.3028 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-05 10:02:01.5576 Trace Checking for aborted jobs...
+2025-02-05 10:02:01.5576 Trace No newly aborted jobs found.
+2025-02-05 10:02:01.9373 Trace Executing Controller: ShippingOption, Action: GetRedirectShippingOptionView
+2025-02-05 10:02:01.9373 Trace Executed Controller: ShippingOption, Action: GetRedirectShippingOptionView
+2025-02-05 10:02:03.0430 Trace Executing Controller: ShippingOption, Action: GetRedirectShippingOptionView
+2025-02-05 10:02:03.0430 Trace Executed Controller: ShippingOption, Action: GetRedirectShippingOptionView
+2025-02-05 10:02:03.0859 Trace Executing Controller: ShippingOption, Action: GetShippingOption
+2025-02-05 10:02:03.0859 Trace Executed Controller: ShippingOption, Action: GetShippingOption
+2025-02-05 10:02:05.3534 Trace Executing Controller: MainProduct, Action: Index
+2025-02-05 10:02:05.3534 Trace Executed Controller: MainProduct, Action: Index
+2025-02-05 10:02:06.5665 Trace Checking for aborted jobs...
+2025-02-05 10:02:06.5665 Trace No newly aborted jobs found.
+2025-02-05 10:02:07.8809 Trace Executing Controller: MainProduct, Action: Index
+2025-02-05 10:02:07.8809 Trace Executed Controller: MainProduct, Action: Index
+2025-02-05 10:02:07.9106 Trace Executing Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:07.9290 Trace Executed Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:09.3789 Trace Executing Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:09.4070 Trace Executed Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:09.4348 Trace Executing Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:09.4348 Trace Executed Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:11.0755 Trace Executing Controller: MainProduct, Action: Index
+2025-02-05 10:02:11.0755 Trace Executed Controller: MainProduct, Action: Index
+2025-02-05 10:02:11.1005 Trace Executing Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:11.1005 Trace Executed Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:11.5729 Trace Checking for aborted jobs...
+2025-02-05 10:02:11.5729 Trace No newly aborted jobs found.
+2025-02-05 10:02:14.4717 Trace Executing Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:14.4717 Trace Executed Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:14.4869 Trace Executing Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:14.4899 Trace Executed Controller: MainProduct, Action: ProductDetail
+2025-02-05 10:02:16.5162 Trace Executing Controller: MainProduct, Action: Index
+2025-02-05 10:02:16.5162 Trace Executed Controller: MainProduct, Action: Index
+2025-02-05 10:02:16.5377 Trace Executing Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:16.5377 Trace Executed Controller: MainProduct, Action: GetProduct
+2025-02-05 10:02:16.5874 Trace Checking for aborted jobs...
+2025-02-05 10:02:16.5874 Trace No newly aborted jobs found.
+2025-02-05 10:02:18.7039 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:02:18.7039 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:02:18.7203 Trace Executing Controller: MainOrder, Action: Index
+2025-02-05 10:02:18.7203 Trace Executed Controller: MainOrder, Action: Index
+2025-02-05 10:02:18.7476 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-05 10:02:18.7476 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-05 10:02:21.6002 Trace Checking for aborted jobs...
+2025-02-05 10:02:21.6002 Trace No newly aborted jobs found.
+2025-02-05 10:02:26.5214 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:02:26.5214 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:02:26.6105 Trace Checking for aborted jobs...
+2025-02-05 10:02:26.6105 Trace No newly aborted jobs found.
+2025-02-05 10:02:31.6166 Trace Checking for aborted jobs...
+2025-02-05 10:02:31.6166 Trace No newly aborted jobs found.
+2025-02-05 10:02:36.6245 Trace Checking for aborted jobs...
+2025-02-05 10:02:36.6245 Trace No newly aborted jobs found.
+2025-02-05 10:02:41.6372 Trace Checking for aborted jobs...
+2025-02-05 10:02:41.6372 Trace No newly aborted jobs found.
+2025-02-05 10:02:46.6501 Trace Checking for aborted jobs...
+2025-02-05 10:02:46.6501 Trace No newly aborted jobs found.
+2025-02-05 10:02:51.6593 Trace Checking for aborted jobs...
+2025-02-05 10:02:51.6593 Trace No newly aborted jobs found.
+2025-02-05 10:02:56.5431 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:02:56.5431 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:02:56.6616 Trace Checking for aborted jobs...
+2025-02-05 10:02:56.6616 Trace No newly aborted jobs found.
+2025-02-05 10:03:01.6724 Trace Checking for aborted jobs...
+2025-02-05 10:03:01.6724 Trace No newly aborted jobs found.
+2025-02-05 10:03:06.6874 Trace Checking for aborted jobs...
+2025-02-05 10:03:06.6874 Trace No newly aborted jobs found.
+2025-02-05 10:03:11.6989 Trace Checking for aborted jobs...
+2025-02-05 10:03:11.6989 Trace No newly aborted jobs found.
+2025-02-05 10:03:16.7104 Trace Checking for aborted jobs...
+2025-02-05 10:03:16.7104 Trace No newly aborted jobs found.
+2025-02-05 10:03:21.7244 Trace Checking for aborted jobs...
+2025-02-05 10:03:21.7244 Trace No newly aborted jobs found.
+2025-02-05 10:03:26.5631 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:03:26.5631 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:03:26.7296 Trace Checking for aborted jobs...
+2025-02-05 10:03:26.7296 Trace No newly aborted jobs found.
+2025-02-05 10:03:31.7349 Trace Checking for aborted jobs...
+2025-02-05 10:03:31.7349 Trace No newly aborted jobs found.
+2025-02-05 10:03:36.7473 Trace Checking for aborted jobs...
+2025-02-05 10:03:36.7473 Trace No newly aborted jobs found.
+2025-02-05 10:03:41.7598 Trace Checking for aborted jobs...
+2025-02-05 10:03:41.7598 Trace No newly aborted jobs found.
+2025-02-05 10:03:46.7732 Trace Checking for aborted jobs...
+2025-02-05 10:03:46.7732 Trace No newly aborted jobs found.
+2025-02-05 10:03:51.7780 Trace Checking for aborted jobs...
+2025-02-05 10:03:51.7780 Trace No newly aborted jobs found.
+2025-02-05 10:03:56.5893 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:03:56.5893 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:03:56.7831 Trace Checking for aborted jobs...
+2025-02-05 10:03:56.7831 Trace No newly aborted jobs found.
+2025-02-05 10:04:01.7930 Trace Checking for aborted jobs...
+2025-02-05 10:04:01.7930 Trace No newly aborted jobs found.
+2025-02-05 10:04:06.8043 Trace Checking for aborted jobs...
+2025-02-05 10:04:06.8043 Trace No newly aborted jobs found.
+2025-02-05 10:04:11.8175 Trace Checking for aborted jobs...
+2025-02-05 10:04:11.8175 Trace No newly aborted jobs found.
+2025-02-05 10:04:16.8218 Trace Checking for aborted jobs...
+2025-02-05 10:04:16.8218 Trace No newly aborted jobs found.
+2025-02-05 10:04:21.8243 Trace Checking for aborted jobs...
+2025-02-05 10:04:21.8243 Trace No newly aborted jobs found.
+2025-02-05 10:04:26.6065 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:04:26.6065 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:04:26.8358 Trace Checking for aborted jobs...
+2025-02-05 10:04:26.8358 Trace No newly aborted jobs found.
+2025-02-05 10:04:31.8436 Trace Checking for aborted jobs...
+2025-02-05 10:04:31.8436 Trace No newly aborted jobs found.
+2025-02-05 10:04:36.8503 Trace Checking for aborted jobs...
+2025-02-05 10:04:36.8503 Trace No newly aborted jobs found.
+2025-02-05 10:04:41.8632 Trace Checking for aborted jobs...
+2025-02-05 10:04:41.8632 Trace No newly aborted jobs found.
+2025-02-05 10:04:46.8730 Trace Checking for aborted jobs...
+2025-02-05 10:04:46.8730 Trace No newly aborted jobs found.
+2025-02-05 10:04:51.8883 Trace Checking for aborted jobs...
+2025-02-05 10:04:51.8883 Trace No newly aborted jobs found.
+2025-02-05 10:04:56.6504 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:04:56.6504 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:04:56.8992 Trace Checking for aborted jobs...
+2025-02-05 10:04:56.8992 Trace No newly aborted jobs found.
+2025-02-05 10:05:01.9078 Trace Checking for aborted jobs...
+2025-02-05 10:05:01.9078 Trace No newly aborted jobs found.
+2025-02-05 10:05:06.9222 Trace Checking for aborted jobs...
+2025-02-05 10:05:06.9222 Trace No newly aborted jobs found.
+2025-02-05 10:05:11.9289 Trace Checking for aborted jobs...
+2025-02-05 10:05:11.9289 Trace No newly aborted jobs found.
+2025-02-05 10:05:16.9294 Trace Checking for aborted jobs...
+2025-02-05 10:05:16.9294 Trace No newly aborted jobs found.
+2025-02-05 10:05:21.9335 Trace Checking for aborted jobs...
+2025-02-05 10:05:21.9335 Trace No newly aborted jobs found.
+2025-02-05 10:05:26.6558 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:05:26.6558 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:05:26.9451 Trace Checking for aborted jobs...
+2025-02-05 10:05:26.9451 Trace No newly aborted jobs found.
+2025-02-05 10:05:31.9574 Trace Checking for aborted jobs...
+2025-02-05 10:05:31.9574 Trace No newly aborted jobs found.
+2025-02-05 10:05:36.9588 Trace Checking for aborted jobs...
+2025-02-05 10:05:36.9588 Trace No newly aborted jobs found.
+2025-02-05 10:05:41.9768 Trace Checking for aborted jobs...
+2025-02-05 10:05:41.9768 Trace No newly aborted jobs found.
+2025-02-05 10:05:46.9942 Trace Checking for aborted jobs...
+2025-02-05 10:05:46.9942 Trace No newly aborted jobs found.
+2025-02-05 10:05:52.0015 Trace Checking for aborted jobs...
+2025-02-05 10:05:52.0015 Trace No newly aborted jobs found.
+2025-02-05 10:05:56.6679 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:05:56.6679 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:05:57.0050 Trace Checking for aborted jobs...
+2025-02-05 10:05:57.0050 Trace No newly aborted jobs found.
+2025-02-05 10:06:02.0063 Trace Checking for aborted jobs...
+2025-02-05 10:06:02.0063 Trace No newly aborted jobs found.
+2025-02-05 10:06:07.0177 Trace Checking for aborted jobs...
+2025-02-05 10:06:07.0177 Trace No newly aborted jobs found.
+2025-02-05 10:06:12.0247 Trace Checking for aborted jobs...
+2025-02-05 10:06:12.0247 Trace No newly aborted jobs found.
+2025-02-05 10:06:17.0344 Trace Checking for aborted jobs...
+2025-02-05 10:06:17.0344 Trace No newly aborted jobs found.
+2025-02-05 10:06:22.0442 Trace Checking for aborted jobs...
+2025-02-05 10:06:22.0442 Trace No newly aborted jobs found.
+2025-02-05 10:06:26.5071 Info 1 servers were removed due to timeout
+2025-02-05 10:06:26.5378 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:06:26.5535 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:06:26.6711 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:06:26.6711 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:06:27.0565 Trace Checking for aborted jobs...
+2025-02-05 10:06:27.0565 Trace No newly aborted jobs found.
+2025-02-05 10:06:32.0635 Trace Checking for aborted jobs...
+2025-02-05 10:06:32.0635 Trace No newly aborted jobs found.
+2025-02-05 10:06:37.0667 Trace Checking for aborted jobs...
+2025-02-05 10:06:37.0667 Trace No newly aborted jobs found.
+2025-02-05 10:06:42.0805 Trace Checking for aborted jobs...
+2025-02-05 10:06:42.0805 Trace No newly aborted jobs found.
+2025-02-05 10:06:47.0857 Trace Checking for aborted jobs...
+2025-02-05 10:06:47.0857 Trace No newly aborted jobs found.
+2025-02-05 10:06:52.0933 Trace Checking for aborted jobs...
+2025-02-05 10:06:52.0933 Trace No newly aborted jobs found.
+2025-02-05 10:06:56.6825 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:06:56.6825 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:06:57.1044 Trace Checking for aborted jobs...
+2025-02-05 10:06:57.1044 Trace No newly aborted jobs found.
+2025-02-05 10:07:02.1066 Trace Checking for aborted jobs...
+2025-02-05 10:07:02.1066 Trace No newly aborted jobs found.
+2025-02-05 10:07:07.1084 Trace Checking for aborted jobs...
+2025-02-05 10:07:07.1084 Trace No newly aborted jobs found.
+2025-02-05 10:07:12.1230 Trace Checking for aborted jobs...
+2025-02-05 10:07:12.1230 Trace No newly aborted jobs found.
+2025-02-05 10:07:17.1249 Trace Checking for aborted jobs...
+2025-02-05 10:07:17.1249 Trace No newly aborted jobs found.
+2025-02-05 10:07:22.1385 Trace Checking for aborted jobs...
+2025-02-05 10:07:22.1385 Trace No newly aborted jobs found.
+2025-02-05 10:07:26.6934 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:07:26.6934 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:07:27.1412 Trace Checking for aborted jobs...
+2025-02-05 10:07:27.1412 Trace No newly aborted jobs found.
+2025-02-05 10:07:32.1494 Trace Checking for aborted jobs...
+2025-02-05 10:07:32.1494 Trace No newly aborted jobs found.
+2025-02-05 10:07:37.1507 Trace Checking for aborted jobs...
+2025-02-05 10:07:37.1507 Trace No newly aborted jobs found.
+2025-02-05 10:07:42.1580 Trace Checking for aborted jobs...
+2025-02-05 10:07:42.1580 Trace No newly aborted jobs found.
+2025-02-05 10:07:47.1585 Trace Checking for aborted jobs...
+2025-02-05 10:07:47.1585 Trace No newly aborted jobs found.
+2025-02-05 10:07:52.1647 Trace Checking for aborted jobs...
+2025-02-05 10:07:52.1647 Trace No newly aborted jobs found.
+2025-02-05 10:07:56.7111 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:07:56.7111 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:07:57.1766 Trace Checking for aborted jobs...
+2025-02-05 10:07:57.1766 Trace No newly aborted jobs found.
+2025-02-05 10:08:02.1805 Trace Checking for aborted jobs...
+2025-02-05 10:08:02.1805 Trace No newly aborted jobs found.
+2025-02-05 10:08:07.1959 Trace Checking for aborted jobs...
+2025-02-05 10:08:07.1959 Trace No newly aborted jobs found.
+2025-02-05 10:08:12.2058 Trace Checking for aborted jobs...
+2025-02-05 10:08:12.2058 Trace No newly aborted jobs found.
+2025-02-05 10:08:17.2201 Trace Checking for aborted jobs...
+2025-02-05 10:08:17.2201 Trace No newly aborted jobs found.
+2025-02-05 10:08:22.2316 Trace Checking for aborted jobs...
+2025-02-05 10:08:22.2316 Trace No newly aborted jobs found.
+2025-02-05 10:08:26.7314 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:08:26.7314 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:08:27.2446 Trace Checking for aborted jobs...
+2025-02-05 10:08:27.2446 Trace No newly aborted jobs found.
+2025-02-05 10:08:32.2567 Trace Checking for aborted jobs...
+2025-02-05 10:08:32.2567 Trace No newly aborted jobs found.
+2025-02-05 10:08:37.2663 Trace Checking for aborted jobs...
+2025-02-05 10:08:37.2663 Trace No newly aborted jobs found.
+2025-02-05 10:08:42.2738 Trace Checking for aborted jobs...
+2025-02-05 10:08:42.2738 Trace No newly aborted jobs found.
+2025-02-05 10:08:47.2810 Trace Checking for aborted jobs...
+2025-02-05 10:08:47.2810 Trace No newly aborted jobs found.
+2025-02-05 10:08:52.2864 Trace Checking for aborted jobs...
+2025-02-05 10:08:52.2864 Trace No newly aborted jobs found.
+2025-02-05 10:08:56.7424 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:08:56.7424 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:08:57.2971 Trace Checking for aborted jobs...
+2025-02-05 10:08:57.2971 Trace No newly aborted jobs found.
+2025-02-05 10:09:02.3080 Trace Checking for aborted jobs...
+2025-02-05 10:09:02.3080 Trace No newly aborted jobs found.
+2025-02-05 10:09:07.3299 Trace Checking for aborted jobs...
+2025-02-05 10:09:07.3299 Trace No newly aborted jobs found.
+2025-02-05 10:09:12.3439 Trace Checking for aborted jobs...
+2025-02-05 10:09:12.3439 Trace No newly aborted jobs found.
+2025-02-05 10:09:17.3477 Trace Checking for aborted jobs...
+2025-02-05 10:09:17.3477 Trace No newly aborted jobs found.
+2025-02-05 10:09:22.3542 Trace Checking for aborted jobs...
+2025-02-05 10:09:22.3542 Trace No newly aborted jobs found.
+2025-02-05 10:09:26.7700 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:09:26.7700 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:09:27.3582 Trace Checking for aborted jobs...
+2025-02-05 10:09:27.3582 Trace No newly aborted jobs found.
+2025-02-05 10:09:32.3738 Trace Checking for aborted jobs...
+2025-02-05 10:09:32.3738 Trace No newly aborted jobs found.
+2025-02-05 10:09:37.3826 Trace Checking for aborted jobs...
+2025-02-05 10:09:37.3826 Trace No newly aborted jobs found.
+2025-02-05 10:09:42.3959 Trace Checking for aborted jobs...
+2025-02-05 10:09:42.3959 Trace No newly aborted jobs found.
+2025-02-05 10:09:47.4112 Trace Checking for aborted jobs...
+2025-02-05 10:09:47.4112 Trace No newly aborted jobs found.
+2025-02-05 10:09:52.4268 Trace Checking for aborted jobs...
+2025-02-05 10:09:52.4268 Trace No newly aborted jobs found.
+2025-02-05 10:09:56.7723 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:09:56.7723 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:09:57.4289 Trace Checking for aborted jobs...
+2025-02-05 10:09:57.4289 Trace No newly aborted jobs found.
+2025-02-05 10:10:02.4303 Trace Checking for aborted jobs...
+2025-02-05 10:10:02.4303 Trace No newly aborted jobs found.
+2025-02-05 10:10:07.4335 Trace Checking for aborted jobs...
+2025-02-05 10:10:07.4335 Trace No newly aborted jobs found.
+2025-02-05 10:10:12.4566 Trace Checking for aborted jobs...
+2025-02-05 10:10:12.4566 Trace No newly aborted jobs found.
+2025-02-05 10:10:17.4675 Trace Checking for aborted jobs...
+2025-02-05 10:10:17.4675 Trace No newly aborted jobs found.
+2025-02-05 10:10:22.4825 Trace Checking for aborted jobs...
+2025-02-05 10:10:22.4825 Trace No newly aborted jobs found.
+2025-02-05 10:10:26.7804 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:10:26.7804 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:10:27.4918 Trace Checking for aborted jobs...
+2025-02-05 10:10:27.4918 Trace No newly aborted jobs found.
+2025-02-05 10:10:32.4938 Trace Checking for aborted jobs...
+2025-02-05 10:10:32.4938 Trace No newly aborted jobs found.
+2025-02-05 10:10:37.5010 Trace Checking for aborted jobs...
+2025-02-05 10:10:37.5010 Trace No newly aborted jobs found.
+2025-02-05 10:10:42.5012 Trace Checking for aborted jobs...
+2025-02-05 10:10:42.5012 Trace No newly aborted jobs found.
+2025-02-05 10:10:47.5153 Trace Checking for aborted jobs...
+2025-02-05 10:10:47.5153 Trace No newly aborted jobs found.
+2025-02-05 10:10:52.5211 Trace Checking for aborted jobs...
+2025-02-05 10:10:52.5211 Trace No newly aborted jobs found.
+2025-02-05 10:10:56.7936 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:10:56.7936 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:10:57.5435 Trace Checking for aborted jobs...
+2025-02-05 10:10:57.5435 Trace No newly aborted jobs found.
+2025-02-05 10:11:02.5520 Trace Checking for aborted jobs...
+2025-02-05 10:11:02.5521 Trace No newly aborted jobs found.
+2025-02-05 10:11:07.5580 Trace Checking for aborted jobs...
+2025-02-05 10:11:07.5580 Trace No newly aborted jobs found.
+2025-02-05 10:11:12.5635 Trace Checking for aborted jobs...
+2025-02-05 10:11:12.5635 Trace No newly aborted jobs found.
+2025-02-05 10:11:17.5772 Trace Checking for aborted jobs...
+2025-02-05 10:11:17.5772 Trace No newly aborted jobs found.
+2025-02-05 10:11:22.5821 Trace Checking for aborted jobs...
+2025-02-05 10:11:22.5821 Trace No newly aborted jobs found.
+2025-02-05 10:11:26.5797 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:11:26.5977 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:11:26.7981 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:11:26.7981 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:11:27.5892 Trace Checking for aborted jobs...
+2025-02-05 10:11:27.5892 Trace No newly aborted jobs found.
+2025-02-05 10:11:32.6115 Trace Checking for aborted jobs...
+2025-02-05 10:11:32.6115 Trace No newly aborted jobs found.
+2025-02-05 10:11:37.6253 Trace Checking for aborted jobs...
+2025-02-05 10:11:37.6253 Trace No newly aborted jobs found.
+2025-02-05 10:11:42.6305 Trace Checking for aborted jobs...
+2025-02-05 10:11:42.6305 Trace No newly aborted jobs found.
+2025-02-05 10:11:47.6328 Trace Checking for aborted jobs...
+2025-02-05 10:11:47.6328 Trace No newly aborted jobs found.
+2025-02-05 10:11:52.6462 Trace Checking for aborted jobs...
+2025-02-05 10:11:52.6462 Trace No newly aborted jobs found.
+2025-02-05 10:11:56.8124 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:11:56.8124 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:11:57.6473 Trace Checking for aborted jobs...
+2025-02-05 10:11:57.6473 Trace No newly aborted jobs found.
+2025-02-05 10:12:02.6509 Trace Checking for aborted jobs...
+2025-02-05 10:12:02.6509 Trace No newly aborted jobs found.
+2025-02-05 10:12:07.6565 Trace Checking for aborted jobs...
+2025-02-05 10:12:07.6565 Trace No newly aborted jobs found.
+2025-02-05 10:12:12.6593 Trace Checking for aborted jobs...
+2025-02-05 10:12:12.6593 Trace No newly aborted jobs found.
+2025-02-05 10:12:17.6735 Trace Checking for aborted jobs...
+2025-02-05 10:12:17.6735 Trace No newly aborted jobs found.
+2025-02-05 10:12:22.6813 Trace Checking for aborted jobs...
+2025-02-05 10:12:22.6813 Trace No newly aborted jobs found.
+2025-02-05 10:12:26.8312 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:12:26.8312 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:12:27.6948 Trace Checking for aborted jobs...
+2025-02-05 10:12:27.6948 Trace No newly aborted jobs found.
+2025-02-05 10:12:32.7049 Trace Checking for aborted jobs...
+2025-02-05 10:12:32.7049 Trace No newly aborted jobs found.
+2025-02-05 10:12:37.7067 Trace Checking for aborted jobs...
+2025-02-05 10:12:37.7067 Trace No newly aborted jobs found.
+2025-02-05 10:12:42.7121 Trace Checking for aborted jobs...
+2025-02-05 10:12:42.7121 Trace No newly aborted jobs found.
+2025-02-05 10:12:47.7264 Trace Checking for aborted jobs...
+2025-02-05 10:12:47.7264 Trace No newly aborted jobs found.
+2025-02-05 10:12:52.7380 Trace Checking for aborted jobs...
+2025-02-05 10:12:52.7380 Trace No newly aborted jobs found.
+2025-02-05 10:12:56.8399 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:12:56.8399 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:12:57.7525 Trace Checking for aborted jobs...
+2025-02-05 10:12:57.7525 Trace No newly aborted jobs found.
+2025-02-05 10:13:02.7631 Trace Checking for aborted jobs...
+2025-02-05 10:13:02.7631 Trace No newly aborted jobs found.
+2025-02-05 10:13:07.7664 Trace Checking for aborted jobs...
+2025-02-05 10:13:07.7664 Trace No newly aborted jobs found.
+2025-02-05 10:13:12.7738 Trace Checking for aborted jobs...
+2025-02-05 10:13:12.7738 Trace No newly aborted jobs found.
+2025-02-05 10:13:17.7787 Trace Checking for aborted jobs...
+2025-02-05 10:13:17.7787 Trace No newly aborted jobs found.
+2025-02-05 10:13:22.7806 Trace Checking for aborted jobs...
+2025-02-05 10:13:22.7806 Trace No newly aborted jobs found.
+2025-02-05 10:13:26.8488 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:13:26.8488 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:13:27.7824 Trace Checking for aborted jobs...
+2025-02-05 10:13:27.7824 Trace No newly aborted jobs found.
+2025-02-05 10:13:32.7844 Trace Checking for aborted jobs...
+2025-02-05 10:13:32.7844 Trace No newly aborted jobs found.
+2025-02-05 10:13:37.7979 Trace Checking for aborted jobs...
+2025-02-05 10:13:37.7979 Trace No newly aborted jobs found.
+2025-02-05 10:13:42.8113 Trace Checking for aborted jobs...
+2025-02-05 10:13:42.8113 Trace No newly aborted jobs found.
+2025-02-05 10:13:47.8228 Trace Checking for aborted jobs...
+2025-02-05 10:13:47.8228 Trace No newly aborted jobs found.
+2025-02-05 10:13:52.8268 Trace Checking for aborted jobs...
+2025-02-05 10:13:52.8268 Trace No newly aborted jobs found.
+2025-02-05 10:13:56.8579 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:13:56.8579 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:13:57.8336 Trace Checking for aborted jobs...
+2025-02-05 10:13:57.8336 Trace No newly aborted jobs found.
+2025-02-05 10:14:02.8431 Trace Checking for aborted jobs...
+2025-02-05 10:14:02.8431 Trace No newly aborted jobs found.
+2025-02-05 10:14:07.8492 Trace Checking for aborted jobs...
+2025-02-05 10:14:07.8492 Trace No newly aborted jobs found.
+2025-02-05 10:14:12.8625 Trace Checking for aborted jobs...
+2025-02-05 10:14:12.8625 Trace No newly aborted jobs found.
+2025-02-05 10:14:17.8734 Trace Checking for aborted jobs...
+2025-02-05 10:14:17.8734 Trace No newly aborted jobs found.
+2025-02-05 10:14:22.8787 Trace Checking for aborted jobs...
+2025-02-05 10:14:22.8787 Trace No newly aborted jobs found.
+2025-02-05 10:14:26.8627 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:14:26.8627 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:14:27.8877 Trace Checking for aborted jobs...
+2025-02-05 10:14:27.8877 Trace No newly aborted jobs found.
+2025-02-05 10:14:32.8904 Trace Checking for aborted jobs...
+2025-02-05 10:14:32.8904 Trace No newly aborted jobs found.
+2025-02-05 10:14:37.8932 Trace Checking for aborted jobs...
+2025-02-05 10:14:37.8932 Trace No newly aborted jobs found.
+2025-02-05 10:14:42.8953 Trace Checking for aborted jobs...
+2025-02-05 10:14:42.8953 Trace No newly aborted jobs found.
+2025-02-05 10:14:47.8974 Trace Checking for aborted jobs...
+2025-02-05 10:14:47.8974 Trace No newly aborted jobs found.
+2025-02-05 10:14:52.9106 Trace Checking for aborted jobs...
+2025-02-05 10:14:52.9106 Trace No newly aborted jobs found.
+2025-02-05 10:14:56.8831 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:14:56.8831 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:14:57.9175 Trace Checking for aborted jobs...
+2025-02-05 10:14:57.9175 Trace No newly aborted jobs found.
+2025-02-05 10:15:02.9304 Trace Checking for aborted jobs...
+2025-02-05 10:15:02.9304 Trace No newly aborted jobs found.
+2025-02-05 10:15:07.9354 Trace Checking for aborted jobs...
+2025-02-05 10:15:07.9354 Trace No newly aborted jobs found.
+2025-02-05 10:15:12.9396 Trace Checking for aborted jobs...
+2025-02-05 10:15:12.9396 Trace No newly aborted jobs found.
+2025-02-05 10:15:17.9531 Trace Checking for aborted jobs...
+2025-02-05 10:15:17.9531 Trace No newly aborted jobs found.
+2025-02-05 10:15:22.9606 Trace Checking for aborted jobs...
+2025-02-05 10:15:22.9606 Trace No newly aborted jobs found.
+2025-02-05 10:15:26.8901 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:15:26.8901 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:15:27.9736 Trace Checking for aborted jobs...
+2025-02-05 10:15:27.9736 Trace No newly aborted jobs found.
+2025-02-05 10:15:32.9753 Trace Checking for aborted jobs...
+2025-02-05 10:15:32.9753 Trace No newly aborted jobs found.
+2025-02-05 10:15:37.9815 Trace Checking for aborted jobs...
+2025-02-05 10:15:37.9815 Trace No newly aborted jobs found.
+2025-02-05 10:15:42.9962 Trace Checking for aborted jobs...
+2025-02-05 10:15:42.9962 Trace No newly aborted jobs found.
+2025-02-05 10:15:48.0015 Trace Checking for aborted jobs...
+2025-02-05 10:15:48.0015 Trace No newly aborted jobs found.
+2025-02-05 10:15:53.0164 Trace Checking for aborted jobs...
+2025-02-05 10:15:53.0164 Trace No newly aborted jobs found.
+2025-02-05 10:15:56.8984 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:15:56.8984 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:15:58.0214 Trace Checking for aborted jobs...
+2025-02-05 10:15:58.0214 Trace No newly aborted jobs found.
+2025-02-05 10:16:03.0352 Trace Checking for aborted jobs...
+2025-02-05 10:16:03.0352 Trace No newly aborted jobs found.
+2025-02-05 10:16:08.0385 Trace Checking for aborted jobs...
+2025-02-05 10:16:08.0385 Trace No newly aborted jobs found.
+2025-02-05 10:16:13.0387 Trace Checking for aborted jobs...
+2025-02-05 10:16:13.0387 Trace No newly aborted jobs found.
+2025-02-05 10:16:18.0491 Trace Checking for aborted jobs...
+2025-02-05 10:16:18.0491 Trace No newly aborted jobs found.
+2025-02-05 10:16:23.0535 Trace Checking for aborted jobs...
+2025-02-05 10:16:23.0535 Trace No newly aborted jobs found.
+2025-02-05 10:16:26.6098 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:16:26.6244 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:16:26.9080 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:16:26.9080 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:16:28.0662 Trace Checking for aborted jobs...
+2025-02-05 10:16:28.0662 Trace No newly aborted jobs found.
+2025-02-05 10:16:33.0753 Trace Checking for aborted jobs...
+2025-02-05 10:16:33.0753 Trace No newly aborted jobs found.
+2025-02-05 10:16:38.0889 Trace Checking for aborted jobs...
+2025-02-05 10:16:38.0889 Trace No newly aborted jobs found.
+2025-02-05 10:16:43.1008 Trace Checking for aborted jobs...
+2025-02-05 10:16:43.1008 Trace No newly aborted jobs found.
+2025-02-05 10:16:48.1045 Trace Checking for aborted jobs...
+2025-02-05 10:16:48.1045 Trace No newly aborted jobs found.
+2025-02-05 10:16:53.1055 Trace Checking for aborted jobs...
+2025-02-05 10:16:53.1055 Trace No newly aborted jobs found.
+2025-02-05 10:16:56.9243 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:16:56.9243 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:16:58.1182 Trace Checking for aborted jobs...
+2025-02-05 10:16:58.1182 Trace No newly aborted jobs found.
+2025-02-05 10:17:03.1337 Trace Checking for aborted jobs...
+2025-02-05 10:17:03.1337 Trace No newly aborted jobs found.
+2025-02-05 10:17:08.1364 Trace Checking for aborted jobs...
+2025-02-05 10:17:08.1364 Trace No newly aborted jobs found.
+2025-02-05 10:17:13.1477 Trace Checking for aborted jobs...
+2025-02-05 10:17:13.1477 Trace No newly aborted jobs found.
+2025-02-05 10:17:18.1553 Trace Checking for aborted jobs...
+2025-02-05 10:17:18.1553 Trace No newly aborted jobs found.
+2025-02-05 10:17:23.1564 Trace Checking for aborted jobs...
+2025-02-05 10:17:23.1564 Trace No newly aborted jobs found.
+2025-02-05 10:17:26.9315 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:17:26.9315 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:17:28.1657 Trace Checking for aborted jobs...
+2025-02-05 10:17:28.1657 Trace No newly aborted jobs found.
+2025-02-05 10:17:33.1725 Trace Checking for aborted jobs...
+2025-02-05 10:17:33.1725 Trace No newly aborted jobs found.
+2025-02-05 10:17:38.1805 Trace Checking for aborted jobs...
+2025-02-05 10:17:38.1805 Trace No newly aborted jobs found.
+2025-02-05 10:17:43.1897 Trace Checking for aborted jobs...
+2025-02-05 10:17:43.1897 Trace No newly aborted jobs found.
+2025-02-05 10:17:48.1909 Trace Checking for aborted jobs...
+2025-02-05 10:17:48.1909 Trace No newly aborted jobs found.
+2025-02-05 10:17:53.2017 Trace Checking for aborted jobs...
+2025-02-05 10:17:53.2017 Trace No newly aborted jobs found.
+2025-02-05 10:17:56.9456 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:17:56.9456 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:17:58.2084 Trace Checking for aborted jobs...
+2025-02-05 10:17:58.2084 Trace No newly aborted jobs found.
+2025-02-05 10:18:03.2201 Trace Checking for aborted jobs...
+2025-02-05 10:18:03.2201 Trace No newly aborted jobs found.
+2025-02-05 10:18:08.2315 Trace Checking for aborted jobs...
+2025-02-05 10:18:08.2315 Trace No newly aborted jobs found.
+2025-02-05 10:18:13.2475 Trace Checking for aborted jobs...
+2025-02-05 10:18:13.2475 Trace No newly aborted jobs found.
+2025-02-05 10:18:18.2578 Trace Checking for aborted jobs...
+2025-02-05 10:18:18.2578 Trace No newly aborted jobs found.
+2025-02-05 10:18:23.2729 Trace Checking for aborted jobs...
+2025-02-05 10:18:23.2729 Trace No newly aborted jobs found.
+2025-02-05 10:18:26.9579 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:18:26.9579 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:18:28.2868 Trace Checking for aborted jobs...
+2025-02-05 10:18:28.2868 Trace No newly aborted jobs found.
+2025-02-05 10:18:33.2916 Trace Checking for aborted jobs...
+2025-02-05 10:18:33.2916 Trace No newly aborted jobs found.
+2025-02-05 10:18:38.3019 Trace Checking for aborted jobs...
+2025-02-05 10:18:38.3019 Trace No newly aborted jobs found.
+2025-02-05 10:18:43.3049 Trace Checking for aborted jobs...
+2025-02-05 10:18:43.3049 Trace No newly aborted jobs found.
+2025-02-05 10:18:48.3265 Trace Checking for aborted jobs...
+2025-02-05 10:18:48.3265 Trace No newly aborted jobs found.
+2025-02-05 10:18:53.3382 Trace Checking for aborted jobs...
+2025-02-05 10:18:53.3382 Trace No newly aborted jobs found.
+2025-02-05 10:18:56.9884 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:18:56.9884 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:18:58.3494 Trace Checking for aborted jobs...
+2025-02-05 10:18:58.3494 Trace No newly aborted jobs found.
+2025-02-05 10:19:03.3643 Trace Checking for aborted jobs...
+2025-02-05 10:19:03.3643 Trace No newly aborted jobs found.
+2025-02-05 10:19:08.3712 Trace Checking for aborted jobs...
+2025-02-05 10:19:08.3712 Trace No newly aborted jobs found.
+2025-02-05 10:19:13.3773 Trace Checking for aborted jobs...
+2025-02-05 10:19:13.3773 Trace No newly aborted jobs found.
+2025-02-05 10:19:18.3921 Trace Checking for aborted jobs...
+2025-02-05 10:19:18.3921 Trace No newly aborted jobs found.
+2025-02-05 10:19:23.3988 Trace Checking for aborted jobs...
+2025-02-05 10:19:23.3988 Trace No newly aborted jobs found.
+2025-02-05 10:19:27.0008 Debug Server laptop-43cnj97a:29628:2bceb121 heartbeat successfully sent
+2025-02-05 10:19:27.0008 Trace Server laptop-43cnj97a:29628:2bceb121 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:19:28.4035 Trace Checking for aborted jobs...
+2025-02-05 10:19:28.4035 Trace No newly aborted jobs found.
+2025-02-05 10:19:33.4088 Trace Checking for aborted jobs...
+2025-02-05 10:19:33.4088 Trace No newly aborted jobs found.
+2025-02-05 10:25:18.1991 Info Application Start
+2025-02-05 10:25:18.2999 Info Start installing Hangfire SQL objects...
+2025-02-05 10:25:18.5506 Info Hangfire SQL objects installed.
+2025-02-05 10:25:18.5771 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 10:25:18.5771 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 10:25:18.5771 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 10:25:18.5943 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 10:25:18.5943 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 10:25:18.5943 Debug Execution loop BackgroundServerProcess:4acb4954 has started in 6.4742 ms
+2025-02-05 10:25:18.5943 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 10:25:18.6013 Trace Server laptop-43cnj97a:21636:c24940c4 is announcing itself...
+2025-02-05 10:25:18.7114 Trace Recurring job 'EditOrderStateFromPackageArriveToFinish' is being updated. RecurringJob: (CreatedAt:2025-02-05T01:20:21.8418250Z;Cron:0 0 * * *;Job:{"Type":"Pashamao.Utility.ScheduledJobHandler, Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","Method":"AutoEditOrderStateFromPackageArriveToFinish","ParameterTypes":"[]","Arguments":"[]"};NextExecution:2025-02-06T00:00:00.0000000Z;Queue:default;TimeZoneId:UTC;V:2), Changes: (Cron:* * * * *;NextExecution:2025-02-05T02:26:00.0000000Z)
+2025-02-05 10:25:18.7114 Info Server laptop-43cnj97a:21636:c24940c4 successfully announced in 109.3477 ms
+2025-02-05 10:25:18.7114 Debug Execution loop ServerHeartbeatProcess:c313735f has started in 3.6379 ms
+2025-02-05 10:25:18.7114 Info Server laptop-43cnj97a:21636:c24940c4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 10:25:18.7114 Debug Execution loop ServerWatchdog:f354df68 has started in 1.9656 ms
+2025-02-05 10:25:18.7114 Trace Server laptop-43cnj97a:21636:c24940c4 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:25:18.7114 Debug Execution loop ServerJobCancellationWatcher:2c490c16 has started in 1.9033 ms
+2025-02-05 10:25:18.7114 Trace Checking for aborted jobs...
+2025-02-05 10:25:18.7114 Debug Execution loop ExpirationManager:7463c7ee has started in 2.1647 ms
+2025-02-05 10:25:18.7249 Info 1 servers were removed due to timeout
+2025-02-05 10:25:18.7249 Debug Execution loop CountersAggregator:e5afae45 has started in 1.8598 ms
+2025-02-05 10:25:18.7249 Trace No newly aborted jobs found.
+2025-02-05 10:25:18.7249 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:25:18.7249 Debug Execution loop SqlServerHeartbeatProcess:2916c33e has started in 1.7557 ms
+2025-02-05 10:25:18.7249 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 10:25:18.7249 Debug Execution loop Worker:3e40f8d9 has started in 2.3604 ms
+2025-02-05 10:25:18.7249 Debug Execution loop Worker:9261c398 has started in 4.4632 ms
+2025-02-05 10:25:18.7249 Debug Execution loop Worker:434fe451 has started in 7.0813 ms
+2025-02-05 10:25:18.7249 Debug Execution loop Worker:9b018ce9 has started in 9.0772 ms
+2025-02-05 10:25:18.7409 Debug Execution loop Worker:2a1d982d has started in 12.769 ms
+2025-02-05 10:25:18.7409 Debug Execution loop Worker:27dcc3b2 has started in 14.1973 ms
+2025-02-05 10:25:18.7409 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:25:18.7409 Debug Execution loop Worker:3034d9fa has started in 18.0109 ms
+2025-02-05 10:25:18.7409 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 10:25:18.7409 Debug Removing outdated records from the 'Job' table...
+2025-02-05 10:25:18.7409 Debug Execution loop Worker:c5422110 has started in 22.3893 ms
+2025-02-05 10:25:18.7409 Trace Outdated records removed from the 'Job' table.
+2025-02-05 10:25:18.7409 Debug Removing outdated records from the 'List' table...
+2025-02-05 10:25:18.7409 Trace Outdated records removed from the 'List' table.
+2025-02-05 10:25:18.7409 Debug Execution loop Worker:afa7d35c has started in 26.5481 ms
+2025-02-05 10:25:18.7409 Debug Removing outdated records from the 'Set' table...
+2025-02-05 10:25:18.7579 Trace Outdated records removed from the 'Set' table.
+2025-02-05 10:25:18.7579 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 10:25:18.7579 Debug Execution loop Worker:fa8a73eb has started in 38.3975 ms
+2025-02-05 10:25:18.7739 Debug Execution loop Worker:9dbe2d63 has started in 46.1308 ms
+2025-02-05 10:25:18.7739 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 10:25:18.7739 Debug Execution loop Worker:588b098b has started in 51.6438 ms
+2025-02-05 10:25:18.7739 Debug Execution loop Worker:63315daf has started in 54.0417 ms
+2025-02-05 10:25:18.7739 Debug Execution loop Worker:f8493bd5 has started in 56.7394 ms
+2025-02-05 10:25:18.7739 Debug Execution loop Worker:6f8f5ffd has started in 58.4852 ms
+2025-02-05 10:25:18.7874 Debug Execution loop Worker:88d10c64 has started in 59.7563 ms
+2025-02-05 10:25:18.7874 Debug Execution loop Worker:357d3642 has started in 61.5589 ms
+2025-02-05 10:25:18.7874 Debug Execution loop Worker:271df2ca has started in 64.5133 ms
+2025-02-05 10:25:18.7874 Debug Execution loop Worker:cba3239f has started in 66.4703 ms
+2025-02-05 10:25:18.7874 Debug Execution loop Worker:5918ce8f has started in 68.0089 ms
+2025-02-05 10:25:18.7874 Debug Execution loop DelayedJobScheduler:b65e3902 has started in 5.2281 ms
+2025-02-05 10:25:18.7874 Info Server laptop-43cnj97a:21636:c24940c4 all the dispatchers started
+2025-02-05 10:25:18.8034 Debug Execution loop RecurringJobScheduler:d02677fa has started in 3.3976 ms
+2025-02-05 10:25:19.2405 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 10:25:19.2597 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 10:25:23.7260 Trace Checking for aborted jobs...
+2025-02-05 10:25:23.7260 Trace No newly aborted jobs found.
+2025-02-05 10:25:28.7359 Trace Checking for aborted jobs...
+2025-02-05 10:25:28.7359 Trace No newly aborted jobs found.
+2025-02-05 10:25:33.7431 Trace Checking for aborted jobs...
+2025-02-05 10:25:33.7431 Trace No newly aborted jobs found.
+2025-02-05 10:25:38.7489 Trace Checking for aborted jobs...
+2025-02-05 10:25:38.7489 Trace No newly aborted jobs found.
+2025-02-05 10:25:43.7635 Trace Checking for aborted jobs...
+2025-02-05 10:25:43.7635 Trace No newly aborted jobs found.
+2025-02-05 10:25:48.7482 Debug Server laptop-43cnj97a:21636:c24940c4 heartbeat successfully sent
+2025-02-05 10:25:48.7482 Trace Server laptop-43cnj97a:21636:c24940c4 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:25:48.7712 Trace Checking for aborted jobs...
+2025-02-05 10:25:48.7712 Trace No newly aborted jobs found.
+2025-02-05 10:25:53.7862 Trace Checking for aborted jobs...
+2025-02-05 10:25:53.7862 Trace No newly aborted jobs found.
+2025-02-05 10:25:58.7963 Trace Checking for aborted jobs...
+2025-02-05 10:25:58.7963 Trace No newly aborted jobs found.
+2025-02-05 10:26:03.8108 Trace Checking for aborted jobs...
+2025-02-05 10:26:03.8108 Trace No newly aborted jobs found.
+2025-02-05 10:26:03.8814 Trace Recurring job 'EditOrderStateFromPackageArriveToFinish' is being updated. RecurringJob: (CreatedAt:2025-02-05T01:20:21.8418250Z;Cron:* * * * *;Job:{"Type":"Pashamao.Utility.ScheduledJobHandler, Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","Method":"AutoEditOrderStateFromPackageArriveToFinish","ParameterTypes":"[]","Arguments":"[]"};NextExecution:2025-02-05T02:26:00.0000000Z;Queue:default;TimeZoneId:UTC;V:2), Changes: (LastExecution:2025-02-05T02:26:03.8717605Z;NextExecution:2025-02-05T02:27:00.0000000Z;LastJobId:8)
+2025-02-05 10:26:03.8980 Debug 1 recurring job(s) processed by scheduler.
+2025-02-05 10:26:08.8228 Trace Checking for aborted jobs...
+2025-02-05 10:26:08.8228 Trace No newly aborted jobs found.
+2025-02-05 10:26:13.8371 Trace Checking for aborted jobs...
+2025-02-05 10:26:13.8371 Trace No newly aborted jobs found.
+2025-02-05 10:26:18.7746 Debug Server laptop-43cnj97a:21636:c24940c4 heartbeat successfully sent
+2025-02-05 10:26:18.7746 Trace Server laptop-43cnj97a:21636:c24940c4 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:26:18.8487 Trace Checking for aborted jobs...
+2025-02-05 10:26:18.8487 Trace No newly aborted jobs found.
+2025-02-05 10:26:23.8497 Trace Checking for aborted jobs...
+2025-02-05 10:26:23.8497 Trace No newly aborted jobs found.
+2025-02-05 10:26:28.8522 Trace Checking for aborted jobs...
+2025-02-05 10:26:28.8522 Trace No newly aborted jobs found.
+2025-02-05 10:26:33.8560 Trace Checking for aborted jobs...
+2025-02-05 10:26:33.8560 Trace No newly aborted jobs found.
+2025-02-05 10:26:38.8650 Trace Checking for aborted jobs...
+2025-02-05 10:26:38.8650 Trace No newly aborted jobs found.
+2025-02-05 10:26:43.8714 Trace Checking for aborted jobs...
+2025-02-05 10:26:43.8714 Trace No newly aborted jobs found.
+2025-02-05 10:26:48.8038 Debug Server laptop-43cnj97a:21636:c24940c4 heartbeat successfully sent
+2025-02-05 10:26:48.8038 Trace Server laptop-43cnj97a:21636:c24940c4 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:26:48.8889 Trace Checking for aborted jobs...
+2025-02-05 10:26:48.8889 Trace No newly aborted jobs found.
+2025-02-05 10:26:53.8914 Trace Checking for aborted jobs...
+2025-02-05 10:26:53.8914 Trace No newly aborted jobs found.
+2025-02-05 10:26:58.9062 Trace Checking for aborted jobs...
+2025-02-05 10:26:58.9062 Trace No newly aborted jobs found.
+2025-02-05 10:27:03.9084 Trace Checking for aborted jobs...
+2025-02-05 10:27:03.9084 Trace No newly aborted jobs found.
+2025-02-05 10:27:03.9712 Trace Recurring job 'EditOrderStateFromPackageArriveToFinish' is being updated. RecurringJob: (CreatedAt:2025-02-05T01:20:21.8418250Z;Cron:* * * * *;Job:{"Type":"Pashamao.Utility.ScheduledJobHandler, Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","Method":"AutoEditOrderStateFromPackageArriveToFinish","ParameterTypes":"[]","Arguments":"[]"};LastExecution:2025-02-05T02:26:03.8717605Z;LastJobId:8;NextExecution:2025-02-05T02:27:00.0000000Z;Queue:default;TimeZoneId:UTC;V:2), Changes: (LastExecution:2025-02-05T02:27:03.9562639Z;NextExecution:2025-02-05T02:28:00.0000000Z;LastJobId:9)
+2025-02-05 10:27:03.9899 Debug 1 recurring job(s) processed by scheduler.
+2025-02-05 10:27:08.9236 Trace Checking for aborted jobs...
+2025-02-05 10:27:08.9236 Trace No newly aborted jobs found.
+2025-02-05 10:27:13.9410 Trace Checking for aborted jobs...
+2025-02-05 10:27:13.9410 Trace No newly aborted jobs found.
+2025-02-05 10:36:32.7718 Info Application Start
+2025-02-05 10:36:32.8681 Info Start installing Hangfire SQL objects...
+2025-02-05 10:36:33.1084 Info Hangfire SQL objects installed.
+2025-02-05 10:36:33.1354 Info Starting Hangfire Server using job storage: 'SQL Server: LAPTOP-43CNJ97A\SQLEXPRESS@Pashamao'
+2025-02-05 10:36:33.1354 Info Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-02-05 10:36:33.1354 Info Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-02-05 10:36:33.1582 Debug HostingEnvironment.StopListening shutdown trigger initialized successfully.
+2025-02-05 10:36:33.1582 Debug Execution loop BackgroundServerProcess:49d3a72b has started in 7.2247 ms
+2025-02-05 10:36:33.1582 Debug HostingEnvironment.ShutdownReason shutdown trigger initialized successfully.
+2025-02-05 10:36:33.1582 Debug HttpRuntime._disposingHttpRuntime shutdown trigger initialized successfully.
+2025-02-05 10:36:33.1692 Trace Server laptop-43cnj97a:24248:497ecce9 is announcing itself...
+2025-02-05 10:36:33.2833 Trace Recurring job 'EditOrderStateFromPackageArriveToFinish' is being updated. RecurringJob: (CreatedAt:2025-02-05T01:20:21.8418250Z;Cron:* * * * *;Job:{"Type":"Pashamao.Utility.ScheduledJobHandler, Pashamao, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null","Method":"AutoEditOrderStateFromPackageArriveToFinish","ParameterTypes":"[]","Arguments":"[]"};LastExecution:2025-02-05T02:27:03.9562639Z;LastJobId:9;NextExecution:2025-02-05T02:28:00.0000000Z;Queue:default;TimeZoneId:UTC;V:2), Changes: (Cron:0 0 * * *;NextExecution:2025-02-06T00:00:00.0000000Z)
+2025-02-05 10:36:33.2913 Info Server laptop-43cnj97a:24248:497ecce9 successfully announced in 121.3273 ms
+2025-02-05 10:36:33.2913 Debug Execution loop ServerHeartbeatProcess:e90f7434 has started in 6.5476 ms
+2025-02-05 10:36:33.2913 Info Server laptop-43cnj97a:24248:497ecce9 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-02-05 10:36:33.3058 Debug Execution loop ServerWatchdog:f1b5fd59 has started in 4.0506 ms
+2025-02-05 10:36:33.3058 Trace Server laptop-43cnj97a:24248:497ecce9 waiting for 00:00:30 delay before sending a heartbeat
+2025-02-05 10:36:33.3058 Debug Execution loop ServerJobCancellationWatcher:a89bce6e has started in 4.3349 ms
+2025-02-05 10:36:33.3058 Trace Checking for aborted jobs...
+2025-02-05 10:36:33.3058 Trace No newly aborted jobs found.
+2025-02-05 10:36:33.3058 Debug Execution loop ExpirationManager:cb1ee031 has started in 3.545 ms
+2025-02-05 10:36:33.3058 Info 1 servers were removed due to timeout
+2025-02-05 10:36:33.3058 Debug Execution loop CountersAggregator:fa3323c0 has started in 2.457 ms
+2025-02-05 10:36:33.3058 Debug Aggregating records in 'Counter' table...
+2025-02-05 10:36:33.3189 Debug Execution loop SqlServerHeartbeatProcess:9f69cbd5 has started in 3.5727 ms
+2025-02-05 10:36:33.3189 Debug Removing outdated records from the 'AggregatedCounter' table...
+2025-02-05 10:36:33.3189 Debug Execution loop Worker:2090b0d5 has started in 5.1444 ms
+2025-02-05 10:36:33.3189 Debug Execution loop Worker:dd65ca1c has started in 6.8543 ms
+2025-02-05 10:36:33.3189 Debug Execution loop Worker:5f0ac3a8 has started in 13.7106 ms
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:01e5c960 has started in 18.3033 ms
+2025-02-05 10:36:33.3357 Trace Outdated records removed from the 'AggregatedCounter' table.
+2025-02-05 10:36:33.3357 Debug Removing outdated records from the 'Job' table...
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:5a15e657 has started in 20.9469 ms
+2025-02-05 10:36:33.3357 Trace Records from the 'Counter' table aggregated.
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:5b2f9f24 has started in 25.5647 ms
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:667ff62c has started in 25.5781 ms
+2025-02-05 10:36:33.3357 Trace Outdated records removed from the 'Job' table.
+2025-02-05 10:36:33.3357 Debug Removing outdated records from the 'List' table...
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:37fbc38a has started in 27.1213 ms
+2025-02-05 10:36:33.3357 Debug Execution loop Worker:bab87c27 has started in 30.4485 ms
+2025-02-05 10:36:33.3512 Debug Execution loop Worker:885710cf has started in 33.8581 ms
+2025-02-05 10:36:33.3512 Debug Execution loop Worker:b8d8036a has started in 35.9456 ms
+2025-02-05 10:36:33.3512 Trace Outdated records removed from the 'List' table.
+2025-02-05 10:36:33.3512 Debug Removing outdated records from the 'Set' table...
+2025-02-05 10:36:33.3512 Debug Execution loop Worker:e511920f has started in 42.2877 ms
+2025-02-05 10:36:33.3512 Trace Outdated records removed from the 'Set' table.
+2025-02-05 10:36:33.3512 Debug Removing outdated records from the 'Hash' table...
+2025-02-05 10:36:33.3512 Debug Execution loop Worker:548f4c26 has started in 45.3956 ms
+2025-02-05 10:36:33.3652 Debug Execution loop Worker:1e03efab has started in 47.8188 ms
+2025-02-05 10:36:33.3652 Trace Outdated records removed from the 'Hash' table.
+2025-02-05 10:36:33.3652 Debug Execution loop Worker:50c5f4b3 has started in 54.1437 ms
+2025-02-05 10:36:33.3652 Debug Execution loop Worker:2ff562fe has started in 58.913 ms
+2025-02-05 10:36:33.3652 Debug Execution loop Worker:79c9983f has started in 61.1831 ms
+2025-02-05 10:36:33.3857 Debug Execution loop Worker:4529d3b5 has started in 68.1062 ms
+2025-02-05 10:36:33.3857 Debug Execution loop Worker:eb107aa6 has started in 71.3476 ms
+2025-02-05 10:36:33.3857 Debug Execution loop Worker:08448c20 has started in 73.7373 ms
+2025-02-05 10:36:33.3857 Debug Execution loop DelayedJobScheduler:8bc83a39 has started in 5.0238 ms
+2025-02-05 10:36:33.3857 Info Server laptop-43cnj97a:24248:497ecce9 all the dispatchers started
+2025-02-05 10:36:33.3977 Debug Execution loop RecurringJobScheduler:1d17bc42 has started in 2.9988 ms
+2025-02-05 10:36:35.4278 Trace Executing Controller: MainHome, Action: Index
+2025-02-05 10:36:35.4583 Trace Executed Controller: MainHome, Action: Index
+2025-02-05 10:36:38.3186 Trace Checking for aborted jobs...
+2025-02-05 10:36:38.3186 Trace No newly aborted jobs found.
+2025-02-05 10:36:43.3337 Trace Checking for aborted jobs...
+2025-02-05 10:36:43.3337 Trace No newly aborted jobs found.
+2025-02-05 10:36:48.3368 Trace Checking for aborted jobs...
+2025-02-05 10:36:48.3368 Trace No newly aborted jobs found.
+2025-02-05 10:36:53.3457 Trace Checking for aborted jobs...
+2025-02-05 10:36:53.3457 Trace No newly aborted jobs found.

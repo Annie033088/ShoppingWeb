@@ -235,3 +235,130 @@
 2025-02-03 17:23:05.8052 Trace Executed Controller: MainOrder, Action: GetOrder
 2025-02-03 17:23:07.2430 Trace Executing Controller: MainOrder, Action: GetOrder
 2025-02-03 17:23:07.2430 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-03 21:13:45.9923 Info Application Start
+2025-02-03 21:13:47.3094 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:13:47.3094 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:13:47.3314 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:13:47.3474 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:14:16.4158 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:19.2613 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:30.6179 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:31.1567 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.2419 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.2986 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.2986 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:31.3749 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.4239 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.4832 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.5146 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.5500 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.5500 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:31.5784 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:31.5784 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:44.3146 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:46.8119 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:47.4084 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:59.0043 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.0543 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.1006 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.1006 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:59.1226 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.2131 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.2357 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.2823 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.3161 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.3161 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:14:59.3444 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:14:59.3444 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:15:31.7011 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:15:50.5563 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:15:50.5743 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:15:58.4706 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:15:58.4706 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:19:02.1819 Info Application Start
+2025-02-03 21:19:02.3391 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:19:02.3391 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:19:02.3577 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:19:02.3680 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:19:27.8193 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:21:08.9347 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:21:08.9696 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:21:08.9906 Error System.Data.SqlClient.SqlException: 建立連接至 SQL Server 時，發生網路相關或執行個體特定的錯誤。找不到或無法存取伺服器。確認執行個名稱是否正確，以及 SQL Server 是否設定為允許遠端連線。 (provider: Named Pipes Provider, error: 40 - 無法開啟至 SQL Server 的連接)
+2025-02-03 21:21:08.9906 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:24:51.2693 Info Application End
+2025-02-03 21:25:17.0978 Info Application Start
+2025-02-03 21:25:17.7981 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:25:17.8081 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:25:17.8328 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:25:17.8435 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:25:39.2198 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:25:50.9056 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:25:52.9638 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 21:27:06.8616 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:28:04.1790 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:29:20.0458 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 21:29:36.6765 Info Application End
+2025-02-03 21:30:04.2055 Info Application Start
+2025-02-03 21:30:04.8114 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:30:04.8114 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:30:04.8290 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:30:04.8409 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:30:13.1857 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:30:24.3424 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:30:30.4080 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 21:30:39.2929 Info Application End
+2025-02-03 21:39:55.0211 Info Application Start
+2025-02-03 21:39:55.7041 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:39:55.7121 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:39:55.7363 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:39:55.7528 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:40:13.3404 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:40:17.1010 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:40:19.1714 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 21:42:17.6761 Info Application Start
+2025-02-03 21:42:18.1807 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 21:42:18.1807 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 21:42:18.2119 Trace Executing Controller: Login, Action: Index
+2025-02-03 21:42:18.2318 Trace Executed Controller: Login, Action: Index
+2025-02-03 21:42:30.4883 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:42:30.5361 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 21:42:30.5474 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 21:43:49.3188 Info Application End
+2025-02-03 22:02:35.0892 Info Application Start
+2025-02-03 22:02:35.4989 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 22:02:35.4989 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 22:02:35.5160 Trace Executing Controller: Login, Action: Index
+2025-02-03 22:02:35.5250 Trace Executed Controller: Login, Action: Index
+2025-02-03 22:03:33.0650 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 22:03:33.1273 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 22:03:35.1669 Error System.Web.HttpException: 無法將工作階段狀態要求送至工作階段狀態伺服器。請確定 ASP.NET 狀態服務已經啟動且用戶端與伺服器的通訊埠都相同。如果伺服器是在遠端電腦上，請檢查 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters\AllowRemoteConnection 的值，確定它是否接受遠端要求。如果伺服器是在本機電腦上，而且前述登錄值不存在或設定為 0，狀態伺服器連接字串就必須使用 'localhost' 或 '127.0.0.1' 做為伺服器名稱。
+2025-02-03 22:05:13.0428 Info Application Start
+2025-02-03 22:06:16.3411 Info Application Start
+2025-02-03 22:06:16.7241 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 22:06:16.7282 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 22:06:16.7435 Trace Executing Controller: Login, Action: Index
+2025-02-03 22:06:16.7435 Trace Executed Controller: Login, Action: Index
+2025-02-03 22:06:26.0966 Trace Executing Controller: Login, Action: SubmitUserLogin
+2025-02-03 22:06:26.1480 Trace Executed Controller: Login, Action: SubmitUserLogin
+2025-02-03 22:06:26.2170 Trace Executing Controller: MainHome, Action: Index
+2025-02-03 22:06:26.2170 Trace Executed Controller: MainHome, Action: Index
+2025-02-03 22:06:29.0174 Trace Executing Controller: MainUser, Action: Index
+2025-02-03 22:06:29.0174 Trace Executed Controller: MainUser, Action: Index
+2025-02-03 22:06:30.1427 Trace Executing Controller: MainUser, Action: Index
+2025-02-03 22:06:30.1427 Trace Executed Controller: MainUser, Action: Index
+2025-02-03 22:06:30.1841 Trace Executing Controller: MainUser, Action: GetSortedUser
+2025-02-03 22:06:30.1841 Trace Executed Controller: MainUser, Action: GetSortedUser
+2025-02-03 22:06:33.3057 Trace Executing Controller: MainOrder, Action: Index
+2025-02-03 22:06:33.3057 Trace Executed Controller: MainOrder, Action: Index
+2025-02-03 22:06:34.8617 Trace Executing Controller: MainOrder, Action: Index
+2025-02-03 22:06:34.8617 Trace Executed Controller: MainOrder, Action: Index
+2025-02-03 22:06:34.9112 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:34.9382 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:42.8570 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:42.8570 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:43.9490 Trace Executing Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:43.9490 Trace Executed Controller: MainOrder, Action: GetOrder
+2025-02-03 22:06:45.5708 Trace Executing Controller: MainHome, Action: Logout
+2025-02-03 22:06:45.5708 Trace Executed Controller: MainHome, Action: Logout
+2025-02-03 22:06:45.5708 Trace Executing Controller: Login, Action: Index
+2025-02-03 22:06:45.5708 Trace Executed Controller: Login, Action: Index

@@ -47,12 +47,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hangfire.Core, Version=1.8.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.Core.1.8.17\lib\net46\Hangfire.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hangfire.SqlServer, Version=1.8.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hangfire.SqlServer.1.8.17\lib\net451\Hangfire.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.2\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.5.3.4\lib\net46\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NLog.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.Web.5.3.14\lib\net46\NLog.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -137,6 +152,7 @@
     <Compile Include="Controllers\MainProductController.cs" />
     <Compile Include="Controllers\MainUserController.cs" />
     <Compile Include="Controllers\MemberPointController.cs" />
+    <Compile Include="Controllers\ShippingOptionController.cs" />
     <Compile Include="Filters\RequestLoggerFilter.cs" />
     <Compile Include="Models\Dto\AddressDto\RequestGetSortedAddressDto.cs" />
     <Compile Include="Models\Dto\ImitateApiDto\RequestCreateOrderDto.cs" />
@@ -215,6 +231,8 @@
     <Compile Include="Service\MemberPointService.cs" />
     <Compile Include="Service\UserLoginService.cs" />
     <Compile Include="Service\UserRoleService.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="Utility\ScheduledJobHandler.cs" />
     <Compile Include="Utility\HashUtility.cs" />
     <Compile Include="Utility\ValidStateTransition.cs" />
   </ItemGroup>
@@ -245,7 +263,7 @@
     <Content Include="css\MainMember.css" />
     <Content Include="css\MainProduct.css" />
     <Content Include="css\MainUser.css" />
-    <Content Include="css\Order\GetShippingOption.css" />
+    <Content Include="css\ShippingOption\GetShippingOption.css" />
     <Content Include="css\Order\Order.css" />
     <Content Include="css\Product.css" />
     <Content Include="css\ProductDetail.css" />
@@ -259,7 +277,7 @@
     <Content Include="js\GlobalTool.js" />
     <Content Include="js\ImitateApi\CreateMmeber.js" />
     <Content Include="js\ImitateApi\CreateOrder.js" />
-    <Content Include="js\MainOrder\EditShippingOption.js" />
+    <Content Include="js\ShippingOption\EditShippingOption.js" />
     <Content Include="js\MainOrder\MainOrderIndexTool.js" />
     <Content Include="js\MainOrder\OrderDetailTool.js" />
     <Content Include="js\MainUserIndexTool.js" />
@@ -281,8 +299,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -311,7 +327,7 @@
     <Content Include="Views\ImitateApi\Index.cshtml" />
     <Content Include="Views\ImitateApi\CreateOrder.cshtml" />
     <Content Include="Views\MainOrder\OrderDetail.cshtml" />
-    <Content Include="Views\MainOrder\ShippingOption.cshtml" />
+    <Content Include="Views\ShippingOption\ShippingOption.cshtml" />
     <Content Include="Views\MemberPoint\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

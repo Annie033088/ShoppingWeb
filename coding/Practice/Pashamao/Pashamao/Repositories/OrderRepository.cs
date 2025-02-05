@@ -514,5 +514,44 @@ namespace Pashamao.Repositories
                 cmd.Connection.Close();
             }
         }
+
+        /// <summary>
+        /// 檢查"已收貨"狀態的訂單是否超過鑑賞期
+        /// </summary>
+        public bool EditOrderStateFromPackageArriveToFinish()
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = new SqlConnection(this.ConnStr);
+
+            try
+            {
+                cmd.CommandText = "EXEC pro_pashamao_editOrderStateFromPackageArriveToFinish @todayStartTime";
+                //如果說執行排成的當下時間跟資料庫的時間不一樣, 那麼可能導致資料庫計算錯誤, 所以這邊採取後端時間
+                cmd.Parameters.Add("@todayStartTime", SqlDbType.Date).Value = DateTime.Today;
+
+                cmd.Connection.Open();
+
+                int ExeCnt = cmd.ExecuteNonQuery();
+
+                if (ExeCnt > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                throw e;
+            }
+            finally
+            {
+                cmd.Parameters.Clear();
+                cmd.Connection.Close();
+            }
+        }
     }
 }
