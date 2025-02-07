@@ -26,3 +26,6 @@ obj/
 *.suo
 *.user
 *.sln.docstates
+.vs
+bin
+obj
