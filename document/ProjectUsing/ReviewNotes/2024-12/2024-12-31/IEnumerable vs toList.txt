@@ -1,6 +1,0 @@
-IEnumerable vs toList
-
-List是實際儲存在內存的陣列
-
-IEnumerable會使用延遲加載機制
-	開始只有儲存指令, 當真的需要實例化資料的時候, 才會根據指令取得資料
