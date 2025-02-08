@@ -1,0 +1,6 @@
+SET IDENTITY_INSERT t_user ON
+
+INSERT INTO t_user(f_userId, f_account, f_hash, f_name, f_status, f_roleId, f_sessionId)
+VALUES (1, 'BG6nNMVFp34q', 'E22EBB45-FFC0-4EEA-B390-D8FCA1B9E760|03C5F449D8795EAD88F4DFCB1D0376608C073288415D0DC7A68E58FC74F734D3', 'sa', 1, 1, '5dyafxuacjtuhzi1eqqhgxq1')
+
+SET IDENTITY_INSERT t_user OFF
