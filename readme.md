@@ -5,6 +5,7 @@
 1. 簡介
 2. 還原專案
 3. 登入超級管理員
+4. 其他備註
 
 ## 簡介 ##
 
@@ -20,6 +21,7 @@ MockPashamao 的主要功能為：模擬須由前端 API 或者外部 API 實現
 
 1. 複製 ShoppingWeb-CMS Repo `https://github.com/Annie033088/ShoppingWeb-CMS.git`
 2. 進入 Pashamao 資料夾運行方案 Pashamao.sln
+3. 下載Nuget套件：Hangfire
 
 ## 登入超級管理員 ##
 
@@ -29,3 +31,10 @@ MockPashamao 的主要功能為：模擬須由前端 API 或者外部 API 實現
 2. 執行 Pashamao 應用程式，並登入帳號密碼
     1. acc：BG6nNMVFp34q
     2. pwd：yXb8S9azKg7VPfTY
+
+## 其他備註 ##
+
+### HangFire ###
+
+- 簡述：Hangfire 是一個基於 ASP.NET 的後台任務排程框架，可用來執行背景工作（Background Jobs）
+- 主要功能：可以設定即時工作、延遲工作、循環工作以及持續性工作。
