@@ -5,6 +5,7 @@
 1. 簡介
 2. 還原專案
 3. 登入超級管理員
+4. 
 
 ## 簡介 ##
 
@@ -25,6 +26,7 @@ MockPashamao 的主要功能為：模擬須由前端 API 或者外部 API 實現
 
 1. 將此應用程式的管理員資料匯入資料庫
     1. 打開 Pashamao 資料夾底下的 AddAdmin.sql ，於專案的資料庫執行指令
+    ![Initialize Image](https://github.com/Annie033088/ShoppingWeb-CMS/blob/Main/img/Guide1.png)
 2. 執行 Pashamao 應用程式，並登入帳號密碼
-    acc：BG6nNMVFp34q
-    pwd：yXb8S9azKg7VPfTY
+    1. acc：BG6nNMVFp34q
+    2. pwd：yXb8S9azKg7VPfTY
